@@ -27,6 +27,7 @@
                 "sat":["12:00","22:00"]
             }
         },
+        {
         "place_id":3,
             "place_name":"Mankombu Sambasivan Swaminathan Hall of Residence",
             "place_timing":{
@@ -38,6 +39,7 @@
                 "fri":["00:00","23:59"],
                 "sat":["00:00","23:59"]
             }
+        }
     ]
 }
 
