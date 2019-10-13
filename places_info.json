@@ -31,7 +31,6 @@
         	"place_id":3,
             "place_name":"SLR (Srinivasa Lunch Room)",
             "place_timing":{
-            	"sun":["08:00","20:00"],
                 "mon":["08:00","20:00"],
                 "tue":["08:00","20:00"],
                 "wed":["08:00","20:00"],
