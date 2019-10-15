@@ -29,4 +29,66 @@
         }
     ]
 }
+{
+
+    "success": true,
+
+    "places": [
+
+        {
+
+            "place_id":1,
+
+            "place_name":"M.Visvesvaraya Hall of Residence",
+
+            "place_timing":{
+
+                "sun":["00:00","23:59"],
+
+                "mon":["00:00","23:59"],
+
+                "tue":["00:00","23:59"],
+
+                "wed":["00:00","23:59"],
+
+                "thu":["00:00","23:59"],
+
+                "fri":["00:00","23:59"],
+
+                "sat":["00:00","23:59"]
+
+            }
+
+        },
+
+        {
+
+            "place_id":2,
+
+            "place_name":"Rengcol Canteen",
+
+            "place_timing":{
+
+                "sun":["closed","closed"],
+
+                "mon":["08:00","07:00"],
+                
+                "tue":["08:00","07:00"],
+
+                "wed":["08:00","07:00"]
+                
+                "thu":["08:00","07:00"],
+
+                "fri":["08:00","07:00"],
+
+                "sat":["closed","closed"]
+
+            }
+
+        }
+
+    ]
+
+}
+
 
