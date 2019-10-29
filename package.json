@@ -12,12 +12,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/HarishTeens/project-dates.git"
+        "url": "git+https://github.com/developer-student-clubs-nitr/project-dates.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/HarishTeens/project-dates/issues"
+        "url": "https://github.com/developer-student-clubs-nitr/project-dates/issues"
     },
-    "homepage": "https://github.com/HarishTeens/project-dates#readme"
+    "homepage": "https://github.com/developer-student-clubs-nitr/project-dates#readme"
 }
