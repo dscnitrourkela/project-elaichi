@@ -1,4 +1,4 @@
-package tech.dscnitr.nitr_route
+package tech.dscnitr.elaichi
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
