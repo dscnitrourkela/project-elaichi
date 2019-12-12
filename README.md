@@ -1,7 +1,9 @@
+![DSC Banner Image](https://raw.githubusercontent.com/Thesmader/project-elaichi/master/dsc_nitr.png)
+
 # project-elaichi
 
+## Description
 This is the development repository for campus guide at NIT Rourkela.
-
 
 ## Project Structure
 
