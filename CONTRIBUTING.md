@@ -40,6 +40,6 @@ Additionally, each commit message must follow this set of rules:
 - Use the imperative mood (“Move cursor to…” not “Moves cursor to…”)
 
 # Style Guide
-When creating a pull-request to the VOST repo, you must:
+When creating a pull-request to the project-elaichi repo, you must:
 - Format the code with  `dartfmt`
 - Comment any added Functions and Methods according to the [Official Dart Recommendations](https://www.dartlang.org/guides/language/effective-dart/documentation) for commenting code.
