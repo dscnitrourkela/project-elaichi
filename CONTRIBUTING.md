@@ -43,4 +43,4 @@ Additionally, each commit message must follow this set of rules:
 When creating a pull-request to the project-elaichi repo, you must:
 - Format the code with  `dartfmt`
 - Comment any added Functions and Methods according to the [Effective Dart: Documentation](https://www.dartlang.org/guides/language/effective-dart/documentation) for commenting code.
-- Name variables and methods according to Effective Dart: Design](https://dart.dev/guides/language/effective-dart/design).
+- Name variables and methods according to [Effective Dart: Design](https://dart.dev/guides/language/effective-dart/design).
