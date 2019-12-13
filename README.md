@@ -1,4 +1,4 @@
-![DSC Banner Image](https://raw.githubusercontent.com/Thesmader/project-elaichi/master/dsc_nitr.png)
+![DSC Banner Image](https://raw.githubusercontent.com/developer-student-clubs-nitr/project-elaichi/master/dsc_nitr.png)
 
 # project-elaichi
 
