@@ -5,7 +5,7 @@
 ## Description
 This is the development repository for campus guide at NIT Rourkela.
 
-## 🚀 Installation Guide
+## 🚀 Installation Guid
 
 1.  **Install Flutter on your machine**
 
