@@ -15,7 +15,7 @@ class NITRCentralApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'NITRCentral',
-      initialRoute: Routes.startupViewRoute,
+      initialRoute: Routes.startupView,
       onGenerateRoute: Router().onGenerateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
     );

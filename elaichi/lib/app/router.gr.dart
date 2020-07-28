@@ -4,44 +4,44 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:elaichi/ui/views/startup/startup_view.dart';
-import 'package:elaichi/ui/views/home/home_view.dart';
+// ignore_for_file: public_member_api_docs
 
-abstract class Routes {
-  static const startupViewRoute = '/';
-  static const homeViewRoute = '/home-view-route';
-  static const all = {
-    startupViewRoute,
-    homeViewRoute,
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+
+import '../ui/views/home/home_view.dart';
+import '../ui/views/startup/startup_view.dart';
+
+class Routes {
+  static const String startupView = '/';
+  static const String homeView = '/home-view';
+  static const all = <String>{
+    startupView,
+    homeView,
   };
 }
 
 class Router extends RouterBase {
   @override
-  Set<String> get allRoutes => Routes.all;
-
-  @Deprecated('call ExtendedNavigator.ofRouter<Router>() directly')
-  static ExtendedNavigatorState get navigator =>
-      ExtendedNavigator.ofRouter<Router>();
-
+  List<RouteDef> get routes => _routes;
+  final _routes = <RouteDef>[
+    RouteDef(Routes.startupView, page: StartupView),
+    RouteDef(Routes.homeView, page: HomeView),
+  ];
   @override
-  Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case Routes.startupViewRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => StartupView(),
-          settings: settings,
-        );
-      case Routes.homeViewRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => HomeView(),
-          settings: settings,
-        );
-      default:
-        return unknownRoutePage(settings.name);
-    }
-  }
+  Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
+  final _pagesMap = <Type, AutoRouteFactory>{
+    StartupView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => StartupView(),
+        settings: data,
+      );
+    },
+    HomeView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => HomeView(),
+        settings: data,
+      );
+    },
+  };
 }

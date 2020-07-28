@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:elaichi/app/locator.iconfig.dart';
+import 'package:elaichi/app/locator.config.dart';
 import 'package:injectable/injectable.dart';
 
 ///Global [GetIt] instance used to inject dependencies.
