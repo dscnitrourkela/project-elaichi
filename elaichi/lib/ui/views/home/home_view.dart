@@ -2,6 +2,7 @@ import 'package:elaichi/ui/views/home/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+///Contains the UI code for the home screen.
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

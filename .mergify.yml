@@ -1,7 +1,0 @@
-pull_request_rules:
-  - name: Automatic merge
-    conditions:
-      - base=master
-    actions:
-      merge:
-        method: merge
