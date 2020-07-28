@@ -4,7 +4,7 @@ linter:
   rules:
     argument_type_not_assignable: false
     prefer_final_fields: false
-    public_member_api_docs: false
+    public_member_api_docs: true
 
 analyzer:
   errors:
