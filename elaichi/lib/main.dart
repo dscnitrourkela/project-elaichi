@@ -8,6 +8,7 @@ void main() {
   runApp(NITRCentralApp());
 }
 
+///The main app.
 class NITRCentralApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,7 @@ import 'package:elaichi/ui/views/startup/startup_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+///Contains the UI code for Startup screen.
 class StartupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,10 @@ class StartupView extends StatelessWidget {
           body: Center(
             child: Text(
               model.title,
-              style: Theme.of(context).textTheme.headline6.copyWith(fontSize: 18.0),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  .copyWith(fontSize: 18.0),
             ),
           ),
           floatingActionButton: FloatingActionButton(

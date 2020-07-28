@@ -1,1 +1,11 @@
-include: package:effective_dart/analysis_options.yaml
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    argument_type_not_assignable: false
+    prefer_final_fields: false
+    public_member_api_docs: false
+
+analyzer:
+  errors:
+    argument_type_not_assignable: false
