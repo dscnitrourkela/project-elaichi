@@ -19,6 +19,7 @@ const _fake = 'fake';
 /// adds generated dependencies
 /// to the provided [GetIt] instance
 
+// ignore: public_member_api_docs
 void $initGetIt(GetIt g, {String environment}) {
   final gh = GetItHelper(g, environment);
   final thirdPartyServicesModule = _$ThirdPartyServicesModule();
