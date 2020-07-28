@@ -7,9 +7,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/get_it_helper.dart';
 import 'package:stacked_services/stacked_services.dart';
-import '../services/local_db.dart';
+
 import '../services/api.dart';
 import '../services/fake_api.dart';
+import '../services/local_db.dart';
 import '../services/theme_manager.dart';
 import '../services/third_party_services_module.dart';
 
@@ -19,7 +20,6 @@ const _fake = 'fake';
 /// adds generated dependencies
 /// to the provided [GetIt] instance
 
-// ignore: public_member_api_docs
 void $initGetIt(GetIt g, {String environment}) {
   final gh = GetItHelper(g, environment);
   final thirdPartyServicesModule = _$ThirdPartyServicesModule();
