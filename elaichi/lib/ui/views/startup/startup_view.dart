@@ -1,3 +1,4 @@
+// import 'package:elaichi/app/logger.dart';
 import 'package:elaichi/ui/views/startup/startup_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -6,6 +7,7 @@ import 'package:stacked/stacked.dart';
 class StartupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //final log = getLogger("StartupView");
     return ViewModelBuilder<StartupViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
