@@ -14,4 +14,4 @@ ios_folder:
 - any: ['elaichi/ios/**/*']
 
 repo_root:
-- ./*
+  - ./*
