@@ -1,17 +1,17 @@
 test:
-- any: ['elaichi/test/**/*']
+  - elaichi/test/**/*
 
 ui:
-- any: ['elaichi/lib/ui/**/*']
+  - elaichi/lib/ui/**/*
 
 services:
-- any: ['elaichi/lib/services/**/*']
+  - elaichi/lib/services/**/*
 
 android_folder:
-- any: ['elaichi/android/**/*']
+  - elaichi/android/**/*
 
 ios_folder:
-- any: ['elaichi/ios/**/*']
+  - elaichi/ios/**/*
 
 repo_root:
   - ./*
