@@ -1,0 +1,17 @@
+test:
+  - elaichi/test/**/*
+
+ui:
+  - elaichi/lib/ui/**/*
+
+services:
+  - elaichi/lib/services/**/*
+
+android_folder:
+  - elaichi/android/**/*
+
+ios_folder:
+  - elaichi/ios/**/*
+
+repo_root:
+  - ./*
