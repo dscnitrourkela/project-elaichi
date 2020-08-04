@@ -16,11 +16,17 @@ jobs:
         with:
           flutter-version: "1.17.5"
           channel: "stable"
-      - run: flutter pub get
-      - run: flutter analyze
+      - name: Get packages
+        working-directory: ./elaichi
+        run: flutter pub get
+      - name: Analyze project
+        working-directory: ./elaichi
+        run: flutter analyze
         continue-on-error: true
-      - run: flutter test --coverage
+      - name: Run tests & generate coverage info
+        working-directory: ./elaichi
+        run: flutter test --coverage
       - uses: codecov/codecov-action@v1.0.12
         with:
           token: ${{secrets.CODECOV_TOKEN}}
-          file: ./coverage/lcov.info
+          file: .elaichi/coverage/lcov.info
