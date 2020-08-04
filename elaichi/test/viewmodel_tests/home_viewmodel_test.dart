@@ -7,6 +7,12 @@ void main() {
   setUp(() => registerServices());
   tearDown(() => unregisterServices());
   group('HomeViewmodelTest -', () {
+    group('title -', () {
+      test('When constructed, title should not be null', () {
+        final model = HomeViewModel();
+        expect(model.title != null, true);
+      });
+    });
     group('counter -', () {
       test('When constructed, counter should return 0', () {
         final model = HomeViewModel();
