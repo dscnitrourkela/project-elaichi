@@ -14,7 +14,7 @@ doc/api/
 
 # Directory created by flutter test --coverage
 # If you don't generate coverage info locally you can remove this line.
-covergae/
+coverage/
 
 # Avoid committing generated Javascript files:
 *.dart.js
