@@ -14,7 +14,7 @@ jobs:
           java-version: "12.x"
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: "1.17.5"
+          flutter-version: "1.20"
           channel: "stable"
       - name: Get packages
         working-directory: ./elaichi
@@ -26,7 +26,14 @@ jobs:
       - name: Run tests & generate coverage info
         working-directory: ./elaichi
         run: flutter test --coverage
-      - uses: codecov/codecov-action@v1.0.12
+      - name: Exclude elaichi/lib/app from coverage report
+        uses: ChicagoFlutter/lcov-cop@v1.0.2
+        with:
+          path: "./elaichi/coverage/lcov.info"
+          min_coverage: 0
+          exclude: "./elaichi/lib/app/*"
+      - name: Upload report to codecov
+        uses: codecov/codecov-action@v1.0.12
         with:
           token: ${{secrets.CODECOV_TOKEN}}
           file: ./elaichi/coverage/lcov.info

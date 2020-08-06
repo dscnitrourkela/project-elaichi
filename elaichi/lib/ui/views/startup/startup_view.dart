@@ -22,7 +22,7 @@ class StartupView extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: model.navigateToHome,
-            child: Icon(Icons.arrow_forward),
+            child: const Icon(Icons.arrow_forward),
           ),
         ),
       ),

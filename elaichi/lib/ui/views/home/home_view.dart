@@ -14,7 +14,7 @@ class HomeView extends StatelessWidget {
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: model.updateCounter,
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
           body: Column(
             children: <Widget>[
