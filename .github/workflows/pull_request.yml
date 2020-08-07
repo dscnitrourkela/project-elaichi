@@ -31,7 +31,7 @@ jobs:
         with:
           path: "./elaichi/coverage/lcov.info"
           min_coverage: 0
-          exclude: "**/lib/app/*"
+          exclude: "lib\\app\\*"
       - name: Upload report to codecov
         uses: codecov/codecov-action@v1.0.12
         with:
