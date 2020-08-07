@@ -1,9 +1,11 @@
 import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/app/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 void main() {
+  Logger.level = Level.debug;
   setupLocator();
   runApp(NITRCentralApp());
 }

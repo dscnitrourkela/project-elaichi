@@ -12,6 +12,10 @@ pubspec.lock
 # If you don't generate documentation locally you can remove this line.
 doc/api/
 
+# Directory created by flutter test --coverage
+# If you don't generate coverage info locally you can remove this line.
+coverage/
+
 # Avoid committing generated Javascript files:
 *.dart.js
 *.info.json      # Produced by the --dump-info flag.
@@ -75,10 +79,10 @@ doc/api/
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
+# !.vscode/settings.json
+# !.vscode/tasks.json
 !.vscode/launch.json
-!.vscode/extensions.json
+# !.vscode/extensions.json
 *.code-workspace
 
 ### VisualStudioCode Patch ###

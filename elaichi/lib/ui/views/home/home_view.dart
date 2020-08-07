@@ -14,13 +14,19 @@ class HomeView extends StatelessWidget {
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: model.updateCounter,
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
-          body: Center(
-            child: Text(
-              model.title,
-              style: Theme.of(context).textTheme.headline5,
-            ),
+          body: Column(
+            children: <Widget>[
+              Text(
+                model.title,
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              Text(
+                model.counter.toString(),
+                style: Theme.of(context).textTheme.headline6,
+              )
+            ],
           ),
         ),
       ),

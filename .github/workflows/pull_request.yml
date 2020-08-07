@@ -1,0 +1,42 @@
+name: PR Test
+on:
+  pull_request:
+    branches:
+      - development
+jobs:
+  build:
+    name: Verify Pull Request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "1.17.5"
+          channel: "stable"
+      - name: Get packages
+        working-directory: ./elaichi
+        run: flutter pub get
+      - name: Analyze project
+        working-directory: ./elaichi
+        run: flutter analyze
+        continue-on-error: true
+      - name: Run tests & generate coverage info
+        working-directory: ./elaichi
+        run: flutter test --coverage
+      - name: Prints lcov.info
+        working-directory: ./elaichi
+        run: cat ./coverage/lcov.info
+      - name: Exclude elaichi/lib/app from coverage report
+        uses: ChicagoFlutter/lcov-cop@v1.0.2
+        with:
+          path: "./elaichi/coverage/lcov.info"
+          min_coverage: 0
+          exclude: "lib/app/*"
+      - name: Upload report to codecov
+        uses: codecov/codecov-action@v1.0.12
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: ./lcov_filtered.info
