@@ -39,4 +39,4 @@ jobs:
         uses: codecov/codecov-action@v1.0.12
         with:
           token: ${{secrets.CODECOV_TOKEN}}
-          file: ./elaichi/coverage/lcov_filtered.info
+          file: ./lcov_filtered.info
