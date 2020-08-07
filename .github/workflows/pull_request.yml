@@ -26,6 +26,9 @@ jobs:
       - name: Run tests & generate coverage info
         working-directory: ./elaichi
         run: flutter test --coverage
+      - name: Prints lcov.info
+        working-directory: ./elaichi
+        run: cat ./coverage/lcov.info
       - name: Exclude elaichi/lib/app from coverage report
         uses: ChicagoFlutter/lcov-cop@v1.0.2
         with:
