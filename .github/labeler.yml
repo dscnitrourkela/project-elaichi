@@ -15,3 +15,6 @@ ios_folder:
 
 repo_root:
   - ./*
+
+actions:
+  - .github/**/*
