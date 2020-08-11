@@ -7,34 +7,26 @@ TestLabel2:
 test:
   files: 
     - "elaichi/test.*"
-
 ui:
   files: 
     - "elaichi/lib/ui.*"
-
 services:
   files: 
     - "elaichi/lib/services.*"
-
 android_folder:
   files: 
     - "elaichi/android.*"
-
 ios_folder:
   files: 
     - "elaichi/ios.*"
-
 repo_root:
   files: 
     - "[^\/]*"
-
 actions:
   files: 
     - "[.]github.*"
-
 mergable:
   mergable: true
-
 small:
   size-below: 10
 medium:
