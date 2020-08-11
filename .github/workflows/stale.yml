@@ -17,3 +17,7 @@ jobs:
         stale-pr-message: 'This PR is stale'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
+        days-before-stale: 30
+        days-before-close: 365
+        exempt-issue-labels: 'awaiting-approval,work-in-progress'
+        exempt-pr-labels: 'awaiting-approval,work-in-progress'
