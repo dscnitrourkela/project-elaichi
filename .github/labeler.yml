@@ -1,3 +1,9 @@
+TestLabel:
+  title: ".*"
+TestLabel2:
+  files: 
+    - "cmd/.*.go"
+    - "pkg/.*.go"
 test:
   files:
     - "(.\/)?elaichi/test.*"
