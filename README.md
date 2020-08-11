@@ -2,7 +2,7 @@
 
 # project-elaichi
 
-[![codecov](https://codecov.io/gh/dscnitrourkela/project-elaichi/branch/master/graph/badge.svg)](https://codecov.io/gh/dscnitrourkela/project-elaichi)
+[![codecov](https://codecov.io/gh/dscnitrourkela/project-elaichi/branch/development/graph/badge.svg)](https://codecov.io/gh/dscnitrourkela/project-elaichi)
 
 ## Description
 

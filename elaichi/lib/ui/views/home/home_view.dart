@@ -17,10 +17,13 @@ class HomeView extends StatelessWidget {
             child: const Icon(Icons.add),
           ),
           body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                model.title,
-                style: Theme.of(context).textTheme.headline5,
+              Center(
+                child: Text(
+                  model.title,
+                  style: Theme.of(context).textTheme.headline5,
+                ),
               ),
               Text(
                 model.counter.toString(),
