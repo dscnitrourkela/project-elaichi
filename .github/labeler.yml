@@ -19,9 +19,6 @@ android_folder:
 ios_folder:
   files: 
     - "elaichi/ios.*"
-repo_root:
-  files: 
-    - "[^\/]*"
 actions:
   files: 
     - "[.]github.*"
