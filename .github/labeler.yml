@@ -1,22 +1,28 @@
+TestLabel:
+  title: ".*"
+TestLabel2:
+  files: 
+    - "cmd/.*.go"
+    - "pkg/.*.go"
 test:
   files: 
-    - "(.\/)?elaichi/test.*"
+    - "elaichi/test.*"
 
 ui:
   files: 
-    - "(.\/)?elaichi/lib/ui.*"
+    - "elaichi/lib/ui.*"
 
 services:
   files: 
-    - "(.\/)?elaichi/lib/services.*"
+    - "elaichi/lib/services.*"
 
 android_folder:
   files: 
-    - "(.\/)?elaichi/android.*"
+    - "elaichi/android.*"
 
 ios_folder:
   files: 
-    - "(.\/)?elaichi/ios.*"
+    - "elaichi/ios.*"
 
 repo_root:
   files: 
@@ -24,7 +30,7 @@ repo_root:
 
 actions:
   files: 
-    - "(.\/)?.github.*"
+    - "[.]github.*"
 
 mergable:
   mergable: true
