@@ -11,17 +11,26 @@ class StartupView extends StatelessWidget {
     return ViewModelBuilder<StartupViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
-          body: Center(
-            child: Text(
-              model.title,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  .copyWith(fontSize: 18.0),
-            ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  model.title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .copyWith(fontSize: 18.0),
+                ),
+              ),
+              RaisedButton(
+                onPressed: model.changeTheme,
+                child: const Text("Change Theme"),
+              )
+            ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: model.navigateToHome,
+            onPressed: () => model.navigateToHome(),
             child: const Icon(Icons.arrow_forward),
           ),
         ),
