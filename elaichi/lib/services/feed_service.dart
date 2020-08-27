@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:elaichi/app/failure.dart';
@@ -14,7 +15,7 @@ class FeedService {
   Future<User> getUser() async {
     try {
       final user = await _apiClient.getUser("test");
-      return User.fromMap(user);
+      return User.fromMap(json.decode(user));
     } on SocketException {
       throw Failure(0, 'No Internet Connection');
     } on HttpException {
