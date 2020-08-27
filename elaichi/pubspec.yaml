@@ -26,6 +26,7 @@ dependencies:
   #inversion of control(dependency injection)
   get_it: ^4.0.2
   injectable: 1.0.2
+  dartz: ^0.9.1
 
 dev_dependencies:
   flutter_test:
@@ -33,9 +34,10 @@ dev_dependencies:
   lint: ^1.2.0
   mockito: ^4.1.1
 
-  build_runner:
+  build_runner: null
   auto_route_generator: ^0.6.6
   injectable_generator: 1.0.2
 
 flutter:
   uses-material-design: true
+

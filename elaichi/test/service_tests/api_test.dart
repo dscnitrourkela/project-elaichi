@@ -1,4 +1,6 @@
-import 'package:elaichi/datamodels/api_models.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -20,7 +22,13 @@ void main() {
 
       when(fakeApiService.getUser("test")).thenAnswer(
         (_) => Future.value(
-          User(userId: "test", email: "john.doe@example.com", name: "John Doe"),
+          '''
+            {
+              "userId": "test",
+              "email": "john.doe@example.com",
+              "name": "John Doe"
+            }
+          ''',
         ),
       );
 
@@ -31,10 +39,33 @@ void main() {
     test('Given a userId that does not exist, should return correct error', () {
       final fakeApiService = FakeApiMock();
       when(fakeApiService.getUser("userId")).thenAnswer(
-        (_) => Future.value(
-          User(userId: "error"),
-        ),
+        (_) => Future.value('error'),
       );
     });
+  });
+
+  test('Given an errorMode 1, should throw SocketException', () async {
+    final fakeApiService = FakeApiMock();
+    try {
+      await fakeApiService.getUser("test", errorMode: 1);
+    } catch (e) {
+      expect(e, isInstanceOf<SocketException>());
+    }
+  });
+
+  test('Given errorMode 2, should throw HttpExcpetion', () async {
+    final fakeApiService = FakeApiMock();
+    try {
+      await fakeApiService.getUser("test", errorMode: 2);
+    } catch (e) {
+      expect(e, isInstanceOf<HttpException>());
+    }
+  });
+
+  test('Given errorMode 3, should return wrong json', () async {
+    final fakeApiService = FakeApiMock();
+    final result = await fakeApiService.getUser("test", errorMode: 3);
+    expect(result, isNotNull);
+    // expect
   });
 }

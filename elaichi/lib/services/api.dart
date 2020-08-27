@@ -18,5 +18,5 @@ abstract class Api {
 
   /// Provides interface for getting user details.
   /// The parameter [userId] must be non null.
-  Future<User> getUser(String userId);
+  Future<String> getUser(String userId);
 }
