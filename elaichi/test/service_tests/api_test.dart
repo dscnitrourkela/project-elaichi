@@ -78,7 +78,7 @@ void main() {
     });
   });
 
-  test('Given an errorMode 1, should throw SocketException', () async {
+  test('Given errorMode 1, should throw SocketException', () async {
     final fakeApiService = FakeApiMock();
     try {
       await fakeApiService.getUser("test", errorMode: 1);
@@ -97,9 +97,13 @@ void main() {
   });
 
   test('Given errorMode 3, should return wrong json', () async {
-    final fakeApiService = FakeApiMock();
+    final fakeApiService = FakeApi();
     final result = await fakeApiService.getUser("test", errorMode: 3);
     expect(result, isNotNull);
-    // expect
+    try {
+      json.decode(result);
+    } catch (e) {
+      expect(e, isInstanceOf<FormatException>());
+    }
   });
 }
