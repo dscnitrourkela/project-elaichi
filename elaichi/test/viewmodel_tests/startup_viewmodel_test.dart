@@ -24,5 +24,14 @@ void main() {
         verify(navigation.navigateTo(Routes.homeView));
       });
     });
+
+    group('changeTheme -', () {
+      test('When called, should call ThemeManager.changeTheme', () {
+        final themeManager = getAndRegisterThemeManagerMock();
+        final model = StartupViewModel();
+        model.changeTheme();
+        verify(themeManager.changeTheme());
+      });
+    });
   });
 }

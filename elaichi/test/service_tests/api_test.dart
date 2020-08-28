@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:elaichi/services/api.dart';
 import 'package:elaichi/services/fake_api.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -10,6 +11,11 @@ void main() {
   group('Api -', () {
     setUp(() => registerServices());
     tearDown(() => unregisterServices());
+
+    test('Calling factory constructor of Api class should not return null', () {
+      final api = Api();
+      expect(api, isNotNull);
+    });
 
     test('Constructing Service should find correct dependencies', () {
       final fakeApiService = FakeApiMock();
