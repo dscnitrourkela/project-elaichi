@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:elaichi/services/api.dart';
 import 'package:elaichi/services/fake_api.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
