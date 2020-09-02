@@ -1,10 +1,9 @@
 import 'package:elaichi/app/failure.dart';
-import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 
-/// Contains the key-value pairs of the boxes that can be used
+/// Contains the boxNames that can be used for LocalDb
 enum LocalDbBoxes {
   /// Preferences box for settings like `darkMode`
   preferences,
