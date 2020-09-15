@@ -1,4 +1,7 @@
 import 'package:elaichi/app/locator.dart';
+import 'package:elaichi/services/api.dart';
+import 'package:elaichi/services/fake_api.dart';
+import 'package:elaichi/services/feed_service.dart';
 import 'package:elaichi/services/theme_manager.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -10,6 +13,24 @@ class DialogServiceMock extends Mock implements DialogService {}
 class SnackbarServiceMock extends Mock implements SnackbarService {}
 
 class ThemeManagerMock extends Mock implements ThemeManager {}
+
+class FakeApiMock extends Mock implements FakeApi {}
+
+class FeedServiceMock extends Mock implements FeedService {}
+
+FakeApi getAndRegisterFakeApiMock() {
+  _removeRegistrationIfExists<Api>();
+  final service = FakeApiMock();
+  locator.registerSingleton<Api>(service);
+  return service;
+}
+
+FeedService getAndRegisterFeedServiceMock() {
+  _removeRegistrationIfExists<FeedService>();
+  final service = FeedServiceMock();
+  locator.registerSingleton<FeedService>(service);
+  return service;
+}
 
 NavigationService getAndRegisterNavigationServiceMock() {
   _removeRegistrationIfExists<NavigationService>();
@@ -40,10 +61,13 @@ ThemeManager getAndRegisterThemeManagerMock() {
 }
 
 void registerServices() {
+  locator.allowReassignment = true;
   getAndRegisterDialogServiceMock();
   getAndRegisterNavigationServiceMock();
   getAndRegisterSnackbarServiceMock();
   getAndRegisterThemeManagerMock();
+  getAndRegisterFakeApiMock();
+  getAndRegisterFeedServiceMock();
 }
 
 void unregisterServices() {
@@ -51,6 +75,8 @@ void unregisterServices() {
   locator.unregister<NavigationService>();
   locator.unregister<SnackbarService>();
   locator.unregister<ThemeManager>();
+  locator.unregister<Api>();
+  locator.unregister<FeedService>();
 }
 
 void _removeRegistrationIfExists<T>() {
