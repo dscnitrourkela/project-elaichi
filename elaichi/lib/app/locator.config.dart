@@ -7,7 +7,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/get_it_helper.dart';
 import 'package:stacked_services/stacked_services.dart';
-
+import '../services/local_db.dart';
 import '../services/api.dart';
 import '../services/fake_api.dart';
 import '../services/theme_manager.dart';
@@ -31,6 +31,7 @@ void $initGetIt(GetIt g, {String environment}) {
       () => thirdPartyServicesModule.snackBarService);
 
   // Eager singletons must be registered in the right order
+  gh.singleton<LocalDb>(LocalDb());
   gh.singleton<Api>(Api());
   gh.singleton<ThemeManager>(ThemeManager());
 }

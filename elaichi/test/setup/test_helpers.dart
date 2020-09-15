@@ -1,4 +1,5 @@
 import 'package:elaichi/app/locator.dart';
+import 'package:elaichi/services/local_db.dart';
 import 'package:elaichi/services/api.dart';
 import 'package:elaichi/services/fake_api.dart';
 import 'package:elaichi/services/feed_service.dart';
@@ -13,6 +14,8 @@ class DialogServiceMock extends Mock implements DialogService {}
 class SnackbarServiceMock extends Mock implements SnackbarService {}
 
 class ThemeManagerMock extends Mock implements ThemeManager {}
+
+class LocalDbMock extends Mock implements LocalDb {}
 
 class FakeApiMock extends Mock implements FakeApi {}
 
@@ -60,12 +63,20 @@ ThemeManager getAndRegisterThemeManagerMock() {
   return service;
 }
 
+LocalDb getAndRegisterLocalDbMock() {
+  _removeRegistrationIfExists<LocalDb>();
+  final service = LocalDbMock();
+  locator.registerSingleton<LocalDb>(service);
+  return service;
+}
+
 void registerServices() {
   locator.allowReassignment = true;
   getAndRegisterDialogServiceMock();
   getAndRegisterNavigationServiceMock();
   getAndRegisterSnackbarServiceMock();
   getAndRegisterThemeManagerMock();
+  getAndRegisterLocalDbMock();
   getAndRegisterFakeApiMock();
   getAndRegisterFeedServiceMock();
 }
@@ -75,6 +86,7 @@ void unregisterServices() {
   locator.unregister<NavigationService>();
   locator.unregister<SnackbarService>();
   locator.unregister<ThemeManager>();
+  locator.unregister<LocalDb>();
   locator.unregister<Api>();
   locator.unregister<FeedService>();
 }
