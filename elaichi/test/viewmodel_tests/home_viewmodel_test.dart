@@ -25,5 +25,22 @@ void main() {
         expect(model.counter, 1);
       });
     });
+
+    // group('user -', () {
+    //   test('When fetchUser is called, should run task and setBusy as expected',
+    //       () {
+    //     final feedService = getAndRegisterFeedServiceMock();
+    //     final model = HomeViewModel();
+    //     model.fetchUser();
+    //     when(feedService.getUser()).thenAnswer((_) => Future.value(
+    //             User.fromMap({
+    //           "userId": "test",
+    //           "name": "John Doe",
+    //           "email": "john.doe@examle.com"
+    //         })));
+    //     verifyInOrder(
+    //         [model.setBusy(true), feedService.getUser(), model.setBusy(false)]);
+    //   });
+    // });
   });
 }
