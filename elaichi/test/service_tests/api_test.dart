@@ -77,4 +77,33 @@ void main() {
       }
     });
   });
+
+  test('Given errorMode 1, should throw SocketException', () async {
+    final fakeApiService = FakeApiMock();
+    try {
+      await fakeApiService.getUser("test", errorMode: 1);
+    } catch (e) {
+      expect(e, isInstanceOf<SocketException>());
+    }
+  });
+
+  test('Given errorMode 2, should throw HttpExcpetion', () async {
+    final fakeApiService = FakeApiMock();
+    try {
+      await fakeApiService.getUser("test", errorMode: 2);
+    } catch (e) {
+      expect(e, isInstanceOf<HttpException>());
+    }
+  });
+
+  test('Given errorMode 3, should return wrong json', () async {
+    final fakeApiService = FakeApi();
+    final result = await fakeApiService.getUser("test", errorMode: 3);
+    expect(result, isNotNull);
+    try {
+      json.decode(result);
+    } catch (e) {
+      expect(e, isInstanceOf<FormatException>());
+    }
+  });
 }

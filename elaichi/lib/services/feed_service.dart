@@ -8,7 +8,9 @@ import 'package:elaichi/app/locator.dart';
 // import 'package:elaichi/datamodels/api_models.dart';
 import 'package:elaichi/datamodels/user.dart';
 import 'package:elaichi/services/api.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class FeedService {
   final Api _apiClient = locator<Api>();
 

@@ -1,5 +1,5 @@
 import 'package:elaichi/app/locator.dart';
-import 'package:elaichi/app/router.gr.dart';
+import 'package:elaichi/app/router.gr.dart' as router;
 import 'package:elaichi/services/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -29,8 +29,8 @@ class NITRCentralApp extends StatelessWidget {
                 theme: model.data,
                 debugShowCheckedModeBanner: false,
                 title: 'NITRCentral',
-                initialRoute: Routes.startupView,
-                onGenerateRoute: Router().onGenerateRoute,
+                initialRoute: router.Routes.startupView,
+                onGenerateRoute: router.Router().onGenerateRoute,
                 navigatorKey: locator<NavigationService>().navigatorKey,
               )
             : const MaterialApp(

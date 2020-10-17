@@ -8,4 +8,7 @@ final GetIt locator = GetIt.instance;
 ///[setupLocator()] is called before runApp() to register the dependencies with
 ///[GetIt] and make them available for injection.
 @injectableInit
-void setupLocator() => $initGetIt(locator, environment: 'fake');
+void setupLocator() => $initGetIt(
+      locator,
+      // environment: 'fake',
+    );
