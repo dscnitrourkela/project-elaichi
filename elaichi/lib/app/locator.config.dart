@@ -15,6 +15,9 @@ import '../services/local_db.dart';
 import '../services/theme_manager.dart';
 import '../services/third_party_services_module.dart';
 
+/// Environment names
+const _dev = 'dev';
+
 /// adds generated dependencies
 /// to the provided [GetIt] instance
 
@@ -25,7 +28,7 @@ GetIt $initGetIt(
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   final thirdPartyServicesModule = _$ThirdPartyServicesModule();
-  gh.lazySingleton<Api>(() => FakeApi());
+  gh.lazySingleton<Api>(() => FakeApi(), registerFor: {_dev});
   gh.lazySingleton<DialogService>(() => thirdPartyServicesModule.dialogService);
   gh.lazySingleton<FeedService>(() => FeedService());
   gh.lazySingleton<NavigationService>(

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/datamodels/api_models.dart';
 import 'package:elaichi/services/api.dart';
 import 'package:injectable/injectable.dart';
@@ -7,9 +8,8 @@ import 'package:injectable/injectable.dart';
 /// An implementation of Api class to feed fake data to the app.
 /// Use this for development during internet outages, server downtime,
 /// or API unavailability. Helps in rapid prototyping of the app.
-// @Named("fakeApi")
-// @fake
-@LazySingleton(as: Api)
+
+@LazySingleton(as: Api, env: [Env.dev])
 class FakeApi implements Api {
   /// Mocks an user API call.
   ///
