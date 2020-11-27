@@ -8,7 +8,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 void main() {
   Logger.level = Level.debug;
-  setupLocator();
+  setupLocator(environment: Env.dev);
   runApp(NITRCentralApp());
 }
 

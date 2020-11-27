@@ -8,7 +8,17 @@ final GetIt locator = GetIt.instance;
 ///[setupLocator()] is called before runApp() to register the dependencies with
 ///[GetIt] and make them available for injection.
 @injectableInit
-void setupLocator() => $initGetIt(
+void setupLocator({String environment}) => $initGetIt(
       locator,
-      // environment: 'fake',
+      environment: environment,
     );
+
+/// Custom class to define configurations for multiple environemnts.
+abstract class Env{
+    /// Pass this as an argument to the environment parameter of setupLocator
+    /// to register development dependencies.
+    static const dev = 'dev';
+    /// Pass this as an argument to the environment parameter of setupLocator
+    /// to register production dependencies.
+    static const prod = 'prod';
+}
