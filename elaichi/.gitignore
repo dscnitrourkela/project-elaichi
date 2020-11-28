@@ -222,3 +222,5 @@ fabric.properties
 ### Store Publish Files
 *.jks
 key.properties
+### Vimspector Config
+.vimspector.json
