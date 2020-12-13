@@ -1,0 +1,7 @@
+{
+    "variables": {
+        "appName":"NITR Central"
+    },
+    "appName": "NITR Central",
+    "welcome": "Welcome to NITR Central"
+}

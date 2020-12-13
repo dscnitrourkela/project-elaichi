@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/app/router.gr.dart' as router;
 import 'package:elaichi/services/theme_manager.dart';
@@ -9,7 +10,11 @@ import 'package:stacked_services/stacked_services.dart';
 void main() {
   Logger.level = Level.debug;
   setupLocator(environment: Env.dev);
-  runApp(NITRCentralApp());
+  runApp(EasyLocalization(
+    supportedLocales: const <Locale>[Locale('en')],
+    path: 'assets/translations',
+    child: NITRCentralApp(),
+  ));
 }
 
 ///The main app.
@@ -27,8 +32,11 @@ class NITRCentralApp extends StatelessWidget {
         child: model.data != null
             ? MaterialApp(
                 theme: model.data,
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
                 debugShowCheckedModeBanner: false,
-                title: 'NITRCentral',
+                title: 'appName'.tr(),
                 initialRoute: router.Routes.startupView,
                 onGenerateRoute: router.Router().onGenerateRoute,
                 navigatorKey: locator<NavigationService>().navigatorKey,
