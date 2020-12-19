@@ -6,7 +6,9 @@ import 'package:mockito/mockito.dart';
 import '../setup/test_helpers.dart';
 
 void main() {
-  setUp(() => registerServices());
+  setUp(() async {
+    await registerServices();
+  });
   tearDown(() => unregisterServices());
   group('StartupViewmodelTest -', () {
     group('title - ', () {

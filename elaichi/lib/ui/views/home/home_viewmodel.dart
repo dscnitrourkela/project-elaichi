@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elaichi/app/failure.dart';
 import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/datamodels/user.dart';
-import 'package:elaichi/generated/codegen_loader.g.dart';
+import 'package:elaichi/generated/locale_keys.g.dart';
 import 'package:elaichi/services/feed_service.dart';
 import 'package:stacked/stacked.dart';
 

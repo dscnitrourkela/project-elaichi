@@ -8,7 +8,9 @@ import '../setup/test_helpers.dart';
 
 void main() {
   group('Api -', () {
-    setUp(() => registerServices());
+    setUp(() async {
+      await registerServices();
+    });
     tearDown(() => unregisterServices());
 
     // test('Calling factory constructor of Api class should not return null', () {
