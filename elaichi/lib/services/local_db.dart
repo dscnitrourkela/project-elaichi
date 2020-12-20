@@ -1,4 +1,3 @@
-import 'package:elaichi/app/failure.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
@@ -24,7 +23,7 @@ class LocalDb {
   /// Instance of Hive
   HiveInterface hive;
 
-  /// Constructor function to initialize [LocalDb]. Pass `hive` if the instance is already present.
+  /// Constructor function to initialize [LocalDb]. Pass `hive` if an instance is already present.
   LocalDb({this.hive}) {
     hive ??= Hive;
   }
@@ -55,18 +54,19 @@ class LocalDb {
     }
   }
 
-  /// To be used in dispose section for all the class
+  /// To be used in dispose section of class/app
   Future<void> closeAllBoxes() async {
     await hive.close();
   }
 
-  /// Return the value after retrival from HiveBox named `boxName`, which is of
-  /// the type LocalDbBoxes and with the `key` name
+  /// Return the value after retrival from HiveBox `boxName` of
+  /// the type LocalDbBoxes and with the `key`. If null then defaultValue is
+  /// returned if set
   dynamic getValue(LocalDbBoxes boxName, String key, {dynamic defaultValue}) {
     assert(hive.isBoxOpen(boxName.toString()));
-    // "$boxName is closed, please open before working with this box!");
 
-    return hive.box(boxName.toString()).get(key);
+    dynamic _result = hive.box(boxName.toString()).get(key);
+    return _result ??= defaultValue;
   }
 
   /// Put something into HiveBox `boxName` of the type
