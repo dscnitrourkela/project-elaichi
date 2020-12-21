@@ -1,4 +1,3 @@
-import 'package:elaichi/app/failure.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
@@ -21,54 +20,70 @@ enum LocalDbBoxes {
 /// to retrieve from the database
 @singleton
 class LocalDb {
+  /// Instance of Hive
+  HiveInterface hive;
+
+  /// Constructor function to initialize [LocalDb]. Pass `hive` if an instance is already present.
+  LocalDb({this.hive}) {
+    hive ??= Hive;
+  }
+
   /// Instantiate the class with the boxes required as `boxesToOpen`
   Future<void> initLocalDb({List<LocalDbBoxes> boxesToOpen}) async {
     // Initialize and get the database local path
-    await Hive.initFlutter();
+    await hive.initFlutter();
 
     if (boxesToOpen != null) {
       for (final box in boxesToOpen) {
-        await Hive.openBox(box.toString());
+        await hive.openBox(box.toString());
       }
     }
   }
 
   /// Open extra boxes
   Future<void> openBox(LocalDbBoxes boxName) async {
-    if (!Hive.isBoxOpen(boxName.toString())) {
-      await Hive.openBox(boxName.toString());
+    if (!hive.isBoxOpen(boxName.toString())) {
+      await hive.openBox(boxName.toString());
     }
   }
 
-  /// To be used in dispose section for all the class
+  /// Close any particular box
+  Future<void> closeBox(LocalDbBoxes boxName) async {
+    if (hive.isBoxOpen(boxName.toString())) {
+      await hive.box(boxName.toString()).close();
+    }
+  }
+
+  /// To be used in dispose section of class/app
   Future<void> closeAllBoxes() async {
-    await Hive.close();
+    await hive.close();
   }
 
-  /// Return the value after retrival from HiveBox named `boxName`, which is of
-  /// the type LocalDbBoxes and with the `key` name
-  ///
-  /// Remember to wrap in try catch block
+  /// Return the value after retrival from HiveBox `boxName` of
+  /// the type LocalDbBoxes and with the `key`. If null then defaultValue is
+  /// returned if set
   dynamic getValue(LocalDbBoxes boxName, String key, {dynamic defaultValue}) {
-    assert(Hive.isBoxOpen(boxName.toString()));
-    // "$boxName is closed, please open before working with this box!");
+    assert(hive.isBoxOpen(boxName.toString()));
 
-    final _result = Hive.box(boxName.toString()).get(key);
-    if (_result != null) {
-      return _result;
-    } else if (defaultValue != null) {
-      return defaultValue;
-    } else {
-      throw Failure(0, 'Db returned null value');
-    }
+    dynamic _result = hive.box(boxName.toString()).get(key);
+    return _result ??= defaultValue;
   }
 
-  /// Put something intot the HiveBix names [boxName], which is of the type
-  /// LocalDbName, with a String [key] and dynamic allowed types of [value]
+  /// Put something into HiveBox `boxName` of the type
+  /// LocalDbName, with `key` of type String and `value` of type dynamic
   void putValue(LocalDbBoxes boxName, String key, dynamic value) {
-    assert(Hive.isBoxOpen(boxName.toString()) == true,
+    assert(hive.isBoxOpen(boxName.toString()) == true,
         "$boxName is closed, please open before working with this box!");
 
-    Hive.box(boxName.toString()).put(key, value);
+    hive.box(boxName.toString()).put(key, value);
+  }
+
+  /// Delete something from HiveBox `boxName` of the type
+  /// LocalDbName, with `key` of type String
+  void deleteValue(LocalDbBoxes boxName, String key) {
+    assert(hive.isBoxOpen(boxName.toString()) == true,
+        "$boxName is closed, please open before working with this box!");
+
+    hive.box(boxName.toString()).delete(key);
   }
 }
