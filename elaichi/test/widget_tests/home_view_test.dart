@@ -6,7 +6,9 @@ import 'package:flutter_test/flutter_test.dart';
 import '../setup/test_helpers.dart';
 
 void main() {
-  setUp(() => registerServices());
+  setUp(() async {
+    await registerServices();
+  });
   tearDown(() => unregisterServices());
 
   testWidgets('when initialised, should display message with counter set to 0',

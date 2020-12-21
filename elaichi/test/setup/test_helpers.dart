@@ -1,4 +1,9 @@
+import 'dart:ui';
+
+import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/src/localization.dart';
 import 'package:elaichi/app/locator.dart';
+import 'package:elaichi/generated/codegen_loader.g.dart';
 import 'package:elaichi/services/local_db.dart';
 import 'package:elaichi/services/api.dart';
 import 'package:elaichi/services/fake_api.dart';
@@ -70,7 +75,18 @@ LocalDb getAndRegisterLocalDbMock() {
   return service;
 }
 
-void registerServices() {
+Future<void> loadAssets() async {
+  final r = Resource(
+      locale: const Locale('en'),
+      path: 'path',
+      useOnlyLangCode: true,
+      assetLoader: const CodegenLoader());
+  await r.loadTranslations();
+  Localization.load(const Locale('en'), translations: r.translations);
+}
+
+Future<void> registerServices() async {
+  await loadAssets();
   locator.allowReassignment = true;
   getAndRegisterDialogServiceMock();
   getAndRegisterNavigationServiceMock();
