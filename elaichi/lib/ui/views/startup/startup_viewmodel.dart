@@ -1,10 +1,10 @@
 import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/app/logger.dart';
 import 'package:elaichi/app/router.gr.dart';
-import 'package:elaichi/services/theme_manager.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 
 /// ViewModel class for [HomeView].
 class StartupViewModel extends BaseViewModel {
@@ -12,7 +12,7 @@ class StartupViewModel extends BaseViewModel {
   final Logger log = getLogger("StartupViewModel");
   String _title = "Click on the forward button to view the home page";
 
-  final ThemeManager _themeManager = locator<ThemeManager>();
+  final ThemeService _themeManager = locator<ThemeService>();
 
   /// Returns [_title] value.
   String get title => _title;
@@ -27,6 +27,7 @@ class StartupViewModel extends BaseViewModel {
 
   /// Toggles between light and dark themes.
   void changeTheme() {
-    _themeManager.changeTheme();
+    _themeManager.toggleDarkLightTheme();
+    log.i('Changed theme to ${_themeManager.isDarkMode ? 'dark' : 'light'}');
   }
 }

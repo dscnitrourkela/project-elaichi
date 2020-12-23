@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 
 ///This class is used to register the third party services with [GetIt].
 @module
@@ -37,4 +38,16 @@ abstract class ThirdPartyServicesModule {
   ///```
   @lazySingleton
   SnackbarService get snackBarService;
+
+  /// Registers [ThemeManager] from `stacked_themes` which handles themes
+  /// without context.
+  /// Example:
+  /// ```dart
+  ///  final ThemeManager _themeManager = locator<ThemeManager>();
+  ///  ...
+  ///  _themeManager.toggleDarkLightTheme();
+  ///  ...
+  /// ```
+  @lazySingleton
+  ThemeService get themeManager => ThemeService.getInstance();
 }

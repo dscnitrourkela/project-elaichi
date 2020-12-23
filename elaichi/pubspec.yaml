@@ -4,7 +4,7 @@ description: Campus guide of NIT Rourkela
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 # dependency_overrides:
   # analyzer: "0.39.14"
@@ -24,9 +24,12 @@ dependencies:
   stacked_services: ^0.5.0
 
   # Inversion of control(dependency injection)
-  get_it: ^4.0.2
+  get_it: ^5.0.3
   injectable: ^1.0.5
   dartz: ^0.9.1
+
+  # Themes
+  stacked_themes: ^0.2.2+2
 
   # Localisation
   easy_localization: ^2.3.3

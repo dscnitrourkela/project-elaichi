@@ -1,14 +1,16 @@
 import 'package:elaichi/ui/views/home/home_viewmodel.dart';
+import 'package:elaichi/ui/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:elaichi/app/extensions.dart';
 
-///Contains the UI code for the home screen.
+/// Contains the UI code for the home screen.
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //State management is handled using stacked.
-    //ViewModelBuilder.reactive fires the builder when notifyListeners() is called in the ViewModel.
-    //ViewModelBuilder.nonReactive does not fire the builder when notifyListeners() is called.
+    // State management is handled using stacked.
+    // ViewModelBuilder.reactive fires the builder when notifyListeners() is called in the ViewModel.
+    // ViewModelBuilder.nonReactive does not fire the builder when notifyListeners() is called.
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
@@ -16,18 +18,21 @@ class HomeView extends StatelessWidget {
             onPressed: model.updateCounter,
             child: const Icon(Icons.add),
           ),
+          appBar: const CentralAppbar(
+            title: "Your Feed",
+          ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Center(
                 child: Text(
                   model.title,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: context.textTheme.headline5,
                 ),
               ),
               Text(
                 model.counter.toString(),
-                style: Theme.of(context).textTheme.headline6,
+                style: context.textTheme.headline6,
               )
             ],
           ),
