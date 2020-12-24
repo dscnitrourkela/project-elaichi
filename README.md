@@ -1,7 +1,5 @@
 [![Starware](https://img.shields.io/badge/Starware-⭐-black?labelColor=f9b00d)](https://github.com/zepfietje/starware)
 
-![DSC Banner Image](https://raw.githubusercontent.com/developer-student-clubs-nitr/project-elaichi/master/dsc_nitr.png)
-
 # project-elaichi
 
 [![codecov](https://codecov.io/gh/dscnitrourkela/project-elaichi/branch/development/graph/badge.svg)](https://codecov.io/gh/dscnitrourkela/project-elaichi)
