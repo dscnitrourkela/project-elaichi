@@ -29,10 +29,10 @@ void main() {
 
     group('changeTheme -', () {
       test('When called, should call ThemeManager.changeTheme', () {
-        final themeManager = getAndRegisterThemeManagerMock();
+        final themeService = getAndRegisterThemeServiceMock();
         final model = StartupViewModel();
         model.changeTheme();
-        verify(themeManager.changeTheme());
+        verify(themeService.toggleDarkLightTheme());
       });
     });
   });

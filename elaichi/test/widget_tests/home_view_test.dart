@@ -13,12 +13,7 @@ void main() {
 
   testWidgets('when initialised, should display message with counter set to 0',
       (WidgetTester tester) async {
-    await tester.pumpWidget(Directionality(
-        textDirection: TextDirection.ltr,
-        child: MediaQuery(
-          data: const MediaQueryData(),
-          child: HomeView(),
-        )));
+    await tester.pumpWidget(wrappedWidget(HomeView()));
 
     final model = HomeViewModel();
 
@@ -33,12 +28,7 @@ void main() {
 
   testWidgets("when '+' button is tapped, should update counter",
       (WidgetTester tester) async {
-    await tester.pumpWidget(Directionality(
-        textDirection: TextDirection.ltr,
-        child: MediaQuery(
-          data: const MediaQueryData(),
-          child: HomeView(),
-        )));
+    await tester.pumpWidget(wrappedWidget(HomeView()));
 
     final buttonFinder = find.byIcon(Icons.add);
 

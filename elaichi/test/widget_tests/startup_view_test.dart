@@ -1,6 +1,5 @@
 import 'package:elaichi/ui/views/startup/startup_view.dart';
 import 'package:elaichi/ui/views/startup/startup_viewmodel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -14,12 +13,7 @@ void main() {
 
   testWidgets('when intialised, should display title and button',
       (WidgetTester tester) async {
-    await tester.pumpWidget(Directionality(
-        textDirection: TextDirection.ltr,
-        child: MediaQuery(
-          data: const MediaQueryData(),
-          child: StartupView(),
-        )));
+    await tester.pumpWidget(wrappedWidget(StartupView()));
 
     final model = StartupViewModel();
 

@@ -1,5 +1,4 @@
 import 'package:elaichi/ui/views/home/home_viewmodel.dart';
-import 'package:elaichi/ui/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:elaichi/app/extensions.dart';
@@ -18,8 +17,8 @@ class HomeView extends StatelessWidget {
             onPressed: model.updateCounter,
             child: const Icon(Icons.add),
           ),
-          appBar: const CentralAppbar(
-            title: "Your Feed",
+          appBar: AppBar(
+            title: const Text("Your Feed"),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,

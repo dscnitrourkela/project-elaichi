@@ -12,7 +12,7 @@ class StartupViewModel extends BaseViewModel {
   final Logger log = getLogger("StartupViewModel");
   String _title = "Click on the forward button to view the home page";
 
-  final ThemeService _themeManager = locator<ThemeService>();
+  final ThemeService _themeService = locator<ThemeService>();
 
   /// Returns [_title] value.
   String get title => _title;
@@ -27,7 +27,7 @@ class StartupViewModel extends BaseViewModel {
 
   /// Toggles between light and dark themes.
   void changeTheme() {
-    _themeManager.toggleDarkLightTheme();
-    log.i('Changed theme to ${_themeManager.isDarkMode ? 'dark' : 'light'}');
+    _themeService.toggleDarkLightTheme();
+    log.i('Changed theme to ${_themeService.isDarkMode ? 'dark' : 'light'}');
   }
 }
