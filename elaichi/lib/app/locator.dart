@@ -2,11 +2,11 @@ import 'package:get_it/get_it.dart';
 import 'package:elaichi/app/locator.config.dart';
 import 'package:injectable/injectable.dart';
 
-///Global [GetIt] instance used to inject dependencies.
+/// Global [GetIt] instance used to inject dependencies.
 final GetIt locator = GetIt.instance;
 
-///[setupLocator()] is called before runApp() to register the dependencies with
-///[GetIt] and make them available for injection.
+/// [setupLocator()] is called before runApp() to register the dependencies with
+/// [GetIt] and make them available for injection.
 @injectableInit
 void setupLocator({String environment}) => $initGetIt(
       locator,
@@ -14,11 +14,12 @@ void setupLocator({String environment}) => $initGetIt(
     );
 
 /// Custom class to define configurations for multiple environemnts.
-abstract class Env{
-    /// Pass this as an argument to the environment parameter of setupLocator
-    /// to register development dependencies.
-    static const dev = 'dev';
-    /// Pass this as an argument to the environment parameter of setupLocator
-    /// to register production dependencies.
-    static const prod = 'prod';
+abstract class Env {
+  /// Pass this as an argument to the environment parameter of setupLocator
+  /// to register development dependencies.
+  static const dev = 'dev';
+
+  /// Pass this as an argument to the environment parameter of setupLocator
+  /// to register production dependencies.
+  static const prod = 'prod';
 }

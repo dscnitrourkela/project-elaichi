@@ -7,12 +7,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 
 import '../services/api.dart';
 import '../services/fake_api.dart';
 import '../services/feed_service.dart';
 import '../services/local_db.dart';
-import '../services/theme_manager.dart';
 import '../services/third_party_services_module.dart';
 
 /// Environment names
@@ -35,10 +35,10 @@ GetIt $initGetIt(
       () => thirdPartyServicesModule.navigationService);
   gh.lazySingleton<SnackbarService>(
       () => thirdPartyServicesModule.snackBarService);
+  gh.lazySingleton<ThemeService>(() => thirdPartyServicesModule.themeManager);
 
   // Eager singletons must be registered in the right order
   gh.singleton<LocalDb>(LocalDb());
-  gh.singleton<ThemeManager>(ThemeManager());
   return get;
 }
 
