@@ -222,3 +222,6 @@ fabric.properties
 ### Store Publish Files
 *.jks
 key.properties
+
+### Key files ###
+android/app/google-services.json
