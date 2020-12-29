@@ -1,0 +1,36 @@
+name: App Distribution
+on:
+  push:
+    paths: 
+    - elaichi/**
+    branches:
+    - development
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v1
+      with:
+        java-version: "12.x"
+    - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "1.22.5"
+          channel: "stable"
+    - name: Get packages
+      working-directory: ./elaichi
+      run: flutter pub get
+    - name: Build APK
+      working-directory: ./elaichi
+      run: flutter build apk --release
+    - name: Decode Service Account
+      run: echo ${{secrets.SERVICE_ACCOUNT}} | base64 --decode > sa.json
+    - name: Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        with:
+          appId: ${{secrets.APP_ID}}
+          serviceCredentialsFile: sa.json
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: alpha-testers
+          file: elaichi/app/build/outputs/flutter-apk/app-release.apk
+
