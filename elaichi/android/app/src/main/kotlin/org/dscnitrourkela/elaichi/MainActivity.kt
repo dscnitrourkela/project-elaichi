@@ -1,4 +1,4 @@
-package tech.dscnitr.elaichi
+package org.dscnitrourkela.elaichi
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
