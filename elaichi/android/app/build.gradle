@@ -44,7 +44,7 @@ if(project.hasProperty('dart-defines')) {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -57,7 +57,7 @@ android {
     defaultConfig {
         applicationId "org.dscnitrourkela.elaichi"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
