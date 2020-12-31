@@ -218,3 +218,7 @@ fabric.properties
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
+
+### Store Publish Files
+*.jks
+key.properties
