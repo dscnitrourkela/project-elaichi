@@ -12,6 +12,7 @@ import 'package:stacked_themes/stacked_themes.dart';
 import '../services/api.dart';
 import '../services/fake_api.dart';
 import '../services/feed_service.dart';
+import '../services/graphql.dart';
 import '../services/local_db.dart';
 import '../services/third_party_services_module.dart';
 
@@ -38,6 +39,7 @@ GetIt $initGetIt(
   gh.lazySingleton<ThemeService>(() => thirdPartyServicesModule.themeManager);
 
   // Eager singletons must be registered in the right order
+  gh.singleton<GraphQL>(GraphQL());
   gh.singleton<LocalDb>(LocalDb());
   return get;
 }

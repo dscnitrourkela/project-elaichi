@@ -23,9 +23,10 @@ class LocalDb {
   /// Instance of Hive
   HiveInterface hive;
 
-  /// Constructor function to initialize [LocalDb]. Pass `hive` if an instance is already present.
-  LocalDb({this.hive}) {
-    hive ??= Hive;
+  /// Pass `hive` if an instance is already present (especially for testing)
+  // ignore: avoid_setters_without_getters
+  set mockInstance(HiveInterface hive) {
+    this.hive = hive;
   }
 
   /// Instantiate the class with the boxes required as `boxesToOpen`
@@ -54,9 +55,11 @@ class LocalDb {
     }
   }
 
-  /// To be used in dispose section of class/app
-  Future<void> closeAllBoxes() async {
-    await hive.close();
+  /// Initializes cache box and return it.
+  Future<Box> clearAndGetCacheBox() async {
+    final Box cacheBox = hive.box(LocalDbBoxes.cache.toString());
+    await cacheBox.clear();
+    return cacheBox;
   }
 
   /// Return the value after retrival from HiveBox `boxName` of
