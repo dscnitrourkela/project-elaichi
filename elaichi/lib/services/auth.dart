@@ -1,4 +1,6 @@
+import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/app/logger.dart';
+import 'package:elaichi/services/graphql.dart';
 import 'package:elaichi/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,24 +16,10 @@ class Auth {
   _GoogleAuthService _googleAuthService = _GoogleAuthService();
   _FirebaseAuthService _firebaseAuthService = _FirebaseAuthService();
 
-  /// `googleSignIn` and `firebaseAuth` can be used to pass the instances for
-  /// further functions. If not provided then default instances are used. These
-  /// are useful for situations like mocking from test file.
-  void setTestInstances(
-      {GoogleSignIn googleSignIn, FirebaseAuth firebaseAuth}) {
-    _firebaseAuthService = _FirebaseAuthService(firebaseAuth: firebaseAuth);
-    _googleAuthService = _GoogleAuthService(googleSignIn: googleSignIn);
-  }
+  User _user;
 
-  /// First try to signInWithGoogle, if successful send web endpoint the user
-  /// credentials. Finally, after the response from web endpoint return user
-  /// info [UserModel]
-  Future<void> signInWithGoogle() async {
-    final AuthCredential credential = await _googleAuthService.signIn();
-    final User user =
-        await _firebaseAuthService.signInWithCredenials(credential: credential);
-    final jwtToken = user.getIdToken();
-  }
+  /// Firebase [User] return from credential login.
+  User get user => _user;
 
   /// Send passwordless verification email to user. Call [verifyAndSignIn] after
   /// retriving email link from deep links.
@@ -51,12 +39,35 @@ class Auth {
         return true;
       });
 
-  /// After retrival of email link from deep link,
-  Future<void> verifyAndSignIn(
-      {@required String email, @required String emailLink}) async {
-    final User user = await _firebaseAuthService.verifyEmailLink(
-        email: email, emailLink: emailLink);
-    final jwtToken = user.getIdToken();
+  /// `googleSignIn` and `firebaseAuth` can be used to pass the mock instances
+  /// for further functions. If not provided then default instances are used.
+  void setMockInstances(
+      {GoogleSignIn googleSignIn, FirebaseAuth firebaseAuth}) {
+    _firebaseAuthService = _FirebaseAuthService(firebaseAuth: firebaseAuth);
+    _googleAuthService = _GoogleAuthService(googleSignIn: googleSignIn);
+  }
+
+  /// Opens a dialog which let's the user to signin to their Google account.
+  Future<void> signInWithGoogle() async {
+    final AuthCredential credential = await _googleAuthService.signIn();
+    _user =
+        await _firebaseAuthService.signInWithCredenials(credential: credential);
+  }
+
+  /// Sign in or sign up to the GraphQL webpoint.
+  Future<void> signInToWebpoint(
+      {@required String username, String mobile}) async {
+    final GraphQL graphQl = locator<GraphQL>();
+    graphQl.initGraphQL(getToken: _user.getIdToken);
+    await graphQl.authUser(
+        username: username,
+        email: user.email,
+        name: user.displayName,
+        mobile: user.phoneNumber,
+        displayPicture: user.photoURL);
+
+    // Since web endpoint needs different JWT token after login
+    graphQl.initGraphQL(getToken: _user.getIdToken);
   }
 
   /// Sign out from all the accounts
@@ -64,9 +75,16 @@ class Auth {
     await _firebaseAuthService.signOut();
     await _googleAuthService.signOut();
   }
+
+  /// After retrival of email link from deep link,
+  Future<void> verifyAndSignIn(
+      {@required String email, @required String emailLink}) async {
+    await _firebaseAuthService.verifyEmailLink(
+        email: email, emailLink: emailLink);
+  }
 }
 
-/// Handles all the Firebase login related functions
+/// Handle all the Firebase login related functions
 class _FirebaseAuthService {
   final Logger _logger = getLogger("Authentication");
   FirebaseAuth _firebaseAuth;
@@ -76,6 +94,8 @@ class _FirebaseAuthService {
   _FirebaseAuthService({FirebaseAuth firebaseAuth})
       : _firebaseAuth = firebaseAuth {
     _firebaseAuth ??= FirebaseAuth.instance;
+
+    _firebaseAuth.setPersistence(Persistence.SESSION);
   }
 
   /// User details if sign in was successful.
@@ -88,7 +108,7 @@ class _FirebaseAuthService {
         dynamicLinkDomain: Strings.DYNAMIC_LINK_DOMAIN,
         androidPackageName: Strings.PACKAGE_NAME,
         androidInstallApp: true,
-        androidMinimumVersion: 16,
+        androidMinimumVersion: "16",
         iOSBundleId: Strings.IOS_BUNDLE_ID,
         handleCodeInApp: true);
 
@@ -126,7 +146,6 @@ class _FirebaseAuthService {
           .signInWithEmailLink(email: email, emailLink: emailLink)
           .then((userCredential) {
         _logger.i("Login with email link successful");
-        _user = userCredential.user;
         return userCredential.user;
       }).catchError((error, stackTrace) {
         _logger.e("Email link verification failed", error, stackTrace);
