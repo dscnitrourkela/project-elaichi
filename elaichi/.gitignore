@@ -25,6 +25,8 @@ coverage/
 *.js.deps
 *.js.map
 
+key.properties
+
 ### Flutter ###
 # Flutter/Dart/Pub related
 **/doc/api/

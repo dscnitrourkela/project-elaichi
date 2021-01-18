@@ -6,15 +6,17 @@ import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/generated/codegen_loader.g.dart';
 import 'package:elaichi/services/local_db.dart';
 import 'package:elaichi/services/api.dart';
-import 'package:elaichi/services/fake_api.dart';
 import 'package:elaichi/services/feed_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mockito/mockito.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 Widget wrappedWidget(Widget child) => MaterialApp(home: child);
+
+class BaseViewModelMock extends Mock implements BaseViewModel {}
 
 class NavigationServiceMock extends Mock implements NavigationService {}
 
@@ -26,13 +28,13 @@ class ThemeServiceMock extends Mock implements ThemeService {}
 
 class LocalDbMock extends Mock implements LocalDb {}
 
-class FakeApiMock extends Mock implements FakeApi {}
+class MockApi extends Mock implements Api {}
 
 class FeedServiceMock extends Mock implements FeedService {}
 
-FakeApi getAndRegisterFakeApiMock() {
+Api getAndRegisterApiMock() {
   _removeRegistrationIfExists<Api>();
-  final service = FakeApiMock();
+  final service = MockApi();
   locator.registerSingleton<Api>(service);
   return service;
 }
@@ -98,7 +100,7 @@ Future<void> registerServices() async {
   getAndRegisterSnackbarServiceMock();
   getAndRegisterThemeServiceMock();
   getAndRegisterLocalDbMock();
-  getAndRegisterFakeApiMock();
+  getAndRegisterApiMock();
   getAndRegisterFeedServiceMock();
 }
 

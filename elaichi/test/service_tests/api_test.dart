@@ -11,23 +11,24 @@ void main() {
     setUp(() async {
       await registerServices();
     });
-    tearDown(() => unregisterServices());
+    tearDown(unregisterServices);
 
-    // test('Calling factory constructor of Api class should not return null', () {
+    // test('Calling factory constructor of Api class should not return null',
+    // () {
     //   final api = Api();
     //   expect(api, isNotNull);
     // });
 
     test('Constructing Service should find correct dependencies', () {
-      final fakeApiService = FakeApiMock();
+      final fakeApiService = MockApi();
       expect(fakeApiService != null, true);
     });
 
     test('Given userId "test", should return user with name and email',
         () async {
-      final fakeApiService = FakeApiMock();
+      final fakeApiService = MockApi();
 
-      when(fakeApiService.getUser("test")).thenAnswer(
+      when(fakeApiService.getUser('test')).thenAnswer(
         (_) => Future.value(
           '''
             {
@@ -39,30 +40,30 @@ void main() {
         ),
       );
 
-      await fakeApiService.getUser("test");
-      verify(fakeApiService.getUser("test"));
+      await fakeApiService.getUser('test');
+      verify(fakeApiService.getUser('test'));
     });
 
     test('Given a userId that does not exist, should return correct error', () {
-      final fakeApiService = FakeApiMock();
-      when(fakeApiService.getUser("userId")).thenAnswer(
+      final fakeApiService = MockApi();
+      when(fakeApiService.getUser('userId')).thenAnswer(
         (_) => Future.value('error'),
       );
     });
 
     test('Given errorMode 1, should throw SocketException', () async {
-      final fakeApiService = FakeApiMock();
+      final fakeApiService = MockApi();
       try {
-        await fakeApiService.getUser("test", errorMode: 1);
+        await fakeApiService.getUser('test', errorMode: 1);
       } catch (e) {
         expect(e, isInstanceOf<SocketException>());
       }
     });
 
     test('Given errorMode 2, should throw HttpExcpetion', () async {
-      final fakeApiService = FakeApiMock();
+      final fakeApiService = MockApi();
       try {
-        await fakeApiService.getUser("test", errorMode: 2);
+        await fakeApiService.getUser('test', errorMode: 2);
       } catch (e) {
         expect(e, isInstanceOf<HttpException>());
       }
@@ -70,7 +71,7 @@ void main() {
 
     test('Given errorMode 3, should return wrong json', () async {
       final fakeApiService = FakeApi();
-      final result = await fakeApiService.getUser("test", errorMode: 3);
+      final result = await fakeApiService.getUser('test', errorMode: 3);
       expect(result, isNotNull);
       try {
         json.decode(result);
@@ -81,18 +82,18 @@ void main() {
   });
 
   test('Given errorMode 1, should throw SocketException', () async {
-    final fakeApiService = FakeApiMock();
+    final fakeApiService = MockApi();
     try {
-      await fakeApiService.getUser("test", errorMode: 1);
+      await fakeApiService.getUser('test', errorMode: 1);
     } catch (e) {
       expect(e, isInstanceOf<SocketException>());
     }
   });
 
   test('Given errorMode 2, should throw HttpExcpetion', () async {
-    final fakeApiService = FakeApiMock();
+    final fakeApiService = MockApi();
     try {
-      await fakeApiService.getUser("test", errorMode: 2);
+      await fakeApiService.getUser('test', errorMode: 2);
     } catch (e) {
       expect(e, isInstanceOf<HttpException>());
     }
@@ -100,7 +101,7 @@ void main() {
 
   test('Given errorMode 3, should return wrong json', () async {
     final fakeApiService = FakeApi();
-    final result = await fakeApiService.getUser("test", errorMode: 3);
+    final result = await fakeApiService.getUser('test', errorMode: 3);
     expect(result, isNotNull);
     try {
       json.decode(result);

@@ -28,8 +28,11 @@ dependencies:
   injectable: ^1.0.5
   dartz: ^0.9.1
 
-  # Themes
+  shimmer: ^1.1.2
+
+  # Themeing
   stacked_themes: ^0.2.2+2
+  google_fonts: ^1.1.1
 
   # Localisation
   easy_localization: ^2.3.3
@@ -43,6 +46,7 @@ dev_dependencies:
     sdk: flutter
   lint: ^1.2.0
   mockito: ^4.1.1
+  very_good_analysis: ^1.0.0
 
   build_runner: ^1.10.3
   auto_route_generator: ^0.6.6
@@ -55,3 +59,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/translations/
+    - assets/images/

@@ -7,7 +7,7 @@ void main() {
   setUp(() async {
     await registerServices();
   });
-  tearDown(() => unregisterServices());
+  tearDown(unregisterServices);
   group('HomeViewmodelTest -', () {
     group('title -', () {
       test('When constructed, title should not be null', () {
@@ -22,27 +22,10 @@ void main() {
       });
 
       test('When called, counter should increase', () {
-        final model = HomeViewModel();
-        model.updateCounter();
+        final model = HomeViewModel()..updateCounter();
+        // model.updateCounter();
         expect(model.counter, 1);
       });
     });
-
-    // group('user -', () {
-    //   test('When fetchUser is called, should run task and setBusy as expected',
-    //       () {
-    //     final feedService = getAndRegisterFeedServiceMock();
-    //     final model = HomeViewModel();
-    //     model.fetchUser();
-    //     when(feedService.getUser()).thenAnswer((_) => Future.value(
-    //             User.fromMap({
-    //           "userId": "test",
-    //           "name": "John Doe",
-    //           "email": "john.doe@examle.com"
-    //         })));
-    //     verifyInOrder(
-    //         [model.setBusy(true), feedService.getUser(), model.setBusy(false)]);
-    //   });
-    // });
   });
 }

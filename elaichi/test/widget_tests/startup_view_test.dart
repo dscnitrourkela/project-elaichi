@@ -9,7 +9,7 @@ void main() {
   setUp(() async {
     await registerServices();
   });
-  tearDown(() => unregisterServices());
+  tearDown(unregisterServices);
 
   testWidgets('when intialised, should display title and button',
       (WidgetTester tester) async {

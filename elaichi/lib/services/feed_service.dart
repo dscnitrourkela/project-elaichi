@@ -16,7 +16,7 @@ class FeedService {
 
   Future<User> getUser() async {
     try {
-      final user = await _apiClient.getUser("test");
+      final user = await _apiClient.getUser('test');
       return User.fromMap(json.decode(user));
     } on SocketException {
       throw Failure(0, 'No Internet Connection');

@@ -9,7 +9,7 @@ void main() {
   setUp(() async {
     await registerServices();
   });
-  tearDown(() => unregisterServices());
+  tearDown(unregisterServices);
   group('StartupViewmodelTest -', () {
     group('title - ', () {
       test('When constructed title should not be null', () {

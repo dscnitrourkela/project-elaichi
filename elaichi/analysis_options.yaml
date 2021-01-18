@@ -1,4 +1,4 @@
-include: package:lint/analysis_options.yaml
+include: package:very_good_analysis/analysis_options.yaml
 
 linter:
   rules:
@@ -7,5 +7,8 @@ linter:
     public_member_api_docs: true
 
 analyzer:
+  exclude:
+    - lib/app/locator.config.dart
+    - lib/generated/**
   errors:
     argument_type_not_assignable: false
