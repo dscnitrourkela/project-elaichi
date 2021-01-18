@@ -1,7 +1,5 @@
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'package:dartz/dartz.dart';
-import 'package:elaichi/app/failure.dart';
 import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/datamodels/api_models.dart';
 import 'package:elaichi/services/api.dart';
@@ -18,14 +16,14 @@ void main() {
   tearDown(unregisterServices);
   group('FeedViewmodel Test - ', () {
     group('API calls - ', () {
-      group('Stories', () {
-        test(
-            'When a list of [CurrenStory] is returned, should assign it to [stories] and should notify listeners',
-            () async {
-          var called = false;
-          final model = FeedViewModel()..addListener(() => called = true);
-          final mockApi = locator<Api>();
-          final stories = List<CurrentStory>.generate(
+      test(
+          'When a list of [CurrenStory] is returned, should assign it to [stories] and should notify listeners',
+          () async {
+        var called = false;
+        final model = FeedViewModel()..addListener(() => called = true);
+        final mockApi = locator<Api>();
+        when(mockApi.getCurrentStories()).thenAnswer((_) async {
+          final list = List<CurrentStory>.generate(
               10,
               (index) => CurrentStory(
                   asset: '',
@@ -35,29 +33,13 @@ void main() {
                   assetType: '',
                   createdAt: null,
                   club: null));
-          when(mockApi.getCurrentStories()).thenAnswer((_) async => stories);
-          expect(model.currentStories, isNull);
-          await model.fetchCurrentStories();
-          verify(mockApi.getCurrentStories());
-          expect(model.currentStories, Right(stories));
-          expect(called, true);
+          return list;
         });
-
-        test(
-            'When a Failure is returned, should assign it to [stories] and should notify listeners',
-            () async {
-          var called = false;
-          final model = FeedViewModel()..addListener(() => called = true);
-          final mockApi = locator<Api>();
-          final failure = Failure(1, 'test failure');
-          when(mockApi.getCurrentStories())
-              .thenAnswer((_) async => throw (failure));
-          expect(model.currentStories, isNull);
-          await model.fetchCurrentStories();
-          verify(mockApi.getCurrentStories());
-          expect(model.currentStories, Left(failure));
-          expect(called, true);
-        });
+        expect(model.currentStories, isNull);
+        verify(mockApi.getCurrentStories());
+        expect(called, true);
+        expect(model.currentStories, isNotNull);
+        expect(model.currentStories.length, 10);
       });
       test(
         'When a list of schedule fragments is returned, should assign it to scheduleFragments and should notify listeners',
@@ -65,23 +47,23 @@ void main() {
           var called = false;
           final model = FeedViewModel()..addListener(() => called = true);
           final mockApi = locator<Api>();
-          final events = List<ScheduleEvent>.generate(
-            6,
-            (index) => ScheduleEvent(
-              time: '4.30 PM',
-              identifier: 'MA-3002',
-              title: 'Computational Mathematics',
-              contact: 'Prof. Nihar Patra',
-            ),
-          );
           when(mockApi.fetchSchedule()).thenAnswer(
-            (_) async => events,
+            (_) async => List<ScheduleEvent>.generate(
+                6,
+                (index) => ScheduleEvent(
+                  time: '4.30 PM',
+                  identifier: 'MA-3002',
+                  title: 'Computational Mathematics',
+                  contact: 'Prof. Nihar Patra',
+                ),
+              ),
           );
           expect(model.scheduleEvents, isNull);
-          await model.getSchedule();
+          model.getSchedule();
           verify(mockApi.fetchSchedule());
-          expect(model.scheduleEvents, Right(events));
           expect(called, true);
+          expect(model.scheduleEvents, isNotNull);
+          expect(model.scheduleEvents.length, 6);
         },
       );
     });

@@ -43,7 +43,7 @@ dependencies:
 
   # GraphQL client library
   graphql: ^4.0.0-beta.6
-  
+
   # Authentications
   firebase_core: ^0.5.3
   firebase_auth: ^0.18.4+1
@@ -62,7 +62,6 @@ dev_dependencies:
 
   # Local database
   hive_generator: ^0.7.1
-
 
 flutter:
   uses-material-design: true

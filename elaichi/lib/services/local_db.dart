@@ -21,14 +21,14 @@ enum LocalDbBoxes {
 /// to retrieve from the database
 @singleton
 class LocalDb {
+  /// Constructor function to initialize [LocalDb]. Pass `hive` if an instance 
+  /// is already present.
+  LocalDb({this.hive}) {
+    hive ??= Hive;
+  }
+
   /// Instance of Hive
   HiveInterface hive;
-
-  /// Pass `hive` if an instance is already present (especially for testing)
-  // ignore: avoid_setters_without_getters
-  set mockInstance(HiveInterface hive) {
-    this.hive = hive;
-  }
 
   /// Instantiate the class with the boxes required as `boxesToOpen`
   Future<void> initLocalDb({List<LocalDbBoxes> boxesToOpen}) async {
