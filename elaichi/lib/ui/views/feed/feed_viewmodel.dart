@@ -22,7 +22,6 @@ class FeedViewModel extends BaseViewModel {
     setBusy(true);
     // Future.wait([fetchCurrentStories(), getSchedule()]);
     await fetchCurrentStories();
-    getSchedule();
     setBusy(false);
   }
 
@@ -41,8 +40,7 @@ class FeedViewModel extends BaseViewModel {
   }
 
   /// Fetches schedule from [Api].
-  void getSchedule() async {
-    await Future.delayed(const Duration(seconds: 4));
+  Future<void> getSchedule() async {
     await Task(_apiService.fetchSchedule)
         .attempt()
         .map((either) => either.leftMap((obj) => obj as Failure))

@@ -30,8 +30,8 @@ void main() {
     group('changeTheme -', () {
       test('When called, should call ThemeManager.changeTheme', () {
         final themeService = getAndRegisterThemeServiceMock();
-        final model = StartupViewModel();
-        model.changeTheme();
+        final model = StartupViewModel()
+          ..changeTheme();
         verify(themeService.toggleDarkLightTheme());
       });
     });

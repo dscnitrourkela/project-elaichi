@@ -1,3 +1,4 @@
+// ignore_for_file: cascade_invocations
 import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
