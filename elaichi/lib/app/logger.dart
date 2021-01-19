@@ -7,11 +7,11 @@ Logger getLogger(String className) {
 
 /// Customised log printer for meaningful and concise log messages.
 class SimpleLogPrinter extends LogPrinter {
-  /// Stores the name of the calling class.
-  final String className;
-
   /// The constructor takes in the className.
   SimpleLogPrinter(this.className);
+  
+  /// Stores the name of the calling class.
+  final String className;
 
   @override
   List<String> log(LogEvent event) {

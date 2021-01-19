@@ -6,11 +6,11 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-/// ViewModel class for [HomeView].
+/// ViewModel class for HomeView.
 class StartupViewModel extends BaseViewModel {
   /// [Logger] for [StartupViewModel].
-  final Logger log = getLogger("StartupViewModel");
-  String _title = "Click on the forward button to view the home page";
+  final Logger log = getLogger('StartupViewModel');
+  String _title = 'Click on the forward button to view the home page';
 
   final ThemeService _themeService = locator<ThemeService>();
 
@@ -19,9 +19,9 @@ class StartupViewModel extends BaseViewModel {
 
   final NavigationService _navigationService = locator<NavigationService>();
 
-  /// Navigates to [HomeView]
+  /// Navigates to HomeView.
   Future navigateToHome() async {
-    log.i("Navigate to Home");
+    log.i('Navigate to Home');
     await _navigationService.navigateTo(Routes.homeView);
   }
 

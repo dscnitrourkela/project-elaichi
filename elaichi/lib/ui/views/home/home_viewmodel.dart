@@ -7,8 +7,8 @@ import 'package:elaichi/generated/locale_keys.g.dart';
 import 'package:elaichi/services/feed_service.dart';
 import 'package:stacked/stacked.dart';
 
-///ViewModel class for [HomeView]
-class HomeViewModel extends BaseViewModel {
+///ViewModel class for HomeView
+class HomeViewModel extends IndexTrackingViewModel {
   String _title = LocaleKeys.welcome.tr();
 
   ///Returns [_title] followed by [_counter].
@@ -36,7 +36,7 @@ class HomeViewModel extends BaseViewModel {
 
   final FeedService _feedService = locator<FeedService>();
 
-  ///Called when '+' button is tapped on [HomeView]
+  /// Called when '+' button is tapped on HomeView.
   void updateCounter() {
     _counter++;
     notifyListeners();
@@ -50,11 +50,11 @@ class HomeViewModel extends BaseViewModel {
   /// Fetches user info from API
   Future fetchUser() async {
     setBusy(true);
-    await Task(() => _feedService.getUser())
+    await Task(_feedService.getUser)
         .attempt()
         .map((either) => either.leftMap((obj) => obj as Failure))
         .run()
-        .then((value) => _setUser(value));
+        .then(_setUser);
     setBusy(false);
   }
 }

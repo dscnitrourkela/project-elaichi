@@ -9,7 +9,7 @@ void main() {
   setUp(() async {
     await registerServices();
   });
-  tearDown(() => unregisterServices());
+  tearDown(unregisterServices);
   group('StartupViewmodelTest -', () {
     group('title - ', () {
       test('When constructed title should not be null', () {
@@ -30,8 +30,8 @@ void main() {
     group('changeTheme -', () {
       test('When called, should call ThemeManager.changeTheme', () {
         final themeService = getAndRegisterThemeServiceMock();
-        final model = StartupViewModel();
-        model.changeTheme();
+        final model = StartupViewModel()
+          ..changeTheme();
         verify(themeService.toggleDarkLightTheme());
       });
     });

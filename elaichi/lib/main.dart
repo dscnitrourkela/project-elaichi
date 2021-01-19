@@ -4,7 +4,9 @@ import 'package:elaichi/app/router.gr.dart' as router;
 import 'package:elaichi/app/themes/base_theme.dart';
 import 'package:elaichi/generated/codegen_loader.g.dart';
 import 'package:elaichi/generated/locale_keys.g.dart';
+import 'package:elaichi/ui/utils/no_over_scroll.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
@@ -13,25 +15,32 @@ Future<void> main() async {
   await ThemeManager.initialise();
   Logger.level = Level.debug;
   setupLocator(environment: Env.dev);
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     EasyLocalization(
       assetLoader: const CodegenLoader(),
       supportedLocales: const <Locale>[Locale('en')],
       path: 'assets/translations',
-      child: NITRCentralApp(),
+      child: ElaichiApp(),
     ),
   );
 }
 
 /// The main app.
-class NITRCentralApp extends StatelessWidget {
+class ElaichiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.black));
     return ThemeBuilder(
       defaultThemeMode: ThemeMode.light,
-      lightTheme: BaseTheme.light,
-      darkTheme: BaseTheme.dark,
+      lightTheme: AppTheme.light,
+      darkTheme: AppTheme.dark,
       builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
+        builder: (context, child) => ScrollConfiguration(
+          behavior: NoOverScrollBehavior(),
+          child: child,
+        ),
         debugShowCheckedModeBanner: false,
         title: LocaleKeys.appName.tr(),
         theme: regularTheme,
