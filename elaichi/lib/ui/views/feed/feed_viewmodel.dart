@@ -22,7 +22,6 @@ class FeedViewModel extends BaseViewModel {
     setBusy(true);
     // Future.wait([fetchCurrentStories(), getSchedule()]);
     await fetchCurrentStories();
-    getSchedule();
     setBusy(false);
   }
 
