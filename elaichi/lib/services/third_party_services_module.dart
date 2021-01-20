@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-/// This class is used to register the third party services with [GetIt].
+/// This class is used to register the third party services with GetIt.
 @module
 abstract class ThirdPartyServicesModule {
   /// Registers [NavigationService] which handles navigation without context.

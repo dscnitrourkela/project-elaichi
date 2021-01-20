@@ -1,7 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 // ignore_for_file: prefer_single_quotes
-// ignore_for_file: public_member_api_docs
 
 import 'dart:ui';
 
@@ -17,7 +16,10 @@ class CodegenLoader extends AssetLoader{
 
   static const Map<String,dynamic> en = {
   "appName": "NITR Central",
-  "welcome": "Welcome to NITR Central"
+  "welcome": "Welcome to NITR Central",
+  "homeTitle": "Your Feed",
+  "timeTable": "Timetable",
+  "openCalendar": "Open Calendar"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};
 }

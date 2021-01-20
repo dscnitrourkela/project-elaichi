@@ -25,6 +25,8 @@ coverage/
 *.js.deps
 *.js.map
 
+key.properties
+
 ### Flutter ###
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -225,3 +227,6 @@ key.properties
 
 ### Key files ###
 android/app/google-services.json
+
+### Vimspector Config
+.vimspector.json

@@ -16,6 +16,15 @@ class User {
     @required this.name,
     @required this.email,
   });
+    /// Decodes json string and returns an instance of  [User].
+  factory User.fromJson(String str) => User.fromMap(json.decode(str));
+
+  /// Creates an instance of [User] from supplied json.
+  factory User.fromMap(Map<String, dynamic> json) => User(
+        userId: json['userId'] ?? null,
+        name: json['name'] ?? null,
+        email: json['email'] ?? null,
+      );
 
   /// The firebase user id.
   final String userId;
@@ -26,23 +35,15 @@ class User {
   /// The user email address.
   final String email;
 
-  /// Decodes json string and returns an instance of  [User].
-  factory User.fromJson(String str) => User.fromMap(json.decode(str));
-
   /// Encodes an instance of [User] into json.
   String toJson() => json.encode(toMap());
 
-  /// Creates an instance of [User] from supplied json.
-  factory User.fromMap(Map<String, dynamic> json) => User(
-        userId: json["userId"] ?? null,
-        name: json["name"] ?? null,
-        email: json["email"] ?? null,
-      );
+
 
   /// Generates json for the [User] instance that calls toMap().
   Map<String, dynamic> toMap() => {
-        "userId": userId ?? null,
-        "name": name ?? null,
-        "email": email ?? null,
+        'userId': userId ?? null,
+        'name': name ?? null,
+        'email': email ?? null,
       };
 }

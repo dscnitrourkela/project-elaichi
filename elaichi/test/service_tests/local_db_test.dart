@@ -108,7 +108,7 @@ void main() {
       verify(_mockHiveBox.put('Existing Ankesh', 'Existing'));
     });
 
-    test("Delete data", () async {
+    test('Delete data', () async {
       final _mockHiveBox = MockHiveBox();
       when(mockHive.isBoxOpen(LocalDbBoxes.cache.toString()))
           .thenAnswer((_) => true);

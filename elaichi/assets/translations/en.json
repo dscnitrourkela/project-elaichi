@@ -1,4 +1,7 @@
 {
     "appName": "NITR Central",
-    "welcome": "Welcome to NITR Central"
+    "welcome": "Welcome to NITR Central",
+    "homeTitle": "Your Feed",
+    "timeTable": "Timetable",
+    "openCalendar": "Open Calendar"
 }

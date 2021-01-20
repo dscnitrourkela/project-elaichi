@@ -16,7 +16,8 @@ enum LocalDbBoxes {
 
 /// Implements local database which can be used to store users data, local app
 /// preferences and caching.
-/// To put anything in the database use `LocalDb.putValue()` and `LocalDb.getValue()`
+/// To put anything in the database use `LocalDb.putValue()` and 
+/// `LocalDb.getValue()`
 /// to retrieve from the database
 @singleton
 class LocalDb {
@@ -28,6 +29,9 @@ class LocalDb {
   set mockInstance(HiveInterface hive) {
     this.hive = hive;
   }
+
+  /// Instance of Hive
+  HiveInterface hive;
 
   /// Instantiate the class with the boxes required as `boxesToOpen`
   Future<void> initLocalDb({List<LocalDbBoxes> boxesToOpen}) async {
@@ -76,7 +80,7 @@ class LocalDb {
   /// LocalDbName, with `key` of type String and `value` of type dynamic
   void putValue(LocalDbBoxes boxName, String key, dynamic value) {
     assert(hive.isBoxOpen(boxName.toString()) == true,
-        "$boxName is closed, please open before working with this box!");
+        '$boxName is closed, please open before working with this box!');
 
     hive.box(boxName.toString()).put(key, value);
   }
@@ -85,7 +89,7 @@ class LocalDb {
   /// LocalDbName, with `key` of type String
   void deleteValue(LocalDbBoxes boxName, String key) {
     assert(hive.isBoxOpen(boxName.toString()) == true,
-        "$boxName is closed, please open before working with this box!");
+        '$boxName is closed, please open before working with this box!');
 
     hive.box(boxName.toString()).delete(key);
   }

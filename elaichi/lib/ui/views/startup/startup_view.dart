@@ -25,7 +25,7 @@ class StartupView extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: model.changeTheme,
-                child: const Text("Change Theme"),
+                child: const Text('Change Theme'),
               )
             ],
           ),
