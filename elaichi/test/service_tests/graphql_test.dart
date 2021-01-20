@@ -39,16 +39,16 @@ void main() {
         // ignore: unnecessary_raw_strings
         return response(body: r'''
           {
-            'data': {
-              '__typename': 'Mutation',
-              'authUser': {
-                '__typename': 'User',
-                'id': '5ffc93b4f44bfe29dbba99cf',
-                'name': 'test 1',
-                'username': 'test 2',
-                'gmailAuthMail': 'a@b.c',
-                'mobile': null,
-                'displayPicture': 'hsuih.jpg'
+            "data": {
+              "__typename": "Mutation",
+              "authUser": {
+                "__typename": "User",
+                "id": "5ffc93b4f44bfe29dbba99cf",
+                "name": "test 1",
+                "username": "test 2",
+                "gmailAuthMail": "a@b.c",
+                "mobile": null,
+                "displayPicture": "hsuih.jpg"
               }
             }
           }
@@ -70,17 +70,17 @@ void main() {
         // ignore: unnecessary_raw_strings
         return response(body: r'''
           {
-            'errors': [
+            "errors": [
               {
-                'message': 'Firebase ID token has invalid signature. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token.',
-                'extensions': {
-                  'code': 'UNAUTHORIZED'
+                "message": "Firebase ID token has invalid signature. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token.",
+                "extensions": {
+                  "code": "UNAUTHORIZED"
                 }
               }
             ],
-            'data': {
-              '__typename': 'Mutation',
-              'authUser': null
+            "data": {
+              "__typename": "Mutation",
+              "authUser": null
             }
           }
         ''');
