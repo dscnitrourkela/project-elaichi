@@ -24,13 +24,13 @@ void main() {
       when(mockHive.isBoxOpen(LocalDbBoxes.userData.toString()))
           .thenAnswer((_) => false);
 
-      expect(() => localDb.getValue(LocalDbBoxes.userData, "DummyKey"),
+      expect(() => localDb.getValue(LocalDbBoxes.userData, 'DummyKey'),
           throwsAssertionError);
       expect(
           () =>
-              localDb.putValue(LocalDbBoxes.userData, "DummyKey", "DummyValue"),
+              localDb.putValue(LocalDbBoxes.userData, 'DummyKey', 'DummyValue'),
           throwsAssertionError);
-      expect(() => localDb.deleteValue(LocalDbBoxes.userData, "DummyKey"),
+      expect(() => localDb.deleteValue(LocalDbBoxes.userData, 'DummyKey'),
           throwsAssertionError);
     });
 

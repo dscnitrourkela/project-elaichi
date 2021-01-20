@@ -32,7 +32,7 @@ void setupFirebaseAuthMocks([Callback /*?*/ customHandlers]) {
       };
     }
 
-    if (call.method == "Auth#registerChangeListeners") {
+    if (call.method == 'Auth#registerChangeListeners') {
       return {
         'name': call.arguments['appName'],
         'options': call.arguments['options'],
