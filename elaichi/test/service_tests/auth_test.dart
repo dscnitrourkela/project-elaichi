@@ -30,15 +30,15 @@ class MockAuthCredential extends Mock implements AuthCredential {}
 class MockUser extends Mock implements User {}
 
 void main() {
-  final MockFirebaseAuth _firebaseAuthMock = MockFirebaseAuth();
-  final MockGoogleSignIn _googleSignInMock = MockGoogleSignIn();
-  final AuthUser _mockAuthUser = AuthUser(
-      id: "dummy id",
-      name: "dummy name",
-      username: "dummy username",
-      mobile: "dummy mobile");
-  final User _mockUser = MockUser();
-  final UserCredential _mockUserCredential = MockUserCredential();
+  final _firebaseAuthMock = MockFirebaseAuth();
+  final _googleSignInMock = MockGoogleSignIn();
+  final _mockAuthUser = AuthUser(
+      id: 'dummy id',
+      name: 'dummy name',
+      username: 'dummy username',
+      mobile: 'dummy mobile');
+  final _mockUser = MockUser();
+  final _mockUserCredential = MockUserCredential();
 
   GraphQL _graphQL;
   Auth _auth;
@@ -52,11 +52,11 @@ void main() {
     when(_firebaseAuthMock.authStateChanges())
         .thenAnswer((_) => Stream.value(_mockUser));
   });
-  tearDownAll(() => unregisterServices());
+  tearDownAll(unregisterServices);
 
-  group("General properties - ", () {
-    group("If not logged in - ", () {
-      test("isSignedIn()", () {
+  group('General properties - ', () {
+    group('If not logged in - ', () {
+      test('isSignedIn()', () {
         _auth = Auth();
         _auth.setMockInstances(
             firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -64,7 +64,7 @@ void main() {
         expect(_auth.isSignedIn(), false);
       });
 
-      test("Auth.user", () {
+      test('Auth.user', () {
         _auth = Auth();
         _auth.setMockInstances(
             firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -73,9 +73,10 @@ void main() {
       });
     });
 
-    // isSignedIn with signed in state is tested in signInWithGoogle() successfully.
+    // isSignedIn with signed in state is tested in signInWithGoogle()
+    // successfully.
 
-    test("signOut()", () async {
+    test('signOut()', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -86,9 +87,9 @@ void main() {
     });
   });
 
-  group("Passwordless signin test - ", () {
-    test("sentVerificationMail() with valid email", () async {
-      const String mockEmail = "ankesh@anku.com";
+  group('Passwordless signin test - ', () {
+    test('sentVerificationMail() with valid email', () async {
+      const mockEmail = 'ankesh@anku.com';
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -109,138 +110,138 @@ void main() {
       expect(capturedArgument.dynamicLinkDomain, Strings.DYNAMIC_LINK_DOMAIN);
     });
 
-    test("sentVerificationMail() with invalid email", () async {
+    test('sentVerificationMail() with invalid email', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
 
-      const String mockEmail = "aa.com";
+      const mockEmail = 'aa.com';
       when(_firebaseAuthMock.sendSignInLinkToEmail(
               email: mockEmail,
               actionCodeSettings: captureAnyNamed('actionCodeSettings')))
           .thenAnswer((_) => throw FirebaseAuthException(
-              message: "Thrown if the email address is not valid",
-              code: "invalid-email"));
+              message: 'Thrown if the email address is not valid',
+              code: 'invalid-email'));
 
-      expectLater(() => _auth.sendVerificationMail(email: mockEmail),
+      await expectLater(() => _auth.sendVerificationMail(email: mockEmail),
           throwsA(isA<FirebaseAuthException>()));
 
-      final ActionCodeSettings capturedArgument = verify(
-              _firebaseAuthMock.sendSignInLinkToEmail(
-                  email: mockEmail,
-                  actionCodeSettings: captureAnyNamed('actionCodeSettings')))
+      final capturedArgument = verify(_firebaseAuthMock.sendSignInLinkToEmail(
+              email: mockEmail,
+              actionCodeSettings: captureAnyNamed('actionCodeSettings')))
           .captured[0] as ActionCodeSettings;
       expect(capturedArgument.url, Strings.BASE_URL);
       expect(capturedArgument.handleCodeInApp, true);
       expect(capturedArgument.dynamicLinkDomain, Strings.DYNAMIC_LINK_DOMAIN);
     });
 
-    test("verifyAndSignIn() with valid link", () async {
+    test('verifyAndSignIn() with valid link', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
 
-      const mockEmail = "ankesh@anku.com";
+      const mockEmail = 'ankesh@anku.com';
 
       when(_firebaseAuthMock.sendSignInLinkToEmail(
               email: mockEmail,
-              actionCodeSettings: anyNamed("actionCodeSettings")))
+              actionCodeSettings: anyNamed('actionCodeSettings')))
           .thenAnswer((_) => Future.value(null));
       when(_firebaseAuthMock.isSignInWithEmailLink(any))
           .thenAnswer((_) => true);
       when(_firebaseAuthMock.signInWithEmailLink(
-              email: anyNamed("email"), emailLink: anyNamed("emailLink")))
+              email: anyNamed('email'), emailLink: anyNamed('emailLink')))
           .thenAnswer((_) => Future.value(_mockUserCredential));
 
       await _auth.sendVerificationMail(email: mockEmail);
-      await _auth.verifyAndSignIn(emailLink: "DummyLink");
+      await _auth.verifyAndSignIn(emailLink: 'DummyLink');
 
       verify(_firebaseAuthMock.sendSignInLinkToEmail(
-              email: anyNamed("email"),
-              actionCodeSettings: anyNamed("actionCodeSettings")))
+              email: anyNamed('email'),
+              actionCodeSettings: anyNamed('actionCodeSettings')))
           .called(1);
       verify(_firebaseAuthMock.isSignInWithEmailLink(any)).called(1);
       verify(_firebaseAuthMock.signInWithEmailLink(
-              email: anyNamed("email"), emailLink: anyNamed("emailLink")))
+              email: anyNamed('email'), emailLink: anyNamed('emailLink')))
           .called(1);
     });
 
     test(
-        "sendSignInLinkToEmail() throws error, THEN verifyAndSignIn() with invalid link",
+        // ignore: lines_longer_than_80_chars
+        'sendSignInLinkToEmail() throws error, THEN verifyAndSignIn() with invalid link',
         () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
 
-      const mockEmail = "ankesh@anku.com";
+      const mockEmail = 'ankesh@anku.com';
 
       when(_firebaseAuthMock.sendSignInLinkToEmail(
               email: mockEmail,
-              actionCodeSettings: anyNamed("actionCodeSettings")))
+              actionCodeSettings: anyNamed('actionCodeSettings')))
           .thenAnswer((_) => throw FirebaseAuthException(
-              message: "Thrown if the email address is not valid",
-              code: "invalid-email"));
+              message: 'Thrown if the email address is not valid',
+              code: 'invalid-email'));
       when(_firebaseAuthMock.isSignInWithEmailLink(any))
           .thenAnswer((_) => true);
       when(_firebaseAuthMock.signInWithEmailLink(
-              email: anyNamed("email"), emailLink: anyNamed("emailLink")))
+              email: anyNamed('email'), emailLink: anyNamed('emailLink')))
           .thenAnswer((_) => Future.value(_mockUserCredential));
 
-      expectLater(() => _auth.sendVerificationMail(email: mockEmail),
+      await expectLater(() => _auth.sendVerificationMail(email: mockEmail),
           throwsA(isA<FirebaseAuthException>()));
     });
 
-    test("verifyAndSignIn() with invalid link", () async {
+    test('verifyAndSignIn() with invalid link', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
 
-      const mockEmail = "ankesh@anku.com";
+      const mockEmail = 'ankesh@anku.com';
 
       when(_firebaseAuthMock.sendSignInLinkToEmail(
               email: mockEmail,
-              actionCodeSettings: anyNamed("actionCodeSettings")))
+              actionCodeSettings: anyNamed('actionCodeSettings')))
           .thenAnswer((_) => Future.value(null));
       when(_firebaseAuthMock.isSignInWithEmailLink(any))
           .thenAnswer((_) => false);
       when(_firebaseAuthMock.signInWithEmailLink(
-              email: anyNamed("email"), emailLink: anyNamed("emailLink")))
+              email: anyNamed('email'), emailLink: anyNamed('emailLink')))
           .thenAnswer((_) => Future.value(_mockUserCredential));
 
       await _auth.sendVerificationMail(email: mockEmail);
 
-      expectLater(() => _auth.verifyAndSignIn(emailLink: "DummyLink"),
+      await expectLater(() => _auth.verifyAndSignIn(emailLink: 'DummyLink'),
           throwsA(isA<Exception>()));
     });
 
-    test("verifyAndSignIn() with expired link", () async {
+    test('verifyAndSignIn() with expired link', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
 
-      const mockEmail = "ankesh@anku.com";
+      const mockEmail = 'ankesh@anku.com';
 
       when(_firebaseAuthMock.sendSignInLinkToEmail(
               email: mockEmail,
-              actionCodeSettings: anyNamed("actionCodeSettings")))
+              actionCodeSettings: anyNamed('actionCodeSettings')))
           .thenAnswer((_) => Future.value(null));
       when(_firebaseAuthMock.isSignInWithEmailLink(any))
           .thenAnswer((_) => true);
       when(_firebaseAuthMock.signInWithEmailLink(
-              email: anyNamed("email"), emailLink: anyNamed("emailLink")))
+              email: anyNamed('email'), emailLink: anyNamed('emailLink')))
           .thenAnswer((_) => throw FirebaseAuthException(
-              code: "expired-action-code",
-              message: "Thrown if OTP in email link expires"));
+              code: 'expired-action-code',
+              message: 'Thrown if OTP in email link expires'));
 
       await _auth.sendVerificationMail(email: mockEmail);
 
-      expectLater(() => _auth.verifyAndSignIn(emailLink: "DummyLink"),
+      await expectLater(() => _auth.verifyAndSignIn(emailLink: 'DummyLink'),
           throwsA(isA<FirebaseAuthException>()));
     });
   });
 
-  group("Google Signin - ", () {
-    test("signInWithGoogle() successfully", () async {
+  group('Google Signin - ', () {
+    test('signInWithGoogle() successfully', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -255,20 +256,20 @@ void main() {
       when(mockGoogleSignInAccount.authentication)
           .thenAnswer((_) => Future.value(mockGoogleSignInAuthentication));
       when(mockGoogleSignInAuthentication.idToken)
-          .thenAnswer((_) => "Dummy Token");
+          .thenAnswer((_) => 'Dummy Token');
       when(mockGoogleSignInAuthentication.accessToken)
-          .thenAnswer((_) => "Access Token");
+          .thenAnswer((_) => 'Access Token');
       when(_firebaseAuthMock.signInWithCredential(captureAny))
           .thenAnswer((_) => Future.value(_mockUserCredential));
       when(_mockUserCredential.user).thenAnswer((_) => _mockUser);
       when(_mockUser.getIdToken())
-          .thenAnswer((_) => Future.value("dummy token"));
+          .thenAnswer((_) => Future.value('dummy token'));
       when(_graphQL.authUser(
-              name: anyNamed("name"),
-              username: anyNamed("username"),
-              mobile: anyNamed("mobile"),
-              displayPicture: anyNamed("displayPicture"),
-              email: anyNamed("email")))
+              name: anyNamed('name'),
+              username: anyNamed('username'),
+              mobile: anyNamed('mobile'),
+              displayPicture: anyNamed('displayPicture'),
+              email: anyNamed('email')))
           .thenAnswer((_) => Future.value(_mockAuthUser));
 
       await _auth.signInToGoogleAndIsFirstTimeUser();
@@ -282,7 +283,7 @@ void main() {
       expect(_auth.isSignedIn(), true);
     });
 
-    test("signInWithGoogle() aborted", () async {
+    test('signInWithGoogle() aborted', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -296,13 +297,13 @@ void main() {
       when(mockGoogleSignInAccount.authentication)
           .thenAnswer((_) => Future.value(mockGoogleSignInAuthentication));
 
-      expectLater(
+      await expectLater(
           _auth.signInToGoogleAndIsFirstTimeUser(), throwsA(isA<Exception>()));
 
       verify(_googleSignInMock.signIn());
     });
 
-    test("signInWithGoogle() firebase error", () async {
+    test('signInWithGoogle() firebase error', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -312,15 +313,15 @@ void main() {
       final GoogleSignInAuthentication mockGoogleSignInAuthentication =
           MockGoogleSignInAuthentication();
 
-      final Exception e = Exception("Test Exception");
+      final e = Exception('Test Exception');
       when(_googleSignInMock.signIn())
           .thenAnswer((_) => Future.value(mockGoogleSignInAccount));
       when(mockGoogleSignInAccount.authentication)
           .thenAnswer((_) => Future.value(mockGoogleSignInAuthentication));
       when(mockGoogleSignInAuthentication.idToken)
-          .thenAnswer((_) => "Dummy Token");
+          .thenAnswer((_) => 'Dummy Token');
       when(mockGoogleSignInAuthentication.accessToken)
-          .thenAnswer((_) => "Access Token");
+          .thenAnswer((_) => 'Access Token');
       when(_firebaseAuthMock.signInWithCredential(any))
           .thenAnswer((_) => throw e);
 
@@ -334,9 +335,9 @@ void main() {
     });
   });
 
-  group("Web endpoint - ", () {
-    test("signInToWebpoint()", () async {
-      const String username = "username", mobile = "mobile";
+  group('Web endpoint - ', () {
+    test('signInToWebpoint()', () async {
+      const username = 'username', mobile = 'mobile';
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -351,30 +352,30 @@ void main() {
       when(mockGoogleSignInAccount.authentication)
           .thenAnswer((_) => Future.value(mockGoogleSignInAuthentication));
       when(mockGoogleSignInAuthentication.idToken)
-          .thenAnswer((_) => "Dummy Token");
+          .thenAnswer((_) => 'Dummy Token');
       when(mockGoogleSignInAuthentication.accessToken)
-          .thenAnswer((_) => "Access Token");
+          .thenAnswer((_) => 'Access Token');
       when(_firebaseAuthMock.signInWithCredential(captureAny))
           .thenAnswer((_) => Future.value(_mockUserCredential));
       when(_mockUserCredential.user).thenAnswer((_) => _mockUser);
       when(_graphQL.authUser(
-              name: anyNamed("name"),
-              username: anyNamed("username"),
-              mobile: anyNamed("mobile"),
-              displayPicture: anyNamed("displayPicture"),
-              email: anyNamed("email")))
+              name: anyNamed('name'),
+              username: anyNamed('username'),
+              mobile: anyNamed('mobile'),
+              displayPicture: anyNamed('displayPicture'),
+              email: anyNamed('email')))
           .thenAnswer((_) => Future.value(_mockAuthUser));
 
       await _auth.signInToGoogleAndIsFirstTimeUser();
 
-      _auth.signInToWebpoint(username: username, mobile: mobile);
+      await _auth.signInToWebpoint(username: username, mobile: mobile);
       verify(_graphQL.authUser(
-          name: anyNamed("name"),
-          username: anyNamed("username"),
-          mobile: anyNamed("mobile"),
-          displayPicture: anyNamed("displayPicture"),
-          email: anyNamed("email")));
-      verify(_graphQL.initGraphQL(getToken: anyNamed("getToken")));
+          name: anyNamed('name'),
+          username: anyNamed('username'),
+          mobile: anyNamed('mobile'),
+          displayPicture: anyNamed('displayPicture'),
+          email: anyNamed('email')));
+      verify(_graphQL.initGraphQL(getToken: anyNamed('getToken')));
     });
   });
 }

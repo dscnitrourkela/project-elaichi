@@ -5,6 +5,8 @@ linter:
     argument_type_not_assignable: false
     prefer_final_fields: false
     public_member_api_docs: true
+    sort_constructors_first: false
+    cascade_invocations: false
 
 analyzer:
   exclude:

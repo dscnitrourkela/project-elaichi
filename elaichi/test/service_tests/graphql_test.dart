@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:elaichi/datamodels/auth_user.dart';
 import 'package:elaichi/services/graphql.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql/client.dart';
@@ -13,8 +12,8 @@ import '../setup/test_helpers.dart';
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
-  final GraphQL _graphQL = GraphQL();
-  final MockHttpClient _mockHttpClient = MockHttpClient();
+  final _graphQL = GraphQL();
+  final _mockHttpClient = MockHttpClient();
 
   setUp(() async {
     await registerServices();
@@ -34,66 +33,66 @@ void main() {
     _graphQL.removeClient();
   });
 
-  group("AuthUser test -", () {
-    test("Simple request", () async {
+  group('AuthUser test -', () {
+    test('Simple request', () async {
       when(_mockHttpClient.send(any)).thenAnswer((_) async {
         // ignore: unnecessary_raw_strings
         return response(body: r'''
           {
-            "data": {
-              "__typename": "Mutation",
-              "authUser": {
-                "__typename": "User",
-                "id": "5ffc93b4f44bfe29dbba99cf",
-                "name": "test 1",
-                "username": "test 2",
-                "gmailAuthMail": "a@b.c",
-                "mobile": null,
-                "displayPicture": "hsuih.jpg"
+            'data': {
+              '__typename': 'Mutation',
+              'authUser': {
+                '__typename': 'User',
+                'id': '5ffc93b4f44bfe29dbba99cf',
+                'name': 'test 1',
+                'username': 'test 2',
+                'gmailAuthMail': 'a@b.c',
+                'mobile': null,
+                'displayPicture': 'hsuih.jpg'
               }
             }
           }
         ''');
       });
 
-      final AuthUser authUser = await _graphQL.authUser(
-          username: "test 2",
-          name: "test 1",
-          mobile: "+91",
-          email: "a@b.c",
-          displayPicture: "hsuih.jpg");
+      final authUser = await _graphQL.authUser(
+          username: 'test 2',
+          name: 'test 1',
+          mobile: '+91',
+          email: 'a@b.c',
+          displayPicture: 'hsuih.jpg');
 
-      expect(authUser.name, "test 1");
+      expect(authUser.name, 'test 1');
     });
 
-    test("Invalid token", () async {
+    test('Invalid token', () async {
       when(_mockHttpClient.send(any)).thenAnswer((_) async {
         // ignore: unnecessary_raw_strings
         return response(body: r'''
           {
-            "errors": [
+            'errors': [
               {
-                "message": "Firebase ID token has invalid signature. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token.",
-                "extensions": {
-                  "code": "UNAUTHORIZED"
+                'message': 'Firebase ID token has invalid signature. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token.',
+                'extensions': {
+                  'code': 'UNAUTHORIZED'
                 }
               }
             ],
-            "data": {
-              "__typename": "Mutation",
-              "authUser": null
+            'data': {
+              '__typename': 'Mutation',
+              'authUser': null
             }
           }
         ''');
       });
 
-      expectLater(() async {
+      await expectLater(() async {
         await _graphQL.authUser(
-            username: "test 2",
-            name: "test 1",
-            mobile: "+91",
-            email: "a@b.c",
-            displayPicture: "hsuih.jpg");
+            username: 'test 2',
+            name: 'test 1',
+            mobile: '+91',
+            email: 'a@b.c',
+            displayPicture: 'hsuih.jpg');
       }, throwsA(isA<GraphQLException>()));
     });
   });

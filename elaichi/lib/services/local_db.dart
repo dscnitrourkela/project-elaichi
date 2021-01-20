@@ -58,7 +58,7 @@ class LocalDb {
 
   /// Initializes cache box and return it.
   Future<Box> clearAndGetCacheBox() async {
-    final Box cacheBox = hive.box(LocalDbBoxes.cache.toString());
+    final cacheBox = hive.box(LocalDbBoxes.cache.toString());
     await cacheBox.clear();
     return cacheBox;
   }

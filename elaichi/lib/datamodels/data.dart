@@ -12,12 +12,12 @@ class Data {
   AuthUser authUser;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        authUser: json["authUser"] == null
+        authUser: json['authUser'] == null
             ? null
-            : AuthUser.fromJson(json["authUser"]),
+            : AuthUser.fromJson(json['authUser']),
       );
 
   Map<String, dynamic> toJson() => {
-        "authUser": authUser == null ? null : authUser.toJson(),
+        'authUser': authUser == null ? null : authUser.toJson(),
       };
 }

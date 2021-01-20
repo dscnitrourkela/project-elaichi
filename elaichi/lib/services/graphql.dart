@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/app/logger.dart';
 import 'package:elaichi/datamodels/auth_user.dart';
@@ -8,7 +6,6 @@ import 'package:elaichi/services/local_db.dart';
 import 'package:elaichi/strings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:graphql/client.dart';
-import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
@@ -34,7 +31,7 @@ class GraphQLException implements Exception {
 /// Initialize the client using [initGraphQL] before using.
 @singleton
 class GraphQL {
-  final Logger _logger = getLogger("GraphQL");
+  final Logger _logger = getLogger('GraphQL');
   GraphQLClient _client;
 
   /// Initializes class variables for further operations
@@ -46,25 +43,24 @@ class GraphQL {
       {@required Function getToken,
       http.Client httpClient,
       HiveStore hiveStore}) async {
-    final HttpLink httpLink =
-        HttpLink(Strings.GRAPHQL_URL, httpClient: httpClient);
+    final httpLink = HttpLink(Strings.GRAPHQL_URL, httpClient: httpClient);
 
-    final AuthLink authLink = AuthLink(
+    final authLink = AuthLink(
       getToken: getToken,
     );
 
-    final Link link = authLink.concat(httpLink);
+    final link = authLink.concat(httpLink);
 
     HiveStore _hiveStore;
     if (hiveStore != null) {
-      final LocalDb localDb = locator<LocalDb>();
-      localDb.initLocalDb(boxesToOpen: [LocalDbBoxes.cache]);
-      final Box box = await localDb.clearAndGetCacheBox();
+      final localDb = locator<LocalDb>();
+      await localDb.initLocalDb(boxesToOpen: [LocalDbBoxes.cache]);
+      final box = await localDb.clearAndGetCacheBox();
       _hiveStore = HiveStore(box);
     } else {
       _hiveStore = hiveStore;
     }
-    final GraphQLCache cache = GraphQLCache(store: _hiveStore);
+    final cache = GraphQLCache(store: _hiveStore);
 
     _client = GraphQLClient(link: link, cache: cache);
   }
@@ -81,7 +77,7 @@ class GraphQL {
       @required String email,
       @required String mobile,
       @required String displayPicture}) async {
-    const String mutation = r'''
+    const mutation = r'''
     mutation AuthUsers($userInput: UserInputType) {
       __typename
       authUser(user: $userInput) {
@@ -104,35 +100,36 @@ class GraphQL {
       }
     }
     ''';
-    final MutationOptions options = MutationOptions(
+    final options = MutationOptions(
       document: gql(mutation),
       variables: <String, dynamic>{
-        "userInput": {
-          "name": name,
-          "username": username,
-          "gmailAuthMail": email,
-          "mobile": mobile,
-          "displayPicture": displayPicture
+        'userInput': {
+          'name': name,
+          'username': username,
+          'gmailAuthMail': email,
+          'mobile': mobile,
+          'displayPicture': displayPicture
         }
       },
     );
 
     try {
-      final QueryResult result = await _client.mutate(options);
+      final result = await _client.mutate(options);
 
       if (result.hasException) {
-        _logger.e("GraphQl error", result.exception);
+        _logger.e('GraphQl error', result.exception);
         throw GraphQLException(
             code: Strings.GRAPHQL_ERROR,
             message:
-                "Server response: ${result.exception.graphqlErrors[0].extensions['code']}");
+                // ignore: lines_longer_than_80_chars
+                'Server response: ${result.exception.graphqlErrors[0].extensions['code']}');
       }
 
       return Data.fromJson(result.data).authUser;
     } catch (e) {
-      _logger.e("HTTP Error", e);
+      _logger.e('HTTP Error', e);
       throw GraphQLException(
-          code: Strings.HTTP_ERROR, message: "Failed to connect to server!");
+          code: Strings.HTTP_ERROR, message: 'Failed to connect to server!');
     }
   }
 }
