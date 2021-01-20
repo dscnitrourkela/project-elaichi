@@ -4,7 +4,7 @@ description: Campus Guide for NIT Rourkela
 version: 0.0.1+1
 
 environment:
-  sdk: '>=2.7.0 <3.0.0'
+  sdk: '>=2.10.0 <3.0.0'
 
 # dependency_overrides:
 # analyzer: "0.39.14"
@@ -31,7 +31,7 @@ dependencies:
   shimmer: ^1.1.2
 
   # Themeing
-  stacked_themes: ^0.2.2+2
+  stacked_themes: ^0.2.2+1
   google_fonts: ^1.1.1
 
   # Localisation

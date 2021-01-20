@@ -29,7 +29,10 @@ void main() {
         httpClient: _mockHttpClient,
         hiveStore: store);
   });
-  tearDown(() => unregisterServices());
+  tearDown(() {
+    unregisterServices();
+    _graphQL.removeClient();
+  });
 
   group("AuthUser test -", () {
     test("Simple request", () async {
@@ -70,12 +73,16 @@ void main() {
           {
             "errors": [
               {
-                "message": "Context creation failed: Firebase ID token has invalid signature. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token.",
+                "message": "Firebase ID token has invalid signature. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token.",
                 "extensions": {
                   "code": "UNAUTHORIZED"
                 }
               }
-            ]
+            ],
+            "data": {
+              "__typename": "Mutation",
+              "authUser": null
+            }
           }
         ''');
       });
@@ -87,7 +94,7 @@ void main() {
             mobile: "+91",
             email: "a@b.c",
             displayPicture: "hsuih.jpg");
-      }, throwsException);
+      }, throwsA(isA<GraphQLException>()));
     });
   });
 }

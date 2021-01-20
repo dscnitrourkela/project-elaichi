@@ -3,7 +3,7 @@
 
 /// AuthUser mutation reply.
 class AuthUser {
-  /// Contructor
+  /// Contructor of [AuthUser]
   AuthUser({
     this.id,
     this.name,

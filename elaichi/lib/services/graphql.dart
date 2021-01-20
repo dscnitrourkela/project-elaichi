@@ -12,6 +12,22 @@ import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
+/// Throw any exception from [GraphQL] class.
+class GraphQLException implements Exception {
+  /// Constructor of [GraphQLException]
+  GraphQLException(
+      {@required this.code, @required this.message, this.description});
+
+  /// Unique codes for referring error
+  String code;
+
+  /// One line description of Exception.
+  String message;
+
+  /// Complete description of Exception.
+  String description;
+}
+
 /// Service which handles all `GraphQL` operations including `query` and
 /// `mutation`.
 ///
@@ -53,6 +69,11 @@ class GraphQL {
     _client = GraphQLClient(link: link, cache: cache);
   }
 
+  /// If user is signed out then client request should start failing.
+  void removeClient() {
+    _client = null;
+  }
+
   /// Authorize or sign in the user at graphql endpoint.
   Future<AuthUser> authUser(
       {@required String username,
@@ -61,9 +82,11 @@ class GraphQL {
       @required String mobile,
       @required String displayPicture}) async {
     const String mutation = r'''
-      mutation AuthUsers($userInput: UserInputType) {
+    mutation AuthUsers($userInput: UserInputType) {
+      __typename
+      authUser(user: $userInput) {
         __typename
-        authUser(user: $userInput) {
+        ... on User{
           __typename
           id
           name
@@ -72,7 +95,14 @@ class GraphQL {
           mobile
           displayPicture
         }
+        
+        ... on ErrorClass{
+          __typename
+          code
+          message      
+        }
       }
+    }
     ''';
     final MutationOptions options = MutationOptions(
       document: gql(mutation),
@@ -92,13 +122,17 @@ class GraphQL {
 
       if (result.hasException) {
         _logger.e("GraphQl error", result.exception);
-        throw Exception("Failed to connect to web endpoint");
+        throw GraphQLException(
+            code: Strings.GRAPHQL_ERROR,
+            message:
+                "Server response: ${result.exception.graphqlErrors[0].extensions['code']}");
       }
 
       return Data.fromJson(result.data).authUser;
     } catch (e) {
       _logger.e("HTTP Error", e);
-      throw Exception("Failed to connect to web endpoint");
+      throw GraphQLException(
+          code: Strings.HTTP_ERROR, message: "Failed to connect to server!");
     }
   }
 }
