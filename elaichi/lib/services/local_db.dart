@@ -16,7 +16,7 @@ enum LocalDbBoxes {
 
 /// Implements local database which can be used to store users data, local app
 /// preferences and caching.
-/// To put anything in the database use `LocalDb.putValue()` and 
+/// To put anything in the database use `LocalDb.putValue()` and
 /// `LocalDb.getValue()`
 /// to retrieve from the database
 @singleton
@@ -29,9 +29,6 @@ class LocalDb {
   set mockInstance(HiveInterface hive) {
     this.hive = hive;
   }
-
-  /// Instance of Hive
-  HiveInterface hive;
 
   /// Instantiate the class with the boxes required as `boxesToOpen`
   Future<void> initLocalDb({List<LocalDbBoxes> boxesToOpen}) async {
