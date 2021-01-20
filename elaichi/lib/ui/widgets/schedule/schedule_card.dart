@@ -1,3 +1,4 @@
+import 'package:elaichi/app/colors.dart';
 import 'package:elaichi/generated/locale_keys.g.dart';
 import 'package:elaichi/ui/views/feed/feed_viewmodel.dart';
 import 'package:elaichi/ui/widgets/schedule/schedule_component.dart';
@@ -29,18 +30,20 @@ class ScheduleCard extends ViewModelWidget<FeedViewModel> {
                     child: Text(
                       LocaleKeys.timeTable.tr(),
                       textAlign: TextAlign.left,
-                      style: context.textTheme.bodyText1,
+                      style: context.textTheme.bodyText1
+                          .copyWith(color: AppColors.cardHeader),
                     ),
                   ),
                 ),
                 FlatButton.icon(
                   onPressed: () {},
                   label: Text(LocaleKeys.openCalendar.tr(),
-                      style: context.textTheme.bodyText1),
+                      style: context.textTheme.bodyText1
+                          .copyWith(color: Colors.blue)),
                   icon: const Icon(
                     Icons.arrow_forward_ios,
                     size: 14,
-                    color: Colors.black,
+                    color: Colors.blue,
                   ),
                 ),
               ],

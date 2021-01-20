@@ -9,7 +9,6 @@ import 'package:elaichi/services/auth.dart';
 import 'package:elaichi/services/graphql.dart';
 import 'package:elaichi/services/local_db.dart';
 import 'package:elaichi/services/api.dart';
-import 'package:elaichi/services/feed_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mockito/mockito.dart';
@@ -33,8 +32,6 @@ class LocalDbMock extends Mock implements LocalDb {}
 
 class MockApi extends Mock implements Api {}
 
-class FeedServiceMock extends Mock implements FeedService {}
-
 class GraphQLMock extends Mock implements GraphQL {}
 
 class AuthMock extends Mock implements Auth {}
@@ -57,13 +54,6 @@ Api getAndRegisterApiMock() {
   _removeRegistrationIfExists<Api>();
   final service = MockApi();
   locator.registerSingleton<Api>(service);
-  return service;
-}
-
-FeedService getAndRegisterFeedServiceMock() {
-  _removeRegistrationIfExists<FeedService>();
-  final service = FeedServiceMock();
-  locator.registerSingleton<FeedService>(service);
   return service;
 }
 
@@ -122,7 +112,6 @@ Future<void> registerServices() async {
   getAndRegisterThemeServiceMock();
   getAndRegisterLocalDbMock();
   getAndRegisterApiMock();
-  getAndRegisterFeedServiceMock();
   getAndRegisterGraphQLMock();
   getAndRegisterAuthMock();
 }
@@ -140,7 +129,6 @@ void unregisterServices() {
   if (locator.isRegistered<ThemeService>()) locator.unregister<ThemeService>();
   if (locator.isRegistered<LocalDb>()) locator.unregister<LocalDb>();
   if (locator.isRegistered<Api>()) locator.unregister<Api>();
-  if (locator.isRegistered<FeedService>()) locator.unregister<FeedService>();
   if (locator.isRegistered<GraphQL>()) locator.unregister<GraphQL>();
   if (locator.isRegistered<Auth>()) locator.unregister<Auth>();
 }

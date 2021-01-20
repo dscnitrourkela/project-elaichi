@@ -1,7 +1,9 @@
+import 'package:elaichi/app/router.gr.dart';
 import 'package:elaichi/ui/views/startup/startup_view.dart';
 import 'package:elaichi/ui/views/startup/startup_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 
 import '../setup/test_helpers.dart';
 
@@ -24,30 +26,16 @@ void main() {
     expect(buttonFinder, findsOneWidget);
   });
 
-  // TODO: Implement navigation test - use NavigatorObservers
-
-  // testWidgets("when forward button is tapped, should navigate to home view",
-  //     (WidgetTester tester) async {
-  //   await tester.pumpWidget(Directionality(
-  //       textDirection: TextDirection.ltr,
-  //       child: MediaQuery(
-  //         data: const MediaQueryData(),
-  //         child: StartupView(),
-  //       )));
-
-  //   final startupViewModel = StartupViewModel();
-  //   final homeViewModel = HomeViewModel();
-
-  //   final buttonFinder = find.byIcon(Icons.arrow_forward);
-
-  //   final navigationService = getAndRegisterNavigationServiceMock();
-
-  //   expect(find.text(startupViewModel.title), findsOneWidget);
-  //   expect(find.text(homeViewModel.title), findsNothing);
-  //   await tester.tap(buttonFinder);
-  //   await tester.pumpAndSettle();
-
-  //   expect(find.text(startupViewModel.title), findsNothing);
-  //   expect(find.text(homeViewModel.title), findsOneWidget);
-  // });
+  testWidgets(
+    'When forward button is tapped, should navigate to home view',
+    (WidgetTester tester) async {
+      final navigationService = getAndRegisterNavigationServiceMock();
+      await tester.pumpWidget(wrappedWidget(StartupView()));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byIcon(Icons.arrow_forward));
+      verify(navigationService.navigateTo(Routes.homeView));
+      // await tester.pumpAndSettle();
+      // expect(find.byType(ElaichiAppbar), findsOneWidget);
+    },
+  );
 }

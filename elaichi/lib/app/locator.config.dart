@@ -11,7 +11,6 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 import '../services/api.dart';
 import '../services/fake_api.dart';
-import '../services/feed_service.dart';
 import '../services/local_db.dart';
 import '../services/third_party_services_module.dart';
 
@@ -30,7 +29,6 @@ GetIt $initGetIt(
   final thirdPartyServicesModule = _$ThirdPartyServicesModule();
   gh.lazySingleton<Api>(() => FakeApi(), registerFor: {_dev});
   gh.lazySingleton<DialogService>(() => thirdPartyServicesModule.dialogService);
-  gh.lazySingleton<FeedService>(() => FeedService());
   gh.lazySingleton<NavigationService>(
       () => thirdPartyServicesModule.navigationService);
   gh.lazySingleton<SnackbarService>(

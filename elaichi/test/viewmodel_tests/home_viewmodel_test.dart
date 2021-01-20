@@ -15,17 +15,5 @@ void main() {
         expect(model.title != null, true);
       });
     });
-    group('counter -', () {
-      test('When constructed, counter should return 0', () {
-        final model = HomeViewModel();
-        expect(model.counter, 0);
-      });
-
-      test('When called, counter should increase', () {
-        final model = HomeViewModel()..updateCounter();
-        // model.updateCounter();
-        expect(model.counter, 1);
-      });
-    });
   });
 }

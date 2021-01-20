@@ -6,5 +6,6 @@ abstract class  LocaleKeys {
   static const homeTitle = 'homeTitle';
   static const timeTable = 'timeTable';
   static const openCalendar = 'openCalendar';
+  static const thisWeekTitle = 'thisWeekTitle';
 
 }

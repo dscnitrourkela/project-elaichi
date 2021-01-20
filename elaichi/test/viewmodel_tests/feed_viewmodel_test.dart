@@ -17,6 +17,29 @@ void main() {
   });
   tearDown(unregisterServices);
   group('FeedViewmodel Test - ', () {
+    test(
+      'Intialise -',
+      () async {
+        final model = FeedViewModel();
+        final mockApi = locator<Api>();
+        final stories = List<CurrentStory>.generate(
+          10,
+          (index) => CurrentStory(
+            asset: '',
+            id: '',
+            description: '',
+            event: null,
+            assetType: '',
+            createdAt: null,
+            club: null,
+          ),
+        );
+        when(mockApi.getCurrentStories()).thenAnswer((_) async => stories);
+        await model.initialise();
+        expect(model.isBusy, false);
+        expect(model.currentStories, Right(stories));
+      },
+    );
     group('API calls - ', () {
       group('Stories', () {
         test(

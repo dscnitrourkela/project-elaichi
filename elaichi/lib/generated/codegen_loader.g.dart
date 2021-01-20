@@ -19,7 +19,8 @@ class CodegenLoader extends AssetLoader{
   "welcome": "Welcome to NITR Central",
   "homeTitle": "Your Feed",
   "timeTable": "Timetable",
-  "openCalendar": "Open Calendar"
+  "openCalendar": "Open Calendar",
+  "thisWeekTitle": "Stories This Week"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};
 }

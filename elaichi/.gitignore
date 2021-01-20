@@ -16,6 +16,8 @@ doc/api/
 # If you don't generate coverage info locally you can remove this line.
 coverage/
 
+test/.test_coverage.dart
+
 # Avoid committing generated Javascript files:
 *.dart.js
 *.info.json      # Produced by the --dump-info flag.
