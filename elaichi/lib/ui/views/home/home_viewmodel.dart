@@ -7,14 +7,14 @@ import 'package:elaichi/generated/locale_keys.g.dart';
 import 'package:elaichi/services/feed_service.dart';
 import 'package:stacked/stacked.dart';
 
-///ViewModel class for HomeView
+/// ViewModel class for HomeView
 class HomeViewModel extends IndexTrackingViewModel {
   String _title = LocaleKeys.welcome.tr();
 
-  ///Returns [_title] followed by [_counter].
+  /// Returns [_title] followed by [_counter].
   String get title => _title;
 
-  //Counter example using stacked.
+  // Counter example using stacked.
   int _counter = 0;
 
   /// Returns [_counter] value.

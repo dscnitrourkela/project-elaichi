@@ -13,12 +13,27 @@ void main() {
 
   setUp(() async {
     mockHive = MockHive();
-    localDb = LocalDb(hive: mockHive);
+    localDb = LocalDb();
+    localDb.mockInstance = mockHive;
 
     await localDb.initLocalDb(boxesToOpen: [LocalDbBoxes.cache]);
   });
 
   group('Local DB -', () {
+    test('Assertion errors of get, put and delete', () {
+      when(mockHive.isBoxOpen(LocalDbBoxes.userData.toString()))
+          .thenAnswer((_) => false);
+
+      expect(() => localDb.getValue(LocalDbBoxes.userData, 'DummyKey'),
+          throwsAssertionError);
+      expect(
+          () =>
+              localDb.putValue(LocalDbBoxes.userData, 'DummyKey', 'DummyValue'),
+          throwsAssertionError);
+      expect(() => localDb.deleteValue(LocalDbBoxes.userData, 'DummyKey'),
+          throwsAssertionError);
+    });
+
     test('Open box', () async {
       when(mockHive.isBoxOpen(LocalDbBoxes.userData.toString()))
           .thenAnswer((_) => false);
@@ -44,9 +59,16 @@ void main() {
       verify(_mockHiveBox.close());
     });
 
-    test('Close all box', () async {
-      await localDb.closeAllBoxes();
-      verify(mockHive.close());
+    test('Initialize and get cache box', () async {
+      // Cache box is already opened in the initialization
+      final _mockHiveBox = MockHiveBox();
+      when(mockHive.box(LocalDbBoxes.cache.toString()))
+          .thenReturn(_mockHiveBox);
+
+      await localDb.clearAndGetCacheBox();
+
+      verify(mockHive.box(LocalDbBoxes.cache.toString()));
+      verify(_mockHiveBox.clear());
     });
 
     test('Get non-existing data', () async {

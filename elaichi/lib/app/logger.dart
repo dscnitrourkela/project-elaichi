@@ -1,5 +1,7 @@
 import 'package:logger/logger.dart';
 
+export 'package:logger/logger.dart';
+
 /// Returns a logger instance with SimpleLogPrinter as the printer.
 Logger getLogger(String className) {
   return Logger(printer: SimpleLogPrinter(className));
