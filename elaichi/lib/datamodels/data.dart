@@ -1,6 +1,6 @@
 import 'package:elaichi/datamodels/auth_user.dart';
 
-///
+/// Datamodel for `data` response in graphql JSON response
 class Data {
   /// Constructor for [Data].
   Data({
