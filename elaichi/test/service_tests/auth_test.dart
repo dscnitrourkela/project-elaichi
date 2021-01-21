@@ -1,6 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 import 'package:elaichi/datamodels/auth_user.dart';
 import 'package:elaichi/services/graphql.dart';
+import 'package:elaichi/services/local_db.dart';
 import 'package:elaichi/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -42,10 +43,11 @@ void main() {
   final _mockUserCredential = MockUserCredential();
 
   GraphQL _graphQL;
+  LocalDb _localDb;
   Auth _auth;
 
   setUpAll(() async {
-    getAndRegisterLocalDbMock();
+    _localDb = getAndRegisterLocalDbMock();
     _graphQL = getAndRegisterGraphQLMock();
 
     setupFirebaseAuthMocks();
@@ -74,8 +76,21 @@ void main() {
       });
     });
 
-    // isSignedIn with signed in state is tested in signInWithGoogle()
+    // isSignedIn with recently signed in state is tested in signInWithGoogle()
     // successfully.
+
+    test('isSignedIn() from db', () {
+      _auth = Auth();
+      when(_firebaseAuthMock.currentUser).thenAnswer((_) => _mockUser);
+
+      _auth.setMockInstances(
+          firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
+
+      when(_localDb.getValue(any, any)).thenAnswer((_) => 'Dummy String');
+
+      expect(_auth.isSignedIn(), true);
+      expect(_auth.user.id, 'Dummy String');
+    });
 
     test('signOut()', () async {
       _auth = Auth();
@@ -85,6 +100,33 @@ void main() {
       await _auth.signOut();
       verify(_firebaseAuthMock.signOut());
       verify(_googleSignInMock.signOut());
+    });
+
+    test('updateUser()', () async {
+      _auth = Auth();
+      _auth.setMockInstances(
+          firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
+
+      when(_graphQL.updateUser(
+              name: anyNamed('name'),
+              username: anyNamed('username'),
+              mobile: anyNamed('mobile'),
+              instituteId: anyNamed('instituteId'),
+              emergencyContact: anyNamed('emergencyContact'),
+              displayPictureUrl: anyNamed('displayPictureUrl')))
+          .thenAnswer((_) => Future.value(_mockAuthUser));
+
+      await _auth.updateUser(name: 'test 3');
+
+      verify(_graphQL.updateUser(
+          name: anyNamed('name'),
+          username: anyNamed('username'),
+          mobile: anyNamed('mobile'),
+          instituteId: anyNamed('instituteId'),
+          emergencyContact: anyNamed('emergencyContact'),
+          displayPictureUrl: anyNamed('displayPictureUrl')));
+      verify(_localDb.putValue(any, any, any));
+      expect(_auth.user, _mockAuthUser);
     });
   });
 
@@ -241,8 +283,8 @@ void main() {
     });
   });
 
-  group('Google Signin - ', () {
-    test('signInWithGoogle() successfully', () async {
+  group('SignIn - ', () {
+    test('_signInWithGoogle() successfully', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -267,13 +309,11 @@ void main() {
           .thenAnswer((_) => Future.value('dummy token'));
       when(_graphQL.authUser(
               name: anyNamed('name'),
-              username: anyNamed('username'),
-              mobile: anyNamed('mobile'),
               displayPicture: anyNamed('displayPicture'),
               email: anyNamed('email')))
           .thenAnswer((_) => Future.value(_mockAuthUser));
 
-      await _auth.signInToGoogleAndIsFirstTimeUser();
+      await _auth.signIn();
 
       verify(_googleSignInMock.signIn());
       verify(mockGoogleSignInAccount.authentication);
@@ -282,9 +322,15 @@ void main() {
               .captured[0];
       expect(authCredential, isA<AuthCredential>());
       expect(_auth.isSignedIn(), true);
+      verify(_graphQL.authUser(
+          name: anyNamed('name'),
+          displayPicture: anyNamed('displayPicture'),
+          email: anyNamed('email')));
+      verify(_graphQL.initGraphQL(getToken: anyNamed('getToken')));
+      expect(_auth.user, _mockAuthUser);
     });
 
-    test('signInWithGoogle() aborted', () async {
+    test('_signInWithGoogle() dialog aborted', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -298,13 +344,13 @@ void main() {
       when(mockGoogleSignInAccount.authentication)
           .thenAnswer((_) => Future.value(mockGoogleSignInAuthentication));
 
-      await expectLater(
-          _auth.signInToGoogleAndIsFirstTimeUser(), throwsA(isA<Exception>()));
+      await expectLater(_auth.signIn(), throwsA(isA<Exception>()));
 
       verify(_googleSignInMock.signIn());
+      verifyNever(mockGoogleSignInAccount.authentication);
     });
 
-    test('signInWithGoogle() firebase error', () async {
+    test('_signIn() aborted because user disabled', () async {
       _auth = Auth();
       _auth.setMockInstances(
           firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
@@ -313,8 +359,9 @@ void main() {
           MockGoogleSignInAccount();
       final GoogleSignInAuthentication mockGoogleSignInAuthentication =
           MockGoogleSignInAuthentication();
+      final e = FirebaseAuthException(
+          code: 'user-disabled', message: 'Test Exception');
 
-      final e = Exception('Test Exception');
       when(_googleSignInMock.signIn())
           .thenAnswer((_) => Future.value(mockGoogleSignInAccount));
       when(mockGoogleSignInAccount.authentication)
@@ -327,56 +374,12 @@ void main() {
           .thenAnswer((_) => throw e);
 
       try {
-        await _auth.signInToGoogleAndIsFirstTimeUser();
+        await _auth.signIn();
       } catch (thrownException) {
         verify(_googleSignInMock.signIn());
         verify(mockGoogleSignInAccount.authentication);
         expect(thrownException, e);
       }
-    });
-  });
-
-  group('Web endpoint - ', () {
-    test('signInToWebpoint()', () async {
-      const username = 'username', mobile = 'mobile';
-      _auth = Auth();
-      _auth.setMockInstances(
-          firebaseAuth: _firebaseAuthMock, googleSignIn: _googleSignInMock);
-
-      final GoogleSignInAccount mockGoogleSignInAccount =
-          MockGoogleSignInAccount();
-      final GoogleSignInAuthentication mockGoogleSignInAuthentication =
-          MockGoogleSignInAuthentication();
-
-      when(_googleSignInMock.signIn())
-          .thenAnswer((_) => Future.value(mockGoogleSignInAccount));
-      when(mockGoogleSignInAccount.authentication)
-          .thenAnswer((_) => Future.value(mockGoogleSignInAuthentication));
-      when(mockGoogleSignInAuthentication.idToken)
-          .thenAnswer((_) => 'Dummy Token');
-      when(mockGoogleSignInAuthentication.accessToken)
-          .thenAnswer((_) => 'Access Token');
-      when(_firebaseAuthMock.signInWithCredential(captureAny))
-          .thenAnswer((_) => Future.value(_mockUserCredential));
-      when(_mockUserCredential.user).thenAnswer((_) => _mockUser);
-      when(_graphQL.authUser(
-              name: anyNamed('name'),
-              username: anyNamed('username'),
-              mobile: anyNamed('mobile'),
-              displayPicture: anyNamed('displayPicture'),
-              email: anyNamed('email')))
-          .thenAnswer((_) => Future.value(_mockAuthUser));
-
-      await _auth.signInToGoogleAndIsFirstTimeUser();
-
-      await _auth.signInToWebpoint(username: username, mobile: mobile);
-      verify(_graphQL.authUser(
-          name: anyNamed('name'),
-          username: anyNamed('username'),
-          mobile: anyNamed('mobile'),
-          displayPicture: anyNamed('displayPicture'),
-          email: anyNamed('email')));
-      verify(_graphQL.initGraphQL(getToken: anyNamed('getToken')));
     });
   });
 }

@@ -70,12 +70,27 @@ class GraphQL {
     _client = null;
   }
 
+  void _handleErrors(QueryResult result) {
+    if (result.hasException) {
+      if (result.exception.linkException != null) {
+        _logger.e('HTTP Error', result.exception.linkException.toString());
+        throw GraphQLException(
+            code: Strings.HTTP_ERROR, message: 'Failed to connect to server!');
+      } else if (result.exception.graphqlErrors != null) {
+        _logger.e('GraphQl error', result.exception.graphqlErrors.toString());
+        throw GraphQLException(
+            code: Strings.GRAPHQL_ERROR,
+            message:
+                // ignore: lines_longer_than_80_chars
+                'Server response: ${result.exception.graphqlErrors[0].extensions['code']}');
+      }
+    }
+  }
+
   /// Authorize or sign in the user at graphql endpoint.
   Future<AuthUser> authUser(
-      {@required String username,
-      @required String name,
+      {@required String name,
       @required String email,
-      @required String mobile,
       @required String displayPicture}) async {
     const mutation = r'''
     mutation AuthUsers($userInput: UserInputType) {
@@ -105,31 +120,70 @@ class GraphQL {
       variables: <String, dynamic>{
         'userInput': {
           'name': name,
-          'username': username,
           'gmailAuthMail': email,
-          'mobile': mobile,
           'displayPicture': displayPicture
         }
       },
     );
 
-    try {
-      final result = await _client.mutate(options);
+    final result = await _client.mutate(options);
 
-      if (result.hasException) {
-        _logger.e('GraphQl error', result.exception);
-        throw GraphQLException(
-            code: Strings.GRAPHQL_ERROR,
-            message:
-                // ignore: lines_longer_than_80_chars
-                'Server response: ${result.exception.graphqlErrors[0].extensions['code']}');
+    _handleErrors(result);
+    return Data.fromJson(result.data).authUser;
+  }
+
+  /// Updates user info on web endpoint.
+  ///
+  /// *Important:* Don't use directly, use [Auth.updateUser()] to update user
+  /// info.
+  Future<AuthUser> updateUser(
+      {String name,
+      String username,
+      String mobile,
+      String instituteId,
+      String emergencyContact,
+      String displayPictureUrl}) async {
+    const mutation = r'''
+    mutation UpdateUsers($userInput: UserInputType) {
+      __typename
+      updateUser(user: $userInput) {
+        __typename
+        ... on User {
+          __typename
+          id
+          name
+          username
+          gmailAuthMail
+          mobile
+          displayPicture
+        }
+
+        ... on ErrorClass {
+          __typename
+          code
+          message
+        }
       }
-
-      return Data.fromJson(result.data).authUser;
-    } catch (e) {
-      _logger.e('HTTP Error', e);
-      throw GraphQLException(
-          code: Strings.HTTP_ERROR, message: 'Failed to connect to server!');
     }
+    ''';
+
+    final options = MutationOptions(
+      document: gql(mutation),
+      variables: <String, dynamic>{
+        'userInput': {
+          'name': name,
+          'username': username,
+          'mobile': mobile,
+          'instituteId': instituteId,
+          'emergencyContact': emergencyContact,
+          'displayPicture': displayPictureUrl
+        }
+      },
+    );
+
+    final result = await _client.mutate(options);
+
+    _handleErrors(result);
+    return Data.fromJson(result.data).authUser;
   }
 }

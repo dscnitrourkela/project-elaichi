@@ -1,6 +1,6 @@
 import 'package:elaichi/datamodels/auth_user.dart';
 
-/// 
+///
 class Data {
   /// Constructor for [Data].
   Data({
@@ -8,11 +8,15 @@ class Data {
   });
 
   /// Generates [Data] object from JSON resposne.
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        authUser: json['authUser'] == null
-            ? null
-            : AuthUser.fromJson(json['authUser']),
-      );
+  factory Data.fromJson(Map<String, dynamic> json) {
+    if (json['authUser'] != null) {
+      return Data(authUser: AuthUser.fromJson(json['authUser']));
+    } else if (json['updateUser'] != null) {
+      return Data(authUser: AuthUser.fromJson(json['updateUser']));
+    } else {
+      return Data(authUser: null);
+    }
+  }
 
   /// Current user of the app.
   AuthUser authUser;

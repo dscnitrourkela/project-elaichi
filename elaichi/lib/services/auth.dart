@@ -13,7 +13,6 @@ import 'package:logger/logger.dart';
 /// A single point authentication service
 @singleton
 class Auth {
-
   /// Contructor for [Auth].
   Auth() {
     _firebaseAuth = FirebaseAuth.instance;
@@ -47,9 +46,10 @@ class Auth {
 
   /// Check if the user is signed in sucessfully.
   bool isSignedIn() {
+    _user = _firebaseAuthService.user;
     if (_user == null) {
       return false;
-    } else {
+    } else if (_authUser == null) {
       final id = _localDb.getValue(LocalDbBoxes.userData, Strings.AUTH_USER_ID);
       final name =
           _localDb.getValue(LocalDbBoxes.userData, Strings.AUTH_USER_NAME);
@@ -68,6 +68,8 @@ class Auth {
           gmailAuthMail: email,
           mobile: mobile,
           displayPicture: dp);
+      return true;
+    } else {
       return true;
     }
   }
@@ -101,66 +103,19 @@ class Auth {
 
   /// Opens a dialog which let's the user to signin to their Google account.
   ///
-  /// Returns true if user is first time user else returns false.
-  ///
-  /// In case user first time user, use following code after getting username
-  /// ```dart
-  /// Auth.signInToWebpoint(username: '', mobile: '');
-  /// ```
-  Future<bool> signInToGoogleAndIsFirstTimeUser() async {
-    _firebaseAuth.authStateChanges().listen((User user) {
-      if (user == null) {
-        _logger.i('Sign out due to authStateChanges');
-        signOut();
-      }
-    });
-
-    final credential = await _googleAuthService.signIn();
-    return _firebaseAuthService
-        .signInWithCredenials(credential: credential)
-        .then((user) async {
-      _user = user;
-      await signInToWebpoint();
-      return false;
-    }).catchError((error) {
-      return true;
-    });
-  }
-
-  /// Sign in or sign up to the GraphQL webpoint.
-  ///
-  /// Throws [GraphQLException] with error code:
-  /// - **Strings.HTTP_ERROR**:
-  ///  - Thrown if the HTTP response status is != 200
-  /// - **Strings.GRAPHQL_ERROR**:
-  ///  - Thrown if GraphQL response contains 'errors' or
+  /// Throws [Exception], [GraphQLException] and [FirebaseAuthException]
+  /// with error codes like:
+  /// - `Exception('Signin process was aborted')`
+  ///   - Thrown if user aborts signin process.
+  /// - `GraphQLException` - `Strings.HTTP_ERROR`:
+  ///   - Thrown if the HTTP response status is != 200
+  /// - `GraphQLException` - `Strings.GRAPHQL_ERROR`:
+  ///   - Thrown if GraphQL response contains 'errors' or
   ///    response.hasException == true, eg. `CacheError`.
-  Future<AuthUser> signInToWebpoint({String username, String mobile}) async {
-    final graphQl = locator<GraphQL>();
-    await graphQl.initGraphQL(getToken: _user.getIdToken);
-    final authUser = await graphQl.authUser(
-        username: username,
-        email: _user.email,
-        name: _user.displayName,
-        mobile: _user.phoneNumber,
-        displayPicture: _user.photoURL);
-
-    // Since web endpoint needs different JWT token after login
-    await graphQl.initGraphQL(getToken: () => _user.getIdToken(true));
-
-    _localDb.putValue(LocalDbBoxes.userData, Strings.AUTH_USER_ID, authUser.id);
-    _localDb.putValue(
-        LocalDbBoxes.userData, Strings.AUTH_USER_NAME, authUser.name);
-    _localDb.putValue(
-        LocalDbBoxes.userData, Strings.AUTH_USER_USERNAME, authUser.username);
-    _localDb.putValue(
-        LocalDbBoxes.userData, Strings.AUTH_USER_EMAIL, authUser.gmailAuthMail);
-    _localDb.putValue(
-        LocalDbBoxes.userData, Strings.AUTH_USER_MOBILE, authUser.mobile);
-    _localDb.putValue(
-        LocalDbBoxes.userData, Strings.AUTH_USER_DP, authUser.displayPicture);
-
-    return authUser;
+  /// - `FirebaseAuthException` - `user-disable`:
+  ///   - Thrown if user is disabled from firebase.
+  Future<void> signIn() async {
+    await _signInToGoogle().then((_) => _signInToWebpoint());
   }
 
   /// Sign out from all the accounts
@@ -179,6 +134,39 @@ class Auth {
     _graphQL.removeClient();
   }
 
+  /// Updates user info on web endpoint.
+  Future<void> updateUser(
+      {String name,
+      String username,
+      String mobile,
+      String instituteId,
+      String emergencyContact,
+      String displayPictureUrl}) async {
+    final graphQl = locator<GraphQL>();
+    _authUser = await graphQl.updateUser(
+        name: name,
+        username: username,
+        mobile: mobile,
+        instituteId: instituteId,
+        emergencyContact: emergencyContact,
+        displayPictureUrl: displayPictureUrl);
+
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_ID, _authUser.id);
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_NAME, _authUser.name);
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_USERNAME, _authUser.username);
+    _localDb.putValue(LocalDbBoxes.userData, Strings.AUTH_USER_EMAIL,
+        _authUser.gmailAuthMail);
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_MOBILE, _authUser.mobile);
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_DP, _authUser.displayPicture);
+
+    return _authUser;
+  }
+
   /// After retrival of email link from deep link
   ///
   /// *Important:* Call [sendVerificationMail] before calling this function.
@@ -186,21 +174,76 @@ class Auth {
     await _firebaseAuthService.verifyEmailLink(
         email: _email, emailLink: emailLink);
   }
+
+  /// Opens a dialog which let's the user to signin to their Google account.
+  ///
+  /// In case user first time user, use following code after getting username
+  /// ```dart
+  /// Auth.signInToWebpoint(username: '', mobile: '');
+  /// ```
+  Future<void> _signInToGoogle() async {
+    _firebaseAuth.authStateChanges().listen((User user) {
+      if (user == null) {
+        _logger.i('Sign out due to authStateChanges');
+        signOut();
+      }
+    });
+
+    final credential = await _googleAuthService.signIn();
+    return _firebaseAuthService
+        .signInWithCredenials(credential: credential)
+        .then((user) async {
+      _user = user;
+    });
+  }
+
+  /// Sign in or sign up to the GraphQL webpoint.
+  ///
+  /// Throws [GraphQLException] with error code:
+  /// - **Strings.HTTP_ERROR**:
+  ///  - Thrown if the HTTP response status is != 200
+  /// - **Strings.GRAPHQL_ERROR**:
+  ///  - Thrown if GraphQL response contains 'errors' or
+  ///    response.hasException == true, eg. `CacheError`.
+  Future<AuthUser> _signInToWebpoint() async {
+    final graphQl = locator<GraphQL>();
+    await graphQl.initGraphQL(getToken: _user.getIdToken);
+    _authUser = await graphQl.authUser(
+        email: _user.email,
+        name: _user.displayName,
+        displayPicture: _user.photoURL);
+
+    // Since web endpoint needs different JWT token after login
+    await graphQl.initGraphQL(getToken: () => _user.getIdToken(true));
+
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_ID, _authUser.id);
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_NAME, _authUser.name);
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_USERNAME, _authUser.username);
+    _localDb.putValue(LocalDbBoxes.userData, Strings.AUTH_USER_EMAIL,
+        _authUser.gmailAuthMail);
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_MOBILE, _authUser.mobile);
+    _localDb.putValue(
+        LocalDbBoxes.userData, Strings.AUTH_USER_DP, _authUser.displayPicture);
+
+    return _authUser;
+  }
 }
 
 /// Handle all the Firebase login related functions
 class _FirebaseAuthService {
-  
   /// Constructor of [_FirebaseAuthService]
   _FirebaseAuthService({FirebaseAuth firebaseAuth})
       : _firebaseAuth = firebaseAuth;
 
   final Logger _logger = getLogger('Authentication');
   final FirebaseAuth _firebaseAuth;
-  User _user;
 
   /// User details if sign in was successful.
-  User get user => _user;
+  User get user => _firebaseAuth.currentUser;
 
   /// Send email for firebase passwordless login
   Future<void> sendSignInLinkToEmail({@required String email}) {
@@ -218,10 +261,6 @@ class _FirebaseAuthService {
             email: email, actionCodeSettings: actionCodeSettings)
         .then((_) {
       _logger.i('Verification email sent');
-    }).catchError((error, stackTrace) {
-      _logger.e(
-          'Failed to send verification email since $error', error, stackTrace);
-      throw Exception('Failed to send email.');
     });
   }
 
@@ -229,11 +268,7 @@ class _FirebaseAuthService {
   Future<User> signInWithCredenials({@required AuthCredential credential}) =>
       _firebaseAuth.signInWithCredential(credential).then((userCredential) {
         _logger.i('Firebase login successful');
-        _user = userCredential.user;
         return userCredential.user;
-      }).catchError((error, stackTrace) {
-        _logger.e('Failed to send verification email', error, stackTrace);
-        throw Exception('Unable to sign in with credentials');
       });
 
   Future<void> signOut() => _firebaseAuth.signOut();
@@ -248,9 +283,6 @@ class _FirebaseAuthService {
           .then((userCredential) {
         _logger.i('Login with email link successful');
         return userCredential.user;
-      }).catchError((error, stackTrace) {
-        _logger.e('Email link verification failed', error, stackTrace);
-        throw Exception('Login failed');
       });
     } else {
       _logger.i('Email link provided is not a firebase email link');
