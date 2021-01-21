@@ -1,9 +1,6 @@
-// ignore_for_file: public_member_api_docs
-// ignore_for_file: prefer_if_null_operators
-
 /// AuthUser mutation reply.
 class AuthUser {
-  /// Contructor of [AuthUser]
+  /// Constructor for [AuthUser]
   AuthUser({
     this.id,
     this.name,
@@ -13,30 +10,43 @@ class AuthUser {
     this.displayPicture,
   });
 
+  /// Generates [AuthUser] object from JSON response.
   factory AuthUser.fromJson(Map<String, dynamic> json) => AuthUser(
-        id: json['id'] == null ? null : json['id'],
-        name: json['name'] == null ? null : json['name'],
-        username: json['username'] == null ? null : json['username'],
+        id: json['id'],
+        name: json['name'],
+        username: json['username'],
         gmailAuthMail:
-            json['gmailAuthMail'] == null ? null : json['gmailAuthMail'],
+            json['gmailAuthMail'],
         mobile: json['mobile'],
         displayPicture:
-            json['displayPicture'] == null ? null : json['displayPicture'],
+            json['displayPicture'],
       );
-
+  
+  /// ID of the auth user.
   String id;
+
+  /// Name of the auth user.
   String name;
+
+  /// Username of the auth user.
   String username;
+
+  /// Gmail ID of the auth user.
   String gmailAuthMail;
+
+  /// Mobile number of the auth user.
   dynamic mobile;
+
+  /// Display picture URL of the auth user.
   String displayPicture;
 
+  /// Converts [AuthUser] object into JSON.
   Map<String, dynamic> toJson() => {
-        'id': id == null ? null : id,
-        'name': name == null ? null : name,
-        'username': username == null ? null : username,
-        'gmailAuthMail': gmailAuthMail == null ? null : gmailAuthMail,
+        'id': id,
+        'name': name,
+        'username': username,
+        'gmailAuthMail': gmailAuthMail,
         'mobile': mobile,
-        'displayPicture': displayPicture == null ? null : displayPicture,
+        'displayPicture': displayPicture,
       };
 }

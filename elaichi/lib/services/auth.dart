@@ -13,6 +13,16 @@ import 'package:logger/logger.dart';
 /// A single point authentication service
 @singleton
 class Auth {
+
+  /// Contructor for [Auth].
+  Auth() {
+    _firebaseAuth = FirebaseAuth.instance;
+    _googleAuthService = _GoogleAuthService();
+    _firebaseAuthService = _FirebaseAuthService(firebaseAuth: _firebaseAuth);
+
+    _localDb.openBox(LocalDbBoxes.userData);
+  }
+
   final Logger _logger = getLogger('Auth Service');
   final LocalDb _localDb = locator<LocalDb>();
 
@@ -29,15 +39,6 @@ class Auth {
   /// `_email` and `isVerificationMailSent` is used for meditating email between
   /// [sendVerificationMail] and [verifyAndSignIn]
   String _email;
-
-  /// Contructor of Auth
-  Auth() {
-    _firebaseAuth = FirebaseAuth.instance;
-    _googleAuthService = _GoogleAuthService();
-    _firebaseAuthService = _FirebaseAuthService(firebaseAuth: _firebaseAuth);
-
-    _localDb.openBox(LocalDbBoxes.userData);
-  }
 
   /// User info fetched from web endpoint.
   ///
@@ -189,13 +190,14 @@ class Auth {
 
 /// Handle all the Firebase login related functions
 class _FirebaseAuthService {
-  final Logger _logger = getLogger('Authentication');
-  FirebaseAuth _firebaseAuth;
-  User _user;
-
+  
   /// Constructor of [_FirebaseAuthService]
   _FirebaseAuthService({FirebaseAuth firebaseAuth})
       : _firebaseAuth = firebaseAuth;
+
+  final Logger _logger = getLogger('Authentication');
+  final FirebaseAuth _firebaseAuth;
+  User _user;
 
   /// User details if sign in was successful.
   User get user => _user;
@@ -259,13 +261,13 @@ class _FirebaseAuthService {
 
 /// Google Authentication manager
 class _GoogleAuthService {
-  GoogleSignIn _googleSignIn;
-
   /// Contructor of Service
   _GoogleAuthService({GoogleSignIn googleSignIn})
       : _googleSignIn = googleSignIn {
     _googleSignIn ??= GoogleSignIn();
   }
+
+  GoogleSignIn _googleSignIn;
 
   /// Signin by creating a google interactive dialog
   Future<AuthCredential> signIn() async {

@@ -1,3 +1,4 @@
+// ignore_for_file: lines_longer_than_80_chars
 import 'package:elaichi/datamodels/auth_user.dart';
 import 'package:elaichi/services/graphql.dart';
 import 'package:elaichi/strings.dart';
@@ -11,7 +12,7 @@ import 'package:mockito/mockito.dart';
 import '../setup/firebase_test_setup.dart';
 import '../setup/test_helpers.dart';
 
-// ignore_for_file: avoid_redundant_argument_values
+
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
@@ -19,7 +20,7 @@ class MockGoogleSignIn extends Mock implements GoogleSignIn {}
 
 class MockUserCredential extends Mock implements UserCredential {}
 
-// ignore: avoid_implementing_value_types
+
 class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {}
 
 class MockGoogleSignInAuthentication extends Mock
@@ -166,7 +167,7 @@ void main() {
     });
 
     test(
-        // ignore: lines_longer_than_80_chars
+
         'sendSignInLinkToEmail() throws error, THEN verifyAndSignIn() with invalid link',
         () async {
       _auth = Auth();
