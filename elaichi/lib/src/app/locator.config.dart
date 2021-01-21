@@ -21,7 +21,7 @@ const _dev = 'dev';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
-
+/// 
 GetIt $initGetIt(
   GetIt get, {
   String environment,
