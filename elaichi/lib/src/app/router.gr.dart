@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
+import 'package:elaichi/ui/views/club/club_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../views.dart';
