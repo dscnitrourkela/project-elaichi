@@ -35,8 +35,8 @@ class Auth {
   User _user;
   AuthUser _authUser;
 
-  /// `_email` and `isVerificationMailSent` is used for meditating email between
-  /// [sendVerificationMail] and [verifyAndSignIn]
+  /// `_email` is used for meditating email between [sendVerificationMail] and
+  /// [verifyAndSignIn]
   String _email;
 
   /// User info fetched from web endpoint.
@@ -44,7 +44,7 @@ class Auth {
   /// Can be `null` if user hasn't signed in.
   AuthUser get user => _authUser;
 
-  /// Check if the user is signed in sucessfully.
+  /// Check if the user is signed
   bool isSignedIn() {
     _user = _firebaseAuthService.user;
     if (_user == null) {
@@ -87,6 +87,12 @@ class Auth {
   ///   }
   /// }
   /// ```
+  ///
+  /// A [FirebaseAuthException] maybe thrown with the following error code:
+  /// - **invalid-email**:
+  ///  - Thrown if the email address is not valid.
+  /// - **user-not-found**:
+  ///  - Thrown if there is no user corresponding to the email address.
   Future<void> sendVerificationMail({@required String email}) async {
     await _firebaseAuthService.sendSignInLinkToEmail(email: email);
     _email = email;
@@ -96,9 +102,9 @@ class Auth {
   /// for further functions. If not provided then default instances are used.
   void setMockInstances(
       {GoogleSignIn googleSignIn, FirebaseAuth firebaseAuth}) {
+    _firebaseAuth = firebaseAuth;
     _firebaseAuthService = _FirebaseAuthService(firebaseAuth: firebaseAuth);
     _googleAuthService = _GoogleAuthService(googleSignIn: googleSignIn);
-    _firebaseAuth = firebaseAuth;
   }
 
   /// Opens a dialog which let's the user to signin to their Google account.
@@ -135,6 +141,13 @@ class Auth {
   }
 
   /// Updates user info on web endpoint.
+  ///
+  /// Throws [GraphQLException] with error codes like:
+  /// - `GraphQLException` - `Strings.HTTP_ERROR`:
+  ///   - Thrown if the HTTP response status is != 200
+  /// - `GraphQLException` - `Strings.GRAPHQL_ERROR`:
+  ///   - Thrown if GraphQL response contains 'errors' or
+  ///    response.hasException == true, eg. `CacheError`.
   Future<void> updateUser(
       {String name,
       String username,
@@ -176,11 +189,6 @@ class Auth {
   }
 
   /// Opens a dialog which let's the user to signin to their Google account.
-  ///
-  /// In case user first time user, use following code after getting username
-  /// ```dart
-  /// Auth.signInToWebpoint(username: '', mobile: '');
-  /// ```
   Future<void> _signInToGoogle() async {
     _firebaseAuth.authStateChanges().listen((User user) {
       if (user == null) {
@@ -246,6 +254,12 @@ class _FirebaseAuthService {
   User get user => _firebaseAuth.currentUser;
 
   /// Send email for firebase passwordless login
+  ///
+  /// A [FirebaseAuthException] maybe thrown with the following error code:
+  /// - **invalid-email**:
+  ///  - Thrown if the email address is not valid.
+  /// - **user-not-found**:
+  ///  - Thrown if there is no user corresponding to the email address.
   Future<void> sendSignInLinkToEmail({@required String email}) {
     final actionCodeSettings = ActionCodeSettings(
         url: Strings.BASE_URL,
