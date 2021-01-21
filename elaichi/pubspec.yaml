@@ -34,6 +34,7 @@ dependencies:
   # Themeing
   stacked_themes: ^0.2.2+1
   google_fonts: ^1.1.1
+  tinycolor: ^1.0.3
 
   # Localisation
   easy_localization: ^2.3.3

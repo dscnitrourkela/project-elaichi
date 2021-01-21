@@ -23,6 +23,12 @@ class StartupViewModel extends BaseViewModel {
     await _navigationService.navigateTo(Routes.homeView);
   }
 
+ /// Navigate to ClubView.
+  Future navigateToClubPage() async {
+    log.i('Navigate to Clubs page');
+    await _navigationService.navigateTo(Routes.clubView);
+  }
+
   /// Toggles between light and dark themes.
   void changeTheme() {
     _themeService.toggleDarkLightTheme();
