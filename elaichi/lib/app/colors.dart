@@ -13,7 +13,7 @@ class AppColors {
   static const Color lightAnnouncementText = Color.fromRGBO(79, 79, 79, 1.0);
   static const Color bodyText = Color.fromRGBO(79, 79, 79, 1.0);
   static const Color titleText = Color.fromRGBO(51, 51, 51, 1.0);
-  static const Color overlineText = Color.fromRGBO(130, 130, 130, 1);
+  static const Color overlineText = Color.fromRGBO(130, 130, 130, 1.0);
   static const Color darkAnnouncementText = Color.fromRGBO(224, 224, 224, 1.0);
   static const Color darkAnnouncementDocBackground =
       Color.fromRGBO(238, 109, 109, 0.05);
