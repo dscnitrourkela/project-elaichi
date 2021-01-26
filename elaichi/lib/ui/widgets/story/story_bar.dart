@@ -2,6 +2,7 @@ import 'package:elaichi/ui/views/feed/feed_viewmodel.dart';
 import 'package:elaichi/ui/widgets/story/story_component.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:elaichi/app/extensions.dart';
 
 /// Story bar displayed in FeedView.
 class StoryBar extends ViewModelWidget<FeedViewModel> {
@@ -13,7 +14,7 @@ class StoryBar extends ViewModelWidget<FeedViewModel> {
     return AspectRatio(
       aspectRatio: 410 / 120,
       child: Container(
-        color: Colors.white,
+        color: context.theme.colorScheme.surface,
         child: viewModel.currentStories.fold(
           (failure) => Text(failure.toString()),
           (currentStories) => ListView.builder(

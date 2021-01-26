@@ -1,3 +1,4 @@
+import 'package:elaichi/app/colors.dart';
 import 'package:elaichi/ui/views/feed/feed_view.dart';
 import 'package:elaichi/ui/views/home/home_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,10 @@ class HomeView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: model.currentIndex,
+          type: BottomNavigationBarType.fixed,
           onTap: model.setIndex,
+          selectedItemColor: AppColors.bodyText,
+          unselectedItemColor: AppColors.overlineText,
           items: const [
             BottomNavigationBarItem(
                 label: 'Feed', icon: Icon(Icons.dynamic_feed)),
@@ -28,10 +32,11 @@ class HomeView extends StatelessWidget {
           ],
         ),
         body: SafeArea(
-            child: IndexedStack(
-          index: model.currentIndex,
-          children: const [FeedView(), FeedView(), FeedView()],
-        )),
+          child: IndexedStack(
+            index: model.currentIndex,
+            children: const [FeedView(), FeedView(), FeedView()],
+          ),
+        ),
       ),
       viewModelBuilder: () => HomeViewModel(),
     );
