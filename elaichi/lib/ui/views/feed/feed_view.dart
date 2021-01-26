@@ -23,8 +23,6 @@ class FeedView extends StatelessWidget {
             appBar: ElaichiAppbar(
               title: LocaleKeys.homeTitle.tr(),
               appbarHeight: 76,
-              backgroundColor: Colors.white,
-              titleColor: Colors.black,
             ),
             body: model.isBusy
                 ? const Center(

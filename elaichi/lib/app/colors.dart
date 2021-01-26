@@ -11,9 +11,13 @@ class AppColors {
   static const Color lightBottomNav = Color.fromRGBO(255, 255, 255, 1.0);
   static const Color darkBottomNav = Color.fromRGBO(23, 23, 23, 1.0);
   static const Color lightAnnouncementText = Color.fromRGBO(79, 79, 79, 1.0);
+  static const Color bodyText = Color.fromRGBO(79, 79, 79, 1.0);
+  static const Color titleText = Color.fromRGBO(51, 51, 51, 1.0);
+  static const Color overlineText = Color.fromRGBO(130, 130, 130, 1);
   static const Color darkAnnouncementText = Color.fromRGBO(224, 224, 224, 1.0);
   static const Color darkAnnouncementDocBackground =
       Color.fromRGBO(238, 109, 109, 0.05);
+  static const Color unselectedIconColor = Color.fromRGBO(196, 196, 196, 1.0);
 
   //icons
   static const Color calendarIcon = Color.fromRGBO(47, 128, 237, 1.0);

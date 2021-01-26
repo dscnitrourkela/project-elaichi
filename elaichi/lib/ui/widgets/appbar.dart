@@ -11,7 +11,7 @@ class ElaichiAppbar extends StatelessWidget with PreferredSizeWidget {
       this.elevation = 0.0,
       this.centerTitle = true,
       this.appbarHeight = kToolbarHeight});
-      
+
   /// Title to show in the appbar.
   final String title;
 
