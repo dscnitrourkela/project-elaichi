@@ -17,8 +17,11 @@ class TextStyles {
       fontSize: 16.0, fontWeight: FontWeight.w600, height: 1.225);
 
   /// Used in Smaller section headers, TabBar, subject/event title in schedule.
-  static TextStyle get heading2 =>
-      const TextStyle(fontSize: 14.0, height: 1.4, fontWeight: FontWeight.w600);
+  static TextStyle get heading2 => const TextStyle(
+      fontSize: 14.0,
+      height: 1.4,
+      fontWeight: FontWeight.w600,
+      color: AppColors.bodyText);
 
   /// Used for Bold/grey/colored text paired with body1, course code/club,
   /// time name in schedule, desgination of club members

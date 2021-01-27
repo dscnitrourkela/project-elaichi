@@ -1,0 +1,230 @@
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+) on FIELD_DEFINITION | OBJECT | INTERFACE
+# Exposes a URL that specifies the behaviour of this scalar.
+directive @specifiedBy(
+  # The URL that specifies the behaviour of this scalar.
+  url: String!
+) on SCALAR
+type AccessLevel {
+  id: ID
+  level: String
+  name: String
+  relation: String
+  club: Club
+  user: User
+}
+
+input AccessLevelInputType {
+  level: String
+  name: String
+  relation: String
+  club: ID
+  user: ID
+}
+
+type ActiveStory {
+  id: ID
+  assetType: String
+  storyAsset: String
+  authorName: String
+  authorLogo: String
+}
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+type Club {
+  id: ID
+  clubName: String
+  memberAccess: [AccessLevel]
+  facAd: String
+  logo: String
+  events: [Event]
+  society: String
+  domain: String
+}
+
+input ClubInputType {
+  clubName: String
+  memberAccess: [AccessLevelInputType]
+  facAd: String
+  logo: String
+  events: [ID]
+  society: String
+  domain: String
+}
+
+# A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+# `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+# 8601 standard for representation of dates and times using the Gregorian calendar.
+scalar DateTime
+
+type Error {
+  code: String
+  message: String
+  token: String
+}
+
+type ErrorClass {
+  message: String!
+  code: String!
+}
+
+type Event {
+  id: ID
+  organizer: Club
+  eventName: String
+  startDateTime: String
+  venue: Venue
+  endDateTime: String
+  registrationPrice: Int
+  registrationCount: Int
+  otherDescription: String
+  attendees: [User]
+  announcements: String
+  link: String
+  picture: String
+}
+
+input EventInputType {
+  organizer: ID
+  eventName: String
+  startDateTime: String
+  venue: ID
+  endDateTime: String
+  registrationPrice: Int
+  registrationCount: Int
+  otherDescription: String
+  attendees: [ID]
+  announcements: String
+  link: String
+  picture: String
+}
+
+type Mutation {
+  authUser(user: UserInputType): User
+  updateUser(user: UserInputType): User
+  deleteUser(id: ID): User
+  addEvent(event: EventInputType): Event
+  updateEvent(id: ID, event: EventInputType): Event
+  deleteEvent(id: ID): Event
+  addClub(club: ClubInputType): Club
+  updateClub(id: ID, club: ClubInputType): Club
+  deleteClub(id: ID): Club
+  addVenue(venue: VenueInputType): Venue
+  updateVenue(id: ID, venue: VenueInputType): Venue
+  deleteVenue(id: ID): Venue
+  addStory(story: StoryInputType): StoryResult
+}
+
+type Query {
+  users(
+    name: String
+    username: String
+    gmailAuthMail: String
+    instituteId: String
+    mobile: String
+    emergencyContact: String
+  ): [UserResult]
+  userByUsername(username: String): UserResult
+  userById(id: String): UserResult
+  events(
+    id: ID
+    eventName: String
+    facAd: String
+    logo: String
+    society: String
+    domain: String
+  ): [Event]
+  eventByName(name: String): Event
+  eventById(id: String): Event
+  clubs(
+    id: ID
+    clubName: String
+    facAd: String
+    logo: String
+    society: String
+    domain: String
+  ): [Club]
+  clubByName(name: String): Club
+  clubById(id: String): Club
+  venues(venue: VenueInputType): [Venue]
+  venueByName(name: String): Venue
+  venueById(id: String): Venue
+  currentStories: [ActiveStory]
+  storiesByField(
+    id: ID
+    author: ID
+    event: ID
+    asset: String
+    assetType: String
+    description: String
+  ): [Story]
+  deleteStory(id: ID): Response
+}
+
+type Response {
+  success: Boolean
+}
+
+type Story {
+  id: ID
+  author: Club
+  event: Event
+  asset: String
+  assetType: String
+  description: String
+  createdAt: DateTime
+}
+
+input StoryInputType {
+  author: ID
+  event: ID
+  asset: String
+  assetType: String
+  description: String
+}
+
+union StoryResult = Story | ErrorClass
+# The `Upload` scalar type represents a file upload.
+scalar Upload
+
+type User {
+  id: ID
+  name: String
+  username: String
+  gmailAuthMail: String
+  clubAccess: [AccessLevel]
+  instituteId: String
+  mobile: String
+  emergencyContact: String
+  displayPicture: String
+}
+
+input UserInputType {
+  name: String
+  username: String
+  gmailAuthMail: String
+  instituteId: String
+  mobile: String
+  emergencyContact: String
+  displayPicture: String
+}
+
+union UserOrError = User | Error
+union UserResult = User | ErrorClass
+type Venue {
+  id: ID
+  name: String
+  description: String
+}
+
+input VenueInputType {
+  name: String
+  description: String
+}
+

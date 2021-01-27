@@ -10,7 +10,7 @@ import 'package:stacked_themes/stacked_themes.dart';
 class StartupViewModel extends BaseViewModel {
   /// [Logger] for [StartupViewModel].
   final Logger log = getLogger('StartupViewModel');
-  String _title = 'Click on the forward button to view the home page';
+  final String _title = 'Click on the forward button to view the home page';
 
   final ThemeService _themeService = locator<ThemeService>();
 
