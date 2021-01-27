@@ -21,7 +21,12 @@ class StoryBar extends ViewModelWidget<FeedViewModel> {
             scrollDirection: Axis.horizontal,
             itemCount: currentStories.length,
             itemBuilder: (BuildContext context, int index) {
-              return StoryComponent(story: currentStories[index]);
+              return StoryComponent(
+                story: currentStories[index],
+                height: 66.0,
+                width: 66.0,
+                borderWidth: 4.0,
+              );
             },
           ),
         ),

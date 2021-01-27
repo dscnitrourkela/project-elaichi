@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elaichi/generated/locale_keys.g.dart';
 import 'package:elaichi/ui/views/feed/feed_viewmodel.dart';
 import 'package:elaichi/ui/widgets/appbar.dart';
+import 'package:elaichi/ui/widgets/event_card.dart';
 import 'package:elaichi/ui/widgets/schedule/schedule_card.dart';
 import 'package:elaichi/ui/widgets/story/story_bar.dart';
 import 'package:elaichi/ui/widgets/this_week.dart';
@@ -33,9 +34,12 @@ class FeedView extends StatelessWidget {
                 : ListView(
                     children: <Widget>[
                       const StoryBar(),
+                      const SizedBox(
+                        height: 7.52,
+                      ),
                       const ScheduleCard(),
                       const ThisWeek(),
-                      // const EventCard(),
+                      const EventCard(),
                     ],
                   ),
           ),

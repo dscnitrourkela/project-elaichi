@@ -35,6 +35,18 @@ void main() {
           ),
         );
         when(mockApi.getCurrentStories()).thenAnswer((_) async => stories);
+        final events = List<ScheduleEvent>.generate(
+          6,
+          (index) => ScheduleEvent(
+            time: '4.30 PM',
+            identifier: 'MA-3002',
+            title: 'Computational Mathematics',
+            contact: 'Prof. Nihar Patra',
+          ),
+        );
+        when(mockApi.fetchSchedule()).thenAnswer(
+          (_) async => events,
+        );
         await model.initialise();
         expect(model.isBusy, false);
         expect(model.currentStories, Right(stories));

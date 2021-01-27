@@ -1,5 +1,5 @@
+import 'package:elaichi/app/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:elaichi/app/extensions.dart';
 
 /// Themed appbar widget for the app.
 class ElaichiAppbar extends StatelessWidget with PreferredSizeWidget {
@@ -35,12 +35,7 @@ class ElaichiAppbar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       title: Text(
         title,
-        style: context.textTheme.headline6.copyWith(
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.normal,
-            letterSpacing: -0.02,
-            height: 1.21,
-            fontSize: 22.0),
+        style: TextStyles.title,
       ),
       toolbarHeight: appbarHeight,
       backgroundColor: backgroundColor,

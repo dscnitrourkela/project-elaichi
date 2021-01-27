@@ -12,6 +12,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # Image caching
+  cached_network_image: ^2.5.0
 
   # Logging
   logger: ^0.9.2
@@ -27,8 +30,6 @@ dependencies:
   get_it: ^5.0.3
   injectable: ^1.0.5
   dartz: ^0.9.1
-
-  shimmer: ^1.1.2
 
   # Themeing
   stacked_themes: ^0.2.2+1
@@ -70,3 +71,7 @@ flutter:
     - assets/translations/
     - assets/images/
     - assets/fonts/
+  fonts:
+    - family: Avenue
+      fonts:
+        - asset: assets/icons/avenue_icons.ttf  

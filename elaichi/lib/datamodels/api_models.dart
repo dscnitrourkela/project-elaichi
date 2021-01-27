@@ -2,6 +2,8 @@
 
 import 'package:flutter/widgets.dart';
 
+import 'user.dart';
+
 class Club {
   ///
   Club(
@@ -87,5 +89,3 @@ class ScheduleEvent {
   final String title;
   final String contact;
 }
-
-class User {}

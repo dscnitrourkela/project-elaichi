@@ -1,10 +1,9 @@
-import 'package:elaichi/app/colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/app/icons.dart';
+import 'package:elaichi/app/styles.dart';
 import 'package:elaichi/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:elaichi/app/extensions.dart';
 
 /// Widget for current week's Monday Morning articles.
 class ThisWeek extends StatelessWidget {
@@ -34,8 +33,7 @@ class ThisWeek extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(LocaleKeys.thisWeekTitle.tr(),
-                        style: context.textTheme.bodyText1
-                            .copyWith(color: AppColors.cardHeader)),
+                        style: TextStyles.heading1),
                   ),
                 )
               ],
@@ -47,7 +45,7 @@ class ThisWeek extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 3,
               itemBuilder: (context, index) => AspectRatio(
-                aspectRatio: 295 / 180,
+                aspectRatio: 16 / 9.68,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 12.0, right: 6.0),
                   child: ClipRRect(
@@ -55,8 +53,9 @@ class ThisWeek extends StatelessWidget {
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
-                        Image.asset('assets/images/sanitizer.jpg',
-                            fit: BoxFit.fitHeight),
+                        CachedNetworkImage(
+                            imageUrl: 'https://i.ibb.co/R9NBqPr/sanitizer.jpg',
+                            fit: BoxFit.cover),
                         Container(
                           child: Align(
                             alignment: const Alignment(0.0, 0.7),
@@ -64,10 +63,8 @@ class ThisWeek extends StatelessWidget {
                               '''
 A Noble Breakthrough: NIT Rourkela produces alcohol-based sanitizers''',
                               textAlign: TextAlign.center,
-                              style: GoogleFonts.inter(
+                              style: TextStyles.heading2.copyWith(
                                   color: Colors.white,
-                                  fontSize: 14.0,
-                                  height: 1.4,
                                   fontWeight: FontWeight.w700),
                             ),
                           ),

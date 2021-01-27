@@ -4,7 +4,7 @@ import 'package:stacked/stacked.dart';
 
 /// ViewModel class for HomeView
 class HomeViewModel extends IndexTrackingViewModel {
-  String _title = LocaleKeys.welcome.tr();
+  final String _title = LocaleKeys.welcome.tr();
 
   /// Returns welcome message.
   String get title => _title;
