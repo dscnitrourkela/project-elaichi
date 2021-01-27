@@ -2,6 +2,8 @@
 
 import 'package:flutter/widgets.dart';
 
+import 'user.dart';
+
 class Club {
   ///
   Club(
@@ -72,25 +74,6 @@ class Event {
   final String picture;
 }
 
-/// Defines data model for login response.
-class LoginResponse {
-  /// Creates an instance of [LoginResponse].
-  LoginResponse({
-    this.success = true,
-    this.userId,
-    this.message,
-  });
-
-  /// The boolean value specifying if login was successful.
-  final bool success;
-
-  /// The firebase user ID.
-  final String userId;
-
-  /// The error/success message.
-  final String message;
-}
-
 ///
 class ScheduleEvent {
   ///
@@ -106,5 +89,3 @@ class ScheduleEvent {
   final String title;
   final String contact;
 }
-
-class User {}

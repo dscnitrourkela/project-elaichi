@@ -1,3 +1,6 @@
+import 'package:elaichi/app/colors.dart';
+import 'package:elaichi/app/icons.dart';
+import 'package:elaichi/app/styles.dart';
 import 'package:elaichi/ui/views/feed/feed_view.dart';
 import 'package:elaichi/ui/views/home/home_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -16,22 +19,43 @@ class HomeView extends StatelessWidget {
       disposeViewModel: false,
       builder: (context, model, child) => Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: model.currentIndex,
           onTap: model.setIndex,
+          selectedLabelStyle: TextStyles.subtitle,
+          selectedItemColor: AppColors.bodyText,
+          unselectedItemColor: AppColors.overlineText,
           items: const [
             BottomNavigationBarItem(
-                label: 'Feed', icon: Icon(Icons.dynamic_feed)),
+              label: 'Feed',
+              icon: Icon(
+                AppIcons.feed,
+              ),
+            ),
             BottomNavigationBarItem(
-                label: 'Explore', icon: Icon(Icons.explore)),
+              label: 'Explore',
+              icon: Icon(
+                AppIcons.explore,
+              ),
+            ),
             BottomNavigationBarItem(
-                label: 'Profile', icon: Icon(Icons.account_circle)),
+              label: 'Campus',
+              icon: Icon(
+                AppIcons.campus,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'Profile',
+              icon: Icon(Icons.account_circle_outlined),
+            ),
           ],
         ),
         body: SafeArea(
-            child: IndexedStack(
-          index: model.currentIndex,
-          children: const [FeedView(), FeedView(), FeedView()],
-        )),
+          child: IndexedStack(
+            index: model.currentIndex,
+            children: const [FeedView(), FeedView(), FeedView(), FeedView()],
+          ),
+        ),
       ),
       viewModelBuilder: () => HomeViewModel(),
     );

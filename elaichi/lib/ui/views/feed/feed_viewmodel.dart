@@ -18,10 +18,9 @@ class FeedViewModel extends BaseViewModel {
   Either<Failure, List<ScheduleEvent>> get scheduleEvents => _scheduleEvents;
 
   /// Calls the required functions to initialise the view model.
-  void initialise() async {
+  Future<void> initialise() async {
     setBusy(true);
-    // Future.wait([fetchCurrentStories(), getSchedule()]);
-    await fetchCurrentStories();
+    await Future.wait([fetchCurrentStories(), getSchedule()]);
     setBusy(false);
   }
 

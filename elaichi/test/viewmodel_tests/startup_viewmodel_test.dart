@@ -32,6 +32,7 @@ void main() {
         final themeService = getAndRegisterThemeServiceMock();
         final model = StartupViewModel()
           ..changeTheme();
+        expect(model.isBusy, false);
         verify(themeService.toggleDarkLightTheme());
       });
     });

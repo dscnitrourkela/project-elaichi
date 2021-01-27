@@ -17,6 +17,41 @@ void main() {
   });
   tearDown(unregisterServices);
   group('FeedViewmodel Test - ', () {
+    test(
+      'Intialise -',
+      () async {
+        final model = FeedViewModel();
+        final mockApi = locator<Api>();
+        final stories = List<CurrentStory>.generate(
+          10,
+          (index) => CurrentStory(
+            asset: '',
+            id: '',
+            description: '',
+            event: null,
+            assetType: '',
+            createdAt: null,
+            club: null,
+          ),
+        );
+        when(mockApi.getCurrentStories()).thenAnswer((_) async => stories);
+        final events = List<ScheduleEvent>.generate(
+          6,
+          (index) => ScheduleEvent(
+            time: '4.30 PM',
+            identifier: 'MA-3002',
+            title: 'Computational Mathematics',
+            contact: 'Prof. Nihar Patra',
+          ),
+        );
+        when(mockApi.fetchSchedule()).thenAnswer(
+          (_) async => events,
+        );
+        await model.initialise();
+        expect(model.isBusy, false);
+        expect(model.currentStories, Right(stories));
+      },
+    );
     group('API calls - ', () {
       group('Stories', () {
         test(

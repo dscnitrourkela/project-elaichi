@@ -16,19 +16,19 @@ enum LocalDbBoxes {
 
 /// Implements local database which can be used to store users data, local app
 /// preferences and caching.
-/// To put anything in the database use `LocalDb.putValue()` and 
+/// To put anything in the database use `LocalDb.putValue()` and
 /// `LocalDb.getValue()`
 /// to retrieve from the database
 @singleton
 class LocalDb {
-  /// Constructor function to initialize [LocalDb]. Pass `hive` if an instance 
-  /// is already present.
-  LocalDb({this.hive}) {
-    hive ??= Hive;
-  }
-
   /// Instance of Hive
   HiveInterface hive;
+
+  /// Pass `hive` if an instance is already present (especially for testing)
+  // ignore: avoid_setters_without_getters
+  set mockInstance(HiveInterface hive) {
+    this.hive = hive;
+  }
 
   /// Instantiate the class with the boxes required as `boxesToOpen`
   Future<void> initLocalDb({List<LocalDbBoxes> boxesToOpen}) async {
@@ -56,9 +56,11 @@ class LocalDb {
     }
   }
 
-  /// To be used in dispose section of class/app
-  Future<void> closeAllBoxes() async {
-    await hive.close();
+  /// Initializes cache box and return it.
+  Future<Box> clearAndGetCacheBox() async {
+    final cacheBox = hive.box(LocalDbBoxes.cache.toString());
+    await cacheBox.clear();
+    return cacheBox;
   }
 
   /// Return the value after retrival from HiveBox `boxName` of

@@ -1,5 +1,6 @@
+import 'package:elaichi/app/colors.dart';
+import 'package:elaichi/app/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:elaichi/app/extensions.dart';
 
 /// Schedule event widget.
 class ScheduleComponent extends StatelessWidget {
@@ -41,37 +42,27 @@ class ScheduleComponent extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Flexible(
                   fit: FlexFit.tight,
                   flex: 2,
                   child: Text(
                     time,
-                    style: context.textTheme.bodyText1.copyWith(
-                        fontWeight: FontWeight.w600, height: 1.4, fontSize: 12),
+                    style: TextStyles.subtitle,
                   ),
                 ),
-                Flexible(
-                  fit: FlexFit.tight,
-                  child: Text(
-                    identifier,
-                    style: context.textTheme.caption.copyWith(
-                      fontSize: 12,
-                      height: 1.4,
-                    ),
-                  ),
+                Text(
+                  identifier,
+                  style: TextStyles.subtitle
+                      .copyWith(color: AppColors.bodyText.withOpacity(0.6)),
                 ),
                 Flexible(
                   fit: FlexFit.tight,
                   flex: 4,
                   child: Text(
                     title,
-                    style: context.textTheme.headline6.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      height: 1.4,
-                      letterSpacing: -0.02,
-                    ),
+                    style: TextStyles.heading2,
                   ),
                 ),
                 Flexible(
@@ -81,7 +72,8 @@ class ScheduleComponent extends StatelessWidget {
                     contact,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style: context.textTheme.bodyText1.copyWith(fontSize: 14),
+                    style: TextStyles.subtitle
+                        .copyWith(fontWeight: FontWeight.w400),
                   ),
                 )
               ],

@@ -5,9 +5,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization/src/localization.dart';
 import 'package:elaichi/app/locator.dart';
 import 'package:elaichi/generated/codegen_loader.g.dart';
+import 'package:elaichi/services/auth.dart';
+import 'package:elaichi/services/graphql.dart';
 import 'package:elaichi/services/local_db.dart';
 import 'package:elaichi/services/api.dart';
-import 'package:elaichi/services/feed_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mockito/mockito.dart';
@@ -31,19 +32,28 @@ class LocalDbMock extends Mock implements LocalDb {}
 
 class MockApi extends Mock implements Api {}
 
-class FeedServiceMock extends Mock implements FeedService {}
+class GraphQLMock extends Mock implements GraphQL {}
+
+class AuthMock extends Mock implements Auth {}
+
+GraphQL getAndRegisterGraphQLMock() {
+  _removeRegistrationIfExists<GraphQL>();
+  final service = GraphQLMock();
+  locator.registerSingleton<GraphQL>(service);
+  return service;
+}
+
+Auth getAndRegisterAuthMock() {
+  _removeRegistrationIfExists<Auth>();
+  final service = AuthMock();
+  locator.registerSingleton<Auth>(service);
+  return service;
+}
 
 Api getAndRegisterApiMock() {
   _removeRegistrationIfExists<Api>();
   final service = MockApi();
   locator.registerSingleton<Api>(service);
-  return service;
-}
-
-FeedService getAndRegisterFeedServiceMock() {
-  _removeRegistrationIfExists<FeedService>();
-  final service = FeedServiceMock();
-  locator.registerSingleton<FeedService>(service);
   return service;
 }
 
@@ -102,17 +112,25 @@ Future<void> registerServices() async {
   getAndRegisterThemeServiceMock();
   getAndRegisterLocalDbMock();
   getAndRegisterApiMock();
-  getAndRegisterFeedServiceMock();
+  getAndRegisterGraphQLMock();
+  getAndRegisterAuthMock();
 }
 
 void unregisterServices() {
-  locator.unregister<DialogService>();
-  locator.unregister<NavigationService>();
-  locator.unregister<SnackbarService>();
-  locator.unregister<ThemeService>();
-  locator.unregister<LocalDb>();
-  locator.unregister<Api>();
-  locator.unregister<FeedService>();
+  if (locator.isRegistered<DialogService>()) {
+    locator.unregister<DialogService>();
+  }
+  if (locator.isRegistered<NavigationService>()) {
+    locator.unregister<NavigationService>();
+  }
+  if (locator.isRegistered<SnackbarService>()) {
+    locator.unregister<SnackbarService>();
+  }
+  if (locator.isRegistered<ThemeService>()) locator.unregister<ThemeService>();
+  if (locator.isRegistered<LocalDb>()) locator.unregister<LocalDb>();
+  if (locator.isRegistered<Api>()) locator.unregister<Api>();
+  if (locator.isRegistered<GraphQL>()) locator.unregister<GraphQL>();
+  if (locator.isRegistered<Auth>()) locator.unregister<Auth>();
 }
 
 void _removeRegistrationIfExists<T>() {
