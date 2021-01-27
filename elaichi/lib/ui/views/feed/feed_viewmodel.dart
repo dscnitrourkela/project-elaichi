@@ -20,9 +20,7 @@ class FeedViewModel extends BaseViewModel {
   /// Calls the required functions to initialise the view model.
   Future<void> initialise() async {
     setBusy(true);
-    // await Future.wait([fetchCurrentStories(), getSchedule()]);
-    await fetchCurrentStories();
-    await getSchedule();
+    await Future.wait([fetchCurrentStories(), getSchedule()]);
     setBusy(false);
   }
 
