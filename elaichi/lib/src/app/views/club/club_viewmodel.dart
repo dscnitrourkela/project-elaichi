@@ -18,15 +18,13 @@ class ClubViewModel extends BaseViewModel {
   Either<Failure, List<CurrentStory>> get storiesArchive => _storiesArchive;
 
   /// Calls the required functions to initialise the viewmodel
-  void initialise(int clubId) async {
+  Future<void> initialise(int clubId) async {
     setBusy(true);
-    await fetchClub(clubId);
-    await fetchStoriesArchive(clubId);
+    await Future.wait([fetchClub(clubId), fetchStoriesArchive(clubId)]);
     setBusy(false);
   }
 
   /// Fetch data for the corresponding club id.
-  // TODO: Take club id as input.
   Future<void> fetchClub(int clubId) async {
     await Task(_apiService.fetchClub)
         .attempt()
@@ -39,6 +37,7 @@ class ClubViewModel extends BaseViewModel {
     _club = clubResponse;
   }
 
+  /// Fetches present and past stories of a given [clubId]
   Future<void> fetchStoriesArchive(int clubId) async {
     await Task(_apiService.getStoriesByField)
         .attempt()
