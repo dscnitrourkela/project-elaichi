@@ -2,7 +2,7 @@ name: Generate and Deploy docs
 on:
   push:
     branches:
-      - actions
+      - development
 env:
   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/1.22.6-stable/x64
 jobs:
