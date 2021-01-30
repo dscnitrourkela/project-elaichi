@@ -4,19 +4,16 @@ on:
     branches:
       - actions
 env:
-  FLUTTER_ROOT: /opt/hostedtoolcache/flutte/1.22.6-stable/x64
-
+  FLUTTER_ROOT: /opt/hostedtoolcache/flutter/1.22.6-stable/x64
 jobs:
-  setup:
+  generate-and-deploy-docs:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "1.22.6"
           channel: "stable"
-      - name: Echo Flutter
-        run: echo $FLUTTER_ROOT
-      - run: export FLUTTER_ROOT="/opt/hostedtoolcache/flutter/1.22.6-stable/x64" 
       - name: Get Packages
         working-directory: ./elaichi
         run: flutter pub get
