@@ -11,6 +11,8 @@ jobs:
         with:
           flutter-version: "1.22.x"
           channel: "stable"
+      - name: Echo Flutter
+        run: echo $FLUTTER_ROOT
   
   analyze-and-test:
     runs-on: ubuntu-latest
