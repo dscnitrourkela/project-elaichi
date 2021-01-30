@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
-      - name: Find flutter clone 
       - name: Get Packages
         working-directory: ./elaichi
         run: flutter pub get
