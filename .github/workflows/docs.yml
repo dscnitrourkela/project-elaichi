@@ -2,7 +2,7 @@ name: Generate and Deploy docs
 on:
   push:
     branches:
-      - development
+      - actions
 env:
   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/1.22.6-stable/x64
 jobs:
@@ -10,7 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
+      - name: Cache Flutter
+        id: cache-flutter
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-flutter-sdk-elaichi
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Setup Flutter
+        if: steps.cache-flutter.outputs.cache-hit != 'true'
+        uses: subosito/flutter-action@v1
         with:
           flutter-version: "1.22.6"
           channel: "stable"
