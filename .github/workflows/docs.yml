@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - development
+env:
+  FLUTTER_ROOT: /opt/hostedtoolcache/flutter/1.22.6-stable/x64
 jobs:
   generate-and-deploy-docs:
     runs-on: ubuntu-latest
@@ -24,3 +26,4 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          channelId: live
