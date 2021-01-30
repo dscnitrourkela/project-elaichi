@@ -1,0 +1,11 @@
+{
+  "hosting": [{
+    "target": "elaichi-docs",
+    "public": "elaichi/doc/api",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }]
+}

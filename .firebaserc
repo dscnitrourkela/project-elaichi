@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "project-elaichi"
+  },
+  "targets": {
+    "project-elaichi": {
+      "hosting": {
+        "elaichi-docs": [
+          "elaichi-docs"
+        ]
+      }
+    }
+  }
+}
