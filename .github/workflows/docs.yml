@@ -9,10 +9,11 @@ jobs:
     steps:
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: "1.22.x"
+          flutter-version: "1.22.6"
           channel: "stable"
       - name: Echo Flutter
         run: echo $FLUTTER_ROOT
+      - run: export FLUTTER_ROOT="/opt/hostedtoolcache/flutter/1.22.6-stable/x64" 
   
   analyze-and-test:
     runs-on: ubuntu-latest
