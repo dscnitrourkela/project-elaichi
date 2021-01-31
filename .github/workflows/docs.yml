@@ -23,7 +23,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Setup Flutter
-        if: steps.cache-flutter.outputs.cache-hit != 'true'
         uses: subosito/flutter-action@v1
         with:
           flutter-version: "1.22.6"
