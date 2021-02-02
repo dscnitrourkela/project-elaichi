@@ -1,4 +1,4 @@
-import 'package:elaichi/ui/widgets/appbar.dart';
+import 'package:elaichi/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../setup/test_helpers.dart';

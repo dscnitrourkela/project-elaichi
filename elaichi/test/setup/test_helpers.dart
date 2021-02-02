@@ -3,12 +3,9 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization/src/localization.dart';
-import 'package:elaichi/app/locator.dart';
-import 'package:elaichi/generated/codegen_loader.g.dart';
-import 'package:elaichi/services/auth.dart';
-import 'package:elaichi/services/graphql.dart';
-import 'package:elaichi/services/local_db.dart';
-import 'package:elaichi/services/api.dart';
+import 'package:elaichi/core.dart';
+import 'package:elaichi/services.dart';
+import 'package:elaichi/src/generated/codegen_loader.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mockito/mockito.dart';

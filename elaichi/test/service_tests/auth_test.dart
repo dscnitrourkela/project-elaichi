@@ -1,26 +1,22 @@
 // ignore_for_file: lines_longer_than_80_chars
-import 'package:elaichi/datamodels/auth_user.dart';
-import 'package:elaichi/services/graphql.dart';
-import 'package:elaichi/services/local_db.dart';
-import 'package:elaichi/strings.dart';
+
+import 'package:elaichi/core.dart';
+import 'package:elaichi/datamodels.dart' hide User;
+import 'package:elaichi/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:elaichi/services/auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/mockito.dart';
 
 import '../setup/firebase_test_setup.dart';
 import '../setup/test_helpers.dart';
 
-
-
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
 class MockGoogleSignIn extends Mock implements GoogleSignIn {}
 
 class MockUserCredential extends Mock implements UserCredential {}
-
 
 class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {}
 
@@ -209,7 +205,6 @@ void main() {
     });
 
     test(
-
         'sendSignInLinkToEmail() throws error, THEN verifyAndSignIn() with invalid link',
         () async {
       _auth = Auth();

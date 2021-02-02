@@ -1,0 +1,3 @@
+dartdoc:
+  exclude: ['main']
+  nodoc: ['lib/src/app/router.gr.dart', 'lib/src/app/locator.config.dart']
