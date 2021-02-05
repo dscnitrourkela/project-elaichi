@@ -1,4 +1,4 @@
-import 'package:elaichi/ui/views/home/home_viewmodel.dart';
+import 'package:elaichi/viewmodels.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../setup/test_helpers.dart';

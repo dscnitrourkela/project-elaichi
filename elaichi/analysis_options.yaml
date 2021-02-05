@@ -7,5 +7,6 @@ linter:
 
 analyzer:
   exclude:
-    - lib/app/locator.config.dart
-    - lib/generated/**
+    - lib/src/app/locator.config.dart
+    - lib/src/generated/codegen_loader.g.dart
+    - lib/src/generated/locale_keys.g.dart

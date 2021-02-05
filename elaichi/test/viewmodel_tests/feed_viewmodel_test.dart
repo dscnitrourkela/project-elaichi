@@ -1,11 +1,9 @@
 // ignore_for_file: lines_longer_than_80_chars
-
 import 'package:dartz/dartz.dart';
-import 'package:elaichi/app/failure.dart';
-import 'package:elaichi/app/locator.dart';
-import 'package:elaichi/datamodels/api_models.dart';
-import 'package:elaichi/services/api.dart';
-import 'package:elaichi/ui/views/feed/feed_viewmodel.dart';
+import 'package:elaichi/core.dart';
+import 'package:elaichi/datamodels.dart';
+import 'package:elaichi/services.dart';
+import 'package:elaichi/viewmodels.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

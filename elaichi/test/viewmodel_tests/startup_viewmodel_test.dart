@@ -1,5 +1,6 @@
-import 'package:elaichi/app/router.gr.dart';
-import 'package:elaichi/ui/views/startup/startup_viewmodel.dart';
+
+import 'package:elaichi/viewmodels.dart';
+import 'package:elaichi/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

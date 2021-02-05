@@ -1,5 +1,4 @@
-import 'package:elaichi/app/config/display.dart';
-import 'package:elaichi/app/config/margins.dart';
+import 'package:elaichi/theme.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

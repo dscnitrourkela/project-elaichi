@@ -1,9 +1,9 @@
-import 'package:elaichi/app/locator.dart';
-import 'package:elaichi/datamodels/api_models.dart';
-import 'package:elaichi/services/api.dart';
-import 'package:elaichi/ui/views/feed/feed_view.dart';
-import 'package:elaichi/ui/views/feed/feed_viewmodel.dart';
-import 'package:elaichi/ui/widgets/appbar.dart';
+import 'package:elaichi/core.dart';
+import 'package:elaichi/datamodels.dart';
+import 'package:elaichi/services.dart';
+import 'package:elaichi/viewmodels.dart';
+import 'package:elaichi/views.dart';
+import 'package:elaichi/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
