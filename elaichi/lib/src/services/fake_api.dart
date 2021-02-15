@@ -78,7 +78,7 @@ class FakeApi implements Api {
       ),
     );
     clubDetails.events = List<Event>.generate(4, (index) => event);
-    return Future.delayed(const Duration(seconds: 3), () => clubDetails);
+    return Future.delayed(const Duration(seconds: 0), () => clubDetails);
   }
 
   @override
@@ -157,7 +157,7 @@ class FakeApi implements Api {
         description: 'Description');
 
     return Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 0),
       () => [story_1, story_3, story_2, story_4],
     );
   }
