@@ -26,7 +26,7 @@ class ClubViewModel extends BaseViewModel {
 
   /// Fetch data for the corresponding club id.
   Future<void> fetchClub(int clubId) async {
-    await Task(_apiService.fetchClub)
+    await Task(() => _apiService.fetchClub(clubId: clubId))
         .attempt()
         .map((either) => either.leftMap((obj) => obj as Failure))
         .run()
@@ -35,11 +35,12 @@ class ClubViewModel extends BaseViewModel {
 
   void _setClub(Either<Failure, Club> clubResponse) {
     _club = clubResponse;
+    notifyListeners();
   }
 
   /// Fetches present and past stories of a given [clubId]
   Future<void> fetchStoriesArchive(int clubId) async {
-    await Task(_apiService.getStoriesByField)
+    await Task(() => _apiService.getStoriesByField(clubId: clubId))
         .attempt()
         .map((either) => either.leftMap((obj) => obj as Failure))
         .run()
@@ -48,5 +49,6 @@ class ClubViewModel extends BaseViewModel {
 
   void _setStoriesArchive(Either<Failure, List<CurrentStory>> stories) {
     _storiesArchive = stories;
+    notifyListeners();
   }
 }
