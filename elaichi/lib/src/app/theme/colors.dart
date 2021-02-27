@@ -17,6 +17,7 @@ class AppColors {
   static const Color darkAnnouncementText = Color.fromRGBO(224, 224, 224, 1.0);
   static const Color darkAnnouncementDocBackground =
       Color.fromRGBO(238, 109, 109, 0.05);
+  static const Color selectedIconColor = Color.fromRGBO(79, 79, 79, 1.0);
   static const Color unselectedIconColor = Color.fromRGBO(196, 196, 196, 1.0);
   static const Color cardHeader = Color.fromRGBO(79, 79, 79, 1.0);
 

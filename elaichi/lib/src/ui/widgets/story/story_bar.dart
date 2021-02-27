@@ -12,7 +12,7 @@ class StoryBar extends ViewModelWidget<FeedViewModel> {
   @override
   Widget build(BuildContext context, FeedViewModel viewModel) {
     return AspectRatio(
-      aspectRatio: 410 / 120,
+      aspectRatio: 411 / 120,
       child: Container(
         color: context.theme.colorScheme.surface,
         child: viewModel.currentStories.fold(

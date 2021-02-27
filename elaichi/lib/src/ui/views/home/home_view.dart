@@ -5,8 +5,45 @@ import 'package:elaichi/views.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+///
+class BottomAppBarItem extends ViewModelWidget<HomeViewModel> {
+  ///
+  const BottomAppBarItem({Key key, this.icon, this.index}) : super(key: key);
+
+  /// IconData to show in the BottomAppBarItem.
+  final IconData icon;
+
+  /// Index to set in the viewmodel.
+  final int index;
+
+  @override
+  Widget build(BuildContext context, HomeViewModel viewModel) {
+    return IconButton(
+        icon: Icon(icon,
+            color: viewModel.isIndexSelected(index)
+                ? AppColors.selectedIconColor
+                : AppColors.unselectedIconColor),
+        onPressed: () => viewModel.setIndex(index));
+  }
+}
+
 /// Contains the UI code for the home screen.
 class HomeView extends StatelessWidget {
+  final _bottomAppBarItems = const <Widget>[
+    BottomAppBarItem(
+      icon: AppIcons.feed,
+      index: 0,
+    ),
+    BottomAppBarItem(
+      icon: AppIcons.explore,
+      index: 1,
+    ),
+    BottomAppBarItem(
+      icon: AppIcons.campus,
+      index: 2,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     // State management is handled using stacked.
@@ -17,43 +54,25 @@ class HomeView extends StatelessWidget {
     return ViewModelBuilder<HomeViewModel>.reactive(
       disposeViewModel: false,
       builder: (context, model, child) => Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: model.currentIndex,
-          onTap: model.setIndex,
-          selectedLabelStyle: TextStyles.subtitle,
-          selectedItemColor: AppColors.bodyText,
-          unselectedItemColor: AppColors.overlineText,
-          items: const [
-            BottomNavigationBarItem(
-              label: 'Feed',
-              icon: Icon(
-                AppIcons.feed,
-              ),
+        bottomNavigationBar: BottomAppBar(
+          child: SizedBox(
+            height: 64,
+            child: Row(
+              children: [
+                ..._bottomAppBarItems.toList(),
+                const CircleAvatar(foregroundColor: Colors.black)
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             ),
-            BottomNavigationBarItem(
-              label: 'Explore',
-              icon: Icon(
-                AppIcons.explore,
-              ),
-            ),
-            BottomNavigationBarItem(
-              label: 'Campus',
-              icon: Icon(
-                AppIcons.campus,
-              ),
-            ),
-            BottomNavigationBarItem(
-              label: 'Profile',
-              icon: Icon(Icons.account_circle_outlined),
-            ),
-          ],
+          ),
         ),
         body: SafeArea(
-          child: IndexedStack(
-            index: model.currentIndex,
-            children: const [FeedView(), FeedView(), FeedView(), FeedView()],
-          ),
+          child: IndexedStack(index: model.currentIndex, children: <Widget>[
+            const FeedView(),
+            const FeedView(),
+            const FeedView(),
+            const FeedView(),
+          ]),
         ),
       ),
       viewModelBuilder: () => HomeViewModel(),
