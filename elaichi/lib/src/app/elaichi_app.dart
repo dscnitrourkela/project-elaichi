@@ -24,6 +24,7 @@ class ElaichiApp extends StatelessWidget {
           child: child,
         ),
         debugShowCheckedModeBanner: false,
+        localizationsDelegates: context.localizationDelegates,
         title: LocaleKeys.appName.tr(),
         theme: regularTheme,
         darkTheme: darkTheme,

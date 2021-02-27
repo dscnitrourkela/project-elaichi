@@ -25,6 +25,10 @@ class StartupView extends StatelessWidget {
               RaisedButton(
                 onPressed: model.changeTheme,
                 child: const Text('Change Theme'),
+              ),
+              RaisedButton(
+                onPressed: () => model.navigateToClubPage(),
+                child: const Text('Open club page'),
               )
             ],
           ),

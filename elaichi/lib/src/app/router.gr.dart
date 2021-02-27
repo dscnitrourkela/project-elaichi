@@ -9,15 +9,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../ui/views/home/home_view.dart';
-import '../ui/views/startup/startup_view.dart';
+import '../../views.dart';
 
 class Routes {
   static const String startupView = '/';
   static const String homeView = '/home-view';
+  static const String clubView = '/club-view';
   static const all = <String>{
     startupView,
     homeView,
+    clubView,
   };
 }
 
@@ -27,6 +28,7 @@ class AppRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.startupView, page: StartupView),
     RouteDef(Routes.homeView, page: HomeView),
+    RouteDef(Routes.clubView, page: ClubView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -40,6 +42,12 @@ class AppRouter extends RouterBase {
     HomeView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => HomeView(),
+        settings: data,
+      );
+    },
+    ClubView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ClubView(),
         settings: data,
       );
     },

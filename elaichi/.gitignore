@@ -232,3 +232,6 @@ android/app/google-services.json
 
 ### Vimspector Config
 .vimspector.json
+
+### GraphQL Schema
+schema.graphql
