@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elaichi/datamodels/api_models.dart';
+import 'package:elaichi/datamodels.dart';
 import 'package:flutter/material.dart';
 
 /// Individual card shown in the events list in club page. Takes in an [Event]

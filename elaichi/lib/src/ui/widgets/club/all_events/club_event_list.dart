@@ -1,5 +1,5 @@
-import 'package:elaichi/ui/views/club/club_viewmodel.dart';
-import 'package:elaichi/ui/widgets/club/all%20events/club_event_card.dart';
+import 'package:elaichi/src/ui/views/club/club_viewmodel.dart';
+import 'package:elaichi/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 

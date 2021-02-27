@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-import '../services/api.dart';
+import '../../services.dart';
 import '../services/auth.dart';
 import '../services/fake_api.dart';
 import '../services/graphql.dart';
@@ -21,7 +21,7 @@ const _dev = 'dev';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
-/// 
+
 GetIt $initGetIt(
   GetIt get, {
   String environment,
@@ -30,6 +30,7 @@ GetIt $initGetIt(
   final gh = GetItHelper(get, environment, environmentFilter);
   final thirdPartyServicesModule = _$ThirdPartyServicesModule();
   gh.lazySingleton<Api>(() => FakeApi(), registerFor: {_dev});
+  gh.lazySingleton<Auth>(() => Auth());
   gh.lazySingleton<DialogService>(() => thirdPartyServicesModule.dialogService);
   gh.lazySingleton<NavigationService>(
       () => thirdPartyServicesModule.navigationService);
@@ -38,7 +39,6 @@ GetIt $initGetIt(
   gh.lazySingleton<ThemeService>(() => thirdPartyServicesModule.themeManager);
 
   // Eager singletons must be registered in the right order
-  gh.singleton<Auth>(Auth());
   gh.singleton<GraphQL>(GraphQL());
   gh.singleton<LocalDb>(LocalDb());
   return get;

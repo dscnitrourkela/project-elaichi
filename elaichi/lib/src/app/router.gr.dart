@@ -7,11 +7,9 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
-import 'package:elaichi/ui/views/club/club_view.dart';
 import 'package:flutter/material.dart';
 
-import '../ui/views/home/home_view.dart';
-import '../ui/views/startup/startup_view.dart';
+import '../../views.dart';
 
 class Routes {
   static const String startupView = '/';
@@ -30,7 +28,7 @@ class AppRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.startupView, page: StartupView),
     RouteDef(Routes.homeView, page: HomeView),
-    RouteDef(Routes.clubView, page: ClubView)
+    RouteDef(Routes.clubView, page: ClubView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -52,6 +50,6 @@ class AppRouter extends RouterBase {
         builder: (context) => ClubView(),
         settings: data,
       );
-    }
+    },
   };
 }

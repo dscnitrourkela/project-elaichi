@@ -1,14 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:elaichi/datamodels/api_models.dart';
-import 'package:elaichi/ui/views/club/club_viewmodel.dart';
-import 'package:elaichi/ui/widgets/club/stories%20archive/club_story_grid_item.dart';
+import 'package:elaichi/viewmodels.dart';
+import 'package:elaichi/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class ClubStoryGrid extends ViewModelWidget<ClubViewModel> {
   @override
-  Widget build(BuildContext context, ClubViewModel model) {
-    return model.storiesArchive.fold(
+  Widget build(BuildContext context, ClubViewModel viewModel) {
+    return viewModel.storiesArchive.fold(
       (failure) => Text(failure.toString()),
       (stories) => Column(
         crossAxisAlignment: CrossAxisAlignment.center,

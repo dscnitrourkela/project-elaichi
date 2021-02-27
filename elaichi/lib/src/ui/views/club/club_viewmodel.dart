@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:elaichi/app/failure.dart';
-import 'package:elaichi/app/locator.dart';
-import 'package:elaichi/datamodels/api_models.dart';
-import 'package:elaichi/services/api.dart';
+import 'package:elaichi/core.dart';
+import 'package:elaichi/datamodels.dart';
+import 'package:elaichi/services.dart';
 import 'package:stacked/stacked.dart';
 
 /// ViewModel for Club details.

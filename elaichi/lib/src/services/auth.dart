@@ -6,9 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
+// import 'graphql.dart';
+// import 'local_db.dart';
 
 /// A single point authentication service
-@singleton
+@lazySingleton
 class Auth {
   /// Contructor for [Auth].
   Auth() {
