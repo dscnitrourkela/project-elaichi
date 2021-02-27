@@ -50,17 +50,20 @@ class ScheduleCard extends ViewModelWidget<FeedViewModel> {
             ),
             Flexible(
               flex: 3,
-              child: viewModel.scheduleEvents.fold(
-                (failure) => Text(failure.toString()),
-                (scheduleEvents) => ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: scheduleEvents.length,
-                  itemBuilder: (context, index) => ScheduleComponent(
-                    contact: scheduleEvents[index].contact,
-                    time: scheduleEvents[index].time,
-                    title: scheduleEvents[index].title,
-                    identifier: scheduleEvents[index].identifier,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: viewModel.scheduleEvents.fold(
+                  (failure) => Text(failure.toString()),
+                  (scheduleEvents) => ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: scheduleEvents.length,
+                    itemBuilder: (context, index) => ScheduleComponent(
+                      contact: scheduleEvents[index].contact,
+                      time: scheduleEvents[index].time,
+                      title: scheduleEvents[index].title,
+                      identifier: scheduleEvents[index].identifier,
+                    ),
                   ),
                 ),
               ),
