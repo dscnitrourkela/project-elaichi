@@ -37,7 +37,7 @@ dependencies:
   tinycolor: ^1.0.3
 
   # Localisation
-  easy_localization: ^2.3.3
+  easy_localization: ^2.0.0
 
   # Local database
   hive: ^1.4.3
