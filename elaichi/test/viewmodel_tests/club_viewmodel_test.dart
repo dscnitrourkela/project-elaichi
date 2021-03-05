@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dartz/dartz.dart';
 import 'package:elaichi/core.dart';
 import 'package:elaichi/datamodels.dart';
@@ -21,6 +19,9 @@ void main() {
         backgroundColor: '2D3077',
         logo: 'assets/images/dt.png',
         name: 'DesignTab'),
+    contactInfo: [],
+    description: null,
+    members: [],
   );
   final stories = List<CurrentStory>.generate(
     10,
@@ -35,26 +36,21 @@ void main() {
   );
 
   final event = Event(
-    id: '42',
-    organizer: clubDetails,
-    eventName: 'Orientation',
-    startDateTime: DateTime(2020, 8, 20),
-    endDateTime: DateTime(2020, 8, 20),
-    registrationPrice: 0,
-    registrationCount: 42,
-    otherDescription: 'Get to know everything about '
-        'DesignTab and why you should be a '
-        'part of it.',
-    attendees: null,
-    announcements: 'None',
-    link: 'google.com',
-    picture: 'assets/images/dt_1.png',
-    theme: ViewTheme(
-      backgroundColor: '2D3E6F',
-      logo: '',
-      name: 'DesignTab',
-    ),
-  );
+      id: '42',
+      organizer: clubDetails,
+      eventName: 'Orientation',
+      startDateTime: DateTime(2020, 8, 20),
+      endDateTime: DateTime(2020, 8, 20),
+      registrationPrice: 0,
+      registrationCount: 42,
+      otherDescription: 'Get to know everything about '
+          'DesignTab and why you should be a '
+          'part of it.',
+      attendees: null,
+      announcements: 'None',
+      link: 'google.com',
+      picture: 'assets/images/dt_1.png',
+      location: 'LA-117');
   final failure = Failure(1, 'test failure');
   setUp(
     () async {

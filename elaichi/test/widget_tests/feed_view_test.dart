@@ -27,6 +27,7 @@ void main() {
           description: '',
           event: Event(
               announcements: '',
+              location: '',
               organizer: Club(
                 society: '',
                 clubName: '',
@@ -34,6 +35,9 @@ void main() {
                 domain: '',
                 facAd: '',
                 theme: null,
+                contactInfo: [],
+                description: null,
+                members: [],
               ),
               registrationPrice: 20,
               registrationCount: 20,
@@ -44,7 +48,6 @@ void main() {
               attendees: [],
               eventName: '',
               startDateTime: null,
-              theme: null,
               endDateTime: null),
           assetType: '',
           createdAt: DateTime(2021),
@@ -55,6 +58,9 @@ void main() {
             domain: '',
             facAd: '',
             theme: null,
+            contactInfo: [],
+            description: null,
+            members: [],
           ),
         ),
       );

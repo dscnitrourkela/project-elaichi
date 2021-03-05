@@ -7,21 +7,46 @@ import 'user.dart';
 class Club {
   Club({
     @required this.id,
+    @required this.description,
     @required this.clubName,
     @required this.facAd,
     @required this.society,
     @required this.domain,
     @required this.theme,
+    @required this.contactInfo,
+    @required this.members,
     this.events,
   });
 
   final String id;
+  final String description;
   final String clubName;
   final String facAd;
   final String society;
   final String domain;
   final ViewTheme theme;
+  final List<ContactInfo> contactInfo;
+  final List<AccessLevel> members;
   List<Event> events;
+}
+
+/// Defines access level of an individual user in a club
+class AccessLevel {
+  AccessLevel({
+    @required this.id,
+    @required this.level,
+    @required this.name,
+    @required this.relation,
+    @required this.club,
+    @required this.user,
+  });
+
+  final String id;
+  final int level;
+  final String name;
+  final String relation;
+  final Club club;
+  final User user;
 }
 
 /// Defines the theme for a specific club
@@ -88,7 +113,7 @@ class Event {
       @required this.announcements,
       @required this.link,
       @required this.picture,
-      @required this.theme});
+      @required this.location});
 
   final String id;
   final Club organizer;
@@ -102,7 +127,7 @@ class Event {
   final String announcements;
   final String link;
   final String picture;
-  final ViewTheme theme;
+  final String location;
 }
 
 ///

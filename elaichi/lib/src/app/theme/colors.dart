@@ -10,6 +10,9 @@ class AppColors {
   static const Color lightOnPrimary = Color.fromRGBO(250, 250, 250, 1.0);
   static const Color lightBottomNav = Color.fromRGBO(255, 255, 255, 1.0);
   static const Color darkBottomNav = Color.fromRGBO(23, 23, 23, 1.0);
+  static const Color divider = Color.fromRGBO(0, 0, 0, 0.1);
+
+  //Text
   static const Color lightAnnouncementText = Color.fromRGBO(79, 79, 79, 1.0);
   static const Color bodyText = Color.fromRGBO(79, 79, 79, 1.0);
   static const Color titleText = Color.fromRGBO(51, 51, 51, 1.0);
@@ -20,6 +23,10 @@ class AppColors {
   static const Color selectedIconColor = Color.fromRGBO(79, 79, 79, 1.0);
   static const Color unselectedIconColor = Color.fromRGBO(196, 196, 196, 1.0);
   static const Color cardHeader = Color.fromRGBO(79, 79, 79, 1.0);
+  static const Color cardHeader60 = Color.fromRGBO(79, 79, 79, 0.6);
+
+  // Buttons
+  static const Color newEventBtn = Color.fromRGBO(47, 128, 237, 1);
 
   //icons
   static const Color calendarIcon = Color.fromRGBO(47, 128, 237, 1.0);

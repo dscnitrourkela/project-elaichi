@@ -3,20 +3,25 @@ import 'package:elaichi/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-/// Displays event list in club info page
-class ClubEventList extends ViewModelWidget<ClubViewModel> {
+/// All events tab shown in Individual club view
+class AllEvents extends StatelessWidget {
   @override
-  Widget build(BuildContext context, viewModel) {
-    return viewModel.isBusy
+  Widget build(BuildContext context) {
+    return ViewModelBuilder<ClubViewModel>.reactive(
+      builder: (BuildContext context, ClubViewModel viewModel, Widget child){
+        return viewModel.isBusy
         ? const Center(child: CircularProgressIndicator())
         : viewModel.club.fold(
             (failure) => Text(failure.toString()),
             (club) => Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                AddButton(
+                  title: 'Create New Event',
+                  onPressed: () => null,
+                ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
                     children: [
                       const Expanded(
@@ -47,5 +52,10 @@ class ClubEventList extends ViewModelWidget<ClubViewModel> {
               ],
             ),
           );
+      },
+      viewModelBuilder: ()=>ClubViewModel(),
+      //TODO: Get club id
+      onModelReady: (ClubViewModel model)=>model.initialise(42),
+    );
   }
 }

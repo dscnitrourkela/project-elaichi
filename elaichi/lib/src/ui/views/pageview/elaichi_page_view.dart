@@ -27,6 +27,7 @@ class ElaichiPageView extends StatefulWidget {
 }
 
 class _ElaichiPageViewState extends State<ElaichiPageView> {
+  // ignore: unused_field
   PageController _controller;
   @override
   void initState() {
