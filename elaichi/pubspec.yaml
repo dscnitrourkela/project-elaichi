@@ -8,6 +8,8 @@ environment:
 
 # dependency_overrides:
 # analyzer: "0.39.14"
+dependency_overrides:
+  intl: ^0.17.0-nullsafety.2
 
 dependencies:
   flutter:
@@ -37,7 +39,7 @@ dependencies:
   tinycolor: ^1.0.3
 
   # Localisation
-  easy_localization: ^2.3.3
+  easy_localization: ^2.0.0
 
   # Local database
   hive: ^1.4.3
