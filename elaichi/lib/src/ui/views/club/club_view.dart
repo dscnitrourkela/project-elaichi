@@ -1,6 +1,6 @@
-import 'package:elaichi/src/ui/views/club/club_viewmodel.dart';
-import 'package:elaichi/src/ui/widgets/club/all_events/club_event_list.dart';
-import 'package:elaichi/src/ui/widgets/club/stories_archive/club_story_gridview.dart';
+import 'package:elaichi/theme.dart';
+import 'package:elaichi/viewmodels.dart';
+import 'package:elaichi/views.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -17,6 +17,7 @@ class _ClubViewState extends State<ClubView> {
       builder: (BuildContext context, ClubViewModel model, Widget child) {
         return SafeArea(
           child: Scaffold(
+            backgroundColor: AppColors.lightScaffoldBackground,
             body: model.isBusy
                 ? const Center(
                     child: CircularProgressIndicator(),
@@ -87,9 +88,9 @@ class _ClubViewState extends State<ClubView> {
                         },
                         body: TabBarView(
                           children: [
-                            ClubEventList(),
-                            ClubStoryGrid(),
-                            ClubEventList(),
+                            AllEvents(),
+                            StoriesArchive(),
+                            ClubInfo(),
                           ],
                         ),
                       ),

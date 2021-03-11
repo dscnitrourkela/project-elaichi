@@ -1,94 +1,91 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elaichi/datamodels.dart';
+import 'package:elaichi/theme.dart';
 import 'package:flutter/material.dart';
 
 /// Individual card shown in the events list in club page. Takes in an [Event]
 /// object as a required parameter.
 class ClubEventItemCard extends StatelessWidget {
-  // ignore: public_member_api_docs
-  const ClubEventItemCard(
-    this._event,
-  );
+  /// Constructor for ClubEventItemCard
+  const ClubEventItemCard({@required this.event, @required this.onTap});
 
-  final Event _event;
+  /// Stores [Event] object of which details are to be shown
+  final Event event;
+
+  /// Callback for when the card is tapped
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: AspectRatio(
-        aspectRatio: 368 / 200,
-        child: Stack(
-          fit: StackFit.passthrough,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 24.0),
-              child: Card(
-                color: Color(
-                  int.parse('0xff${_event.theme.backgroundColor}'),
-                ),
+        aspectRatio: 368 / 177,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: GestureDetector(
+            onTap: onTap,
+            child: Card(
+              elevation: 0.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   children: [
                     Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 13.0),
+                        child: Image.asset(event.picture),
+                      ),
+                    ),
+                    Expanded(
                       flex: 4,
                       child: Padding(
-                        padding: const EdgeInsets.all(24.0),
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              DateFormat.MMMd().format(_event.startDateTime),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .overline
-                                  .copyWith(color: Colors.white),
+                              event.organizer.clubName.toUpperCase(),
+                              style: TextStyles.overline
+                                  .copyWith(letterSpacing: 0.6),
                             ),
                             Text(
-                              _event.eventName,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline6
-                                  .copyWith(color: Colors.white),
+                              event.eventName,
+                              style: TextStyles.title.copyWith(
+                                  color: AppColors.cardHeader,
+                                  letterSpacing: 0.2),
                             ),
                             Text(
-                              _event.otherDescription,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .caption
-                                  .copyWith(color: Colors.white60),
+                              '''${DateFormat.MMMd().format(event.startDateTime)} • ${event.location}''',
+                              style: TextStyles.body2.copyWith(
+                                color: AppColors.cardHeader60,
+                              ),
                             ),
                             Text(
-                              '🙌 ${_event.registrationCount} people are '
+                              event.otherDescription,
+                              style: TextStyles.body1
+                                  .copyWith(color: AppColors.cardHeader60),
+                            ),
+                            Text(
+                              '🙌 ${event.registrationCount} people are '
                               'attending this',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .caption
-                                  .copyWith(color: Colors.white60),
+                              style:
+                                  TextStyles.overline.copyWith(fontSize: 12.0),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(),
-                    )
                   ],
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 13.0, bottom: 13.0),
-                child: AspectRatio(
-                  aspectRatio: 127 / 179,
-                  child: Image.asset(_event.picture),
-                ),
-              ),
-            )
-          ],
+          ),
         ),
       ),
     );

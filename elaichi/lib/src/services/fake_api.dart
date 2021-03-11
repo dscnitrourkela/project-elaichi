@@ -23,6 +23,9 @@ class FakeApi implements Api {
               backgroundColor: '2D3077',
               logo: 'assets/images/dt.png',
               name: 'DesignTab'),
+          contactInfo: [],
+          description: null,
+          members: [],
         ),
         event: null,
         assetType: 'image',
@@ -50,18 +53,58 @@ class FakeApi implements Api {
       id: '1',
       facAd: 'Prof. ABC',
       society: 'Technical Society',
+      description:
+          '''DesignTab aims to bring together all aspects of designing under a single hood and create a productive environment for young designers. ''',
       domain: 'desgintab.com',
       theme: ViewTheme(
           backgroundColor: '2D3077',
           logo: 'assets/images/dt.png',
           name: 'DesignTab'),
+      contactInfo: [
+        ContactInfo(
+            designation: 'President',
+            email: null,
+            mobileNo: null,
+            name: 'Saumyaa Suneja'),
+        ContactInfo(
+            designation: 'Vice President',
+            email: null,
+            mobileNo: null,
+            name: 'Reuben Abraham'),
+      ],
+      members: [
+        AccessLevel(
+          club: null,
+          level: 4,
+          id: null,
+          name: 'Chinmay Kabi',
+          relation: 'President',
+          user: null,
+        ),
+        AccessLevel(
+          club: null,
+          level: 4,
+          id: null,
+          name: 'Smarak Das',
+          relation: 'Vice President',
+          user: null,
+        ),
+        AccessLevel(
+          club: null,
+          level: 2,
+          id: null,
+          name: 'Oonga Bunga',
+          relation: 'No one',
+          user: null,
+        ),
+      ],
     );
     final event = Event(
       id: '42',
       organizer: clubDetails,
       eventName: 'Orientation',
-      startDateTime: DateTime(2020, 8, 20),
-      endDateTime: DateTime(2020, 8, 20),
+      startDateTime: DateTime(2020, 8, 20, 20),
+      endDateTime: DateTime(2020, 8, 20, 22),
       registrationPrice: 0,
       registrationCount: 42,
       otherDescription: 'Get to know everything about '
@@ -70,12 +113,8 @@ class FakeApi implements Api {
       attendees: null,
       announcements: 'None',
       link: 'google.com',
-      picture: 'assets/images/dt_1.png',
-      theme: ViewTheme(
-        backgroundColor: '2D3E6F',
-        logo: '',
-        name: 'DesignTab',
-      ),
+      picture: 'assets/images/dt22.png',
+      location: 'LA-117',
     );
     clubDetails.events = List<Event>.generate(4, (index) => event);
     return Future.delayed(const Duration(seconds: 0), () => clubDetails);
@@ -95,11 +134,14 @@ class FakeApi implements Api {
               backgroundColor: '2D3077',
               logo: 'assets/images/dt.png',
               name: 'DesignTab'),
+          contactInfo: [],
+          description: null,
+          members: [],
         ),
         event: null,
         assetType: 'image',
         createdAt: DateTime(2021, 1, 31),
-        asset: 'assets/images/dt_1.png',
+        asset: 'assets/images/dt22.png',
         description: 'Description');
     final story_2 = CurrentStory(
         id: '1',
@@ -113,11 +155,14 @@ class FakeApi implements Api {
               backgroundColor: '2D3077',
               logo: 'assets/images/dt.png',
               name: 'DesignTab'),
+          contactInfo: [],
+          description: null,
+          members: [],
         ),
         event: null,
         assetType: 'image',
         createdAt: DateTime(2021, 2, 21),
-        asset: 'assets/images/dt_2.png',
+        asset: 'assets/images/dt22.png',
         description: 'Description');
     final story_3 = CurrentStory(
         id: '1',
@@ -131,11 +176,14 @@ class FakeApi implements Api {
               backgroundColor: '2D3077',
               logo: 'assets/images/dt.png',
               name: 'DesignTab'),
+          contactInfo: [],
+          description: null,
+          members: [],
         ),
         event: null,
         assetType: 'image',
         createdAt: DateTime(2021, 3, 31),
-        asset: 'assets/images/dt_3.png',
+        asset: 'assets/images/dt22.png',
         description: 'Description');
     final story_4 = CurrentStory(
         id: '1',
@@ -149,11 +197,14 @@ class FakeApi implements Api {
               backgroundColor: '2D3077',
               logo: 'assets/images/dt.png',
               name: 'DesignTab'),
+          contactInfo: [],
+          description: null,
+          members: [],
         ),
         event: null,
         assetType: 'image',
         createdAt: DateTime(2021, 3, 31),
-        asset: 'assets/images/dt_3.png',
+        asset: 'assets/images/dt22.png',
         description: 'Description');
 
     return Future.delayed(
