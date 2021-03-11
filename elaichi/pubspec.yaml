@@ -53,6 +53,9 @@ dependencies:
   firebase_auth: ^0.18.4+1
   google_sign_in: ^4.5.6
 
+  # Overlay UI
+  flutter_portal: ^0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -12,5 +12,8 @@ import 'package:elaichi/views.dart';
 
   ///[ClubView] route
   MaterialRoute(page: ClubView),
+
+  ///[ViewEvent] route
+  MaterialRoute(page:ViewEvent)
 ])
 class $AppRouter {}
