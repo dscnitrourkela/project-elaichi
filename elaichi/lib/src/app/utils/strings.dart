@@ -3,7 +3,7 @@
 
 /// Contains all the string values that app is going to use.
 abstract class Strings {
-  static const String GRAPHQL_URL = 'https://testa.nitrkl.in/';
+  static const String GRAPHQL_URL = 'https://avenue-api.nitrkl.in/';
 
   static const String BASE_URL = 'https://nitrkl.in';
   static const String DYNAMIC_LINK_DOMAIN = 'nitrkl.in';
@@ -23,4 +23,5 @@ abstract class Strings {
   // Error codes
   static const String HTTP_ERROR = 'http_error';
   static const String GRAPHQL_ERROR = 'graphql_error';
+  static const String NOT_EXISTING_USER = 'non_existing_user';
 }

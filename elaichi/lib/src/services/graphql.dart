@@ -41,7 +41,10 @@ class GraphQL {
       {@required Function getToken,
       http.Client httpClient,
       HiveStore hiveStore}) async {
-    final httpLink = HttpLink(Strings.GRAPHQL_URL, httpClient: httpClient);
+    final httpLink =
+        HttpLink(Strings.GRAPHQL_URL, httpClient: httpClient, defaultHeaders: {
+      'bypass-key': 'application/bson',
+    });
 
     final authLink = AuthLink(
       getToken: getToken,
@@ -53,7 +56,7 @@ class GraphQL {
     if (hiveStore != null) {
       final localDb = locator<LocalDb>();
       await localDb.initLocalDb(boxesToOpen: [LocalDbBoxes.cache]);
-      final box = await localDb.clearAndGetCacheBox();
+      final box = await localDb.getCacheBox();
       _hiveStore = HiveStore(box);
     } else {
       _hiveStore = hiveStore;
@@ -124,10 +127,19 @@ class GraphQL {
       },
     );
 
-    final result = await _client.mutate(options);
+    try {
+      final result = await _client.mutate(options);
 
-    _handleErrors(result);
-    return Data.fromJson(result.data).authUser;
+      _handleErrors(result);
+      return Data.fromJson(result.data).authUser;
+    } catch (error) {
+      _logger.e('GraphQl error', error);
+      throw GraphQLException(
+          code: Strings.HTTP_ERROR,
+          message:
+              // ignore: lines_longer_than_80_chars
+              'HTTP Error: $error');
+    }
   }
 
   /// Updates user info on web endpoint.
@@ -179,9 +191,67 @@ class GraphQL {
       },
     );
 
-    final result = await _client.mutate(options);
+    try {
+      final result = await _client.mutate(options);
 
-    _handleErrors(result);
-    return Data.fromJson(result.data).authUser;
+      _handleErrors(result);
+      return Data.fromJson(result.data).authUser;
+    } catch (error) {
+      _logger.e('GraphQl error', error);
+      throw GraphQLException(
+          code: Strings.HTTP_ERROR,
+          message:
+              // ignore: lines_longer_than_80_chars
+              'HTTP Error: $error');
+    }
+  }
+
+  /// Search and get user details as [AuthUser].
+  ///
+  /// Throws error with error code:
+  /// - **NOT_EXISTING_USER** - If username doesn't exists.
+  Future<AuthUser> getUserByUsername({@required String username}) async {
+    const query = r'''
+    query getUser($username: String) {
+      __typename
+      userByUsername(username: $username) {
+        __typename
+        ... on User {
+          id
+          name
+          username
+          gmailAuthMail
+          mobile
+          displayPicture
+        }
+
+        ... on ErrorClass {
+          message
+          code
+        }
+      }
+    }
+    ''';
+
+    final options = QueryOptions(
+        document: gql(query),
+        variables: <String, dynamic>{
+          'username': username,
+        },
+        fetchPolicy: FetchPolicy.networkOnly);
+
+    try {
+      final result = await _client.query(options);
+
+      _handleErrors(result);
+      if (result.data['userByUsername'] != null) {
+        return AuthUser.fromJson(result.data['userByUsername']);
+      } else {
+        return null;
+      }
+    } catch (error) {
+      throw GraphQLException(
+          code: Strings.GRAPHQL_ERROR, message: 'Unexpected error');
+    }
   }
 }

@@ -22,7 +22,7 @@ enum LocalDbBoxes {
 @singleton
 class LocalDb {
   /// Instance of Hive
-  HiveInterface hive;
+  HiveInterface hive = Hive;
 
   /// Pass `hive` if an instance is already present (especially for testing)
   // ignore: avoid_setters_without_getters
@@ -57,9 +57,8 @@ class LocalDb {
   }
 
   /// Initializes cache box and return it.
-  Future<Box> clearAndGetCacheBox() async {
+  Future<Box> getCacheBox() async {
     final cacheBox = hive.box(LocalDbBoxes.cache.toString());
-    await cacheBox.clear();
     return cacheBox;
   }
 

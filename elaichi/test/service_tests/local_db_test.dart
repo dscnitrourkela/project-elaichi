@@ -65,7 +65,7 @@ void main() {
       when(mockHive.box(LocalDbBoxes.cache.toString()))
           .thenReturn(_mockHiveBox);
 
-      await localDb.clearAndGetCacheBox();
+      await localDb.getCacheBox();
 
       verify(mockHive.box(LocalDbBoxes.cache.toString()));
       verify(_mockHiveBox.clear());
