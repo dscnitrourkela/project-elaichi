@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 
 import '../../datamodels.dart';
 import '../../views.dart';
+import '../ui/views/signin/signin_view.dart';
+import '../ui/views/signup/signup_view.dart';
 
 class Routes {
   static const String startupView = '/';
@@ -70,6 +72,9 @@ class AppRouter extends RouterBase {
           key: args.key,
           event: args.event,
         ),
+        settings: data,
+      );
+    },
     SigninView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const SigninView(),

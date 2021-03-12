@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:elaichi/src/ui/views/signin/signin_view.dart';
+import 'package:elaichi/src/ui/views/signup/signup_view.dart';
 import 'package:elaichi/views.dart';
 
 /// $Router is used to define the routes for generation using
@@ -14,6 +16,12 @@ import 'package:elaichi/views.dart';
   MaterialRoute(page: ClubView),
 
   ///[ViewEvent] route
-  MaterialRoute(page:ViewEvent)
+  MaterialRoute(page: ViewEvent),
+
+  ///[SigninView] route
+  MaterialRoute(page: SigninView),
+
+  ///[SignupView] route
+  MaterialRoute(page: SignupView)
 ])
 class $AppRouter {}
