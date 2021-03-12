@@ -1,6 +1,6 @@
+import 'package:elaichi/core.dart';
+import 'package:elaichi/src/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elaichi/app/extensions.dart';
-import 'package:elaichi/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 /// Returns AppName in two line format.

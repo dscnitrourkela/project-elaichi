@@ -1,6 +1,6 @@
-import 'package:elaichi/app/config/measurements.dart';
+import 'package:elaichi/src/app/utils/measurements.dart';
+import 'package:elaichi/core.dart';
 import 'package:flutter/material.dart';
-import 'package:elaichi/app/extensions.dart';
 
 /// Simple button for this project.
 class Button extends StatelessWidget {

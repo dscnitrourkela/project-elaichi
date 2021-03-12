@@ -1,10 +1,11 @@
-import 'package:elaichi/app/colors.dart';
-import 'package:elaichi/app/extensions.dart';
-import 'package:elaichi/ui/views/signup/signup_viewmodel.dart';
-import 'package:elaichi/ui/widgets/app_name.dart';
-import 'package:elaichi/ui/widgets/buttons.dart';
+import 'package:elaichi/src/app/extensions.dart';
+import 'package:elaichi/src/ui/widgets/app_name.dart';
+import 'package:elaichi/src/ui/widgets/buttons.dart';
+import 'package:elaichi/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+
+import 'signup_viewmodel.dart';
 
 /// Signup page
 ///

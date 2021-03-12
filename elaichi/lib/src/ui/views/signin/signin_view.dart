@@ -1,11 +1,12 @@
-import 'package:elaichi/app/extensions.dart';
-import 'package:elaichi/ui/views/signin/signin_viewmodel.dart';
-import 'package:elaichi/ui/widgets/app_name.dart';
-import 'package:elaichi/ui/widgets/buttons.dart';
+import 'package:elaichi/src/app/extensions.dart';
+import 'package:elaichi/src/ui/widgets/app_name.dart';
+import 'package:elaichi/src/ui/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
+
+import 'signin_viewmodel.dart';
 
 /// Signin page.
 class SigninView extends StatelessWidget {

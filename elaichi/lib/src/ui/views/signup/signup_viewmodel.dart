@@ -1,21 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elaichi/app/locator.dart';
-import 'package:elaichi/app/logger.dart';
-import 'package:elaichi/app/router.gr.dart';
-import 'package:elaichi/generated/locale_keys.g.dart';
-import 'package:elaichi/services/auth.dart';
-import 'package:elaichi/services/graphql.dart';
-import 'package:elaichi/ui/views/signup/signup_view.dart';
-import 'package:elaichi/ui/widgets/input_fields.dart';
+import 'package:elaichi/core.dart';
+import 'package:elaichi/src/generated/locale_keys.g.dart';
+import 'package:elaichi/src/services/auth.dart';
+import 'package:elaichi/src/services/graphql.dart';
+import 'package:elaichi/src/ui/widgets/input_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import 'signup_view.dart';
 
 /// ViewModel for [SignupView]
 class SignupViewModel extends BaseViewModel {
   /// Input field that takes username
   StringInputField _usernameInputField;
   StringInputField _mobileInputField;
+
+  /// Used by view to show error
   bool usernameErrorState = false;
 
   /// Signup button text

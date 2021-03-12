@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elaichi/app/locator.dart';
-import 'package:elaichi/app/logger.dart';
-import 'package:elaichi/app/router.gr.dart';
-import 'package:elaichi/generated/locale_keys.g.dart';
-import 'package:elaichi/services/auth.dart';
-import 'package:elaichi/ui/views/signin/signin_view.dart';
+import 'package:elaichi/core.dart';
+import 'package:elaichi/src/app/locator.dart';
+import 'package:elaichi/src/app/logger.dart';
+import 'package:elaichi/src/generated/locale_keys.g.dart';
+import 'package:elaichi/src/services/services.dart';
+import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import './signin_view.dart';
 
 /// ViewModel for [SigninView]
 class SigninViewModel extends BaseViewModel {

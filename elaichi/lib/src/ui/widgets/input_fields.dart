@@ -1,6 +1,6 @@
-import 'package:elaichi/app/config/measurements.dart';
+import 'package:elaichi/src/app/utils/measurements.dart';
 import 'package:flutter/material.dart';
-import 'package:elaichi/app/extensions.dart';
+import 'package:elaichi/src/app/extensions.dart';
 
 /// String input from user
 ///
