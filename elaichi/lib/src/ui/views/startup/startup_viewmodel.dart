@@ -20,7 +20,8 @@ class StartupViewModel extends BaseViewModel {
   /// Navigates to HomeView.
   Future navigateToHome() async {
     log.i('Navigate to Home');
-    await _navigationService.navigateTo(Routes.homeView);
+    //await _navigationService.navigateTo(Routes.homeView);
+    await _navigationService.navigateTo(Routes.signinView);
   }
 
  /// Navigate to ClubView.

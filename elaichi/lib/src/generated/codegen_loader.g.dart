@@ -15,7 +15,15 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> en = {
-  "appName": "NITR Central",
+  "appName": "Avenue",
+  "fullAppName": "Avenue for NITR",
+  "forNitr": "for NITR",
+  "signInWithGoogle": "Sign in with Google",
+  "completeSignup": "Complete Signup",
+  "username": "Username",
+  "password": "Password",
+  "mobile": "Mobile",
+  "optional": "Optional",
   "welcome": "Welcome to NITR Central",
   "homeTitle": "Your Feed",
   "timeTable": "Timetable",

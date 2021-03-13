@@ -11,17 +11,23 @@ import 'package:flutter/material.dart';
 
 import '../../datamodels.dart';
 import '../../views.dart';
+import '../ui/views/signin/signin_view.dart';
+import '../ui/views/signup/signup_view.dart';
 
 class Routes {
   static const String startupView = '/';
   static const String homeView = '/home-view';
   static const String clubView = '/club-view';
   static const String viewEvent = '/view-event';
+  static const String signinView = '/signin-view';
+  static const String signupView = '/signup-view';
   static const all = <String>{
     startupView,
     homeView,
     clubView,
     viewEvent,
+    signinView,
+    signupView,
   };
 }
 
@@ -33,6 +39,8 @@ class AppRouter extends RouterBase {
     RouteDef(Routes.homeView, page: HomeView),
     RouteDef(Routes.clubView, page: ClubView),
     RouteDef(Routes.viewEvent, page: ViewEvent),
+    RouteDef(Routes.signinView, page: SigninView),
+    RouteDef(Routes.signupView, page: SignupView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -64,6 +72,18 @@ class AppRouter extends RouterBase {
           key: args.key,
           event: args.event,
         ),
+        settings: data,
+      );
+    },
+    SigninView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SigninView(),
+        settings: data,
+      );
+    },
+    SignupView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SignupView(),
         settings: data,
       );
     },

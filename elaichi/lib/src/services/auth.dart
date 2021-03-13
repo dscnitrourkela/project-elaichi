@@ -18,7 +18,7 @@ class Auth {
     _googleAuthService = _GoogleAuthService();
     _firebaseAuthService = _FirebaseAuthService(firebaseAuth: _firebaseAuth);
 
-    _localDb.openBox(LocalDbBoxes.userData);
+    _localDb.initLocalDb(boxesToOpen: [LocalDbBoxes.userData]);
   }
 
   final Logger _logger = getLogger('Auth Service');
@@ -189,18 +189,18 @@ class Auth {
 
   /// Opens a dialog which let's the user to signin to their Google account.
   Future<void> _signInToGoogle() async {
+    final credential = await _googleAuthService.signIn();
+    await _firebaseAuthService
+        .signInWithCredenials(credential: credential)
+        .then((user) async {
+      _user = user;
+    });
+
     _firebaseAuth.authStateChanges().listen((User user) {
       if (user == null) {
         _logger.i('Sign out due to authStateChanges');
         signOut();
       }
-    });
-
-    final credential = await _googleAuthService.signIn();
-    return _firebaseAuthService
-        .signInWithCredenials(credential: credential)
-        .then((user) async {
-      _user = user;
     });
   }
 

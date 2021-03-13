@@ -27,8 +27,16 @@ class AppColors {
 
   // Buttons
   static const Color newEventBtn = Color.fromRGBO(47, 128, 237, 1);
+  static const Color enabledBorderColor = Color.fromRGBO(150, 150, 150, 1);
+  static const Color errorBorderColor = Color.fromRGBO(218, 0, 0, 1);
+  static const Color disabledBorderColor = Color.fromRGBO(218, 218, 218, 1);
+  static const Color focusedBorderColor = Color.fromRGBO(79, 79, 79, 1);
 
   //icons
   static const Color calendarIcon = Color.fromRGBO(47, 128, 237, 1.0);
   static const Color menuIcon = Color.fromRGBO(242, 153, 74, 1.0);
+
+  // Loader Colors
+  static const Color loaderColorBackground = Color.fromRGBO(47, 47, 47, 0.5);
+  static const Color loaderColorAccent = Color.fromRGBO(150, 150, 150, 0.5);
 }

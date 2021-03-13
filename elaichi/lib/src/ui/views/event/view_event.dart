@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:elaichi/datamodels.dart';
 import 'package:elaichi/src/ui/views/event/view_event_viewmodel.dart';
 import 'package:elaichi/theme.dart';
