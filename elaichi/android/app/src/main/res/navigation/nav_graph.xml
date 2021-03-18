@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="org.dscnitrourkela.elaichi.ui.fragments.TabFragment"
-        tools:layout="@layout/fragment_tab" />
+        android:name="org.dscnitrourkela.elaichi.ui.fragments.MainFragment"
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/splashFragment"
         android:name="org.dscnitrourkela.elaichi.ui.fragments.SplashFragment"
@@ -20,7 +20,11 @@
     <fragment
         android:id="@+id/mailBoxFragment"
         android:name="org.dscnitrourkela.elaichi.ui.fragments.MailBoxFragment"
-        tools:layout="@layout/fragment_mail_box" />
+        tools:layout="@layout/fragment_mail_box">
+        <argument
+            android:name="request"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/webViewFragment"
         android:name="org.dscnitrourkela.elaichi.ui.fragments.WebViewFragment"
@@ -60,7 +64,11 @@
         app:destination="@id/authFragment" />
     <action
         android:id="@+id/action_to_mailBoxFragment"
-        app:destination="@id/mainFragment" />
+        app:destination="@id/mailBoxFragment">
+        <argument
+            android:name="request"
+            app:argType="string" />
+    </action>
     <action
         android:id="@+id/action_to_mailItemsFragment"
         app:destination="@id/mailItemsFragment">
