@@ -29,7 +29,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
                     .build()
                 when (it) {
                     true -> findNavController().navigate(
-                        NavGraphDirections.actionToMailBoxFragment(),
+                        NavGraphDirections.actionToMailBoxFragment(getString(R.string.inbox)),
                         navOptions
                     )
                     false -> findNavController().navigate(
