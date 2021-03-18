@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="theme_medium_light">#FF8C46</color>
+    <color name="theme_medium">#D27350</color>
+    <color name="theme_medium_dark">#D35400</color>
+    <color name="theme_light">#FABE9B</color>
+    <color name="theme_dark">#C8462D</color>
+    <color name="theme_dark_blue">#002E50</color>
+
+    <color name="rally_yellow_300">#ffcf44</color>
+    <color name="rally_yellow_500">#ffac12</color>
+    <color name="rally_yellow_600">#ff8500</color>
+    <color name="rally_yellow_700">#ff7000</color>
+
+    <color name="rally_green_300">#37efba</color>
+    <color name="rally_green_500">#1eb980</color>
+    <color name="rally_green_700">#007d51</color>
+
+    <color name="rally_blue_300">#56d1ca</color>
+    <color name="rally_blue_500">#00aea4</color>
+    <color name="rally_blue_700">#045d56</color>
+
+    <color name="rally_red_300">#ff6859</color>
+    <color name="rally_red_500">#ff0600</color>
+    <color name="rally_red_700">#b50000</color>
+
+    <color name="Silver">#85929E</color>
+
+    <color name="POMEGRANATE">#C0392B</color>
+    <color name="ALIZARIN">#E74C3C</color>
+    <color name="AMETHYST">#9B59B6</color>
+    <color name="WISTERIA">#8E44AD</color>
+    <color name="BELIZE_HOLE">#2980B9</color>
+    <color name="PETER_RIVER">#3498DB</color>
+    <color name="TURQUOISE">#1ABC9C</color>
+    <color name="GREEN_SEA">#16A085</color>
+    <color name="NEPHRITIS">#27AE60</color>
+    <color name="EMERALD">#2ECC71</color>
+    <color name="SUNFLOWER">#F1C40F</color>
+    <color name="ORANGE">#F39C12</color>
+    <color name="CARROT">#E67E22</color>
+    <color name="PUMPKIN">#D35400</color>
+    <color name="CLOUDS">#ECF0F1</color>
+    <color name="SILVER">#BDC3C7</color>
+    <color name="CONCRETE">#95A5A6</color>
+    <color name="ASBESTOS">#7F8C8D</color>
+    <color name="WET_ASPHALT">#34495E</color>
+    <color name="MIDNIGHT_BLUE">#2C3E50</color>
+
+    <color name="light_blue">#2F80ED</color>
+    <color name="dark_black">#4F4F4F</color>
+    <color name="light_grey">#828282</color>
+
+</resources>

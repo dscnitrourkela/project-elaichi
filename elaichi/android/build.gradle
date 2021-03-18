@@ -1,17 +1,25 @@
 buildscript {
-    ext.kotlin_version = '1.4.21'
-    ext.hilt_version = '2.33-beta'
+    ext.kotlin_version = '1.4.31'
     repositories {
         google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath "com.android.tools.build:gradle:4.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.4'
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 
+        //Dagger Hilt
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.31.2-alpha"
+
+        //Safe Args
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.4"
+
+        //Google Services
+        classpath 'com.google.gms:google-services:4.3.5'
+
+        //Firebase Crashlytics
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.5.1'
     }
 }
 

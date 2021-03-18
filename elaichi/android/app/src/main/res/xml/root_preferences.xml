@@ -1,0 +1,33 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="User">
+        <Preference
+            app:icon="@drawable/ic_baseline_account_circle_24"
+            app:key="Logout"
+            app:summary="You will be logged out and all the user data will be deleted."
+            app:title="Logout" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Theme">
+        <SwitchPreferenceCompat
+            app:icon="@drawable/ic_baseline_dark_mode_24"
+            app:key="Theme"
+            app:summary="Enable Dark theme for the app"
+            app:title="Dark Theme" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Notification">
+        <SwitchPreferenceCompat
+            app:icon="@drawable/ic_baseline_sync_24"
+            app:key="Sync"
+            app:summary="Change how the app syncs with server"
+            app:title="Sync Automatically" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Developer">
+        <SwitchPreferenceCompat
+            app:icon="@drawable/ic_baseline_analytics_24"
+            app:key="Analytics"
+            app:summary="Anonymously send app data to our Servers"
+            app:title="Analytics" />
+    </PreferenceCategory>
+</PreferenceScreen>

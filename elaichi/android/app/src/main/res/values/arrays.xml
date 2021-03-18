@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="colors">
+        <item>@color/POMEGRANATE</item>
+        <item>@color/ALIZARIN</item>
+        <item>@color/AMETHYST</item>
+        <item>@color/WISTERIA</item>
+        <item>@color/BELIZE_HOLE</item>
+        <item>@color/PETER_RIVER</item>
+        <item>@color/TURQUOISE</item>
+        <item>@color/GREEN_SEA</item>
+        <item>@color/NEPHRITIS</item>
+        <item>@color/EMERALD</item>
+        <item>@color/SUNFLOWER</item>
+        <item>@color/ORANGE</item>
+        <item>@color/CARROT</item>
+        <item>@color/PUMPKIN</item>
+        <item>@color/WET_ASPHALT</item>
+        <item>@color/MIDNIGHT_BLUE</item>
+    </integer-array>
+    <integer-array name="rally">
+        <item>@color/rally_green_300</item>
+        <item>@color/rally_green_500</item>
+        <item>@color/rally_blue_700</item>
+    </integer-array>
+    <!--        <item>@color/CLOUDS</item>-->
+    <!--        <item>@color/SILVER</item>-->
+    <!--        <item>@color/CONCRETE</item>-->
+    <!--        <item>@color/ASBESTOS</item>-->
+</resources>

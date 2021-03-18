@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group
+        android:id="@+id/mailMenu"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/inboxFragment"
+            android:icon="@drawable/ic_baseline_move_to_inbox_24"
+            android:title="@string/inbox" />
+        <item
+            android:id="@+id/sentFragment"
+            android:icon="@drawable/ic_baseline_send_24"
+            android:title="@string/sent" />
+        <item
+            android:id="@+id/draftFragment"
+            android:icon="@drawable/ic_baseline_drafts_24"
+            android:title="@string/draft" />
+        <item
+            android:id="@+id/junkFragment"
+            android:icon="@drawable/ic_baseline_report_24"
+            android:title="@string/junk" />
+        <item
+            android:id="@+id/trashFragment"
+            android:icon="@drawable/ic_baseline_delete_24"
+            android:title="@string/trash" />
+    </group>
+    <group android:id="@+id/settingMenu">
+        <item
+            android:id="@+id/settingsFragment"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/settings" />
+    </group>
+    <group android:id="@+id/otherMenu">
+        <item
+            android:id="@+id/aboutFragment"
+            android:icon="@drawable/ic_dsc_logo"
+            android:title="@string/about_us" />
+        <item
+            android:id="@+id/privacyPolicyFragment"
+            android:icon="@drawable/ic_baseline_privacy_tip_24"
+            android:title="@string/privacy_policy" />
+        <item
+            android:id="@+id/termsAndConditionsFragment"
+            android:icon="@drawable/ic_baseline_security_24"
+            android:title="@string/terms_conditions" />
+        <item
+            android:id="@+id/newFeaturesFragment"
+            android:icon="@drawable/ic_baseline_whatshot_24"
+            android:title="@string/new_features" />
+    </group>
+</menu>
