@@ -1,0 +1,10 @@
+<style>
+    @font-face {
+        font-family: 'LibreFranklinRegular';
+        src: url("file:///android_res/font/librefranklin_regular.ttf");
+    }
+    * {
+        font-family: 'LibreFranklinRegular';
+        font-size: 4vw;
+    }
+</style>

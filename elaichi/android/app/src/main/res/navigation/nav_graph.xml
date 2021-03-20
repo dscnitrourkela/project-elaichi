@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="org.dscnitrourkela.elaichi.ui.fragments.TabFragment"
+        tools:layout="@layout/fragment_tab" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="org.dscnitrourkela.elaichi.ui.fragments.SplashFragment"
+        tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="org.dscnitrourkela.elaichi.ui.fragments.AuthFragment"
+        tools:layout="@layout/fragment_auth" />
+    <fragment
+        android:id="@+id/mailBoxFragment"
+        android:name="org.dscnitrourkela.elaichi.ui.fragments.MailBoxFragment"
+        tools:layout="@layout/fragment_mail_box" />
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="org.dscnitrourkela.elaichi.ui.fragments.WebViewFragment"
+        tools:layout="@layout/fragment_web_view">
+        <argument
+            android:name="request"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/mailItemsFragment"
+        android:name="org.dscnitrourkela.elaichi.ui.fragments.MailItemsFragment"
+        tools:layout="@layout/fragment_mail_items">
+        <argument
+            android:name="conversationId"
+            app:argType="integer" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/composeFragment"
+        android:name="org.dscnitrourkela.elaichi.ui.fragments.WebPageFragment"
+        android:label="@string/compose"
+        tools:layout="@layout/fragment_web_view">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="org.dscnitrourkela.elaichi.ui.fragments.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@xml/root_preferences" />
+
+    <action
+        android:id="@+id/action_to_authFragment"
+        app:destination="@id/authFragment" />
+    <action
+        android:id="@+id/action_to_mailBoxFragment"
+        app:destination="@id/mainFragment" />
+    <action
+        android:id="@+id/action_to_mailItemsFragment"
+        app:destination="@id/mailItemsFragment">
+        <argument
+            android:name="conversationId"
+            app:argType="integer" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </action>
+    <action
+        android:id="@+id/action_to_composeFragment"
+        app:destination="@id/composeFragment">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </action>
+    <action
+        android:id="@+id/action_to_webViewFragment"
+        app:destination="@id/webViewFragment">
+        <argument
+            android:name="request"
+            app:argType="string" />
+    </action>
+    <action
+        android:id="@+id/action_to_settingsFragment"
+        app:destination="@id/settingsFragment" />
+
+</navigation>

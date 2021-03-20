@@ -1,7 +1,7 @@
 package org.dscnitrourkela.elaichi
 
+import dagger.hilt.android.HiltAndroidApp
 import io.flutter.app.FlutterApplication
 
-class Elaichi: FlutterApplication() {
-
-}
+@HiltAndroidApp
+class Elaichi : FlutterApplication()

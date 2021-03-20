@@ -70,7 +70,7 @@ class HomeView extends StatelessWidget {
           child: IndexedStack(index: model.currentIndex, children: <Widget>[
             const FeedView(),
             const FeedView(),
-            const FeedView(),
+            OwlMailView(),
             const FeedView(),
           ]),
         ),

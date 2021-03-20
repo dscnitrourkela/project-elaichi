@@ -5,4 +5,22 @@
              Flutter draws its first frame -->
         <item name="android:windowBackground">@drawable/launch_background</item>
     </style>
+    <style name="Circular">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="RoundedSquare">
+        <item name="cornerSize">10%</item>
+    </style>
+
+    <style name="CornerCut">
+        <item name="cornerSize">10%</item>
+        <item name="cornerFamily">cut</item>
+    </style>
+
+    <style name="DiamondCut">
+        <item name="cornerSize">20%</item>
+        <item name="cornerFamily">cut</item>
+    </style>
+
 </resources>

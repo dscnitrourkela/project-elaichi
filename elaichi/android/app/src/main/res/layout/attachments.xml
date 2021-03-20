@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buttonAttachment"
+    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:padding="12dp"
+    android:textColor="@color/rally_blue_500"
+    app:icon="@drawable/ic_baseline_cloud_download_24"
+    app:iconGravity="start"
+    app:iconPadding="12dp"
+    app:iconTint="@color/rally_blue_500"
+    tools:text="Button" />
