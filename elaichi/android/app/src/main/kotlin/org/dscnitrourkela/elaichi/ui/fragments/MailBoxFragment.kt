@@ -32,7 +32,7 @@ class MailBoxFragment(private val request: String) : Fragment(R.layout.fragment_
     private var _binding: FragmentMailBoxBinding? = null
     private val binding: FragmentMailBoxBinding get() = _binding!!
 
-    private val viewModel: MailBoxViewModel by activityViewModels()
+//    private val viewModel: MailBoxViewModel by activityViewModels()
 
 //    private val args: MailBoxFragmentArgs by navArgs()
 
@@ -91,9 +91,9 @@ class MailBoxFragment(private val request: String) : Fragment(R.layout.fragment_
     private fun getJob(query: String = request) {
         job?.cancel()
         job = lifecycleScope.launch {
-            viewModel.getMails(query).collectLatest {
-                mailBoxAdapter.submitData(it)
-            }
+//            viewModel.getMails(query).collectLatest {
+//                mailBoxAdapter.submitData(it)
+//            }
         }
     }
 

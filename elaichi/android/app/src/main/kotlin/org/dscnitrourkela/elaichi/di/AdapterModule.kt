@@ -27,7 +27,8 @@ object AdapterModule {
     fun provideMailItemsAdapter(
         colors: IntArray,
         attachmentAdapter: AttachmentAdapter
-    ) = MailItemsAdapter(colors,
+    ) = MailItemsAdapter(
+        colors,
 //        attachmentAdapter
     )
 

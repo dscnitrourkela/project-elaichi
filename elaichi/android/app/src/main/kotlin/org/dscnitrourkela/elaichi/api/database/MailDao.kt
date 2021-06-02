@@ -4,8 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import org.dscnitrourkela.elaichi.api.data.Mail
 import kotlinx.coroutines.flow.Flow
+import org.dscnitrourkela.elaichi.api.data.Mail
 
 @Dao
 interface MailDao {

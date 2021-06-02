@@ -4,14 +4,14 @@ import android.annotation.SuppressLint
 import android.app.job.JobParameters
 import android.app.job.JobService
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.dscnitrourkela.elaichi.R
 import org.dscnitrourkela.elaichi.api.calls.BasicAuthInterceptor
 import org.dscnitrourkela.elaichi.api.calls.MailApi
 import org.dscnitrourkela.elaichi.api.data.Mail
 import org.dscnitrourkela.elaichi.others.ApiConstants
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject

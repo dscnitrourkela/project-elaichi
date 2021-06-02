@@ -1,8 +1,8 @@
 package org.dscnitrourkela.elaichi.api.calls
 
+import okhttp3.ResponseBody
 import org.dscnitrourkela.elaichi.api.data.Mails
 import org.dscnitrourkela.elaichi.others.ApiConstants
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

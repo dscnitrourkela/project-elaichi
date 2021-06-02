@@ -1,8 +1,8 @@
 package org.dscnitrourkela.elaichi.utils
 
+import kotlinx.coroutines.flow.*
 import org.dscnitrourkela.elaichi.others.Resource
 import org.dscnitrourkela.elaichi.others.debugLog
-import kotlinx.coroutines.flow.*
 
 inline fun <ResultType, RequestType> networkBoundResource(
     crossinline query: () -> Flow<ResultType>,

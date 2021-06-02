@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import kotlinx.coroutines.flow.first
 import org.dscnitrourkela.elaichi.R
 import org.dscnitrourkela.elaichi.api.calls.MailApi
 import org.dscnitrourkela.elaichi.api.data.Mail
 import org.dscnitrourkela.elaichi.api.database.MailDao
 import org.dscnitrourkela.elaichi.others.ApiConstants
 import org.dscnitrourkela.elaichi.utils.isInternetConnected
-import kotlinx.coroutines.flow.first
 import java.text.SimpleDateFormat
 import java.util.*
 
