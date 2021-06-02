@@ -17,14 +17,15 @@
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="org.dscnitrourkela.elaichi.ui.activities.MailActivity"
-            android:theme="@style/Theme.OwlMail">
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="org.dscnitrourkela.elaichi.ui.activities.MailActivity"
+            android:theme="@style/Theme.OwlMail">
         </activity>
 
         <service
