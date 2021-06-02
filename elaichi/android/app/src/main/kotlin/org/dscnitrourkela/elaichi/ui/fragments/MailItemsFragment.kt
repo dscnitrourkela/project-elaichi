@@ -71,9 +71,9 @@ class MailItemsFragment : Fragment(R.layout.fragment_mail_items) {
     private fun getJob() {
         job?.cancel()
         job = lifecycleScope.launch {
-            viewModel.getParsedMails(args.conversationId).collectLatest {
-                mailItemsAdapter.submitData(it)
-            }
+//            viewModel.getParsedMails(args.conversationId).collectLatest {
+//                mailItemsAdapter.submitData(it)
+//            }
         }
     }
 
