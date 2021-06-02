@@ -9,14 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.Credentials
 import org.dscnitrourkela.elaichi.NavGraphDirections
 import org.dscnitrourkela.elaichi.R
 import org.dscnitrourkela.elaichi.databinding.FragmentAuthBinding
 import org.dscnitrourkela.elaichi.others.Status
 import org.dscnitrourkela.elaichi.ui.viewmodels.AuthViewModel
-import org.dscnitrourkela.elaichi.utils.showSnackbar
-import okhttp3.Credentials
 import org.dscnitrourkela.elaichi.utils.hideKeyBoard
+import org.dscnitrourkela.elaichi.utils.showSnackbar
 import java.util.*
 
 @AndroidEntryPoint
@@ -63,7 +63,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     }
 
     private fun getCredential() {
-        val roll = binding.editTextUserRoll.text.toString().toLowerCase(Locale.ROOT)
+        val roll = binding.editTextUserRoll.text.toString().lowercase(Locale.ROOT)
         val password = binding.editTextUserPassword.text.toString()
         credential = Credentials.basic(roll, password)
     }

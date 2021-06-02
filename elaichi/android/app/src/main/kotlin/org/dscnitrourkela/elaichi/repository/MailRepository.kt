@@ -1,20 +1,29 @@
 package org.dscnitrourkela.elaichi.repository
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import org.dscnitrourkela.elaichi.R
 import org.dscnitrourkela.elaichi.api.calls.BasicAuthInterceptor
 import org.dscnitrourkela.elaichi.api.calls.MailApi
 import org.dscnitrourkela.elaichi.api.data.Mail
+import org.dscnitrourkela.elaichi.api.data.ParsedMail
 import org.dscnitrourkela.elaichi.api.database.MailDao
 import org.dscnitrourkela.elaichi.api.database.ParsedMailDao
+import org.dscnitrourkela.elaichi.others.ApiConstants
 import org.dscnitrourkela.elaichi.others.Resource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import org.dscnitrourkela.elaichi.utils.isInternetConnected
+import org.jsoup.Jsoup
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MailRepository(
     private val basicAuthInterceptor: BasicAuthInterceptor,
@@ -29,13 +38,44 @@ class MailRepository(
     fun getSearchMails(request: String) =
         getPager(SearchMailPagingSource(context, request, mailApi, mailDao))
 
-    @ExperimentalPagingApi
-    fun getParsedMails(conversationId: Int) =
-        getPager(ParsedMailPagingSource(context, conversationId, mailApi, mailDao, parsedMailDao))
+    suspend fun getParsedMails(conversationId: Int): List<ParsedMail> {
+        if (isInternetConnected(context)) {
+            insertParsedMails(conversationId)
+        }
+        return parsedMailDao.getConversationMails(conversationId).first()
+    }
 
-    @ExperimentalPagingApi
-    fun getMails(request: String) =
-        getPager(MailPagingSource(getBox(request), context, request, mailApi, mailDao))
+    @SuppressLint("SimpleDateFormat")
+    private suspend fun insertParsedMails(conversationId: Int): Flow<List<ParsedMail>> {
+        if (isInternetConnected(context)) {
+            mailDao.getMailsId(conversationId).first().forEach { id ->
+                val response = Jsoup.parse(mailApi.getParsedMail(id).string())
+                val parsedMail = ParsedMail(id, conversationId, response)
+                parsedMailDao.insertMail(parsedMail)
+            }
+        }
+        return parsedMailDao.getConversationMails(conversationId)
+    }
+
+    suspend fun getMails(request: String, month: Int): Flow<List<Mail>> {
+        if (isInternetConnected(context)) {
+            val mails =
+                mailApi.getMails(request, ApiConstants.MONTH_QUERY + month).body()?.mails
+            mails?.let { mailDao.insertMails(it) }
+        }
+        return mailDao.getMails(getBox(request))
+    }
+
+
+    @SuppressLint("SimpleDateFormat")
+    private fun getMonth(page: Int) =
+        SimpleDateFormat(context.getString(R.string.zimbra_month_format)).format(getCalender(page).time)
+
+    private fun getCalender(page: Int) = Calendar.getInstance().apply {
+        add(Calendar.MONTH, -page)
+        val firstDay = getActualMinimum(Calendar.DAY_OF_MONTH)
+        set(Calendar.DAY_OF_MONTH, firstDay)
+    }
 
     suspend fun login(): Resource<List<Mail>> = try {
         val response = mailApi.login()

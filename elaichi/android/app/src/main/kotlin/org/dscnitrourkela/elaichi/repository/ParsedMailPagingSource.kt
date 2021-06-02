@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import kotlinx.coroutines.flow.first
 import org.dscnitrourkela.elaichi.api.calls.MailApi
 import org.dscnitrourkela.elaichi.api.data.ParsedMail
 import org.dscnitrourkela.elaichi.api.database.MailDao
 import org.dscnitrourkela.elaichi.api.database.ParsedMailDao
 import org.dscnitrourkela.elaichi.utils.isInternetConnected
-import kotlinx.coroutines.flow.first
 import org.jsoup.Jsoup
 
 class ParsedMailPagingSource(

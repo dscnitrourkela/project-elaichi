@@ -3,7 +3,7 @@ package org.dscnitrourkela.elaichi.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.createDataStore
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.paging.PagingConfig
 import dagger.Module
 import dagger.Provides
@@ -26,7 +26,7 @@ object RepositoryModule {
     @ActivityRetainedScoped
     @Provides
     fun provideDataStore(@ApplicationContext context: Context) =
-        context.createDataStore(context.getString(R.string.data_store_name))
+        preferencesDataStore(name = context.getString(R.string.data_store_name)) as DataStore<Preferences>
 
     @ActivityRetainedScoped
     @Provides

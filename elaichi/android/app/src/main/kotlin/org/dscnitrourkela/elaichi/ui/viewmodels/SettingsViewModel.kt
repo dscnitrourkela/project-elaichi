@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.core.os.persistableBundleOf
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.dscnitrourkela.elaichi.R
 import org.dscnitrourkela.elaichi.repository.DataStoreRepository
 import org.dscnitrourkela.elaichi.repository.MailRepository
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

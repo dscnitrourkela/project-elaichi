@@ -11,15 +11,15 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.dscnitrourkela.elaichi.NavGraphDirections
 import org.dscnitrourkela.elaichi.R
 import org.dscnitrourkela.elaichi.adapters.MailItemsAdapter
 import org.dscnitrourkela.elaichi.databinding.FragmentMailItemsBinding
 import org.dscnitrourkela.elaichi.ui.viewmodels.MailItemsViewModel
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import org.dscnitrourkela.elaichi.utils.showSnackbar
 import javax.inject.Inject
 

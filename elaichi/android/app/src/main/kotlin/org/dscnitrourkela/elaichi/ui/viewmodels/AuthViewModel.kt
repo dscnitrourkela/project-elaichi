@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.dscnitrourkela.elaichi.R
 import org.dscnitrourkela.elaichi.api.data.Mail
 import org.dscnitrourkela.elaichi.others.Resource
 import org.dscnitrourkela.elaichi.repository.DataStoreRepository
 import org.dscnitrourkela.elaichi.repository.MailRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
