@@ -22,13 +22,21 @@ class StartupView extends StatelessWidget {
                       .copyWith(fontSize: 18.0),
                 ),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: model.changeTheme,
                 child: const Text('Change Theme'),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () => model.navigateToClubPage(),
                 child: const Text('Open club page'),
+              ),
+              ElevatedButton(
+                onPressed: () => model.startOwlMail(),
+                child: const Text('start owl mail'),
+              ),
+              ElevatedButton(
+                onPressed: () => model.getMailData(),
+                child: const Text('print mail data'),
               )
             ],
           ),
