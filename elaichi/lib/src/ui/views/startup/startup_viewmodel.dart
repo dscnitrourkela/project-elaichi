@@ -1,4 +1,5 @@
 import 'package:elaichi/core.dart';
+import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -34,5 +35,26 @@ class StartupViewModel extends BaseViewModel {
   void changeTheme() {
     _themeService.toggleDarkLightTheme();
     log.i('Changed theme to ${_themeService.isDarkMode ? 'dark' : 'light'}');
+  }
+
+  /// Opens MailActivity via platform channels
+  void startOwlMail() async {
+    final logger = getLogger('OWl-Mail-');
+    const platform = MethodChannel('org.dscnitourkela.elaichi');
+    try {
+      await platform.invokeMethod('startOwlMail');
+    } on PlatformException catch (e) {
+      logger.log(Level.info, e.toString());
+    }
+  }
+
+  void getMailData() async {
+    final logger = getLogger('Mail-data');
+    const platform = MethodChannel('org.dscnitourkela.elaichi');
+    try {
+      await platform.invokeMethod('getMailData');
+    } on PlatformException catch (e) {
+      logger.log(Level.info, e.toString());
+    }
   }
 }
