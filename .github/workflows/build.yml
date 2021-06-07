@@ -14,18 +14,26 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: "12.x"
-    - uses: subosito/flutter-action@v2
+    - uses: subosito/flutter-action@v1
       with:
-        flutter-version: "2.0.0"
+        flutter-version: "2.2.x"
         channel: "stable"
+
     - name: Get packages
       working-directory: ./elaichi
       run: flutter pub get
+
+    - name: Generate build files
+      working-directory: ./elaichi
+      run: flutter pub run build_runner build --delete-conflicting-ouptuts
+
     - name: Build APK
       working-directory: ./elaichi
       run: flutter build apk --release
+
     - name: Decode Service Account
       run: echo ${{secrets.SERVICE_ACCOUNT}} | base64 --decode > sa.json
+
     - name: Firebase App Distribution
       uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
       with:
