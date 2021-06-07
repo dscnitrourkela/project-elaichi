@@ -23,7 +23,7 @@ Future<void> main() async {
       assetLoader: const CodegenLoader(),
       supportedLocales: const <Locale>[Locale('en')],
       path: 'assets/translations',
-      child: ElaichiApp(),
+      child: const ElaichiApp(),
     ),
   );
 }

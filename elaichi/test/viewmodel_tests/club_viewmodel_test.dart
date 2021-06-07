@@ -4,10 +4,13 @@ import 'package:elaichi/datamodels.dart';
 import 'package:elaichi/services.dart';
 import 'package:elaichi/viewmodels.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:stacked_services/stacked_services.dart';
 
-import '../setup/test_helpers.dart';
+import 'club_viewmodel_test.mocks.dart';
 
+@GenerateMocks([Api, NavigationService])
 void main() {
   final clubDetails = Club(
     clubName: 'DesignTab',
@@ -52,13 +55,17 @@ void main() {
       picture: 'assets/images/dt_1.png',
       location: 'LA-117');
   final failure = Failure(1, 'test failure');
-  setUp(
+  setUpAll(
     () async {
-      await registerServices();
+      // await registerServices();
       clubDetails.events = List<Event>.generate(4, (index) => event);
+      final _mockApi = MockApi();
+      final _navigationServiceMock = MockNavigationService();
+      locator.registerSingleton<Api>(_mockApi);
+      locator.registerSingleton<NavigationService>(_navigationServiceMock);
     },
   );
-  tearDown(unregisterServices);
+  // tearDown(unregisterServices);
 
   group(
     'ClubViewmodelTest -',
@@ -126,7 +133,7 @@ void main() {
               when(
                 mockApi.fetchClub(clubId: 23),
               ).thenAnswer(
-                (_) async => throw (failure),
+                ((_) async => throw (failure)),
               );
               expect(model.club, isNull);
               await model.fetchClub(23);
@@ -178,7 +185,7 @@ void main() {
               when(
                 mockApi.getStoriesByField(clubId: 23),
               ).thenAnswer(
-                (_) async => throw (failure),
+                ((_) async => throw (failure)),
               );
               expect(model.storiesArchive, isNull);
               await model.fetchStoriesArchive(23);

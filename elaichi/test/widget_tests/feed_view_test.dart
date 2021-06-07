@@ -8,17 +8,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../setup/test_helpers.dart';
+import '../viewmodel_tests/club_viewmodel_test.mocks.dart';
 
 class FeedViewModelMock extends Mock implements FeedViewModel {}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  setUp(registerServices);
+
   group('FeedView - ', () {
     testWidgets('Constructing FeedView renders feed view correctly',
         (WidgetTester tester) async {
       final model = FeedViewModelMock();
-      final mockApi = locator<Api>();
+      final mockApi = MockApi();
+      locator.registerSingleton<Api>(mockApi);
       final stories = List<CurrentStory>.generate(
         10,
         (index) => CurrentStory(
@@ -75,13 +77,9 @@ void main() {
       when(mockApi.getCurrentStories()).thenAnswer((_) async => stories);
       await tester.runAsync(
         () async {
-          await tester.pumpWidget(
-            wrappedWidget(
-              const FeedView(),
-            ),
-          );
-          await tester.pumpAndSettle();
+          await tester.pumpWidget(wrappedWidget(const FeedView()));
           await tester.idle();
+          await tester.pumpAndSettle();
           model.setInitialised(true);
           await tester.pump();
           expect(find.byType(ElaichiAppbar), findsOneWidget);

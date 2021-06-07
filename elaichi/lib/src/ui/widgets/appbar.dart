@@ -10,16 +10,18 @@ class ElaichiAppbar extends StatelessWidget with PreferredSizeWidget {
       this.titleColor,
       this.elevation = 0.0,
       this.centerTitle = true,
-      this.appbarHeight = 64.0});
+      this.appbarHeight = 64.0,
+      Key? key})
+      : super(key: key);
 
   /// Title to show in the appbar.
-  final String title;
+  final String? title;
 
   /// Background color of the appbar.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// Font color of the title of the appbar.
-  final Color titleColor;
+  final Color? titleColor;
 
   /// Height of the appbar.
   final double appbarHeight;
@@ -34,7 +36,7 @@ class ElaichiAppbar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(
-        title,
+        title!,
         style: TextStyles.title,
       ),
       toolbarHeight: appbarHeight,

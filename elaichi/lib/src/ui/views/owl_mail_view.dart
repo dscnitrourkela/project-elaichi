@@ -16,6 +16,9 @@ void startOwlMail() async {
 
 /// Owl Mail UI.
 class OwlMailView extends StatelessWidget {
+  /// Constructor for OwlMailView.
+  const OwlMailView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Center(

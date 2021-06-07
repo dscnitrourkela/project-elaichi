@@ -235,3 +235,12 @@ android/app/google-services.json
 
 ### GraphQL Schema
 schema.graphql
+
+
+### Generated Files
+**/*.mocks.dart
+**/*.router.dart
+**/*.g.dart
+**/*.config.dart
+**/*.gr.dart
+**?*.locator.dart

@@ -1,22 +1,26 @@
 import 'package:elaichi/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockHive extends Mock implements HiveInterface {}
+import 'local_db_test.mocks.dart';
 
-class MockHiveBox extends Mock implements Box {}
+// class MockHive extends Mock implements HiveInterface {}
 
+// class MockBox extends Mock implements Box {}
+@GenerateMocks([Box, HiveInterface])
 void main() {
-  MockHive mockHive;
-  LocalDb localDb;
+  late MockHiveInterface mockHive;
+  late LocalDb localDb;
 
   setUp(() async {
-    mockHive = MockHive();
+    mockHive = MockHiveInterface();
     localDb = LocalDb();
     localDb.mockInstance = mockHive;
 
-    await localDb.initLocalDb(boxesToOpen: [LocalDbBoxes.cache]);
+    when(mockHive.openBox(any)).thenAnswer((_) async => MockBox());
+    await localDb.initLocalDb(boxesToOpen: [LocalDbBoxes.userData]);
   });
 
   group('Local DB -', () {
@@ -35,8 +39,8 @@ void main() {
     });
 
     test('Open box', () async {
-      when(mockHive.isBoxOpen(LocalDbBoxes.userData.toString()))
-          .thenAnswer((_) => false);
+      when(mockHive.isBoxOpen(any)).thenAnswer((_) => false);
+      when(mockHive.openBox(any)).thenAnswer((_) async => MockBox());
 
       await localDb.openBox(LocalDbBoxes.userData);
 
@@ -44,7 +48,7 @@ void main() {
     });
 
     test('Open-Close box', () async {
-      final _mockHiveBox = MockHiveBox();
+      final _mockHiveBox = MockBox();
 
       when(mockHive.isBoxOpen(LocalDbBoxes.userData.toString()))
           .thenAnswer((_) => false);
@@ -61,22 +65,21 @@ void main() {
 
     test('Initialize and get cache box', () async {
       // Cache box is already opened in the initialization
-      final _mockHiveBox = MockHiveBox();
-      when(mockHive.box(LocalDbBoxes.cache.toString()))
-          .thenReturn(_mockHiveBox);
+      final _mockHiveBox = MockBox();
+      when(mockHive.box(any)).thenReturn(_mockHiveBox);
 
       await localDb.getCacheBox();
 
       verify(mockHive.box(LocalDbBoxes.cache.toString()));
-      verify(_mockHiveBox.clear());
     });
 
     test('Get non-existing data', () async {
-      final _mockHiveBox = MockHiveBox();
+      final _mockHiveBox = MockBox();
       when(mockHive.isBoxOpen(LocalDbBoxes.cache.toString()))
           .thenAnswer((_) => true);
       when(mockHive.box(LocalDbBoxes.cache.toString()))
           .thenReturn(_mockHiveBox);
+      when(_mockHiveBox.get(any)).thenReturn('test');
 
       localDb.getValue(LocalDbBoxes.cache, 'Not Existing Key');
 
@@ -84,11 +87,12 @@ void main() {
     });
 
     test('Get non-existing default data', () async {
-      final _mockHiveBox = MockHiveBox();
+      final _mockHiveBox = MockBox();
       when(mockHive.isBoxOpen(LocalDbBoxes.cache.toString()))
           .thenAnswer((_) => true);
       when(mockHive.box(LocalDbBoxes.cache.toString()))
           .thenReturn(_mockHiveBox);
+      when(_mockHiveBox.get(any)).thenReturn('default');
 
       final _result = localDb.getValue(LocalDbBoxes.cache, 'Not Existing Key',
           defaultValue: 'default');
@@ -98,7 +102,7 @@ void main() {
     });
 
     test('Put data', () async {
-      final _mockHiveBox = MockHiveBox();
+      final _mockHiveBox = MockBox();
       when(mockHive.isBoxOpen(LocalDbBoxes.cache.toString()))
           .thenAnswer((_) => true);
       when(mockHive.box(LocalDbBoxes.cache.toString()))
@@ -109,7 +113,7 @@ void main() {
     });
 
     test('Delete data', () async {
-      final _mockHiveBox = MockHiveBox();
+      final _mockHiveBox = MockBox();
       when(mockHive.isBoxOpen(LocalDbBoxes.cache.toString()))
           .thenAnswer((_) => true);
       when(mockHive.box(LocalDbBoxes.cache.toString()))

@@ -8,27 +8,30 @@ import 'package:stacked/stacked.dart';
 ///
 class BottomAppBarItem extends ViewModelWidget<HomeViewModel> {
   ///
-  const BottomAppBarItem({Key key, this.icon, this.index}) : super(key: key);
+  const BottomAppBarItem({Key? key, this.icon, this.index}) : super(key: key);
 
   /// IconData to show in the BottomAppBarItem.
-  final IconData icon;
+  final IconData? icon;
 
   /// Index to set in the viewmodel.
-  final int index;
+  final int? index;
 
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
     return IconButton(
         icon: Icon(icon,
-            color: viewModel.isIndexSelected(index)
+            color: viewModel.isIndexSelected(index!)
                 ? AppColors.selectedIconColor
                 : AppColors.unselectedIconColor),
-        onPressed: () => viewModel.setIndex(index));
+        onPressed: () => viewModel.setIndex(index!));
   }
 }
 
 /// Contains the UI code for the home screen.
 class HomeView extends StatelessWidget {
+  /// Constructor for HomeView.
+  const HomeView({Key? key}) : super(key: key);
+
   final _bottomAppBarItems = const <Widget>[
     BottomAppBarItem(
       icon: AppIcons.feed,
@@ -58,20 +61,21 @@ class HomeView extends StatelessWidget {
           child: SizedBox(
             height: 64,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ..._bottomAppBarItems.toList(),
                 const CircleAvatar(foregroundColor: Colors.black)
               ],
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             ),
           ),
         ),
         body: SafeArea(
-          child: IndexedStack(index: model.currentIndex, children: <Widget>[
-            const FeedView(),
-            const FeedView(),
+          child:
+              IndexedStack(index: model.currentIndex, children: const <Widget>[
+            FeedView(),
+            FeedView(),
             OwlMailView(),
-            const FeedView(),
+            FeedView(),
           ]),
         ),
       ),

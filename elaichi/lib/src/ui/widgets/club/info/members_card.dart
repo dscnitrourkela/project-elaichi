@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// List of all members in a club
 class MemberCard extends StatelessWidget {
   /// Constructor for MemberCard
-  MemberCard({@required this.members});
+  const MemberCard({required this.members, Key? key}) : super(key: key);
 
   /// Stores list of all the members of a club
   final List<AccessLevel> members;
@@ -46,7 +46,7 @@ class MemberCard extends StatelessWidget {
                 : Container(),
             const Spacer(),
             Text(
-              members[index].relation ?? ' ',
+              members[index].relation,
               style:
                   TextStyles.subtitle.copyWith(color: AppColors.overlineText),
             )

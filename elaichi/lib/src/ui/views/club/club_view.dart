@@ -6,6 +6,9 @@ import 'package:stacked/stacked.dart';
 
 /// Page for info about individual clubs
 class ClubView extends StatefulWidget {
+  /// Constructor for ClubView.
+  const ClubView({Key? key}) : super(key: key);
+
   @override
   _ClubViewState createState() => _ClubViewState();
 }
@@ -14,7 +17,7 @@ class _ClubViewState extends State<ClubView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ClubViewModel>.reactive(
-      builder: (BuildContext context, ClubViewModel model, Widget child) {
+      builder: (BuildContext context, ClubViewModel model, Widget? child) {
         return SafeArea(
           child: Scaffold(
             backgroundColor: AppColors.lightScaffoldBackground,
@@ -22,7 +25,7 @@ class _ClubViewState extends State<ClubView> {
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : model.club.fold(
+                : model.club!.fold(
                     (failure) => Text(failure.toString()),
                     (club) => DefaultTabController(
                       length: 3,
@@ -42,8 +45,11 @@ class _ClubViewState extends State<ClubView> {
                                     Container(
                                       width: double.maxFinite,
                                       height: double.maxFinite,
-                                      color: Color(int.parse(
-                                          '0xff${club.theme.backgroundColor}')),
+                                      color: Color(
+                                        int.parse(
+                                          '0xff${club.theme!.backgroundColor}',
+                                        ),
+                                      ),
                                     ),
                                     Padding(
                                       padding:
@@ -53,13 +59,14 @@ class _ClubViewState extends State<ClubView> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Center(
-                                            child: Image.asset(club.theme.logo),
+                                            child:
+                                                Image.asset(club.theme!.logo),
                                           ),
                                           Text(
                                             club.clubName,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline6
+                                                .headline6!
                                                 .copyWith(color: Colors.white),
                                           )
                                         ],
@@ -86,7 +93,7 @@ class _ClubViewState extends State<ClubView> {
                             ),
                           ];
                         },
-                        body: TabBarView(
+                        body: const TabBarView(
                           children: [
                             AllEvents(),
                             StoriesArchive(),

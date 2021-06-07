@@ -11,12 +11,15 @@ import 'signup_viewmodel.dart';
 ///
 /// Designed as complete screen page
 class SignupView extends StatelessWidget {
+  /// Constructor for SignUpView.
+  const SignupView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignupViewModel>.reactive(
       viewModelBuilder: () => SignupViewModel(),
       onModelReady: (SignupViewModel model) => model.init(context),
-      builder: (BuildContext context, SignupViewModel model, Widget child) {
+      builder: (BuildContext context, SignupViewModel model, Widget? child) {
         return SafeArea(
           child: Scaffold(
             backgroundColor: context.theme.scaffoldBackgroundColor,
@@ -42,7 +45,7 @@ class SignupView extends StatelessWidget {
         child: ListView(
           shrinkWrap: true,
           children: [
-            LogoAppName(scale: 1.5),
+            const LogoAppName(scale: 1.5),
             Padding(
               padding: EdgeInsets.only(bottom: constraints.maxHeight * 0.1),
             ),
@@ -60,7 +63,7 @@ class SignupView extends StatelessWidget {
         SizedBox(
           height: constraints.maxHeight,
           width: constraints.maxWidth / 2,
-          child: Center(
+          child: const Center(
             child: LogoAppName(scale: 1.5),
           ),
         ),
@@ -112,7 +115,7 @@ class SignupView extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           'Username already taken',
-          style: context.textTheme.overline
+          style: context.textTheme.overline!
               .copyWith(color: AppColors.errorBorderColor),
         ),
       );

@@ -10,9 +10,9 @@ abstract class Api {
 
   /// Provides interface for getting club info for a club.
   /// Corresponding [clubId] should be passed to fetch data for that club.
-  Future<Club> fetchClub({int clubId});
+  Future<Club> fetchClub({int? clubId});
 
   /// Provides interface for getting club stories archive.
   /// [clubId] is passed to storiesByField to get club wise stories.
-  Future<List<CurrentStory>> getStoriesByField({int clubId});
+  Future<List<CurrentStory>> getStoriesByField({int? clubId});
 }
