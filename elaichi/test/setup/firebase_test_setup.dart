@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 typedef Callback = Function(MethodCall call);
 
-void setupFirebaseAuthMocks([Callback /*?*/ customHandlers]) {
+void setupFirebaseAuthMocks([Callback? customHandlers]) {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   MethodChannelFirebase.channel.setMockMethodCallHandler((call) async {
@@ -25,17 +25,19 @@ void setupFirebaseAuthMocks([Callback /*?*/ customHandlers]) {
     }
 
     if (call.method == 'Firebase#initializeApp') {
+      final arguments = call.arguments as Map;
       return {
-        'name': call.arguments['appName'],
-        'options': call.arguments['options'],
+        'name': arguments['appName'],
+        'options': arguments['options'],
         'pluginConstants': {},
       };
     }
 
     if (call.method == 'Auth#registerChangeListeners') {
+      final arguments = call.arguments as Map;
       return {
-        'name': call.arguments['appName'],
-        'options': call.arguments['options'],
+        'name': arguments['appName'],
+        'options': arguments['options'],
         'pluginConstants': {},
       };
     }

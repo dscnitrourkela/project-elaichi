@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 /// Card for displaying different items on club info tab in club details
 class InfoCard extends StatelessWidget {
   /// Constructor for InfoCard
-  InfoCard({@required this.title, @required this.child});
+  const InfoCard({required this.title, required this.child, Key? key})
+      : super(key: key);
 
   /// The heading of the card
   final String title;

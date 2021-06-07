@@ -1,18 +1,12 @@
 import 'package:elaichi/viewmodels.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../setup/test_helpers.dart';
-
 void main() {
-  setUp(() async {
-    await registerServices();
-  });
-  tearDown(unregisterServices);
   group('HomeViewmodelTest -', () {
     group('title -', () {
       test('When constructed, title should not be null', () {
         final model = HomeViewModel();
-        expect(model.title != null, true);
+        expect(model.title, isNotNull);
       });
     });
   });

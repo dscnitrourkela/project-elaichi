@@ -26,11 +26,9 @@ extension SizeDisplaySize on Size {
 class Display {
   /// Constructor for `Display`.
   Display({this.size});
-  
+
   /// Holds the value of the display size.
-  final DisplaySize size;
-
-
+  final DisplaySize? size;
 }
 
 /// Extension method to get `Display` instance from `MediaQueryData`.

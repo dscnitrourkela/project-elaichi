@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 /// Widget for current week's Monday Morning articles.
 class ThisWeek extends StatelessWidget {
   /// Constructor for ThisWeek.
-  const ThisWeek({Key key}) : super(key: key);
+  const ThisWeek({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +60,16 @@ class ThisWeek extends StatelessWidget {
                                   'https://i.ibb.co/R9NBqPr/sanitizer.jpg',
                               fit: BoxFit.cover),
                           Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.black.withOpacity(1),
+                                  Colors.black.withOpacity(0)
+                                ],
+                                begin: FractionalOffset.bottomLeft,
+                                end: FractionalOffset.topRight,
+                              ),
+                            ),
                             child: Align(
                               alignment: const Alignment(0.0, 0.7),
                               child: Text(
@@ -69,16 +79,6 @@ A Noble Breakthrough: NIT Rourkela produces alcohol-based sanitizers''',
                                 style: TextStyles.heading2.copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.black.withOpacity(1),
-                                  Colors.black.withOpacity(0)
-                                ],
-                                begin: FractionalOffset.bottomLeft,
-                                end: FractionalOffset.topRight,
                               ),
                             ),
                           ),

@@ -7,17 +7,17 @@ import 'package:flutter/material.dart';
 class StoryComponent extends StatelessWidget {
   /// Constructor for [StoryComponent].
   const StoryComponent(
-      {Key key,
+      {Key? key,
       this.story,
-      @required this.height,
-      @required this.width,
+      required this.height,
+      required this.width,
       this.viewedBorderColor = Colors.white,
       this.unviewedBorderColor = Colors.blue,
       this.borderWidth = 2.0})
       : super(key: key);
 
   /// Data for [StoryComponent].
-  final CurrentStory story;
+  final CurrentStory? story;
 
   /// Height of the circle container of [StoryComponent].
   final double height;

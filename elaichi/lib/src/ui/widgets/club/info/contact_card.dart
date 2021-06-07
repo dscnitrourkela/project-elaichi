@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// Contact info card for postholders of a club
 class ContactCard extends StatelessWidget {
   /// Constructor for ContactCard
-  ContactCard({@required this.contacts});
+  const ContactCard({required this.contacts, Key? key}) : super(key: key);
 
   /// List of all the contacts for a particular club
   final List<ContactInfo> contacts;

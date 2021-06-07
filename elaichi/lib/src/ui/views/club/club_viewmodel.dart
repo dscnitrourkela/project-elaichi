@@ -7,16 +7,16 @@ import 'package:stacked_services/stacked_services.dart';
 
 /// ViewModel for Club details.
 class ClubViewModel extends BaseViewModel {
-  final _apiService = locator<Api>();
-  Either<Failure, Club> _club;
-  Either<Failure, List<CurrentStory>> _storiesArchive;
-  final NavigationService _navigationService = locator<NavigationService>();
+  final Api? _apiService = locator<Api>();
+  Either<Failure, Club>? _club;
+  Either<Failure, List<CurrentStory>>? _storiesArchive;
+  final NavigationService? _navigationService = locator<NavigationService>();
 
   /// Returns the object [Club] of current club
-  Either<Failure, Club> get club => _club;
+  Either<Failure, Club>? get club => _club;
 
   /// Returns a [List<CurrentStory>] of current club
-  Either<Failure, List<CurrentStory>> get storiesArchive => _storiesArchive;
+  Either<Failure, List<CurrentStory>>? get storiesArchive => _storiesArchive;
 
   /// Calls the required functions to initialise the viewmodel
   Future<void> initialise(int clubId) async {
@@ -27,7 +27,7 @@ class ClubViewModel extends BaseViewModel {
 
   /// Fetch data for the corresponding club id.
   Future<void> fetchClub(int clubId) async {
-    await Task(() => _apiService.fetchClub(clubId: clubId))
+    await Task(() => _apiService!.fetchClub(clubId: clubId))
         .attempt()
         .map((either) => either.leftMap((obj) => obj as Failure))
         .run()
@@ -41,7 +41,7 @@ class ClubViewModel extends BaseViewModel {
 
   /// Fetches present and past stories of a given [clubId]
   Future<void> fetchStoriesArchive(int clubId) async {
-    await Task(() => _apiService.getStoriesByField(clubId: clubId))
+    await Task(() => _apiService!.getStoriesByField(clubId: clubId))
         .attempt()
         .map((either) => either.leftMap((obj) => obj as Failure))
         .run()
@@ -55,7 +55,7 @@ class ClubViewModel extends BaseViewModel {
 
   /// Opens a screen showing details of a single event
   void openEvent(Event event) {
-    _navigationService.navigateTo(
+    _navigationService!.navigateTo(
       Routes.viewEvent,
       arguments: ViewEventArguments(event: event),
     );

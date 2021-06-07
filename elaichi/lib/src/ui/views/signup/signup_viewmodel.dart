@@ -14,8 +14,8 @@ import 'signup_view.dart';
 /// ViewModel for [SignupView]
 class SignupViewModel extends BaseViewModel {
   /// Input field that takes username
-  StringInputField _usernameInputField;
-  StringInputField _mobileInputField;
+  late StringInputField _usernameInputField;
+  late StringInputField _mobileInputField;
 
   /// Used by view to show error
   bool usernameErrorState = false;
@@ -30,11 +30,11 @@ class SignupViewModel extends BaseViewModel {
     _usernameInputField = StringInputField(
         context: context,
         hint: LocaleKeys.username.tr(),
-        onChangeFunction: (String value) {
+        onChangeFunction: (String? value) {
           // TODO: Apply async validator for username check
           // Refer: https://stackoverflow.com/questions/52584520/flutter-firebase-validation-of-form-field-inputs
           usernameErrorState = false;
-          if (value.length <= 4) {
+          if (value!.length <= 4) {
             return 'Must be more than 4 letters';
           }
           return null;
@@ -101,12 +101,12 @@ class SignupViewModel extends BaseViewModel {
         locator<NavigationService>().clearStackAndShow(Routes.homeView);
       });
     } catch (error) {
-      final snackbarService = locator<SnackbarService>();
+      final SnackbarService? snackbarService = locator<SnackbarService>();
       if (error is GraphQLException) {
-        snackbarService.showSnackbar(
+        snackbarService!.showSnackbar(
             title: 'Unexpected error', message: 'Error Code: ${error.code}');
       } else {
-        snackbarService.showSnackbar(message: 'Unexpected error');
+        snackbarService!.showSnackbar(message: 'Unexpected error');
       }
     }
   }

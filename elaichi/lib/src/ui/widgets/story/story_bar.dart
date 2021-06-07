@@ -7,7 +7,7 @@ import 'package:stacked/stacked.dart';
 /// Story bar displayed in FeedView.
 class StoryBar extends ViewModelWidget<FeedViewModel> {
   /// Constructor for [StoryBar].
-  const StoryBar({Key key}) : super(key: key);
+  const StoryBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, FeedViewModel viewModel) {
@@ -15,7 +15,7 @@ class StoryBar extends ViewModelWidget<FeedViewModel> {
       aspectRatio: 411 / 120,
       child: Container(
         color: context.theme.colorScheme.surface,
-        child: viewModel.currentStories.fold(
+        child: viewModel.currentStories!.fold(
           (failure) => Text(failure.toString()),
           (currentStories) => ListView.builder(
             scrollDirection: Axis.horizontal,

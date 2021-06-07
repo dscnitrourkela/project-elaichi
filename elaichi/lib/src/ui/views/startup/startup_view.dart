@@ -4,6 +4,8 @@ import 'package:stacked/stacked.dart';
 
 ///Contains the UI code for Startup screen.
 class StartupView extends StatelessWidget {
+  /// Constructor for StartupView.
+  const StartupView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     //final log = getLogger("StartupView");
@@ -18,7 +20,7 @@ class StartupView extends StatelessWidget {
                   model.title,
                   style: Theme.of(context)
                       .textTheme
-                      .headline6
+                      .headline6!
                       .copyWith(fontSize: 18.0),
                 ),
               ),

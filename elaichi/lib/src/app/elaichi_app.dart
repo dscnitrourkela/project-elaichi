@@ -1,16 +1,43 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elaichi/core.dart';
-
-import 'package:elaichi/src/generated/locale_keys.g.dart';
+import 'package:elaichi/services.dart';
 import 'package:elaichi/theme.dart';
+import 'package:elaichi/views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 /// The main app.
+@StackedApp(
+  routes: [
+    MaterialRoute(page: StartupView, initial: true),
+    MaterialRoute(page: HomeView),
+    MaterialRoute(page: ClubView),
+    MaterialRoute(page: ViewEvent),
+    MaterialRoute(page: SigninView),
+    MaterialRoute(page: SignupView)
+  ],
+  dependencies: [
+    LazySingleton(classType: FakeApi, asType: Api, environments: {Env.dev}),
+    LazySingleton(classType: Auth),
+    Singleton(classType: GraphQL),
+    Singleton(classType: LocalDb),
+    LazySingleton(classType: NavigationService),
+    LazySingleton(classType: DialogService),
+    LazySingleton(classType: SnackbarService),
+    LazySingleton(
+      classType: ThemeService,
+      resolveUsing: ThemeService.getInstance,
+    ),
+  ],
+)
 class ElaichiApp extends StatelessWidget {
+  /// Constructor for ElaichiApp.
+  const ElaichiApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -23,7 +50,7 @@ class ElaichiApp extends StatelessWidget {
         child: MaterialApp(
           builder: (context, child) => ScrollConfiguration(
             behavior: NoOverScrollBehavior(),
-            child: child,
+            child: child!,
           ),
           debugShowCheckedModeBanner: false,
           localizationsDelegates: context.localizationDelegates,
@@ -32,8 +59,8 @@ class ElaichiApp extends StatelessWidget {
           darkTheme: darkTheme,
           themeMode: themeMode,
           initialRoute: Routes.startupView,
-          onGenerateRoute: AppRouter().onGenerateRoute,
-          navigatorKey: locator<NavigationService>().navigatorKey,
+          onGenerateRoute: StackedRouter().onGenerateRoute,
+          navigatorKey: StackedService.navigatorKey,
         ),
       ),
     );

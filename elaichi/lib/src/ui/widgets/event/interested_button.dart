@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 
 /// Button to tap to show interest in an event
 class InterestedButton extends StatelessWidget {
-
   /// Constructor for [InterestedButton]
-  InterestedButton({@required this.onTap});
+  const InterestedButton({required this.onTap, Key? key}) : super(key: key);
 
   /// Callback when the button is tapped
   final VoidCallback onTap;

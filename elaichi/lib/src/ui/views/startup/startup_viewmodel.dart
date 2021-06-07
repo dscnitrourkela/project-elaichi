@@ -11,30 +11,30 @@ class StartupViewModel extends BaseViewModel {
   final Logger log = getLogger('StartupViewModel');
   final String _title = 'Click on the forward button to view the home page';
 
-  final ThemeService _themeService = locator<ThemeService>();
+  final ThemeService? _themeService = locator<ThemeService>();
 
   /// Returns [_title] value.
   String get title => _title;
 
-  final NavigationService _navigationService = locator<NavigationService>();
+  final NavigationService? _navigationService = locator<NavigationService>();
 
   /// Navigates to HomeView.
   Future navigateToHome() async {
     log.i('Navigate to Home');
     //await _navigationService.navigateTo(Routes.homeView);
-    await _navigationService.navigateTo(Routes.signinView);
+    await _navigationService!.navigateTo(Routes.signinView);
   }
 
- /// Navigate to ClubView.
+  /// Navigate to ClubView.
   Future navigateToClubPage() async {
     log.i('Navigate to Clubs page');
-    await _navigationService.navigateTo(Routes.clubView);
+    await _navigationService!.navigateTo(Routes.clubView);
   }
 
   /// Toggles between light and dark themes.
   void changeTheme() {
-    _themeService.toggleDarkLightTheme();
-    log.i('Changed theme to ${_themeService.isDarkMode ? 'dark' : 'light'}');
+    _themeService!.toggleDarkLightTheme();
+    log.i('Changed theme to ${_themeService!.isDarkMode ? 'dark' : 'light'}');
   }
 
   /// Opens MailActivity via platform channels

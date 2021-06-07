@@ -1,6 +1,5 @@
-import 'package:elaichi/src/app/extensions.dart';
-import 'package:elaichi/src/ui/widgets/app_name.dart';
-import 'package:elaichi/src/ui/widgets/buttons.dart';
+import 'package:elaichi/core.dart';
+import 'package:elaichi/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,7 +10,7 @@ import 'signin_viewmodel.dart';
 /// Signin page.
 class SigninView extends StatelessWidget {
   /// Constructor for [SigninView]
-  const SigninView({Key key}) : super(key: key);
+  const SigninView({Key? key}) : super(key: key);
 
   final String _googleLogoFileUri = 'assets/images/google_logo.svg';
   final String _plantLogoFileUri = 'assets/images/plants.png';
@@ -20,7 +19,7 @@ class SigninView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SigninViewModel>.reactive(
         viewModelBuilder: () => SigninViewModel(),
-        builder: (BuildContext context, SigninViewModel model, Widget child) {
+        builder: (BuildContext context, SigninViewModel model, Widget? child) {
           return SafeArea(
             child: Scaffold(
               backgroundColor: context.theme.scaffoldBackgroundColor,
@@ -49,7 +48,7 @@ class SigninView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                LogoAppName(),
+                const LogoAppName(),
                 Padding(
                   padding: EdgeInsets.only(bottom: constraints.maxHeight * 0.1),
                 ),
@@ -84,7 +83,7 @@ class SigninView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              LogoAppName(),
+              const LogoAppName(),
               Padding(
                 padding: EdgeInsets.only(bottom: constraints.maxHeight * 0.2),
               ),

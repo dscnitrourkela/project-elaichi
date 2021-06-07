@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const appName = 'appName';
   static const fullAppName = 'fullAppName';
   static const forNitr = 'forNitr';
@@ -15,5 +15,4 @@ abstract class  LocaleKeys {
   static const timeTable = 'timeTable';
   static const openCalendar = 'openCalendar';
   static const thisWeekTitle = 'thisWeekTitle';
-
 }

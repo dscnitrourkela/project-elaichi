@@ -1,25 +1,30 @@
 import 'dart:io';
 
+import 'package:elaichi/core.dart';
 import 'package:elaichi/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql/client.dart';
+import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../setup/http_helpers.dart';
-import '../setup/test_helpers.dart';
+import 'graphql_test.mocks.dart';
 
-class MockHttpClient extends Mock implements http.Client {}
-
+@GenerateMocks([http.Client, Box, LocalDb])
 void main() {
   final _graphQL = GraphQL();
-  final _mockHttpClient = MockHttpClient();
+  final _mockHttpClient = MockClient();
 
-  setUp(() async {
-    await registerServices();
+  setUpAll(() async {
+    final _mockLocalDb = MockLocalDb();
+    locator.registerSingleton<LocalDb>(_mockLocalDb);
 
     final directory = await Directory.systemTemp.createTemp();
     final store = await HiveStore.open(path: directory.path);
+
+    when(_mockLocalDb.getCacheBox()).thenAnswer((_) async => MockBox());
 
     await _graphQL.initGraphQL(
         getToken: () async {
@@ -28,15 +33,11 @@ void main() {
         httpClient: _mockHttpClient,
         hiveStore: store);
   });
-  tearDown(() {
-    unregisterServices();
-    _graphQL.removeClient();
-  });
+  tearDown(_graphQL.removeClient);
 
   group('AuthUser test -', () {
     test('Simple request', () async {
       when(_mockHttpClient.send(any)).thenAnswer((_) async {
-        // ignore: unnecessary_raw_strings
         return response(body: r'''
           {
             "data": {
@@ -55,10 +56,10 @@ void main() {
         ''');
       });
 
-      final authUser = await _graphQL.authUser(
-          name: 'test 1', email: 'a@b.c', displayPicture: 'hsuih.jpg');
+      final authUser = await (_graphQL.authUser(
+          name: 'test 1', email: 'a@b.c', displayPicture: 'hsuih.jpg'));
 
-      expect(authUser.name, 'test 1');
+      expect(authUser?.name, 'test 1');
     });
 
     test('Invalid token', () async {
@@ -110,12 +111,12 @@ void main() {
           }
         ''');
       });
-      final authUser = await _graphQL.updateUser(
-          name: 'test 1', username: 'test 3', displayPictureUrl: null);
+      final authUser = await (_graphQL.updateUser(
+          name: 'test 1', username: 'test 3', displayPictureUrl: null));
 
-      expect(authUser.name, 'test 1');
-      expect(authUser.username, 'test 3');
-      expect(authUser.displayPicture, null);
+      expect(authUser?.name, 'test 1');
+      expect(authUser?.username, 'test 3');
+      expect(authUser?.displayPicture, null);
     });
 
     test('Valid token', () async {

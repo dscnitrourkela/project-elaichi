@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 
 /// Returns AppName in two line format.
 class TwoLineAppName extends StatelessWidget {
+  /// Constructor for TwoLineAppName.
+  TwoLineAppName({Key? key}) : super(key: key);
+
   /// Return app's name, ie. Avenue
   final String _appNamePart1 = LocaleKeys.appName.tr();
 
@@ -24,7 +27,7 @@ class TwoLineAppName extends StatelessWidget {
         ),
         Text(
           _appNamePart2,
-          style: context.textTheme.subtitle1.copyWith(color: Colors.grey),
+          style: context.textTheme.subtitle1!.copyWith(color: Colors.grey),
         ),
       ],
     );
@@ -33,6 +36,9 @@ class TwoLineAppName extends StatelessWidget {
 
 /// Returns AppName in one line format, ie. "Avenue"
 class OneLineAppName extends StatelessWidget {
+  /// Constructor for OneLineAppName
+  OneLineAppName({Key? key}) : super(key: key);
+
   /// Return app's name, ie. Avenue
   final String _appNamePart1 = LocaleKeys.appName.tr();
 
@@ -48,8 +54,8 @@ class OneLineAppName extends StatelessWidget {
 /// Return combination of AppLogo and AppName, with (24 * scale) pixels gap in
 /// between.
 class LogoAppName extends StatelessWidget {
-  /// Constructor
-  LogoAppName({this.scale = 1.0});
+  /// Constructor for LogoAppName.
+  const LogoAppName({this.scale = 1.0, Key? key}) : super(key: key);
 
   /// Scale of logo and gap. Text size is constant.
   final double scale;

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 class ScheduleComponent extends StatelessWidget {
   /// Constructor for [ScheduleComponent].
   const ScheduleComponent(
-      {Key key,
-      @required this.time,
-      @required this.identifier,
-      @required this.title,
-      @required this.contact})
+      {Key? key,
+      required this.time,
+      required this.identifier,
+      required this.title,
+      required this.contact})
       : super(key: key);
 
   /// Time of the event.

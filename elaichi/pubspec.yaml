@@ -4,74 +4,68 @@ description: Campus Guide for NIT Rourkela
 version: 0.0.1+1
 
 environment:
-  sdk: '>=2.10.0 <3.0.0'
-
-# dependency_overrides:
-# analyzer: "0.39.14"
+  sdk: '>=2.12.0 <3.0.0'
 dependency_overrides:
-  intl: ^0.17.0-nullsafety.2
+  get_it: ^7.0.0
 
 dependencies:
   flutter:
     sdk: flutter
-  
+
   # Image caching
-  cached_network_image: ^2.5.0
+  cached_network_image: ^3.0.0
 
   # Logging
-  logger: ^0.9.2
+  logger: ^1.0.0
 
   # State management
-  stacked: ^1.6.0
+  stacked: ^2.1.6
 
   # Navigation
-  auto_route: ^0.6.6
-  stacked_services: ^0.5.0
+  stacked_services: ^0.8.6
 
   # Inversion of control(dependency injection)
-  get_it: ^5.0.3
-  injectable: ^1.0.5
-  dartz: ^0.9.1
+  get_it: ^7.0.0
+  dartz: ^0.10.0-nullsafety.2
 
   # Themeing
-  stacked_themes: ^0.2.2+1
-  google_fonts: ^1.1.1
-  tinycolor: ^1.0.3
+  stacked_themes: ^0.3.2
+  google_fonts: ^2.1.0
 
   # Localisation
-  easy_localization: ^2.0.0
+  easy_localization: ^3.0.0
 
   # Local database
-  hive: ^1.4.3
-  hive_flutter: ^0.3.1
+  hive: ^2.0.4
+  hive_flutter: ^1.0.0
 
   # GraphQL client library
-  graphql: ^4.0.0-beta.6
+  graphql: ^5.0.0-nullsafety.5
 
   # Authentications
-  firebase_core: ^0.5.3
-  firebase_auth: ^0.18.4+1
-  google_sign_in: ^4.5.6
+  firebase_core: ^1.2.0
+  firebase_auth: ^1.2.0
+  google_sign_in: ^5.0.4
 
   # Overlay UI
-  flutter_portal: ^0.3.0
+  flutter_portal: ^0.4.0
   # Load SVG (Logos)
-  flutter_svg: ^0.19.3
+  flutter_svg: ^0.22.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  lint: ^1.2.0
-  mockito: ^4.1.1
-  very_good_analysis: ^1.0.0
-  test_coverage: ^0.5.0
+  lint: ^1.5.3
+  mockito: ^5.0.9
+  very_good_analysis: ^2.1.1
 
-  build_runner: ^1.10.3
-  auto_route_generator: ^0.6.6
-  injectable_generator: ^1.0.6
+  build_runner: ^2.0.4
+  auto_route_generator: ^2.1.0
+  injectable_generator: ^1.4.1
 
   # Local database
-  hive_generator: ^0.7.1
+  hive_generator: ^1.1.0
+  stacked_generator: ^0.4.6
 
 flutter:
   uses-material-design: true
@@ -82,4 +76,4 @@ flutter:
   fonts:
     - family: Avenue
       fonts:
-        - asset: assets/icons/avenue_icons.ttf  
+        - asset: assets/icons/avenue_icons.ttf

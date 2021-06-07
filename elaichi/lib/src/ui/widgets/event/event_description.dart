@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 /// Event description card shown in individual event screen
 class EventDescription extends StatelessWidget {
   /// Constructor for EventDescription
-  EventDescription(this._event);
+  const EventDescription(this._event, {Key? key}) : super(key: key);
 
-  final Event _event;
+  final Event? _event;
   @override
   Widget build(BuildContext context) {
     return InfoCard(
@@ -17,7 +17,7 @@ class EventDescription extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            _event.otherDescription,
+            _event!.otherDescription,
             style: TextStyles.body1,
           ),
           const Padding(
@@ -32,15 +32,15 @@ class EventDescription extends StatelessWidget {
             children: [
               _dataholder(
                 'Date',
-                DateFormat.MMMd().format(_event.startDateTime),
+                DateFormat.MMMd().format(_event!.startDateTime!),
               ),
               _dataholder(
                 'Venue',
-                _event.location,
+                _event!.location,
               ),
               _dataholder(
                 'Time',
-                DateFormat.j().format(_event.startDateTime),
+                DateFormat.j().format(_event!.startDateTime!),
               ),
             ],
           )
