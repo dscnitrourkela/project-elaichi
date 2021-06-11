@@ -40,7 +40,7 @@ class StartupViewModel extends BaseViewModel {
   /// Opens MailActivity via platform channels
   void startOwlMail() async {
     final logger = getLogger('OWl-Mail-');
-    const platform = MethodChannel('org.dscnitourkela.elaichi');
+    const platform = MethodChannel('org.dscnitrourkela.elaichi');
     try {
       await platform.invokeMethod('startOwlMail');
     } on PlatformException catch (e) {
@@ -50,7 +50,7 @@ class StartupViewModel extends BaseViewModel {
 
   void getMailData() async {
     final logger = getLogger('Mail-data');
-    const platform = MethodChannel('org.dscnitourkela.elaichi');
+    const platform = MethodChannel('org.dscnitrourkela.elaichi');
     try {
       await platform.invokeMethod('getMailData');
     } on PlatformException catch (e) {

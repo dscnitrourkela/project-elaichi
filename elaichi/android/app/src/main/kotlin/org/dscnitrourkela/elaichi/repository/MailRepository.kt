@@ -20,6 +20,7 @@ import org.dscnitrourkela.elaichi.api.database.MailDao
 import org.dscnitrourkela.elaichi.api.database.ParsedMailDao
 import org.dscnitrourkela.elaichi.others.ApiConstants
 import org.dscnitrourkela.elaichi.others.Resource
+import org.dscnitrourkela.elaichi.others.debugLog
 import org.dscnitrourkela.elaichi.utils.isInternetConnected
 import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
@@ -57,13 +58,16 @@ class MailRepository(
         return parsedMailDao.getConversationMails(conversationId)
     }
 
-    suspend fun getMails(request: String, month: Int): Flow<List<Mail>> {
+    suspend fun getMails(request: String, month: Int): List<Mail> {
         if (isInternetConnected(context)) {
             val mails =
-                mailApi.getMails(request, ApiConstants.MONTH_QUERY + month).body()?.mails
-            mails?.let { mailDao.insertMails(it) }
+                mailApi.getMails(request, ApiConstants.MONTH_QUERY + getMonth(month)).body()?.mails
+            mails?.let {
+                mailDao.insertMails(it)
+                debugLog(it)
+            }
         }
-        return mailDao.getMails(getBox(request))
+        return mailDao.getMails(getBox(request)).first()
     }
 
 

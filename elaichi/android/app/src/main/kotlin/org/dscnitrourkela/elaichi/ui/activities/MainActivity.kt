@@ -11,7 +11,6 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugins.GeneratedPluginRegistrant
 import kotlinx.coroutines.launch
-import org.dscnitrourkela.elaichi.R
 import org.dscnitrourkela.elaichi.others.Status
 import org.dscnitrourkela.elaichi.others.debugLog
 import org.dscnitrourkela.elaichi.ui.viewmodels.MainViewModel
@@ -23,7 +22,7 @@ class MainActivity : FlutterFragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        subscribeToObservers()
+//        subscribeToObservers()
     }
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
@@ -31,27 +30,36 @@ class MainActivity : FlutterFragmentActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL)
             .setMethodCallHandler { call, result ->
                 if (call.method.equals("startOwlMail", ignoreCase = true)) {
-                    login()
+                    login().invokeOnCompletion {
+                        debugLog("Mails")
+                        getMails().invokeOnCompletion {
+                            debugLog(viewModel.mails)
+                        }
+                    }
                 }
                 if (call.method.equals("getMails", ignoreCase = true)) {
-                    val list = getMails()
-                    debugLog(list)
-                    result.success(list?.size)
+                    debugLog("clicked")
+                    getMails().invokeOnCompletion {
+                        debugLog(viewModel.mails)
+                    }
+                    result.success(viewModel.mails.size)
                 }
                 if (call.method.equals("getParsedMails", ignoreCase = true)) {
-                    result.success(getParsedMails(0))
-                    //TODO pass the conversation id to this
+                    getParsedMails(0)
                 }
             }
     }
 
     //TODO Change the hardcoded email password
-    private fun login(roll: String = "Roll no", password: String = "Password.") =
+    private fun login(roll: String = "", password: String = "") =
         lifecycleScope.launch {
             val result = viewModel.login(roll, password)
+            debugLog(result)
             when (result.status) {
-                Status.SUCCESS ->
-                    viewModel.saveLogIn()
+                Status.SUCCESS -> {
+//                    viewModel.saveLogIn()
+                    debugLog("Logged In")
+                }
                 Status.ERROR -> {
                     //TODO Show Error
                 }
@@ -61,22 +69,22 @@ class MainActivity : FlutterFragmentActivity() {
             }
         }
 
-    private fun getMails() = viewModel.getMails(getString(R.string.inbox), 0)
+    private fun getMails() = viewModel.getMails("inbox", 0)
 
     private fun getParsedMails(conversationId: Int) = viewModel.getParsedMails(conversationId)
 
-    private fun subscribeToObservers() {
-        viewModel.isLoggedIn.observe(this, {
-            it?.let {
-                when (it) {
-                    true -> {
-                    }//Login data exist, naviagate to inbox
-                    false -> {
-                    }//Show Login Dialog
-                }
-            }
-        })
-    }
+//    private fun subscribeToObservers() {
+//        viewModel.isLoggedIn.observe(this, {
+//            it?.let {
+//                when (it) {
+//                    true -> {
+//                    }//Login data exist, naviagate to inbox
+//                    false -> {
+//                    }//Show Login Dialog
+//                }
+//            }
+//        })
+//    }
 
     companion object {
         private const val CHANNEL = "org.dscnitrourkela.elaichi"
