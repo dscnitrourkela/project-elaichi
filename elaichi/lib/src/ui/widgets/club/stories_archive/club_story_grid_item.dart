@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 /// Individual item shown in story archive grid in club view.
 class ClubStoryGridItem extends StatelessWidget {
   // ignore: public_member_api_docs
-  ClubStoryGridItem({@required this.story});
-  
+  const ClubStoryGridItem({required this.story, Key? key}) : super(key: key);
+
   /// Story to generate the item for.
   final CurrentStory story;
 
@@ -33,10 +33,10 @@ class ClubStoryGridItem extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
-                  DateFormat.MMMd().format(story.createdAt),
+                  DateFormat.MMMd().format(story.createdAt!),
                   style: Theme.of(context)
                       .textTheme
-                      .overline
+                      .overline!
                       .copyWith(fontWeight: FontWeight.w700),
                 ),
               ),

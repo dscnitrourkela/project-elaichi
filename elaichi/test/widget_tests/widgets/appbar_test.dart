@@ -13,6 +13,8 @@ void main() {
         centerTitle: true,
         appbarHeight: 80,
       )));
+      await tester.idle();
+      await tester.pumpAndSettle();
       expect(find.text(title), findsOneWidget);
     },
   );

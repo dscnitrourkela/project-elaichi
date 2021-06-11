@@ -11,7 +11,7 @@ import 'package:stacked/stacked.dart';
 class ScheduleCard extends ViewModelWidget<FeedViewModel> {
   /// Constructor for [ScheduleCard].
   const ScheduleCard({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class ScheduleCard extends ViewModelWidget<FeedViewModel> {
                           style: TextStyles.heading1),
                     ),
                   ),
-                  FlatButton.icon(
+                  TextButton.icon(
                     onPressed: () {},
                     label: Text(LocaleKeys.openCalendar.tr(),
                         style:
@@ -52,7 +52,7 @@ class ScheduleCard extends ViewModelWidget<FeedViewModel> {
               flex: 3,
               child: Padding(
                 padding: const EdgeInsets.only(left: 20.0),
-                child: viewModel.scheduleEvents.fold(
+                child: viewModel.scheduleEvents!.fold(
                   (failure) => Text(failure.toString()),
                   (scheduleEvents) => ListView.builder(
                     shrinkWrap: true,

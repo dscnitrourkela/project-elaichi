@@ -6,20 +6,22 @@ import 'package:stacked/stacked.dart';
 
 /// Show club info for a particular club
 class ClubInfo extends StatelessWidget {
+  /// Constructor for ClubInfo.
+  const ClubInfo({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ClubViewModel>.reactive(
-      builder: (BuildContext context, ClubViewModel viewModel, Widget child) {
+      builder: (BuildContext context, ClubViewModel viewModel, Widget? child) {
         return viewModel.isBusy
             ? const CircularProgressIndicator()
-            : viewModel.club.fold(
+            : viewModel.club!.fold(
                 (failure) => Text(failure.toString()),
                 (club) => ListView(
                   children: [
                     InfoCard(
                       title: 'Description',
                       child: Text(
-                        club.description,
+                        club.description!,
                         style: TextStyles.body1,
                       ),
                     ),

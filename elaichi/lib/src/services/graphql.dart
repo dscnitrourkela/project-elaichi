@@ -1,17 +1,17 @@
+import 'dart:async';
+
 import 'package:elaichi/core.dart';
 import 'package:elaichi/datamodels.dart';
 import 'package:elaichi/services.dart';
-import 'package:flutter/foundation.dart';
 import 'package:graphql/client.dart';
 import 'package:http/http.dart' as http;
-import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
 /// Throw any exception from [GraphQL] class.
 class GraphQLException implements Exception {
   /// Constructor of [GraphQLException]
   GraphQLException(
-      {@required this.code, @required this.message, this.description});
+      {required this.code, required this.message, this.description});
 
   /// Unique codes for referring error
   String code;
@@ -20,17 +20,16 @@ class GraphQLException implements Exception {
   String message;
 
   /// Complete description of Exception.
-  String description;
+  String? description;
 }
 
 /// Service which handles all `GraphQL` operations including `query` and
 /// `mutation`.
 ///
 /// Initialize the client using [initGraphQL] before using.
-@singleton
 class GraphQL {
   final Logger _logger = getLogger('GraphQL');
-  GraphQLClient _client;
+  GraphQLClient? _client;
 
   /// Initializes class variables for further operations
   ///
@@ -38,9 +37,9 @@ class GraphQL {
   ///
   /// IMPORTANT: Pass hiveStore only from test files, don't use in production.
   Future<void> initGraphQL(
-      {@required Function getToken,
-      http.Client httpClient,
-      HiveStore hiveStore}) async {
+      {required FutureOr<String?> Function() getToken,
+      http.Client? httpClient,
+      HiveStore? hiveStore}) async {
     final httpLink =
         HttpLink(Strings.GRAPHQL_URL, httpClient: httpClient, defaultHeaders: {
       'bypass-key': 'application/bson',
@@ -52,7 +51,7 @@ class GraphQL {
 
     final link = authLink.concat(httpLink);
 
-    HiveStore _hiveStore;
+    HiveStore? _hiveStore;
     if (hiveStore != null) {
       final localDb = locator<LocalDb>();
       await localDb.initLocalDb(boxesToOpen: [LocalDbBoxes.cache]);
@@ -73,26 +72,26 @@ class GraphQL {
 
   void _handleErrors(QueryResult result) {
     if (result.hasException) {
-      if (result.exception.linkException != null) {
-        _logger.e('HTTP Error', result.exception.linkException.toString());
+      if (result.exception!.linkException != null) {
+        _logger.e('HTTP Error', result.exception!.linkException.toString());
         throw GraphQLException(
             code: Strings.HTTP_ERROR, message: 'Failed to connect to server!');
-      } else if (result.exception.graphqlErrors != null) {
-        _logger.e('GraphQl error', result.exception.graphqlErrors.toString());
+      } else if (result.exception?.graphqlErrors != null) {
+        _logger.e('GraphQl error', result.exception!.graphqlErrors.toString());
         throw GraphQLException(
             code: Strings.GRAPHQL_ERROR,
             message:
                 // ignore: lines_longer_than_80_chars
-                'Server response: ${result.exception.graphqlErrors[0].extensions['code']}');
+                'Server response: ${result.exception!.graphqlErrors[0].extensions!['code']}');
       }
     }
   }
 
   /// Authorize or sign in the user at graphql endpoint.
-  Future<AuthUser> authUser(
-      {@required String name,
-      @required String email,
-      @required String displayPicture}) async {
+  Future<AuthUser?> authUser(
+      {required String? name,
+      required String? email,
+      required String? displayPicture}) async {
     const mutation = r'''
     mutation AuthUsers($userInput: UserInputType) {
       __typename
@@ -128,17 +127,16 @@ class GraphQL {
     );
 
     try {
-      final result = await _client.mutate(options);
+      final result = await _client!.mutate(options);
 
       _handleErrors(result);
-      return Data.fromJson(result.data).authUser;
+      return Data.fromJson(result.data!).authUser;
     } catch (error) {
       _logger.e('GraphQl error', error);
       throw GraphQLException(
-          code: Strings.HTTP_ERROR,
-          message:
-              // ignore: lines_longer_than_80_chars
-              'HTTP Error: $error');
+        code: Strings.HTTP_ERROR,
+        message: 'HTTP Error: $error',
+      );
     }
   }
 
@@ -146,13 +144,13 @@ class GraphQL {
   ///
   /// *Important:* Don't use directly, use [Auth.updateUser()] to update user
   /// info.
-  Future<AuthUser> updateUser(
-      {String name,
-      String username,
-      String mobile,
-      String instituteId,
-      String emergencyContact,
-      String displayPictureUrl}) async {
+  Future<AuthUser?> updateUser(
+      {String? name,
+      String? username,
+      String? mobile,
+      String? instituteId,
+      String? emergencyContact,
+      String? displayPictureUrl}) async {
     const mutation = r'''
     mutation UpdateUsers($userInput: UserInputType) {
       __typename
@@ -192,10 +190,10 @@ class GraphQL {
     );
 
     try {
-      final result = await _client.mutate(options);
+      final result = await _client!.mutate(options);
 
       _handleErrors(result);
-      return Data.fromJson(result.data).authUser;
+      return Data.fromJson(result.data!).authUser;
     } catch (error) {
       _logger.e('GraphQl error', error);
       throw GraphQLException(
@@ -210,7 +208,7 @@ class GraphQL {
   ///
   /// Throws error with error code:
   /// - **NOT_EXISTING_USER** - If username doesn't exists.
-  Future<AuthUser> getUserByUsername({@required String username}) async {
+  Future<AuthUser?> getUserByUsername({required String username}) async {
     const query = r'''
     query getUser($username: String) {
       __typename
@@ -241,11 +239,11 @@ class GraphQL {
         fetchPolicy: FetchPolicy.networkOnly);
 
     try {
-      final result = await _client.query(options);
+      final result = await _client!.query(options);
 
       _handleErrors(result);
-      if (result.data['userByUsername'] != null) {
-        return AuthUser.fromJson(result.data['userByUsername']);
+      if (result.data!['userByUsername'] != null) {
+        return AuthUser.fromJson(result.data!['userByUsername']);
       } else {
         return null;
       }

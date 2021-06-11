@@ -10,3 +10,5 @@ analyzer:
     - lib/src/app/locator.config.dart
     - lib/src/generated/codegen_loader.g.dart
     - lib/src/generated/locale_keys.g.dart
+    - lib/src/app/elaichi_app.router.dart
+    - lib/src/app/elaichi_app.locator.dart

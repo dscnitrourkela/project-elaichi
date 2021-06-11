@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 /// Button to add new event for a club. Only shown to admins of a club
 class AddButton extends StatelessWidget {
   // ignore: public_member_api_docs
-  AddButton({@required this.title, @required this.onPressed});
+  const AddButton({required this.title, required this.onPressed, Key? key})
+      : super(key: key);
 
   ///Title of the button
   final String title;
@@ -16,12 +17,13 @@ class AddButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 22),
-      child: FlatButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        minWidth: double.maxFinite,
-        color: AppColors.newEventBtn,
+      child: TextButton(
+        style: TextButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            minimumSize: const Size.fromWidth(double.maxFinite),
+            backgroundColor: AppColors.newEventBtn),
         onPressed: onPressed,
         child: Center(
           child: Padding(

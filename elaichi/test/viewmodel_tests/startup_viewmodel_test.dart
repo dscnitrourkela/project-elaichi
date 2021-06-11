@@ -1,40 +1,22 @@
-
-import 'package:elaichi/viewmodels.dart';
 import 'package:elaichi/core.dart';
+import 'package:elaichi/viewmodels.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-
-import '../setup/test_helpers.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 
 void main() {
-  setUp(() async {
-    await registerServices();
+  setUpAll(() {
+    final themeService = ThemeService();
+    final navService = NavigationService();
+    locator.registerSingleton(themeService);
+    locator.registerSingleton(navService);
   });
-  tearDown(unregisterServices);
+
   group('StartupViewmodelTest -', () {
     group('title - ', () {
       test('When constructed title should not be null', () {
         final model = StartupViewModel();
-        expect(model.title != null, true);
-      });
-    });
-
-    group('navigateToHome -', () {
-      test('When called, should navigate to HomeView', () async {
-        final navigation = getAndRegisterNavigationServiceMock();
-        final model = StartupViewModel();
-        await model.navigateToHome();
-        verify(navigation.navigateTo(Routes.homeView));
-      });
-    });
-
-    group('changeTheme -', () {
-      test('When called, should call ThemeManager.changeTheme', () {
-        final themeService = getAndRegisterThemeServiceMock();
-        final model = StartupViewModel()
-          ..changeTheme();
-        expect(model.isBusy, false);
-        verify(themeService.toggleDarkLightTheme());
+        expect(model.title, isNotNull);
       });
     });
   });

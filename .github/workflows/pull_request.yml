@@ -16,25 +16,35 @@ jobs:
         with:
           flutter-version: "2.0.0"
           channel: "stable"
+
       - name: Get packages
         working-directory: ./elaichi
         run: flutter pub get
+
+      - name: Generate build files.
+        working-directory: ./elaichi
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
       - name: Analyze project
         working-directory: ./elaichi
         run: flutter analyze
         continue-on-error: true
+
       - name: Run tests & generate coverage info
         working-directory: ./elaichi
         run: flutter test --coverage
+
       - name: Prints lcov.info
         working-directory: ./elaichi
         run: cat ./coverage/lcov.info
+
       - name: Exclude elaichi/lib/app from coverage report
         uses: ChicagoFlutter/lcov-cop@v1.0.2
         with:
           path: "./elaichi/coverage/lcov.info"
           min_coverage: 0
           exclude: "lib/app/*"
+
       - name: Upload report to codecov
         uses: codecov/codecov-action@v1.0.12
         with:

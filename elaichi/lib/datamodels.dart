@@ -1,4 +1,7 @@
 /// Datamodels for GraphQL API responses.
 library datamodels;
 
-export 'package:elaichi/src/datamodels/datamodels.dart';
+export 'src/datamodels/api_models.dart';
+export 'src/datamodels/auth_user.dart';
+export 'src/datamodels/data.dart';
+export 'src/datamodels/user.dart';

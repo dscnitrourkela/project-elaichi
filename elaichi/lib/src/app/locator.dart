@@ -1,18 +1,15 @@
 import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
-
-import 'locator.config.dart';
 
 /// Global [GetIt] instance used to inject dependencies.
-final GetIt locator = GetIt.instance;
+//final GetIt locator = GetIt.instance;
 
 /// [setupLocator()] is called before runApp() to register the dependencies with
 /// [GetIt] and make them available for injection.
-@injectableInit
-void setupLocator({String environment}) => $initGetIt(
-      locator,
-      environment: environment,
-    );
+//@injectableInit
+//void setupLocator({String? environment}) => $initGetIt(
+//locator,
+//environment: environment,
+//);
 
 /// Custom class to define configurations for multiple environemnts.
 abstract class Env {

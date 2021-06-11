@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 /// Widget for upcoming events UI.
 class EventCard extends StatelessWidget {
   /// Constructor for EventCard.
-  const EventCard({Key key}) : super(key: key);
+  const EventCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,16 @@ class EventCard extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                           Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.black.withOpacity(1),
+                                  Colors.black.withOpacity(0)
+                                ],
+                                begin: FractionalOffset.bottomCenter,
+                                end: FractionalOffset.topCenter,
+                              ),
+                            ),
                             child: Align(
                               alignment: const Alignment(0.0, 0.7),
                               child: Column(
@@ -64,16 +74,6 @@ class EventCard extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 10),
                                 ],
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.black.withOpacity(1),
-                                  Colors.black.withOpacity(0)
-                                ],
-                                begin: FractionalOffset.bottomCenter,
-                                end: FractionalOffset.topCenter,
                               ),
                             ),
                           ),

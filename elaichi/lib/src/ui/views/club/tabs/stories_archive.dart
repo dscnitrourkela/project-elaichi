@@ -1,24 +1,26 @@
-import 'package:elaichi/src/ui/views/club/club_viewmodel.dart';
+import 'package:elaichi/viewmodels.dart';
 import 'package:elaichi/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 /// Current and past stories shown in clubs page
 class StoriesArchive extends StatelessWidget {
+  /// Constructor for StoriesArchive.
+  const StoriesArchive({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ClubViewModel>.reactive(
-      builder: (BuildContext context, ClubViewModel viewModel, Widget child) {
+      builder: (BuildContext context, ClubViewModel viewModel, Widget? child) {
         return viewModel.isBusy
             ? const CircularProgressIndicator()
-            : viewModel.storiesArchive.fold(
+            : viewModel.storiesArchive!.fold(
                 (failure) => Text(failure.toString()),
                 (stories) => Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     AddButton(
                       title: 'Add New Story',
-                      onPressed: () => null,
+                      onPressed: () {},
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -30,10 +32,12 @@ class StoriesArchive extends StatelessWidget {
                             ),
                           ),
                           Text('2021',
-                              style:
-                                  Theme.of(context).textTheme.overline.copyWith(
-                                        color: Colors.grey,
-                                      )),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .overline!
+                                  .copyWith(
+                                    color: Colors.grey,
+                                  )),
                           const Expanded(
                             child: Divider(
                               color: Colors.black26,

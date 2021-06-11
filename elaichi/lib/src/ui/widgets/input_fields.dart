@@ -8,7 +8,7 @@ import 'package:elaichi/src/app/extensions.dart';
 class StringInputField {
   /// Constructor
   StringInputField(
-      {@required this.context,
+      {required this.context,
       this.onChangeFunction,
       this.hint,
       this.textInputAction = TextInputAction.done,
@@ -24,13 +24,13 @@ class StringInputField {
   /// Text that appearsas hint
   ///
   /// Not required but recommended
-  final String hint;
+  final String? hint;
 
   /// Build context for required for text styling.
   final BuildContext context;
 
   /// After every change this function s being called.
-  final String Function(String) onChangeFunction;
+  final String? Function(String?)? onChangeFunction;
 
   /// Controller for the input field.
   final TextEditingController controller = TextEditingController();
@@ -40,10 +40,10 @@ class StringInputField {
 
   /// OnSubmit action. Define only with the textInputAction as
   /// `TextInputAction.done`.
-  final Function() onSubmit;
+  final Function()? onSubmit;
 
   /// Shows error decoration if true;
-  bool Function() isErrorState;
+  bool Function()? isErrorState;
 
   /// Returns UI, that can be used to in rendering.
   Widget getUi() {
@@ -62,7 +62,7 @@ class StringInputField {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onEditingComplete: onSubmit,
       decoration: InputDecoration(
-        enabledBorder: isErrorState()
+        enabledBorder: isErrorState!()
             ? const OutlineInputBorder(
                 borderRadius: Measurements.inputRadius,
                 borderSide: Measurements.errorBorderSide,

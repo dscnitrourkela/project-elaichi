@@ -15,30 +15,28 @@ class AuthUser {
         id: json['id'],
         name: json['name'],
         username: json['username'],
-        gmailAuthMail:
-            json['gmailAuthMail'],
+        gmailAuthMail: json['gmailAuthMail'],
         mobile: json['mobile'],
-        displayPicture:
-            json['displayPicture'],
+        displayPicture: json['displayPicture'],
       );
-  
+
   /// ID of the auth user.
-  String id;
+  String? id;
 
   /// Name of the auth user.
-  String name;
+  String? name;
 
   /// Username of the auth user.
-  String username;
+  String? username;
 
   /// Gmail ID of the auth user.
-  String gmailAuthMail;
+  String? gmailAuthMail;
 
   /// Mobile number of the auth user.
   dynamic mobile;
 
   /// Display picture URL of the auth user.
-  String displayPicture;
+  String? displayPicture;
 
   /// Converts [AuthUser] object into JSON.
   Map<String, dynamic> toJson() => {

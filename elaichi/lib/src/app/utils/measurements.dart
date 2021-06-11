@@ -1,4 +1,4 @@
-import 'package:elaichi/src/app/theme/colors.dart';
+import 'package:elaichi/theme.dart';
 import 'package:flutter/material.dart';
 
 /// Measurements like padding, borderRadius, etc.

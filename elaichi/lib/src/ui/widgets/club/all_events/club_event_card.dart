@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 /// object as a required parameter.
 class ClubEventItemCard extends StatelessWidget {
   /// Constructor for ClubEventItemCard
-  const ClubEventItemCard({@required this.event, @required this.onTap});
+  const ClubEventItemCard({required this.event, required this.onTap, Key? key})
+      : super(key: key);
 
   /// Stores [Event] object of which details are to be shown
   final Event event;
@@ -61,7 +62,7 @@ class ClubEventItemCard extends StatelessWidget {
                                   letterSpacing: 0.2),
                             ),
                             Text(
-                              '''${DateFormat.MMMd().format(event.startDateTime)} • ${event.location}''',
+                              '''${DateFormat.MMMd().format(event.startDateTime!)} • ${event.location}''',
                               style: TextStyles.body2.copyWith(
                                 color: AppColors.cardHeader60,
                               ),

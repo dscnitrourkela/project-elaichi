@@ -7,13 +7,13 @@ import 'package:elaichi/viewmodels.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../setup/test_helpers.dart';
+import 'club_viewmodel_test.mocks.dart';
 
 void main() {
-  setUp(() async {
-    await registerServices();
+  setUpAll(() async {
+    final _mockApi = MockApi();
+    locator.registerSingleton<Api>(_mockApi);
   });
-  tearDown(unregisterServices);
   group('FeedViewmodel Test - ', () {
     test(
       'Intialise -',
@@ -84,7 +84,7 @@ void main() {
           final mockApi = locator<Api>();
           final failure = Failure(1, 'test failure');
           when(mockApi.getCurrentStories())
-              .thenAnswer((_) async => throw (failure));
+              .thenAnswer(((_) async => throw (failure)));
           expect(model.currentStories, isNull);
           await model.fetchCurrentStories();
           verify(mockApi.getCurrentStories());

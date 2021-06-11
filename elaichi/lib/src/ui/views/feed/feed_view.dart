@@ -8,17 +8,17 @@ import 'package:stacked/stacked.dart';
 /// Landing feed page.
 class FeedView extends StatelessWidget {
   /// Constructor for [FeedView].
-  const FeedView({Key key, this.model}) : super(key: key);
+  const FeedView({Key? key, this.model}) : super(key: key);
 
   /// Optional viewModel instance, used for tests.
-  final FeedViewModel model;
+  final FeedViewModel? model;
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<FeedViewModel>.reactive(
       viewModelBuilder: () => model ?? FeedViewModel(),
       onModelReady: (FeedViewModel model) async => await model.initialise(),
-      builder: (BuildContext context, FeedViewModel model, Widget child) {
+      builder: (BuildContext context, FeedViewModel model, Widget? child) {
         return SafeArea(
           child: Scaffold(
             appBar: ElaichiAppbar(
@@ -28,14 +28,14 @@ class FeedView extends StatelessWidget {
             body: model.isBusy
                 ? const Center(child: CircularProgressIndicator())
                 : ListView(
-                    children: <Widget>[
-                      const StoryBar(),
-                      const SizedBox(
+                    children: const <Widget>[
+                      StoryBar(),
+                      SizedBox(
                         height: 7.52,
                       ),
-                      const ScheduleCard(),
-                      const ThisWeek(),
-                      const EventCard(),
+                      ScheduleCard(),
+                      ThisWeek(),
+                      EventCard(),
                     ],
                   ),
           ),

@@ -1,4 +1,4 @@
-import 'package:elaichi/datamodels.dart';
+import 'auth_user.dart';
 
 /// Datamodel for `data` response in graphql JSON response
 class Data {
@@ -19,10 +19,10 @@ class Data {
   }
 
   /// Current user of the app.
-  AuthUser authUser;
+  AuthUser? authUser;
 
   /// Converts [Data] objcect to JSON.
   Map<String, dynamic> toJson() => {
-        'authUser': authUser == null ? null : authUser.toJson(),
+        'authUser': authUser == null ? null : authUser!.toJson(),
       };
 }
