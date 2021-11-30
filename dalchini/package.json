@@ -9,10 +9,11 @@
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "stylelint-config-recommended": "^6.0.0",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-rewired start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -53,7 +54,12 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-testing-library": "^5.0.0",
     "prettier": "^2.5.0",
+    "react-app-rewired": "^2.1.8",
     "react-scripts": "4.0.3",
+    "stylelint": "^14.1.0",
+    "stylelint-config-standard": "^24.0.0",
+    "stylelint-scss": "^4.0.0",
+    "stylelint-webpack-plugin": "^3.1.0",
     "typescript": "^4.5.2"
   }
 }

@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700;900&display=swap');
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
@@ -22,7 +22,7 @@ h5,
 h6,
 p,
 text {
-  font-family: 'Wotfard';
+  font-family: Poppins, -apple-system, sans-serif;
 }
 
 html,
@@ -132,27 +132,32 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
   background: var(--color-background);
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -166,11 +171,13 @@ table {
 ::-webkit-scrollbar {
   width: 5px;
 }
+
 /* Track */
 ::-webkit-scrollbar-track {
   background: var(--color-background-primary);
   height: 100px;
 }
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--color-background-secondary);
