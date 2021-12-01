@@ -1,0 +1,41 @@
+name: Netlify Avenue Production Deploy
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  netlify-prod-deploy:
+    name: Netlify Avenue Production Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
+      - name: Setup Node v16
+        uses: actions/setup-node@master
+        with:
+          node-version: '16.x'
+
+      - name: Install Dependencies
+        run: cd dalchini && yarn install --frozen-lockfile
+
+      - name: Build React WebApp
+        run: cd dalchini && yarn build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './build'
+          production-branch: main
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: Production Deploy - ${{ github.event.release.name }}
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+          overwrites-pull-request-comment: false
+          enable-commit-status: false
+
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

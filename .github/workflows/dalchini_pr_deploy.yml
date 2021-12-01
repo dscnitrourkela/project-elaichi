@@ -1,0 +1,37 @@
+name: Netlify PR Preview Deploy
+
+on:
+  pull_request:
+    paths:
+      - 'dalchini/**'
+
+jobs:
+  netlify-pr-preview:
+    name: Netlify PR Preview Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
+      - name: Setup Node v16
+        uses: actions/setup-node@master
+        with:
+          node-version: '16.x'
+
+      - name: Install Dependencies
+        run: cd dalchini && yarn install --frozen-lockfile
+
+      - name: Build React WebApp
+        run: cd dalchini && yarn build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './build'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy preview for {{github.event.pull_request.title}} is ready ✅'
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
