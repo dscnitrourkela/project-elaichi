@@ -5,6 +5,12 @@
 </p>
 <h1 align="center">Project Elaichi</h1>
 
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
 Project developed and maintained by [Google Developer Students Club, NIT Rourkela](https://dscnitrourkela.org/)
 ![DSC NIT Rourkela Cover Image](./RepoCover.png)
 
@@ -62,3 +68,17 @@ This project adheres to the Contributor Covenant code of conduct. By participati
 
 <!-- ## License
 This project is open source software licensed under the [MIT LICENSE](LICENSE.md).-->
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/dscnitrourkela/project-elaichi?style=for-the-badge
+[contributors-url]: https://github.com/dscnitrourkela/project-elaichi/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/dscnitrourkela/project-elaichi?style=for-the-badge
+[forks-url]: https://github.com/dscnitrourkela/project-elaichi/network/members
+[stars-shield]: https://img.shields.io/github/stars/dscnitrourkela/project-elaichi?style=for-the-badge
+[stars-url]: https://github.com/dscnitrourkela/project-elaichi/stargazers
+[issues-shield]: https://img.shields.io/github/issues/dscnitrourkela/project-elaichi?style=for-the-badge
+[issues-url]: https://github.com/dscnitrourkela/project-elaichi/issues
+[license-shield]: https://img.shields.io/github/license/dscnitrourkela/project-elaichi?style=for-the-badge
+[license-url]: https://github.com/dscnitrourkela/project-elaichi/blob/main/LICENSE
