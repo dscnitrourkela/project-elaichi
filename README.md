@@ -1,55 +1,29 @@
 [![Starware](https://img.shields.io/badge/Starware-⭐-black?labelColor=f9b00d)](https://github.com/zepfietje/starware)
 
-# project-elaichi
+<p align="center">
+  <img src="./logo.png" alt="Logo" width="130">
+</p>
+<h1 align="center">Project Elaichi</h1>
 
-[![codecov](https://codecov.io/gh/dscnitrourkela/project-elaichi/branch/development/graph/badge.svg)](https://codecov.io/gh/dscnitrourkela/project-elaichi)
-
-## DSC NIT Rourkela
-
-Project developed and maintained by [DSC NIT Rourkela](https://dscnitrourkela.org/)
+Project developed and maintained by [Google Developer Students Club, NIT Rourkela](https://dscnitrourkela.org/)
 ![DSC NIT Rourkela Cover Image](./RepoCover.png)
 
 ## Description
 
-This is the development repository for campus guide at NIT Rourkela.
+This is the development repository for campus guide at NIT Rourkela. It is an mobile application for the students of NIT Rourkela for easing their stay at the college. It has a variety of features like:
 
-## Installation Guide
+- **Campus Guide**: It provides the list of all the events in the campus at any point of time.
+- **Campus News Updates**: It provides the latest Monday Morning Articles about the campus for all lines of interest.
+- **Zimbra Mail**: You can access your zimbra mail account from the app without the hassle of logging in to the zimbra server everytime.
+- **Central Time Tabe**: It provides the time table of the students of NIT Rourkela, decoded and accessible with ease.
 
-1. **Install Flutter on your machine**
-
-    Install flutter by selecting the operating system on which you are installing Flutter: [Flutter installation tutorial](https://flutter.dev/docs/get-started/install)
-
-    To check if you have flutter installed along wtih proper necesarry SDKs installed
-    run `flutter doctor`
-
-2. **Fork and Clone the Repo**
-
-    Fork the repo by clicking on the **Fork** button on the top right corner of the page.
-    To clone this repository, run `git clone https://github.com/dscnitrourkela/project-elaichi.git`
-    Then run `cd project-maple`
-
-3. **Get Packages**
-
-     Make sure you are in the `project-elaichi/elaichi` directory
-
-    - From the terminal: Run `flutter pub get`.
-
-      _OR_
-    - From Android Studio/IntelliJ: **Click Packages get** in the action ribbon at the top of `pubspec.yaml`.
-    - From VS Code: **Click Get Packages** located in right side of the action ribbon at the top of `pubspec.yaml`.
-
-    After the above steps, you should see the following: `pub get suceessful with exit code 0`
-
-## Run the App
-
-  On terminal:
-
-- Check that an Android device is running by running `flutter devices`. If none are shown, follow the device-specific instructions on the [Install](https://flutter.dev/docs/get-started/install) page for your OS.
-- Run the app with the following command: `flutter run`
-- If you want to contibute and have an idea, open an issue, and mention the admin for getting the required file.
-
-Congrats ! You just ran the _Project Elaichi_.
-Feel free to use the application in whatever way possible and make sure to send us feedbacks and suggest changes.
+<p float="center">
+  <img src="./screenshots/splash.png" width="19.5%" />
+  <img src="./screenshots/home.png" width="19.5%" />
+  <img src="./screenshots/webmail.png" width="19.5%" />
+  <img src="./screenshots/events.png" width="19.5%" />
+  <img src="./screenshots/movies.png" width="19.5%" />
+</p>
 
 ## Contributing
 
@@ -69,6 +43,8 @@ Please refer to the project's style and contribution guidelines for submitting p
 NOTE 1: Please abide by the [Contributing Guidelines](./CONTRIBUTING.md).
 
 NOTE 2: Please abide by the [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+NOTE 3: For setting up the project in your local system, please refer to the [Elaichi Setup Instructions](./elaichi/README.md) and [Dalchini Setup Instructions](./dalchini/README.md).
 
 We are open to suggestions, bug-reporting and features! We would love to see you contribute but make sure you follow our [Contributing Guidelines](CONTRIBUTING.md).
 
