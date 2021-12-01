@@ -1,6 +1,12 @@
 {
   "name": "dalchini",
   "version": "0.1.0",
+  "description": "Webview for the zimbra mail app integrated in Avenue App, NIT Rourkela",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dscnitrourkela/project-elaichi"
+  },
+  "author": "dsc-nitrourkela",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
