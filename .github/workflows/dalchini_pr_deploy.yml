@@ -19,10 +19,12 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
+        with:
+          ref: ${{github.event.pull_request.head.sha}}
 
       - name: Setup Node v16
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v2
         with:
           node-version: '16.x'
 
@@ -37,7 +39,7 @@ jobs:
         with:
           publish-dir: './build'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deploy preview for {{github.event.pull_request.title}} is ready ✅'
+          deploy-message: 'Deploy preview for ${{github.event.pull_request.title}} is ready ✅'
           enable-pull-request-comment: true
           enable-commit-comment: false
         env:
