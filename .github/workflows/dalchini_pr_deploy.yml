@@ -1,7 +1,7 @@
 name: Netlify PR Preview Deploy
 
 on:
-  pull_request:
+  pull_request_target:
     paths:
       - 'dalchini/**'
 
@@ -9,6 +9,14 @@ jobs:
   netlify-pr-preview:
     name: Netlify PR Preview Deploy
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: dalchini
+
+    if: contains(github.event.pull_request.labels.*.name, 'safe-to-build')
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@master
@@ -19,10 +27,10 @@ jobs:
           node-version: '16.x'
 
       - name: Install Dependencies
-        run: cd dalchini && yarn install --frozen-lockfile
+        run: yarn install
 
       - name: Build React WebApp
-        run: cd dalchini && yarn build
+        run: yarn build
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1

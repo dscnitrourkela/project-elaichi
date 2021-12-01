@@ -8,6 +8,11 @@ jobs:
   netlify-prod-deploy:
     name: Netlify Avenue Production Deploy
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: dalchini
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@master
@@ -18,7 +23,7 @@ jobs:
           node-version: '16.x'
 
       - name: Install Dependencies
-        run: cd dalchini && yarn install --frozen-lockfile
+        run: cd dalchini && yarn install
 
       - name: Build React WebApp
         run: cd dalchini && yarn build
