@@ -27,6 +27,7 @@ dependencies:
   google_sign_in: ^5.2.1
   firebase_auth: ^3.2.0
   firebase_core: ^1.10.0
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -39,3 +40,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: Avenue
+      fonts:
+        - asset: assets/icons/avenue_icons.ttf
+
