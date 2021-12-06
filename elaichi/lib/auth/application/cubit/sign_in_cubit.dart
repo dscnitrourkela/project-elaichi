@@ -14,7 +14,7 @@ class SignInCubit extends Cubit<SignInState> {
 
   final AuthenticationRepository _authenticationRepository;
 
-  ///
+  /// Signs in with google and manipulates the state.
   Future<void> signInWithGoogle() async {
     emit(const SignInState.loading());
     try {
