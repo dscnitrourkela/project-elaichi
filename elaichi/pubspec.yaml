@@ -20,8 +20,6 @@ dependencies:
 
   # Code Generation
   freezed_annotation: ^1.0.0
-  get_it: ^7.2.0
-  injectable: ^1.5.0
   json_annotation: ^4.3.0
   dartz: ^0.10.0
 
@@ -36,7 +34,6 @@ dev_dependencies:
   auto_route_generator: ^3.1.0
   build_runner: ^2.1.5
   freezed: ^1.0.0
-  injectable_generator: ^1.5.2
   very_good_analysis: ^2.4.0
 
 
