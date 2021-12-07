@@ -1,0 +1,36 @@
+:root {
+  --color-primary: red;
+  --color-secondary: green;
+  --color-tertiary: blue;
+
+  /* Text Colors */
+  --color-text-primary: black;
+  --color-text-secondary: grey;
+
+  /* Background Colors */
+  --color-background-primary: rgb(221, 221, 221);
+  --color-background-secondary: rgb(170, 170, 170);
+}
+
+html {
+  overflow-x: hidden;
+
+  /* General */
+  --font-weight-bold: 500;
+  --font-weight-regular: 400;
+  --font-weight-light: 300;
+  --font-family: 'Poppins', -apple-system, sans-serif;
+  --reach-dialog: 1;
+  --reach-tabs: 1;
+
+  /* Transitions */
+  --transition-time: 350ms;
+  --transition-type: ease;
+  --transition-delay: 0s;
+  --transition: all 350ms ease 0s;
+
+  /* Widths */
+  --max-width: 70em;
+  --max-width-bleed: 90%;
+  --max-width-narrow: 50em;
+}

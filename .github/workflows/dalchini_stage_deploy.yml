@@ -1,0 +1,46 @@
+name: Firebase Staging Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dalchini/**'
+
+jobs:
+  netlify-stage-deploy:
+    name: Netlify Staging Deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: dalchini
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Install Dependencies
+        run:  yarn install
+
+      - name: Build React WebApp
+        run:  yarn build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './build'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+          overwrites-pull-request-comment: false
+          enable-commit-status: false
+          deploy-message: Stage Deploy - ${{ github.event.pull_request.title }}
+          alias: staging
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
