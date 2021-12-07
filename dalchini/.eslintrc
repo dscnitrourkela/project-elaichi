@@ -7,7 +7,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint", "prettier", "import"],
+  "plugins": ["import", "react", "@typescript-eslint", "prettier"],
   "env": {
     "browser": true,
     "jest": true,
@@ -22,7 +22,7 @@
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
-    "ecmaFeatures": {"jsx": true},
+    "ecmaFeatures": { "jsx": true },
     "tsconfigRootDir": "./",
     "project": "./tsconfig.eslint.json"
   },
@@ -33,10 +33,10 @@
     }
   },
   "rules": {
-    "max-len": ["error", {"code": 100}],
-    "prefer-promise-reject-errors": ["off"],
-    "react/jsx-filename-extension": ["off"],
-    "no-return-assign": ["off"],
+    "max-len": ["error", { "code": 100 }],
+    "prefer-promise-reject-errors": 0,
+    "react/jsx-filename-extension": 0,
+    "no-return-assign": 0,
     "react/prop-types": 0,
     "import/prefer-default-export": 0,
     "no-use-before-define": 0,
@@ -45,6 +45,7 @@
     "prefer-destructuring": 1,
     "react/display-name": 0,
     "func-names": 0,
-    "@typescript-eslint/ban-ts-comment": 0
+    "@typescript-eslint/ban-ts-comment": 0,
+    "no-console": "warn"
   }
 }
