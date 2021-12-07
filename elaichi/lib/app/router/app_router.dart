@@ -17,7 +17,12 @@ class AppRouter {
       ),
       GoRoute(
         path: '/home',
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) {
+          final authenticationRepository = AuthenticationRepository();
+          return HomePage(
+            authenticationRepository: authenticationRepository,
+          );
+        },
       ),
     ],
   );

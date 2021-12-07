@@ -33,4 +33,16 @@ class AuthenticationRepository {
       throw const LogInWithGoogleFailure();
     }
   }
+
+  /// Logs out the user from the account.
+  Future<void> logOut() async {
+    try {
+      await Future.wait([
+        _firebaseAuth.signOut(),
+        _googleSignIn.signOut(),
+      ]);
+    } catch (error) {
+      rethrow;
+    }
+  }
 }
