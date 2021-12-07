@@ -22,8 +22,8 @@ class SignInCubit extends Cubit<SignInState> {
       emit(const SignInState.success());
     } on LogInWithGoogleFailure catch (e) {
       emit(SignInState.error(e.message));
-    } catch (_) {
-      emit(SignInState.error(_.toString()));
+    } catch (e) {
+      emit(SignInState.error(e.toString()));
     }
   }
 }
