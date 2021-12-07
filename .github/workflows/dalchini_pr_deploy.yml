@@ -37,7 +37,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './build'
+          publish-dir: 'dalchini/build'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deploy preview for ${{github.event.pull_request.title}} is ready ✅'
           enable-pull-request-comment: true
