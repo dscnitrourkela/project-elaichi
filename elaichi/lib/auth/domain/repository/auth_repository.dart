@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:elaichi/auth/domain/repository/auth_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -13,6 +14,10 @@ class AuthenticationRepository {
 
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+
+  /// Returns the signed in user if any
+  Future<Option<User?>> getSignedInUser() async =>
+      optionOf<User?>(_firebaseAuth.currentUser);
 
   /// Handles the sign in process with [FirebaseAuth] and [GoogleSignIn].
   Future<void> signInWithGoogle() async {
