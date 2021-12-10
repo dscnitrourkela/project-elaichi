@@ -27,8 +27,8 @@ class UserDataCubit extends Cubit<UserDataState> {
           emit(const UserDataState.unauthenticated());
         },
         (userInput) {
-          emit(const UserDataState.googleAuthenticated());
           UserData.instance().user = userInput;
+          emit(const UserDataState.googleAuthenticated());
         },
       );
     } on LogInWithGoogleFailure catch (e) {

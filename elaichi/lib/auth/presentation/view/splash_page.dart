@@ -27,7 +27,9 @@ class SplashPage extends StatelessWidget {
             children: [
               BlocConsumer<UserDataCubit, UserDataState>(
                 builder: (context, state) {
-                  return Container();
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 },
                 listener: (context, state) {
                   state.maybeWhen(
