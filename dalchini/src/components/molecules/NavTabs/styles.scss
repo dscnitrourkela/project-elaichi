@@ -1,0 +1,62 @@
+:root {
+  --tab-width: 20%;
+  --tab-height: 50px;
+}
+
+.nav-container {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0px !important;
+  // border-bottom: 1px solid var(--color-text-quaternary);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-item {
+    width: var(--tab-width);
+    min-width: var(--tab-width);
+    height: var(--tab-height);
+    padding: 0.9rem 0.3rem;
+    text-align: center;
+    vertical-align: middle;
+
+    transition: color 350ms ease 0s;
+    border-bottom: 1px solid var(--color-text-quaternary);
+  }
+
+  .nav-item.active-tab {
+    color: var(--color-text-secondary);
+  }
+
+  .highlight {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: var(--tab-width);
+    height: 5px;
+    background: var(--color-primary);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-delay: 0.1s;
+  }
+
+  .highlight.left-0 {
+    transform: translateX(calc(0 * var(--tab-width) * 5));
+  }
+  .highlight.left-1 {
+    transform: translateX(calc(1 * var(--tab-width) * 5));
+  }
+  .highlight.left-2 {
+    transform: translateX(calc(2 * var(--tab-width) * 5));
+  }
+  .highlight.left-3 {
+    transform: translateX(calc(3 * var(--tab-width) * 5));
+  }
+  .highlight.left-4 {
+    transform: translateX(calc(4 * var(--tab-width) * 5));
+  }
+}

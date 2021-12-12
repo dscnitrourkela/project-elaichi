@@ -1,0 +1,27 @@
+.page-title-container {
+  background: var(--color-background-primary);
+  position: relative;
+  padding: 1rem 0.7rem;
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--color-text-quaternary);
+}
+
+.back-icon {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 18px;
+}
+
+.icon {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  right: 10px;
+}
