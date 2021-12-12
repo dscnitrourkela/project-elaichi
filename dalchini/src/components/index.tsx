@@ -6,6 +6,8 @@ export { default as P1 } from './atoms/Para1';
 export { default as P2 } from './atoms/Para2';
 export { default as HighlightText } from './atoms/HighlightText/';
 export { default as Flexbox } from './atoms/Flexbox';
+export { default as Container } from './atoms/Container/';
 
 // Molecules
 export { default as PageTitle } from './molecules/PageTitle';
+export { default as NavTabs } from './molecules/NavTabs';
