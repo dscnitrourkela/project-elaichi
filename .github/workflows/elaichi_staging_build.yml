@@ -1,0 +1,56 @@
+name: Elaichi Staging Build
+
+on:
+ push:
+    branches: [main]
+    paths: 
+      - 'elaichi/**'
+      
+env:
+  ANDROID_FIREBASE_JSON: ${{secrets.ANDROID_FIREBASE_JSON}}
+  FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}
+  FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
+
+jobs:
+  flutter-build:
+    name: Run flutter build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: elaichi
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+      - name: Decode Google Services JSON
+        run: |
+          touch android/app/google-services.json
+          echo $ANDROID_FIREBASE_JSON >> android/app/google-services.json          
+      - name: Flutter Build
+        run: flutter clean
+      - run: flutter pub get
+      - run: flutter pub run build_runner watch --delete-conflicting-outputs
+      - run: flutter build apk      
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+         appId: $FIREBASE_APP_ID
+         token: $FIREBASE_TOKEN
+         groups: dream-team
+         file: elaichi/build/app/outputs/flutter-apk/app-release.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-apk
+          path: elaichi/build/app/outputs/flutter-apk/app-release.apk
+      - name: Download APK
+        uses: actions/download-artifact@v2
+        with:
+          name: release-apk
+      - name: Display structure of downloaded files
+        run: ls -R
+
