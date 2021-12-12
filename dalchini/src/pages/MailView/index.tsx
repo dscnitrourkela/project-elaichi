@@ -8,6 +8,7 @@ import { PageTitle, H2, P1, HighlightText, Container } from 'components';
 
 // Assets
 import './styles.scss';
+import { changeHistory } from 'utils';
 
 const MailView = () => {
   return (
@@ -15,7 +16,7 @@ const MailView = () => {
       <div className="head-container">
         <PageTitle
           title=""
-          customBackAction={() => {}}
+          customBackAction={() => changeHistory('back')}
           icon={{ icon: faEnvelope }}
         />
       </div>

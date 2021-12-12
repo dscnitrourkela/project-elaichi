@@ -10,11 +10,20 @@ export interface MailCardProps {
   mailId: string;
   subject: string;
   excerpt: string;
+  onClick: () => void;
 }
 
-const MailCard: React.FC<MailCardProps> = ({ mailId, subject, excerpt }) => {
+const MailCard: React.FC<MailCardProps> = ({
+  mailId,
+  subject,
+  excerpt,
+  onClick
+}) => {
   return (
-    <div className="mailcard-container animated fadeIn clicking-animation">
+    <div
+      className="mailcard-container animated fadeIn clicking-animation"
+      onClick={onClick}
+    >
       <Container style={{ height: '100%' }}>
         <Flexbox
           flexColumn

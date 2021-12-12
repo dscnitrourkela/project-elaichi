@@ -37,6 +37,7 @@ const Playground: React.FC = () => {
             mailId="kcpati@nitrkl.ac.in"
             subject="NITRKL GroupMail: webinar of relationship..."
             excerpt="Dear Faculty/Staff/Student, Institute Counselling Services is..."
+            onClick={() => {}}
           />
         ))}
       </div>

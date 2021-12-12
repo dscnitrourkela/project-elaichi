@@ -14,7 +14,7 @@ const App = () => {
     <Router history={history}>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/view" component={MailView} />
+        <Route exact path="/view/:id" component={MailView} />
         <Route exact path="/compose" component={Compose} />
         <Route exact path="/playground" component={Playground} />
       </Switch>
