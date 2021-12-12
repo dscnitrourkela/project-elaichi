@@ -11,8 +11,8 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 This issue belongs to:-
-- [ ] [`elaichi`](./elaichi)
-- [ ] [`dalchini`](./dalchini)
+- [ ] `elaichi`
+- [ ] `dalchini`
 - [ ] `project managment and overall`
 
 **To Reproduce**
@@ -27,10 +27,6 @@ A clear and concise description of what you expected to happen.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Version [e.g. 22]
 
 **Smartphone (please complete the following information):**
  - Device: [e.g. iPhone6]
