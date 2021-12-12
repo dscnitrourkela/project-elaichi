@@ -10,7 +10,8 @@ import {
   P2,
   HighlightText,
   PageTitle,
-  NavTabs
+  NavTabs,
+  MailCard
 } from 'components';
 
 const App: React.FC = () => {
@@ -22,6 +23,23 @@ const App: React.FC = () => {
         // customBackAction={() => console.log('hello')}
       />
       <NavTabs />
+
+      <div
+        style={{
+          width: '100%',
+          height: '100vh',
+          background: 'var(--color-background-secondary)'
+        }}
+      >
+        {[1, 2, 3, 4, 5, 6, 7].map(number => (
+          <MailCard
+            key={number}
+            mailId="kcpati@nitrkl.ac.in"
+            subject="NITRKL GroupMail: webinar of relationship..."
+            excerpt="Dear Faculty/Staff/Student, Institute Counselling Services is..."
+          />
+        ))}
+      </div>
 
       <H1>Heading1</H1>
       <H2>Heading2</H2>

@@ -11,3 +11,4 @@ export { default as Container } from './atoms/Container/';
 // Molecules
 export { default as PageTitle } from './molecules/PageTitle';
 export { default as NavTabs } from './molecules/NavTabs';
+export { default as MailCard } from './molecules/MailCard';

@@ -1,0 +1,52 @@
+.mailcard-container {
+  width: 100%;
+  height: 100px;
+  background-color: var(--color-background-primary);
+  margin-bottom: 3px;
+
+  .mailcard-flexbox {
+    height: 100%;
+    padding: 1rem 0rem;
+  }
+}
+
+.animated {
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: backwards;
+  animation-fill-mode: backwards;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.clicking-animation {
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.clicking-animation:active {
+  transform: scale(0.8);
+  border-radius: 8px;
+}
