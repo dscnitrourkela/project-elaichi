@@ -10,6 +10,7 @@ const App: React.FC = () => {
         <img src={logo} className="app-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
+          #SriramForTheDiro
         </p>
         <a
           className="app-link"
