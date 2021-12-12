@@ -29,6 +29,7 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
     icon: CircleAvatar(
       child: Image.network(
         UserData.instance().getUser!.photoURL.toString(),
+        errorBuilder: (context, error, stackTrace) => const Icon(Icons.person),
       ),
     ),
   ),
