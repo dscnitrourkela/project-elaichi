@@ -2,8 +2,7 @@ name: Netlify PR Preview Deploy
 
 on:
   pull_request_target:
-    paths:
-      - 'dalchini/**'
+    types: [labeled]
 
 jobs:
   netlify-pr-preview:
@@ -15,7 +14,7 @@ jobs:
         shell: bash
         working-directory: dalchini
 
-    if: contains(github.event.pull_request.labels.*.name, 'safe-to-build')
+    if: contains(github.event.pull_request.labels.*.name, 'safe-to-build-dalchini')
 
     steps:
       - name: Checkout Repository

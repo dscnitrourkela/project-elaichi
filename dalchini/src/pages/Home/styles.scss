@@ -1,0 +1,28 @@
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding-top: 110px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .head-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .body-container {
+    overflow-y: auto;
+
+    width: 100%;
+    background: var(--color-background-secondary);
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+  }
+}

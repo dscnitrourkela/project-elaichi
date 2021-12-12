@@ -1,5 +1,9 @@
 .container {
-  width: 95%;
+  width: 90%;
   max-width: 600px;
   margin: 0 auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

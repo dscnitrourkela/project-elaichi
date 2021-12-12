@@ -36,21 +36,28 @@ const NavTabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <Container>
-      <Flexbox justifyStart alignCenter className="nav-container">
-        {Tabs.map(({ name }, index) => (
-          <P2
-            key={name}
-            className={cx('nav-item', activeTab === index && 'active-tab')}
-            onClick={() => setActiveTab(index)}
-          >
-            {name}
-          </P2>
-        ))}
+    <div
+      style={{
+        borderBottom: '1px solid var(--color-text-quaternary)',
+        background: 'var(--color-background-primary)'
+      }}
+    >
+      <Container>
+        <Flexbox justifyStart alignCenter className="nav-container">
+          {Tabs.map(({ name }, index) => (
+            <P2
+              key={name}
+              className={cx('nav-item', activeTab === index && 'active-tab')}
+              onClick={() => setActiveTab(index)}
+            >
+              {name}
+            </P2>
+          ))}
 
-        <div className={cx('highlight', `left-${activeTab}`)} />
-      </Flexbox>
-    </Container>
+          <div className={cx('highlight', `left-${activeTab}`)} />
+        </Flexbox>
+      </Container>
+    </div>
   );
 };
 
