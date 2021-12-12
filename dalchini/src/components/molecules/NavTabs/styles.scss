@@ -8,7 +8,6 @@
   width: 100%;
   overflow-x: auto;
   padding-bottom: 0px !important;
-  // border-bottom: 1px solid var(--color-text-quaternary);
 
   &::-webkit-scrollbar {
     display: none;
@@ -23,7 +22,7 @@
     vertical-align: middle;
 
     transition: color 350ms ease 0s;
-    border-bottom: 1px solid var(--color-text-quaternary);
+    // border-bottom: 1px solid var(--color-text-quaternary);
   }
 
   .nav-item.active-tab {

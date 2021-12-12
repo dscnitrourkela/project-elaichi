@@ -4,6 +4,12 @@
   background-color: var(--color-background-primary);
   margin-bottom: 3px;
 
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+
   .mailcard-flexbox {
     height: 100%;
     padding: 1rem 0rem;
