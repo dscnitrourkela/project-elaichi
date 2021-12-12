@@ -29,7 +29,6 @@ jobs:
         run: |
           touch android/app/google-services.json
           echo $ANDROID_FIREBASE_JSON >> android/app/google-services.json
-          cat android/app/google-services.json
       - name: Flutter Build
         run: flutter clean
       - run: flutter pub get
