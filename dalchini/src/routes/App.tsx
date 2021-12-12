@@ -11,7 +11,8 @@ import {
   HighlightText,
   PageTitle,
   NavTabs,
-  MailCard
+  MailCard,
+  FloatingActionButton
 } from 'components';
 
 const App: React.FC = () => {
@@ -47,6 +48,8 @@ const App: React.FC = () => {
       <P1>Paragraph1</P1>
       <P2>Paragraph2</P2>
       <HighlightText>HighlightText</HighlightText>
+
+      <FloatingActionButton onClick={() => {}} />
     </>
   );
 };
