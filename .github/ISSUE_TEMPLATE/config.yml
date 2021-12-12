@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Avenue Community Support
+    url: bit.ly/NITRDevs
+    about: Please ask and answer questions here.
+  - name: Report Us about any Issue apart from Bug Report and Feature Request
+    url: mailto:dsc.nitr@gmail.com
+    about: Please report qureies and vulnerabilities here.
+  - name: SPONSOR US
+    url: https://opencollective.com/dsc-nit-rourkela-collective
+    about: If you like our project, support us to grow more.
