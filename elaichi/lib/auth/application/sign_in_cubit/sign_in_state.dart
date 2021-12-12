@@ -12,6 +12,6 @@ class SignInState with _$SignInState {
   /// Error state.
   const factory SignInState.error(String error) = _Error;
 
-  /// Success state.
+  /// Successfully Signed in state
   const factory SignInState.success() = _Success;
 }

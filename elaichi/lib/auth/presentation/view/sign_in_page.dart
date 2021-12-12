@@ -1,5 +1,6 @@
+import 'package:elaichi/app/utils/sizeconfig.dart';
 import 'package:elaichi/app/utils/strings.dart';
-import 'package:elaichi/auth/application/sign_in_cubit.dart';
+import 'package:elaichi/auth/application/sign_in_cubit/sign_in_cubit.dart';
 import 'package:elaichi/auth/domain/repository/auth_repository.dart';
 import 'package:elaichi/widgets/buttons.dart';
 import 'package:flutter/material.dart';
@@ -29,23 +30,23 @@ class SignInPage extends StatelessWidget {
             body: Center(
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 50,
+                  SizedBox(
+                    height: SizeConfig.screenHeight! * 0.08,
                   ),
                   Image.asset(Strings.kAvenueLogoFileUri),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: SizeConfig.screenHeight! * 0.02,
                   ),
                   Text(
                     'AVENUE',
                     style: Theme.of(context).textTheme.headline6,
                   ),
-                  const SizedBox(
-                    height: 80,
+                  SizedBox(
+                    height: SizeConfig.screenHeight! * 0.12,
                   ),
                   Image.asset(Strings.kPlantLogoFileUri),
-                  const SizedBox(
-                    height: 80,
+                  SizedBox(
+                    height: SizeConfig.screenHeight! * 0.12,
                   ),
                   BlocConsumer<SignInCubit, SignInState>(
                     listener: (context, state) {
@@ -57,7 +58,7 @@ class SignInPage extends StatelessWidget {
                           ),
                         ),
                         success: () {
-                          GoRouter.of(context).go('/home');
+                          GoRouter.of(context).goNamed('/home');
                         },
                         orElse: () {},
                       );

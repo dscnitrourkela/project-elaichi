@@ -8,13 +8,29 @@ class AppRouter {
   /// Stores all the routes of the app.
   final appRouter = GoRouter(
     routes: [
+      ///The deafult route
       GoRoute(
         path: '/',
         builder: (context, state) {
           final authenticationRepository = AuthenticationRepository();
-          return SignInPage(authenticationRepository: authenticationRepository);
+          return SplashPage(
+            authenticationRepository: authenticationRepository,
+          );
         },
       ),
+
+      ///The signin route
+      GoRoute(
+        path: '/signin',
+        builder: (context, state) {
+          final authenticationRepository = AuthenticationRepository();
+          return SignInPage(
+            authenticationRepository: authenticationRepository,
+          );
+        },
+      ),
+
+      ///The route for the home page
       GoRoute(
         path: '/home',
         builder: (context, state) {
