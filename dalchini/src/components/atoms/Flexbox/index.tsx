@@ -40,7 +40,8 @@ const Flexbox: React.FC<FlexboxProps> = ({
   alignStart,
   alignCenter,
   alignEnd,
-  className
+  className,
+  ...rest
 }) => (
   <div
     className={cx(
@@ -60,6 +61,7 @@ const Flexbox: React.FC<FlexboxProps> = ({
       'flexbox',
       className
     )}
+    {...rest}
   >
     {children}
   </div>

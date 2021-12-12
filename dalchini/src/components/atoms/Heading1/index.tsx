@@ -1,4 +1,9 @@
 import React from 'react';
+
+// Libraries
+import cx from 'classnames';
+
+// Assets;
 import './styles.scss';
 
 const H1: React.FC<
@@ -6,6 +11,10 @@ const H1: React.FC<
     React.HTMLAttributes<HTMLHeadingElement>,
     HTMLHeadingElement
   >
-> = ({ children }) => <h1 className="primary-heading">{children}</h1>;
+> = ({ children, className, ...rest }) => (
+  <h1 className={cx('primary-heading', className)} {...rest}>
+    {children}
+  </h1>
+);
 
 export default H1;

@@ -1,4 +1,9 @@
 import React from 'react';
+
+// Libraries
+import cx from 'classnames';
+
+// Assets;
 import './styles.scss';
 
 const P2: React.FC<
@@ -6,6 +11,10 @@ const P2: React.FC<
     React.HTMLAttributes<HTMLSpanElement>,
     HTMLSpanElement
   >
-> = ({ children }) => <span className="highlight-text">{children}</span>;
+> = ({ children, className, ...rest }) => (
+  <span className={cx('highlight-text', className)} {...rest}>
+    {children}
+  </span>
+);
 
 export default P2;

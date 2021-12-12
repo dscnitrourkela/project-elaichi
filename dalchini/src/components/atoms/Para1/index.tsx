@@ -1,4 +1,9 @@
 import React from 'react';
+
+// Libraries
+import cx from 'classnames';
+
+// Assets;
 import './styles.scss';
 
 const P1: React.FC<
@@ -6,6 +11,10 @@ const P1: React.FC<
     React.HTMLAttributes<HTMLParagraphElement>,
     HTMLParagraphElement
   >
-> = ({ children }) => <p className="primary-para">{children}</p>;
+> = ({ children, className, ...rest }) => (
+  <p className={cx('primary-para', className)} {...rest}>
+    {children}
+  </p>
+);
 
 export default P1;
