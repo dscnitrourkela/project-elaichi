@@ -8,6 +8,8 @@ on:
       
 env:
   ANDROID_FIREBASE_JSON: ${{secrets.ANDROID_FIREBASE_JSON}}
+  FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}
+  FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
 
 jobs:
   flutter-build:
@@ -32,7 +34,14 @@ jobs:
         run: flutter clean
       - run: flutter pub get
       - run: flutter pub run build_runner watch --delete-conflicting-outputs
-      - run: flutter build apk
+      - run: flutter build apk      
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+         appId: $FIREBASE_APP_ID
+         token: $FIREBASE_TOKEN
+         groups: dream-team
+         file: elaichi/build/app/outputs/flutter-apk/app-release.apk
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
@@ -44,3 +53,4 @@ jobs:
           name: release-apk
       - name: Display structure of downloaded files
         run: ls -R
+
