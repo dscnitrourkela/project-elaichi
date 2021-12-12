@@ -9,7 +9,7 @@ import { Compose, Home, MailView, Playground } from 'pages';
 // Assets
 import { history } from 'utils';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <Router history={history}>
       <Switch>

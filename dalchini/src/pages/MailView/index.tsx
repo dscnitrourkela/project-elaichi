@@ -10,7 +10,7 @@ import { PageTitle, H2, P1, HighlightText, Container } from 'components';
 import './styles.scss';
 import { changeHistory } from 'utils';
 
-const MailView = () => {
+const MailView: React.FC = () => {
   return (
     <div className="page-wrapper" style={{ paddingTop: '70px' }}>
       <div className="head-container">

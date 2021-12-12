@@ -10,7 +10,7 @@ import { PageTitle, NavTabs, MailCard, FloatingActionButton } from 'components';
 import './styles.scss';
 import { changeHistory } from 'utils';
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <div className="page-wrapper">
       <div className="head-container">
@@ -30,7 +30,9 @@ const Home = () => {
           />
         ))}
 
-        <FloatingActionButton onClick={() => {}} />
+        <FloatingActionButton
+          onClick={() => changeHistory('push', 'compose')}
+        />
       </div>
     </div>
   );
