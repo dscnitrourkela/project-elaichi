@@ -36,7 +36,12 @@ const NavTabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div style={{ borderBottom: '1px solid var(--color-text-quaternary)' }}>
+    <div
+      style={{
+        borderBottom: '1px solid var(--color-text-quaternary)',
+        background: 'var(--color-background-primary)'
+      }}
+    >
       <Container>
         <Flexbox justifyStart alignCenter className="nav-container">
           {Tabs.map(({ name }, index) => (
