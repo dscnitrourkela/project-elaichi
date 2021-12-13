@@ -1,3 +1,7 @@
+* {
+  backface-visibility: hidden;
+}
+
 .floating-container {
   position: fixed;
   bottom: 25px;

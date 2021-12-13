@@ -4,7 +4,7 @@ import React from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // Components
-import { PageTitle, NavTabs, MailCard, FloatingActionButton } from 'components';
+import { PageTitle, NavTabs, MailCard } from 'components';
 
 // Assets
 import './styles.scss';
@@ -25,14 +25,10 @@ const Home: React.FC = () => {
             key={number}
             mailId="kcpati@nitrkl.ac.in"
             subject="NITRKL GroupMail: webinar of relationship..."
-            excerpt="Dear Faculty/Staff/Student, Institute Counselling Services is..."
+            excerpt="Dear Faculty/Staff/Student, Institute Counselling..."
             onClick={() => changeHistory('push', `/view/${number}`)}
           />
         ))}
-
-        <FloatingActionButton
-          onClick={() => changeHistory('push', 'compose')}
-        />
       </div>
     </div>
   );

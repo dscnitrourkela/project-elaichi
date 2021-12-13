@@ -6,16 +6,22 @@ import { useTransition, animated } from 'react-spring';
 
 // Components
 import { Compose, Home, MailView, Playground } from 'pages';
+import { FloatingActionButton } from 'components';
 
 // Assets
-import { history } from 'utils';
+import { changeHistory, history } from 'utils';
 
 const App: React.FC = () => {
   const location = useLocation();
-  const transitions = useTransition(location.pathname, {
-    from: { transform: 'translateX(100vw)' },
-    enter: { transform: 'translateX(0)' },
-    leave: { transform: 'translateX(-50vw)' }
+  const pageTransitions = useTransition(location.pathname, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 }
+  });
+  const floatingButtonTransitions = useTransition(location.pathname, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 }
   });
 
   const ROUTES = [
@@ -40,7 +46,7 @@ const App: React.FC = () => {
   return (
     <>
       <Switch>
-        {transitions((style, item) => {
+        {pageTransitions((style, item) => {
           const RouteDetails = ROUTES.filter(({ path }) =>
             item.split('/')[1] === 'view'
               ? item.split('/')[1] === path.split('/')[1]
@@ -58,6 +64,17 @@ const App: React.FC = () => {
           );
         })}
       </Switch>
+
+      {floatingButtonTransitions(
+        (style, item) =>
+          !item.split('/')[1] && (
+            <animated.div style={style}>
+              <FloatingActionButton
+                onClick={() => changeHistory('push', 'compose')}
+              />
+            </animated.div>
+          )
+      )}
     </>
   );
 };
