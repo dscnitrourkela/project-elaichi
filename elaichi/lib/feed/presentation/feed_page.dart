@@ -1,3 +1,4 @@
+import 'package:elaichi/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 ///The Feed Page
@@ -8,11 +9,9 @@ class FeedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Feed'),
-      ),
+      appBar: customAppBar(text: 'Feed', context: context),
       body: const Center(
-        child: Text('Test Data'),
+        child: Text('Feed Page'),
       ),
     );
   }

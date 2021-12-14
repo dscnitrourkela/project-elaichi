@@ -78,6 +78,8 @@ abstract class AppTheme {
 
   /// Base light theme of the app.
   static final ThemeData light = ThemeData(
+    backgroundColor: Colors.white,
+    primaryColor: Colors.black,
     scaffoldBackgroundColor: AppColors.lightScaffoldBackground,
     textTheme: textTheme,
     appBarTheme: const AppBarTheme(

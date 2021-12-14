@@ -1,3 +1,4 @@
+import 'package:elaichi/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 ///The Profile Page
@@ -8,11 +9,9 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-      ),
+      appBar: customAppBar(text: 'Profile', context: context),
       body: const Center(
-        child: Text('Test Data'),
+        child: Text('Profile Page'),
       ),
     );
   }

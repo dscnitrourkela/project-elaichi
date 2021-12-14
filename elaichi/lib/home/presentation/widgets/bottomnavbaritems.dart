@@ -1,3 +1,4 @@
+import 'package:elaichi/app/utils/sizeconfig.dart';
 import 'package:elaichi/auth/domain/datamodel/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,8 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
   /// The icon for Feed Page
   const BottomNavigationBarItem(
     label: 'Feed',
-    icon: Icon(
+    icon: Icon(Icons.home_outlined),
+    activeIcon: Icon(
       Icons.home_rounded,
     ),
   ),
@@ -15,6 +17,9 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
   const BottomNavigationBarItem(
     label: 'Browse',
     icon: Icon(
+      Icons.dashboard_outlined,
+    ),
+    activeIcon: Icon(
       Icons.dashboard_rounded,
     ),
   ),
@@ -23,6 +28,9 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
   const BottomNavigationBarItem(
     label: 'Zimbra',
     icon: Icon(
+      Icons.email_outlined,
+    ),
+    activeIcon: Icon(
       Icons.email_rounded,
     ),
   ),
@@ -30,10 +38,37 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
   /// The icon for Profile Page
   BottomNavigationBarItem(
     label: 'Profile',
-    icon: CircleAvatar(
+    icon: ClipRRect(
+      borderRadius: BorderRadius.circular(
+        SizeConfig.safeBlockHorizontal! * 10,
+      ),
       child: Image.network(
         UserData.instance().getUser!.photoURL.toString(),
+        fit: BoxFit.fill,
         errorBuilder: (context, error, stackTrace) => const Icon(Icons.person),
+        height: SizeConfig.safeBlockHorizontal! * 10,
+        width: SizeConfig.safeBlockHorizontal! * 10,
+      ),
+    ),
+    activeIcon: Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 4),
+        borderRadius: BorderRadius.circular(
+          SizeConfig.safeBlockHorizontal! * 10,
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          SizeConfig.safeBlockHorizontal! * 10,
+        ),
+        child: Image.network(
+          UserData.instance().getUser!.photoURL.toString(),
+          fit: BoxFit.fill,
+          errorBuilder: (context, error, stackTrace) =>
+              const Icon(Icons.person),
+          height: SizeConfig.safeBlockHorizontal! * 7.5,
+          width: SizeConfig.safeBlockHorizontal! * 7.5,
+        ),
       ),
     ),
   ),
