@@ -1,6 +1,7 @@
 import 'package:elaichi/auth/domain/repository/auth_repository.dart';
 import 'package:elaichi/home/application/home_cubit.dart';
 import 'package:elaichi/home/presentation/widgets/bottomnavbaritems.dart';
+import 'package:elaichi/profile/presentation/profile_page.dart';
 import 'package:elaichi/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,15 +78,20 @@ class HomePage extends StatelessWidget {
                             onTapped: () => context.read<HomeCubit>().logOut(),
                           ),
                           PageView(
-                            // TO-DO - Add the pages
                             controller:
                                 context.read<HomeCubit>().pageController,
                             scrollBehavior: const ScrollBehavior(),
                             onPageChanged: (value) {
                               context.read<HomeCubit>().pageIndex = value;
+
                               context.read<HomeCubit>().bottomNavBarClicked();
                             },
-                            children: [],
+                            children: const [
+                              ProfilePage(),
+                              ProfilePage(),
+                              ProfilePage(),
+                              ProfilePage(),
+                            ],
                           ),
                         ],
                       ),
@@ -93,6 +99,8 @@ class HomePage extends StatelessWidget {
                     bottomNavigationBar: BlocProvider.value(
                       value: BlocProvider.of<HomeCubit>(context),
                       child: BottomNavigationBar(
+                        showSelectedLabels: false,
+                        showUnselectedLabels: false,
                         onTap: (int value) {
                           context.read<HomeCubit>().pageIndex = value;
                           context.read<HomeCubit>().bottomNavBarClicked();

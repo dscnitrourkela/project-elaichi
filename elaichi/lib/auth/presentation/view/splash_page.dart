@@ -27,6 +27,7 @@ class SplashPage extends StatelessWidget {
             children: [
               BlocConsumer<UserDataCubit, UserDataState>(
                 builder: (context, state) {
+                  context.read<UserDataCubit>().getCorrectRoute();
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
@@ -34,10 +35,9 @@ class SplashPage extends StatelessWidget {
                 listener: (context, state) {
                   state.maybeWhen(
                     unauthenticated: () {
-                      GoRouter.of(context).goNamed('/signin');
+                      GoRouter.of(context).go('/signin');
                     },
-                    googleAuthenticated: () =>
-                        GoRouter.of(context).goNamed('/home'),
+                    googleAuthenticated: () => GoRouter.of(context).go('/home'),
                     error: (error) =>
                         ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
