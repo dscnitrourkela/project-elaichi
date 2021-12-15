@@ -52,7 +52,7 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
     ),
     activeIcon: Container(
       decoration: BoxDecoration(
-        border: Border.all(width: 4),
+        border: Border.all(width: 2),
         borderRadius: BorderRadius.circular(
           SizeConfig.safeBlockHorizontal! * 10,
         ),

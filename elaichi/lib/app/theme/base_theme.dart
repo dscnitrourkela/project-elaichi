@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_classes_with_only_static_members
-import 'package:elaichi/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -71,51 +69,36 @@ final TextTheme textTheme = TextTheme(
 );
 
 /// Base theme for the app. Custom themes can be made by using copyWith()
-/// on [AppTheme.light] or [AppTheme.dark].
+/// on [AppTheme.light]
 abstract class AppTheme {
-  static const Color _lightPrimaryColor = Colors.white;
-  static const Color _lightOnPrimaryColor = Colors.black;
-
   /// Base light theme of the app.
   static final ThemeData light = ThemeData(
-    backgroundColor: Colors.white,
-    primaryColor: Colors.black,
-    scaffoldBackgroundColor: AppColors.lightScaffoldBackground,
+    primaryColorBrightness: Brightness.light,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) {
+            return const Color(0xffe0e0e0);
+          }
+          return const Color(0xff333333);
+        }),
+      ),
+    ),
     textTheme: textTheme,
-    appBarTheme: const AppBarTheme(
-      color: _lightPrimaryColor,
-      iconTheme: IconThemeData(color: _lightOnPrimaryColor),
-    ),
-    colorScheme: const ColorScheme.light(
-      primary: _lightPrimaryColor,
-      primaryVariant: _lightPrimaryColor,
-      secondary: _lightOnPrimaryColor,
-      onPrimary: _lightOnPrimaryColor,
-    ),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: Colors.black,
-      foregroundColor: Colors.white,
-    ),
-  );
-
-  /// Base dark theme of the app.
-  static final ThemeData dark = ThemeData(
-    scaffoldBackgroundColor: AppColors.darkScaffoldBackground,
-    textTheme: textTheme,
-    appBarTheme: const AppBarTheme(
-      color: Color.fromRGBO(27, 27, 27, 1),
-      iconTheme: IconThemeData(color: Colors.white),
-    ),
-    colorScheme: const ColorScheme.dark(
-      primary: _lightOnPrimaryColor,
-      surface: Color.fromRGBO(27, 27, 27, 1),
-      primaryVariant: _lightOnPrimaryColor,
-      secondary: _lightPrimaryColor,
-      onPrimary: _lightPrimaryColor,
-    ),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
-    ),
+    primarySwatch: Colors.blueGrey,
+    primaryColor: const Color(0xff333333),
+    primaryColorLight: const Color(0xff333333),
+    canvasColor: const Color(0xffffffff),
+    shadowColor: const Color(0xffe0e0e0),
+    scaffoldBackgroundColor: const Color(0xffffffff),
+    cardColor: const Color(0xfff2f2f2),
+    focusColor: const Color(0xff333333),
+    splashColor: const Color(0xffbdbdbd),
+    unselectedWidgetColor: const Color(0xffe0e0e0),
+    disabledColor: const Color(0xffe0e0e0),
+    hintColor: const Color(0xff828282),
+    errorColor: const Color(0xffeb5757),
+    toggleableActiveColor: const Color(0xff333333),
   );
 }

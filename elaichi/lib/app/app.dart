@@ -15,7 +15,6 @@ class ElaichiApp extends StatelessWidget {
       routeInformationParser: _appRouter.appRouter.routeInformationParser,
       routerDelegate: _appRouter.appRouter.routerDelegate,
       theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
       title: 'Avenue For NITR',
       debugShowCheckedModeBanner: false,
     );
