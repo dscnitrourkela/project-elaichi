@@ -17,6 +17,17 @@
     width: 100%;
   }
 
+  .loading-container {
+    height: calc(100vh - 150px);
+
+    img {
+      width: 50%;
+      height: auto;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
   .body-container {
     height: calc(100vh - 110px);
     overflow-y: auto;

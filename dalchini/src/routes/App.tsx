@@ -6,19 +6,13 @@ import { useTransition, animated } from 'react-spring';
 
 // Components
 import { Compose, Home, MailView, Playground } from 'pages';
-import { FloatingActionButton } from 'components';
 
 // Assets
-import { changeHistory, history } from 'utils';
+import { history } from 'utils';
 
 const App: React.FC = () => {
   const location = useLocation();
   const pageTransitions = useTransition(location.pathname, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 }
-  });
-  const floatingButtonTransitions = useTransition(location.pathname, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 }
@@ -44,42 +38,29 @@ const App: React.FC = () => {
   ];
 
   return (
-    <>
-      <Switch>
-        {pageTransitions((style, item) => {
-          const RouteDetails = ROUTES.filter(({ path }) =>
-            item.split('/')[1] === 'view'
-              ? item.split('/')[1] === path.split('/')[1]
-              : item === path
-          );
+    <Switch>
+      {pageTransitions((style, item) => {
+        const RouteDetails = ROUTES.filter(({ path }) =>
+          item.split('/')[1] === 'view'
+            ? item.split('/')[1] === path.split('/')[1]
+            : item === path
+        );
 
-          return (
-            <animated.div style={style}>
-              <Route
-                exact
-                path={RouteDetails[0].path}
-                component={RouteDetails[0].component}
-              />
-            </animated.div>
-          );
-        })}
-      </Switch>
-
-      {floatingButtonTransitions(
-        (style, item) =>
-          !item.split('/')[1] && (
-            <animated.div style={style}>
-              <FloatingActionButton
-                onClick={() => changeHistory('push', 'compose')}
-              />
-            </animated.div>
-          )
-      )}
-    </>
+        return (
+          <animated.div style={style}>
+            <Route
+              exact
+              path={RouteDetails[0].path}
+              component={RouteDetails[0].component}
+            />
+          </animated.div>
+        );
+      })}
+    </Switch>
   );
 };
 
-const MainRouter: React.FC = () => {
+const MainApp: React.FC = () => {
   return (
     <Router history={history}>
       <App />
@@ -87,4 +68,4 @@ const MainRouter: React.FC = () => {
   );
 };
 
-export default MainRouter;
+export default MainApp;
