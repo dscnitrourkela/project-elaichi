@@ -21,7 +21,7 @@ const MailCard: React.FC<MailCardProps> = ({
 }) => {
   return (
     <div
-      className="mailcard-container animated fadeIn clicking-animation"
+      className="mailcard-container animated clicking-animation"
       onClick={onClick}
     >
       <Container style={{ height: '100%' }}>
