@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.dscnitrourkela.elaichi">
    <application
-        android:label="elaichi"
+        android:label="Avenue"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

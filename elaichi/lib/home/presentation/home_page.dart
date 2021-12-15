@@ -1,14 +1,17 @@
 import 'package:elaichi/auth/domain/repository/auth_repository.dart';
+import 'package:elaichi/browse/presentation/browse_page.dart';
+import 'package:elaichi/feed/presentation/feed_page.dart';
 import 'package:elaichi/home/application/home_cubit.dart';
 import 'package:elaichi/home/presentation/widgets/bottomnavbaritems.dart';
-import 'package:elaichi/widgets/buttons.dart';
+import 'package:elaichi/mail/mail.dart';
+import 'package:elaichi/profile/presentation/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 /// The Landing Page of the app.
-class HomePage extends StatelessWidget {
-  /// Constructor for [HomePage].
+class HomePage extends StatefulWidget {
+  ///Default Constructor for [HomePage]
   const HomePage({
     Key? key,
     required AuthenticationRepository authenticationRepository,
@@ -17,6 +20,19 @@ class HomePage extends StatelessWidget {
 
   final AuthenticationRepository _authenticationRepository;
 
+  @override
+  // ignore: no_logic_in_create_state
+  HomePageState createState() => HomePageState(_authenticationRepository);
+}
+
+///To manage the state of [HomePage]
+class HomePageState extends State<HomePage> {
+  ///Default Constructor
+  HomePageState(this._authenticationRepository);
+  final AuthenticationRepository _authenticationRepository;
+
+  /// to maintain the page index of the bottom navigation bar
+  int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<AuthenticationRepository>.value(
@@ -28,36 +44,7 @@ class HomePage extends StatelessWidget {
             listener: (context, state) {
               state.maybeWhen(
                 orElse: () {},
-                feedPage: () {
-                  context.read<HomeCubit>().pageController.animateToPage(
-                        0,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeIn,
-                      );
-                },
-                browsePage: () {
-                  context.read<HomeCubit>().pageController.animateToPage(
-                        1,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeIn,
-                      );
-                },
-                emailPage: () {
-                  context.read<HomeCubit>().pageController.animateToPage(
-                        2,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeIn,
-                      );
-                },
-                profilePage: () {
-                  context.read<HomeCubit>().pageController.animateToPage(
-                        3,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeIn,
-                      );
-                },
                 logOut: () => GoRouter.of(context).go('/'),
-                success: () => GoRouter.of(context).go('/home'),
                 error: (error) => ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(error),
@@ -69,43 +56,55 @@ class HomePage extends StatelessWidget {
               return state.maybeWhen(
                 orElse: () {
                   return Scaffold(
+                    ///For Loging Out uncomment this and use this button.
+                    /*  appBar: customAppBar(
+                      text: 'AVENUE DEVELOP',
+                      context: context,
+                      rightButton: Icons.logout_rounded,
+                      rightTap: () => context.read<HomeCubit>().logOut(),
+                    ), */
                     body: Center(
-                      child: Column(
-                        children: <Widget>[
-                          Button(
-                            text: 'Log Out',
-                            onTapped: () => context.read<HomeCubit>().logOut(),
-                          ),
-                          PageView(
-                            // TO-DO - Add the pages
-                            controller:
-                                context.read<HomeCubit>().pageController,
-                            scrollBehavior: const ScrollBehavior(),
-                            onPageChanged: (value) {
-                              context.read<HomeCubit>().pageIndex = value;
-                              context.read<HomeCubit>().bottomNavBarClicked();
-                            },
-                            children: [],
-                          ),
+                      child: PageView(
+                        controller: context.read<HomeCubit>().pageController,
+                        scrollBehavior: const ScrollBehavior(),
+                        onPageChanged: (value) {
+                          setState(() {
+                            pageIndex = value;
+                          });
+                          context
+                              .read<HomeCubit>()
+                              .pageController
+                              .jumpToPage(value);
+                        },
+                        children: const [
+                          FeedPage(),
+                          BrowsePage(),
+                          MailPage(),
+                          ProfilePage(),
                         ],
                       ),
                     ),
-                    bottomNavigationBar: BlocProvider.value(
-                      value: BlocProvider.of<HomeCubit>(context),
-                      child: BottomNavigationBar(
-                        onTap: (int value) {
-                          context.read<HomeCubit>().pageIndex = value;
-                          context.read<HomeCubit>().bottomNavBarClicked();
-                        },
-                        currentIndex: context.read<HomeCubit>().pageIndex,
-                        selectedItemColor: Theme.of(context).primaryColor,
-                        unselectedItemColor: Theme.of(context).disabledColor,
-                        backgroundColor: Theme.of(context).backgroundColor,
-                        iconSize: 28,
-                        type: BottomNavigationBarType.fixed,
-                        elevation: 6,
-                        items: navBarItems,
-                      ),
+                    bottomNavigationBar: BottomNavigationBar(
+                      showSelectedLabels: false,
+                      showUnselectedLabels: false,
+                      onTap: (int value) {
+                        setState(() {
+                          pageIndex = value;
+                        });
+                        context.read<HomeCubit>().pageController.animateToPage(
+                              value,
+                              duration: const Duration(milliseconds: 100),
+                              curve: Curves.easeIn,
+                            );
+                      },
+                      currentIndex: pageIndex,
+                      selectedItemColor: Theme.of(context).primaryColor,
+                      unselectedItemColor: Theme.of(context).disabledColor,
+                      backgroundColor: Theme.of(context).backgroundColor,
+                      iconSize: 28,
+                      type: BottomNavigationBarType.fixed,
+                      elevation: 6,
+                      items: navBarItems,
                     ),
                   );
                 },

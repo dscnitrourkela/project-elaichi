@@ -1,3 +1,4 @@
+import 'package:elaichi/app/utils/sizeconfig.dart';
 import 'package:elaichi/auth/domain/datamodel/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -5,31 +6,69 @@ import 'package:flutter/material.dart';
 List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
   /// The icon for Feed Page
   const BottomNavigationBarItem(
-    icon: Icon(
+    label: 'Feed',
+    icon: Icon(Icons.home_outlined),
+    activeIcon: Icon(
       Icons.home_rounded,
     ),
   ),
 
   /// The icon for Browwse Page
   const BottomNavigationBarItem(
+    label: 'Browse',
     icon: Icon(
+      Icons.dashboard_outlined,
+    ),
+    activeIcon: Icon(
       Icons.dashboard_rounded,
     ),
   ),
 
   /// The icon for Zimbra Webmail Page
   const BottomNavigationBarItem(
+    label: 'Zimbra',
     icon: Icon(
+      Icons.email_outlined,
+    ),
+    activeIcon: Icon(
       Icons.email_rounded,
     ),
   ),
 
   /// The icon for Profile Page
   BottomNavigationBarItem(
-    icon: CircleAvatar(
+    label: 'Profile',
+    icon: ClipRRect(
+      borderRadius: BorderRadius.circular(
+        SizeConfig.safeBlockHorizontal! * 10,
+      ),
       child: Image.network(
         UserData.instance().getUser!.photoURL.toString(),
+        fit: BoxFit.fill,
         errorBuilder: (context, error, stackTrace) => const Icon(Icons.person),
+        height: SizeConfig.safeBlockHorizontal! * 10,
+        width: SizeConfig.safeBlockHorizontal! * 10,
+      ),
+    ),
+    activeIcon: Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 2),
+        borderRadius: BorderRadius.circular(
+          SizeConfig.safeBlockHorizontal! * 10,
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          SizeConfig.safeBlockHorizontal! * 10,
+        ),
+        child: Image.network(
+          UserData.instance().getUser!.photoURL.toString(),
+          fit: BoxFit.fill,
+          errorBuilder: (context, error, stackTrace) =>
+              const Icon(Icons.person),
+          height: SizeConfig.safeBlockHorizontal! * 7.5,
+          width: SizeConfig.safeBlockHorizontal! * 7.5,
+        ),
       ),
     ),
   ),
