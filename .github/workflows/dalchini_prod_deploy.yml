@@ -4,6 +4,9 @@ on:
   release:
     types: [released]
 
+env:
+  REACT_APP_ZIMBRA_URL: ${{secrets.REACT_APP_ZIMBRA_URL}}
+
 jobs:
   netlify-prod-deploy:
     name: Netlify Avenue Production Deploy
@@ -21,6 +24,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
+          
+      - name: Create .env File
+        run: |
+          touch .env
+          echo REACT_APP_ZIMBRA_URL=$REACT_APP_ZIMBRA_URL >> .env
 
       - name: Install Dependencies
         run: yarn install
