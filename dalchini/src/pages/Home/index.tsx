@@ -14,7 +14,7 @@ import {
 
 // Assets
 import './styles.scss';
-import { changeHistory } from 'utils';
+import { changeHistory, getQueryParam } from 'utils';
 import MailLoading from 'assets/mail-loading.gif';
 import { api } from 'utils';
 
@@ -96,7 +96,12 @@ const Home: React.FC = () => {
                   mailId={mailList[mailList.length - 1]?.a || ''}
                   subject={subject.substring(0, 42) + '...'}
                   excerpt={body.substring(0, 48) + '...'}
-                  onClick={() => changeHistory('push', `/view/${id}`)}
+                  onClick={() =>
+                    changeHistory(
+                      'push',
+                      `/view/${id}?zauthtoken=${getQueryParam('zauthtoken')}`
+                    )
+                  }
                 />
               )
             )}
