@@ -1,16 +1,62 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Libraries
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useLocation } from 'react-router-dom';
+import { simpleParser, ParsedMail } from 'mailparser';
 
 // Components
-import { PageTitle, H2, P1, HighlightText, Container } from 'components';
+import {
+  PageTitle,
+  H2,
+  P1,
+  P2,
+  HighlightText,
+  Container,
+  Flexbox
+} from 'components';
 
 // Assets
 import './styles.scss';
-import { changeHistory } from 'utils';
+import { changeHistory, api, getQueryParam } from 'utils';
+
+// @ts-ignore
+function downloadURI(uri, name) {
+  const link = document.createElement('a');
+  link.setAttribute('download', name);
+  link.setAttribute('href', uri);
+  link.setAttribute('target', '_blank');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
 
 const MailView: React.FC = () => {
+  const [parsedMail, setParsedMail] = useState<ParsedMail | null>(null);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // eslint-disable-next-line prefer-destructuring
+      const id = pathname.split('/')[2];
+
+      const { data } = await api.get('/', {
+        params: {
+          id
+        },
+        headers: {
+          Accept: '*/*'
+        }
+      });
+
+      const parsed = await simpleParser(data);
+      setParsedMail(parsed);
+    };
+
+    fetchData();
+  }, [pathname]);
+
   return (
     <div className="page-wrapper" style={{ paddingTop: '70px' }}>
       <div className="head-container">
@@ -26,50 +72,63 @@ const MailView: React.FC = () => {
           className="body-container add-child-margin"
           style={{ background: 'var(--color-background-primary)' }}
         >
-          <P1 style={{ fontWeight: '500' }}>Feb 06 2020</P1>
-          <H2>
-            NITRKL GroupMail: Guidelines for applying R1 forms online in NITRIS
-            portal
-          </H2>
-          <P1>
-            From <HighlightText>kcpati@nitrkl.ac.in</HighlightText> to you{' '}
-          </P1>
-          <P1>
-            Thestudents are hereby advised to apply for following R1 forms
-            online in NITRIS portal.
-          </P1>
-          <P1>(1) Studentship Certificate</P1>
-          <P1>(2) Conduct certificate</P1>
-          <P1>(3) Grade sheet</P1>
-          <P1>(4) Fee Structure</P1>
-          <P1>(5)Language Certificate</P1>
-          <P1>(6)NOC for Passport</P1>
-          <P1>
-            After your application is successfully, submitted, concerned Faculty
-            Advisorwill verify the same. If your application is verified and
-            recommended, you willget desired certificate (scanned copy) in your
-            webmail within seven workingdays of recommendation by the Faculty
-            Advisor (exception being, issue of NOCfor Passport that may take ten
-            working days).{' '}
-          </P1>
-          <P1>
-            However,if you want the above certificates in specific format as
-            prescribed bydifferent agencies (for example: NSP, STAR Scholarship,
-            CAT admissions or anyother Govt./semi Govt./Pvt. bodies or
-            Universities from India or abroad), thesame may please be duly
-            filled up and sent via email to acad.ug@nitrkl.ac.in. The details
-            provided therein shall be verified at our end.If found in order in
-            all respect as per Institute rules, the same shall becertified by
-            the authorized signatory and mailed to your webmail within
-            sevenworking days.
-          </P1>{' '}
-          <P1>
-            Nofollow up emails/texts/WhatsApp messages/Phone calls regarding the
-            same will beentertained. In case of any difficulty/clarification,
-            please contact concernedFaculty Advisor. Thanking you. With sincere
-            regards, Swagatika Sahoo Assistant Registrar Academics (UG & PG)
-            National Institute of Technology Rourkela Rourkela, Odisha: 769008.
-          </P1>
+          {!parsedMail ? (
+            <p>Loading</p>
+          ) : (
+            <>
+              <P1 style={{ fontWeight: '500' }}>
+                {new Date(parsedMail.date || '').toLocaleString()}
+              </P1>
+              <H2>{parsedMail.subject}</H2>
+              <P1>
+                From{' '}
+                <HighlightText>{parsedMail?.from?.text || ''}</HighlightText> to
+                you{' '}
+              </P1>
+
+              <P1
+                dangerouslySetInnerHTML={{
+                  __html:
+                    (parsedMail?.from?.text.split('@')[1] === 'nitrkl.ac.in'
+                      ? parsedMail.textAsHtml
+                      : parsedMail.html) || ''
+                }}
+              />
+
+              {parsedMail.attachments.length > 0 && (
+                <Flexbox
+                  flexColumn
+                  justifyStart
+                  alignStart
+                  className="attachments-container"
+                >
+                  {parsedMail.attachments.map(
+                    // @ts-ignore
+                    ({ checksum, filename, partId }) => (
+                      <Flexbox
+                        justifyStart
+                        alignCenter
+                        key={checksum}
+                        className="attachment"
+                        onClick={() =>
+                          downloadURI(
+                            `https://mail.nitrkl.ac.in/home/~/?auth=qp&zauthtoken=${getQueryParam(
+                              'zauthtoken'
+                            )}&id=${pathname.split('/')[2]}&part=${partId}`,
+                            filename
+                          )
+                        }
+                      >
+                        <FontAwesomeIcon icon={faDownload} />
+
+                        <P2>{filename}</P2>
+                      </Flexbox>
+                    )
+                  )}
+                </Flexbox>
+              )}
+            </>
+          )}
         </div>
       </Container>
     </div>

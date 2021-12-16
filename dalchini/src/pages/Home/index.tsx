@@ -14,14 +14,56 @@ import {
 
 // Assets
 import './styles.scss';
-import { changeHistory } from 'utils';
+import { changeHistory, getQueryParam } from 'utils';
 import MailLoading from 'assets/mail-loading.gif';
+import { api } from 'utils';
+
+export interface DataType {
+  s: number;
+  d: number;
+  l: string;
+  cid: string;
+  f: string;
+  rev: number;
+  id: string;
+  e: {
+    a: string;
+    d: string;
+    p: string;
+    t: string;
+  }[];
+  su: string;
+  fr: string;
+}
 
 const Home: React.FC = () => {
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [data, setData] = useState<DataType[] | null>(null);
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 5000);
+    const fetchData = async () => {
+      try {
+        const {
+          data: { m: mails }
+        } = await api.get('/', {
+          params: {
+            url: 'inbox.json'
+          },
+          headers: {
+            Accept: '*/*'
+          }
+        });
+        setData(mails);
+        setLoading(false);
+        setError(false);
+      } catch (err) {
+        setError(true);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -32,28 +74,44 @@ const Home: React.FC = () => {
         <NavTabs />
       </div>
 
-      {loading ? (
+      {!loading && !error && data ? (
+        <>
+          <div className="body-container">
+            {data.map(
+              ({
+                s: size,
+                // d: date,
+                // l: box,
+                cid: conversationalId,
+                // f: flag,
+                // rev,
+                id,
+                e: mailList,
+                su: subject,
+                fr: body
+              }) => (
+                <MailCard
+                  key={`${size}-${id}-${conversationalId}`}
+                  mailId={mailList[mailList.length - 1]?.a || ''}
+                  subject={subject.substring(0, 42) + '...'}
+                  excerpt={body.substring(0, 48) + '...'}
+                  onClick={() =>
+                    changeHistory(
+                      'push',
+                      `/view/${id}?zauthtoken=${getQueryParam('zauthtoken')}`
+                    )
+                  }
+                />
+              )
+            )}
+          </div>
+
+          <FloatingActionButton onClick={() => {}} />
+        </>
+      ) : (
         <Flexbox justifyCenter alignCenter className="loading-container">
           <img alt="Mails Loading" src={MailLoading} />
         </Flexbox>
-      ) : (
-        <>
-          <div className="body-container">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(number => (
-              <MailCard
-                key={number}
-                mailId="kcpati@nitrkl.ac.in"
-                subject="NITRKL GroupMail: webinar of relationship..."
-                excerpt="Dear Faculty/Staff/Student, Institute Counselling..."
-                onClick={() => changeHistory('push', `/view/${number}`)}
-              />
-            ))}
-          </div>
-
-          <FloatingActionButton
-            onClick={() => changeHistory('push', 'compose')}
-          />
-        </>
       )}
     </div>
   );
