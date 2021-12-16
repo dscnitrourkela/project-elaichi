@@ -50,7 +50,6 @@ const Home: React.FC = () => {
         } = await api.get('/', {
           params: {
             url: 'inbox.json'
-            // id: 13440
           },
           headers: {
             Accept: '*/*'

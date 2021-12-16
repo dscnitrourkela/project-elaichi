@@ -110,22 +110,13 @@ const MailView: React.FC = () => {
                         alignCenter
                         key={checksum}
                         className="attachment"
-                        onClick={
-                          () =>
-                            downloadURI(
-                              // eslint-disable-next-line max-len
-                              `https://mail.nitrkl.ac.in/home/~/?auth=qp&zauthtoken=${getQueryParam(
-                                'zauthtoken'
-                              )}&id=${pathname.split('/')[2]}&part=${partId}`,
-                              filename
-                            )
-                          // window.open(
-                          // eslint-disable-next-line max-len
-                          //   // `https://mail.nitrkl.ac.in/service/home/~/&auth=qp?zauthtoken=${getQueryParam(
-                          //   //   'zauthtoken'
-                          //   // )}&id=${pathname.split('/')[2]}&part=${partId}`,
-                          //   // '_blank'
-                          // )
+                        onClick={() =>
+                          downloadURI(
+                            `https://mail.nitrkl.ac.in/home/~/?auth=qp&zauthtoken=${getQueryParam(
+                              'zauthtoken'
+                            )}&id=${pathname.split('/')[2]}&part=${partId}`,
+                            filename
+                          )
                         }
                       >
                         <FontAwesomeIcon icon={faDownload} />
