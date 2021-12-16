@@ -17,6 +17,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "history": "4.10.1",
     "lottie-react": "^2.1.0",
