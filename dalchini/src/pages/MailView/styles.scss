@@ -10,4 +10,26 @@
       word-wrap: break-word;
     }
   }
+
+  .attachments-container {
+    .attachment {
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      background: var(--color-background-secondary);
+      border-radius: 5px;
+      font-size: 0.9rem;
+      color: var(--color-text-tertiary);
+
+      p,
+      svg {
+        margin-bottom: 0;
+      }
+
+      p {
+        margin-left: 10px;
+        color: var(--color-text-tertiary);
+      }
+    }
+  }
 }
