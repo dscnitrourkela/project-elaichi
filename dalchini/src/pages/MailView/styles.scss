@@ -1,3 +1,13 @@
 .add-child-margin * {
   margin-bottom: 0.8rem;
 }
+
+.body-container.add-child-margin {
+  height: calc(100vh - 60px) !important;
+
+  p {
+    a {
+      word-wrap: break-word;
+    }
+  }
+}

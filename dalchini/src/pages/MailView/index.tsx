@@ -3,19 +3,17 @@ import React, { useState, useEffect } from 'react';
 // Libraries
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// const mailparser = require('mailparser');
-import { simpleParser } from 'mailparser';
+import { simpleParser, ParsedMail } from 'mailparser';
 
 // Components
 import { PageTitle, H2, P1, HighlightText, Container } from 'components';
 
 // Assets
 import './styles.scss';
-import { changeHistory, getQueryParam, api } from 'utils';
+import { changeHistory, api } from 'utils';
 
 const MailView: React.FC = () => {
-  const [parsedMail, setParsedMail] = useState<any>(null);
+  const [parsedMail, setParsedMail] = useState<ParsedMail | null>(null);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -39,8 +37,6 @@ const MailView: React.FC = () => {
     fetchData();
   }, [pathname]);
 
-  console.log(parsedMail);
-
   return (
     <div className="page-wrapper" style={{ paddingTop: '70px' }}>
       <div className="head-container">
@@ -61,15 +57,20 @@ const MailView: React.FC = () => {
           ) : (
             <>
               <P1 style={{ fontWeight: '500' }}>
-                {new Date(parsedMail.date).toLocaleString()}
+                {new Date(parsedMail.date || '').toLocaleString()}
               </P1>
               <H2>{parsedMail.subject}</H2>
               <P1>
-                From <HighlightText>{parsedMail.from.text}</HighlightText> to
+                From{' '}
+                <HighlightText>{parsedMail?.from?.text || ''}</HighlightText> to
                 you{' '}
               </P1>
 
-              <P1 dangerouslySetInnerHTML={{ __html: parsedMail.textAsHtml }} />
+              <P1
+                dangerouslySetInnerHTML={{
+                  __html: parsedMail.textAsHtml || ''
+                }}
+              />
             </>
           )}
         </div>

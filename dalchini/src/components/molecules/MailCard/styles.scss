@@ -14,6 +14,13 @@
   .mailcard-flexbox {
     height: 100%;
     padding: 1rem 0rem;
+
+    .mail-nowrap-content {
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline;
+      width: 100%;
+    }
   }
 }
 
