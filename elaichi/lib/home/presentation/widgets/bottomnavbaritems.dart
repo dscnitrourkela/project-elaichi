@@ -66,8 +66,8 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
           fit: BoxFit.fill,
           errorBuilder: (context, error, stackTrace) =>
               const Icon(Icons.person),
-          height: SizeConfig.safeBlockHorizontal! * 7.5,
-          width: SizeConfig.safeBlockHorizontal! * 7.5,
+          height: SizeConfig.safeBlockHorizontal! * 9.75,
+          width: SizeConfig.safeBlockHorizontal! * 9.75,
         ),
       ),
     ),

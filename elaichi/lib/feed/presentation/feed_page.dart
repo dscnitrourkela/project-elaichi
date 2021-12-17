@@ -1,3 +1,5 @@
+import 'package:elaichi/feed/presentation/widgets/time_table_list.dart';
+import 'package:elaichi/feed/presentation/widgets/zimbra_card.dart';
 import 'package:elaichi/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +12,13 @@ class FeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(text: 'Feed', context: context),
-      body: const Center(
-        child: Text('Feed Page'),
+      body: Center(
+        child: Column(
+          children: const [
+            TimeTableList(),
+            ZimbraCard(),
+          ],
+        ),
       ),
     );
   }
