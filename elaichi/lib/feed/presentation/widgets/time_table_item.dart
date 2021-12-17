@@ -1,6 +1,7 @@
 import 'package:elaichi/app/utils/sizeconfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 ///The function returning the widget for each item in the calendar feed page.
 class TimeTableItem extends StatelessWidget {
@@ -41,7 +42,7 @@ class TimeTableItem extends StatelessWidget {
         margin: EdgeInsets.all(SizeConfig.safeBlockHorizontal! * 2),
         padding: const EdgeInsets.only(
           top: 4,
-          left: 12,
+          left: 16,
           right: 6,
           bottom: 12,
         ),
@@ -55,21 +56,25 @@ class TimeTableItem extends StatelessWidget {
             Positioned(
               top: SizeConfig.safeBlockVertical,
               child: SizedBox(
-                width: SizeConfig.safeBlockHorizontal! * 20,
+                width: SizeConfig.safeBlockHorizontal! * 16,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Image.asset('assets/images/add_event_icon.png'),
                     Text(
                       '${startTime!.hour.toString().padLeft(2, '0')}:${startTime!.minute.toString().padLeft(2, '0')}',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            fontSize: SizeConfig.safeBlockHorizontal! * 4.5,
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                   ],
                 ),
               ),
             ),
             Positioned(
-              top: SizeConfig.safeBlockVertical! * 4,
+              top: SizeConfig.safeBlockVertical! * 5,
               child: SizedBox(
                 width: SizeConfig.safeBlockHorizontal! * 30,
                 child: Text(
@@ -78,7 +83,7 @@ class TimeTableItem extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        fontSize: SizeConfig.safeBlockHorizontal! * 3.5,
+                        fontSize: SizeConfig.safeBlockHorizontal! * 4,
                       ),
                 ),
               ),

@@ -19,7 +19,7 @@ class TimeTableList extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: SizeConfig.safeBlockHorizontal!,
-              vertical: SizeConfig.safeBlockVertical! * 0.8,
+              vertical: SizeConfig.safeBlockVertical! * 1.0,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,15 +50,15 @@ class TimeTableList extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: SizeConfig.screenHeight! * 0.22,
+            height: SizeConfig.screenHeight! * 0.215,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return TimeTableItem(
-                  title: 'This is a looooooooooooooooooooooong title $index',
-                  organiser: 'Developers Students Club NITR',
+                  title: 'This is a long title $index',
+                  organiser: 'Developers NITR',
                   location: 'LA117',
                   startTime: DateTime.now(),
                   endTime: DateTime.utc(
