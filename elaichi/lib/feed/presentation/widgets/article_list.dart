@@ -1,4 +1,5 @@
 import 'package:elaichi/app/utils/sizeconfig.dart';
+import 'package:elaichi/feed/presentation/widgets/article_item.dart';
 import 'package:flutter/material.dart';
 
 ///Widget containing the list of MM articles
@@ -32,6 +33,24 @@ class ArticleList extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ],
+            ),
+          ),
+          SizedBox(
+            height: SizeConfig.safeBlockVertical! * 20,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return MMArticleCard(
+                  title:
+                      'A Noble Breakthrough: NIT Rourkela produces alcohol-based sanitizers',
+                  imageUrl:
+                      'https://mondaymorning.nitrkl.ac.in/uploads/post/AIChE%20(4).png',
+                  onTapped: () {},
+                );
+              },
+              itemCount: 10,
             ),
           )
         ],
