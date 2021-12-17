@@ -30,21 +30,23 @@ class TimeTableList extends StatelessWidget {
                 ),
                 SizedBox(
                   width: SizeConfig.screenWidth! * 0.4,
-                  child:
-                      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                    Text(
-                      'View Calendar',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(color: const Color(0XFF2F80ED)),
-                    ),
-                    const Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 16,
-                      color: Color(0XFF2F80ED),
-                    ),
-                  ]),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'View Calendar',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(color: const Color(0XFF2F80ED)),
+                      ),
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 16,
+                        color: Color(0XFF2F80ED),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

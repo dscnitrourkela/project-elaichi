@@ -1,7 +1,6 @@
 import 'package:elaichi/app/utils/measurements.dart';
 import 'package:elaichi/app/utils/sizeconfig.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 ///[ZimbraCard] is the idget that will be displayed if the user is not verified
 ///as a student of NIT Rourkela

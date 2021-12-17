@@ -1,5 +1,4 @@
 import 'package:elaichi/app/utils/sizeconfig.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -105,19 +104,20 @@ class TimeTableItem extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: SizeConfig.safeBlockVertical! * 16,
-                child: SizedBox(
-                  width: SizeConfig.safeBlockHorizontal! * 30,
-                  child: Text(
-                    location.toString(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: true,
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          fontSize: SizeConfig.safeBlockHorizontal! * 3.5,
-                        ),
-                  ),
-                ))
+              top: SizeConfig.safeBlockVertical! * 16,
+              child: SizedBox(
+                width: SizeConfig.safeBlockHorizontal! * 30,
+                child: Text(
+                  location.toString(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        fontSize: SizeConfig.safeBlockHorizontal! * 3.5,
+                      ),
+                ),
+              ),
+            )
           ],
         ),
       ),
