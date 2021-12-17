@@ -1,4 +1,5 @@
 import 'package:elaichi/app/utils/sizeconfig.dart';
+import 'package:elaichi/app/utils/strings.dart';
 import 'package:elaichi/feed/presentation/widgets/time_table_item.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class TimeTableList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '  Today',
+                  Strings.kToday,
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 SizedBox(
@@ -34,7 +35,7 @@ class TimeTableList extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        'View Calendar',
+                        Strings.kViewCalendar,
                         style: Theme.of(context)
                             .textTheme
                             .headline6!

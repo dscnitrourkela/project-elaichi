@@ -1,4 +1,5 @@
 import 'package:elaichi/app/utils/sizeconfig.dart';
+import 'package:elaichi/app/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -59,7 +60,7 @@ class TimeTableItem extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset('assets/images/add_event_icon.png'),
+                    Image.asset(Strings.kCalendarLogoUri),
                     Text(
                       '${startTime!.hour.toString().padLeft(2, '0')}:${startTime!.minute.toString().padLeft(2, '0')}',
                       style: Theme.of(context).textTheme.headline6!.copyWith(

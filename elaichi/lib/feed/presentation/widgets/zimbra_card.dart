@@ -1,5 +1,6 @@
 import 'package:elaichi/app/utils/measurements.dart';
 import 'package:elaichi/app/utils/sizeconfig.dart';
+import 'package:elaichi/app/utils/strings.dart';
 import 'package:flutter/material.dart';
 
 ///[ZimbraCard] is the idget that will be displayed if the user is not verified
@@ -33,7 +34,7 @@ class ZimbraCard extends StatelessWidget {
               top: SizeConfig.safeBlockHorizontal! * 7,
               left: SizeConfig.safeBlockHorizontal! * 7,
               child: Text(
-                'Register Now',
+                Strings.kRegisterNow,
                 style: Theme.of(context).textTheme.headline6!.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -45,7 +46,7 @@ class ZimbraCard extends StatelessWidget {
               top: SizeConfig.safeBlockHorizontal! * 19,
               left: SizeConfig.safeBlockHorizontal! * 7,
               child: Text(
-                'Verify your NITR webmail to access \ntime table, mess menu and much more',
+                Strings.kZimbraCardText,
                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
                       color: Colors.white.withOpacity(0.8),
                       fontWeight: FontWeight.w800,
@@ -68,7 +69,7 @@ class ZimbraCard extends StatelessWidget {
                 ),
                 onPressed: () {},
                 child: Text(
-                  'Verify Now',
+                  Strings.kVerifyNow,
                   style: Theme.of(context).textTheme.button!.copyWith(
                         color: Colors.white,
                       ),

@@ -1,4 +1,5 @@
 import 'package:elaichi/app/utils/sizeconfig.dart';
+import 'package:elaichi/app/utils/strings.dart';
 import 'package:elaichi/feed/presentation/widgets/article_item.dart';
 import 'package:flutter/material.dart';
 
@@ -24,12 +25,12 @@ class ArticleList extends StatelessWidget {
             child: Row(
               children: [
                 Image.asset(
-                  'assets/images/mm.png',
+                  Strings.kMmLogo,
                   height: SizeConfig.safeBlockVertical! * 5,
                   fit: BoxFit.cover,
                 ),
                 Text(
-                  '  Stories this week',
+                  Strings.kStoriesthisWeek,
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ],
@@ -43,10 +44,8 @@ class ArticleList extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return MMArticleCard(
-                  title:
-                      'A Noble Breakthrough: NIT Rourkela produces alcohol-based sanitizers',
-                  imageUrl:
-                      'https://mondaymorning.nitrkl.ac.in/uploads/post/AIChE%20(4).png',
+                  title: Strings.kMmCardTitle,
+                  imageUrl: Strings.kMmCardImageUri,
                   onTapped: () {},
                 );
               },
