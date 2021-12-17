@@ -1,3 +1,35 @@
 .add-child-margin * {
   margin-bottom: 0.8rem;
 }
+
+.body-container.add-child-margin {
+  height: calc(100vh - 60px) !important;
+
+  p {
+    a {
+      word-wrap: break-word;
+    }
+  }
+
+  .attachments-container {
+    .attachment {
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      background: var(--color-background-secondary);
+      border-radius: 5px;
+      font-size: 0.9rem;
+      color: var(--color-text-tertiary);
+
+      p,
+      svg {
+        margin-bottom: 0;
+      }
+
+      p {
+        margin-left: 10px;
+        color: var(--color-text-tertiary);
+      }
+    }
+  }
+}

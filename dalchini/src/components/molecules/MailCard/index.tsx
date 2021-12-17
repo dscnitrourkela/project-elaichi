@@ -32,8 +32,8 @@ const MailCard: React.FC<MailCardProps> = ({
           className="mailcard-flexbox"
         >
           <HighlightText>{mailId}</HighlightText>
-          <H3>{subject}</H3>
-          <P1>{excerpt}</P1>
+          <H3 className="mail-nowrap-content">{subject}</H3>
+          <P1 className="mail-nowrap-content">{excerpt}</P1>
         </Flexbox>
       </Container>
     </div>
