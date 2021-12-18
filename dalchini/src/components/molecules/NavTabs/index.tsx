@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // Libraries
 import cx from 'classnames';
@@ -32,9 +32,12 @@ const Tabs = [
   }
 ];
 
-const NavTabs: React.FC = () => {
-  const [activeTab, setActiveTab] = useState(0);
+export interface NavTabProps {
+  activeTab: number;
+  setActiveTab: React.Dispatch<React.SetStateAction<number>>;
+}
 
+const NavTabs: React.FC<NavTabProps> = ({ activeTab, setActiveTab }) => {
   return (
     <div
       style={{

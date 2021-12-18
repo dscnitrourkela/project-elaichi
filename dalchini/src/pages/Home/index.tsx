@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Libraries
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useQuery } from 'react-query';
+import { useQueries } from 'react-query';
 
 // Components
 import {
@@ -11,59 +11,33 @@ import {
   MailCard,
   FloatingActionButton,
   Loading,
-  Error
+  Error,
+  Flexbox,
+  HighlightText,
+  H1
 } from 'components';
 
 // Assets
 import './styles.scss';
 import { changeHistory, getQueryParam } from 'utils';
-import { api } from 'utils';
-
-export interface DataType {
-  s: number;
-  d: number;
-  l: string;
-  cid: string;
-  f: string;
-  rev: number;
-  id: string;
-  e: {
-    a: string;
-    d: string;
-    p: string;
-    t: string;
-  }[];
-  su: string;
-  fr: string;
-}
-
-const fetchInbox = async () => {
-  const {
-    data: { m: data }
-  } = await api.get<{ m: DataType[] }>('/', {
-    params: {
-      url: 'inbox.json'
-    },
-    headers: {
-      Accept: '*/*'
-    }
-  });
-
-  return data;
-};
+import { fetchMails } from 'services';
+import MailEmpty from 'assets/mail-empty.gif';
 
 const Home: React.FC = () => {
-  const {
-    data: inbox,
-    error: inboxError,
-    isLoading: inboxIsLoading
-  } = useQuery<DataType[], Error>(['home', 'inbox'], fetchInbox);
+  const [activeTab, setActiveTab] = useState(0);
+  const results = useQueries([
+    { queryKey: ['home', 'inbox'], queryFn: () => fetchMails('inbox') },
+    { queryKey: ['home', 'sent'], queryFn: () => fetchMails('sent') },
+    { queryKey: ['home', 'drafts'], queryFn: () => fetchMails('drafts') },
+    { queryKey: ['home', 'junk'], queryFn: () => fetchMails('junk') },
+    { queryKey: ['home', 'trash'], queryFn: () => fetchMails('trash') }
+  ]);
 
-  if (inboxError) {
+  if (results[activeTab].error) {
     return <Error />;
   }
 
-  if (inboxIsLoading) {
+  if (results[activeTab].isLoading) {
     return <Loading />;
   }
 
@@ -72,12 +46,31 @@ const Home: React.FC = () => {
       <div className="head-container">
         <PageTitle title="Webmail" icon={{ icon: faSearch }} />
 
-        <NavTabs />
+        <NavTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
 
-      {inbox && (
-        <div className="body-container">
-          {inbox.map(
+      <div className="body-container">
+        {!results[activeTab].data ? (
+          <Flexbox
+            justifyCenter
+            alignCenter
+            flexColumn
+            className="empty-mail-container"
+          >
+            <img
+              alt="Mail List empty"
+              src={MailEmpty}
+              className="empty-mail-img"
+            />
+
+            <H1>
+              <HighlightText className="empty-mail-msg">
+                No mails to show...
+              </HighlightText>
+            </H1>
+          </Flexbox>
+        ) : (
+          results[activeTab].data?.map(
             ({
               s: size,
               // d: date,
@@ -93,8 +86,8 @@ const Home: React.FC = () => {
               <MailCard
                 key={`${size}-${id}-${conversationalId}`}
                 mailId={mailList[mailList.length - 1]?.a || ''}
-                subject={subject.substring(0, 42) + '...'}
-                excerpt={body.substring(0, 48) + '...'}
+                subject={subject?.substring(0, 42) + '...'}
+                excerpt={body?.substring(0, 48) + '...'}
                 onClick={() =>
                   changeHistory(
                     'push',
@@ -103,9 +96,9 @@ const Home: React.FC = () => {
                 }
               />
             )
-          )}
-        </div>
-      )}
+          )
+        )}
+      </div>
 
       <FloatingActionButton onClick={() => {}} />
     </div>

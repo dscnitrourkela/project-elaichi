@@ -6,7 +6,7 @@ import { useTransition, animated } from 'react-spring';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 // Components
-import { Compose, Home, MailView, Playground } from 'pages';
+import { Compose, Home, MailView } from 'pages';
 
 // Assets
 import { history } from 'utils';
@@ -31,10 +31,6 @@ const App: React.FC = () => {
     {
       path: '/compose',
       component: Compose
-    },
-    {
-      path: '/playground',
-      component: Playground
     }
   ];
 

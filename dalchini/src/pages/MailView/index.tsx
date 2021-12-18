@@ -21,18 +21,7 @@ import {
 
 // Assets
 import './styles.scss';
-import { changeHistory, api, getQueryParam } from 'utils';
-
-// @ts-ignore
-function downloadURI(uri, name) {
-  const link = document.createElement('a');
-  link.setAttribute('download', name);
-  link.setAttribute('href', uri);
-  link.setAttribute('target', '_blank');
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
+import { changeHistory, api, getQueryParam, downloadURI } from 'utils';
 
 const fetchMail = async (id: string) => {
   const { data } = await api.get('/', {
