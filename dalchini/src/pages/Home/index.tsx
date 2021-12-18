@@ -10,12 +10,12 @@ import {
   NavTabs,
   MailCard,
   FloatingActionButton,
-  Flexbox
+  Loading,
+  Error
 } from 'components';
 
 // Assets
 import './styles.scss';
-import MailLoading from 'assets/mail-loading.gif';
 import { changeHistory, getQueryParam } from 'utils';
 import { api } from 'utils';
 
@@ -60,13 +60,11 @@ const Home: React.FC = () => {
   } = useQuery<DataType[], Error>(['home', 'inbox'], fetchInbox);
 
   if (inboxError) {
-    return <>Error loading inbox mails</>;
+    return <Error />;
   }
 
   if (inboxIsLoading) {
-    <Flexbox justifyCenter alignCenter className="loading-container">
-      <img alt="Mails Loading" src={MailLoading} />
-    </Flexbox>;
+    return <Loading />;
   }
 
   return (

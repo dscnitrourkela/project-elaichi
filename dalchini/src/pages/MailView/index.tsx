@@ -15,7 +15,8 @@ import {
   P2,
   HighlightText,
   Container,
-  Flexbox
+  Flexbox,
+  Loading
 } from 'components';
 
 // Assets
@@ -63,9 +64,7 @@ const MailView: React.FC = () => {
   }
 
   if (isLoading) {
-    <Flexbox justifyCenter alignCenter className="loading-container">
-      Loading...
-    </Flexbox>;
+    return <Loading showClose />;
   }
 
   return (
