@@ -16,6 +16,7 @@ abstract class Strings {
   static const String kMmCardImageUri =
       'https://mondaymorning.nitrkl.ac.in/uploads/post/AIChE%20(4).png';
   static const String kNitrImage = 'assets/images/nitr.png';
+  static const String kShaderImage = 'assets/images/shader.png';
   static const String kStoriesthisWeek = '  Stories this week';
   static const String kToday = '  Today';
   static const String kViewCalendar = 'View Calendar';

@@ -20,13 +20,13 @@ class ZimbraCard extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Image.asset(
-              'assets/images/nitr.png',
+              Strings.kNitrImage,
               fit: BoxFit.fill,
             ),
             Opacity(
               opacity: 0.7,
               child: Image.asset(
-                'assets/images/shader.png',
+                Strings.kShaderImage,
                 fit: BoxFit.cover,
               ),
             ),
