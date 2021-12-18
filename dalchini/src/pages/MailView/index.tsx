@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 // Libraries
 import { faDownload, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation } from 'react-router-dom';
 import { simpleParser, ParsedMail } from 'mailparser';
+import { useQuery } from 'react-query';
 
 // Components
 import {
@@ -32,30 +33,40 @@ function downloadURI(uri, name) {
   document.body.removeChild(link);
 }
 
+const fetchMail = async (id: string) => {
+  const { data } = await api.get('/', {
+    params: {
+      id
+    },
+    headers: {
+      Accept: '*/*'
+    }
+  });
+
+  const parsed = await simpleParser(data);
+  return parsed;
+};
+
 const MailView: React.FC = () => {
-  const [parsedMail, setParsedMail] = useState<ParsedMail | null>(null);
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      // eslint-disable-next-line prefer-destructuring
-      const id = pathname.split('/')[2];
+  const {
+    data: parsedMail,
+    isLoading,
+    error
+  } = useQuery<ParsedMail, Error>(['mail', pathname], () =>
+    fetchMail(pathname.split('/')[2])
+  );
 
-      const { data } = await api.get('/', {
-        params: {
-          id
-        },
-        headers: {
-          Accept: '*/*'
-        }
-      });
+  if (error) {
+    return <>Error loading inbox mails</>;
+  }
 
-      const parsed = await simpleParser(data);
-      setParsedMail(parsed);
-    };
-
-    fetchData();
-  }, [pathname]);
+  if (isLoading) {
+    <Flexbox justifyCenter alignCenter className="loading-container">
+      Loading...
+    </Flexbox>;
+  }
 
   return (
     <div className="page-wrapper" style={{ paddingTop: '70px' }}>
@@ -72,9 +83,7 @@ const MailView: React.FC = () => {
           className="body-container add-child-margin"
           style={{ background: 'var(--color-background-primary)' }}
         >
-          {!parsedMail ? (
-            <p>Loading</p>
-          ) : (
+          {parsedMail && (
             <>
               <P1 style={{ fontWeight: '500' }}>
                 {new Date(parsedMail.date || '').toLocaleString()}

@@ -3,6 +3,7 @@ import React from 'react';
 // Libraries
 import { Router, Route, Switch, useLocation } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 // Components
 import { Compose, Home, MailView, Playground } from 'pages';
@@ -60,11 +61,15 @@ const App: React.FC = () => {
   );
 };
 
+const queryClient = new QueryClient();
+
 const MainApp: React.FC = () => {
   return (
-    <Router history={history}>
-      <App />
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router history={history}>
+        <App />
+      </Router>
+    </QueryClientProvider>
   );
 };
 

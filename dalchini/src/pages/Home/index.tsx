@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 // Libraries
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useQuery } from 'react-query';
 
 // Components
 import {
@@ -14,8 +15,8 @@ import {
 
 // Assets
 import './styles.scss';
-import { changeHistory, getQueryParam } from 'utils';
 import MailLoading from 'assets/mail-loading.gif';
+import { changeHistory, getQueryParam } from 'utils';
 import { api } from 'utils';
 
 export interface DataType {
@@ -36,35 +37,37 @@ export interface DataType {
   fr: string;
 }
 
+const fetchInbox = async () => {
+  const {
+    data: { m: data }
+  } = await api.get<{ m: DataType[] }>('/', {
+    params: {
+      url: 'inbox.json'
+    },
+    headers: {
+      Accept: '*/*'
+    }
+  });
+
+  return data;
+};
+
 const Home: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [data, setData] = useState<DataType[] | null>(null);
+  const {
+    data: inbox,
+    error: inboxError,
+    isLoading: inboxIsLoading
+  } = useQuery<DataType[], Error>(['home', 'inbox'], fetchInbox);
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 5000);
-    const fetchData = async () => {
-      try {
-        const {
-          data: { m: mails }
-        } = await api.get('/', {
-          params: {
-            url: 'inbox.json'
-          },
-          headers: {
-            Accept: '*/*'
-          }
-        });
-        setData(mails);
-        setLoading(false);
-        setError(false);
-      } catch (err) {
-        setError(true);
-      }
-    };
+  if (inboxError) {
+    return <>Error loading inbox mails</>;
+  }
 
-    fetchData();
-  }, []);
+  if (inboxIsLoading) {
+    <Flexbox justifyCenter alignCenter className="loading-container">
+      <img alt="Mails Loading" src={MailLoading} />
+    </Flexbox>;
+  }
 
   return (
     <div className="page-wrapper">
@@ -74,45 +77,39 @@ const Home: React.FC = () => {
         <NavTabs />
       </div>
 
-      {!loading && !error && data ? (
-        <>
-          <div className="body-container">
-            {data.map(
-              ({
-                s: size,
-                // d: date,
-                // l: box,
-                cid: conversationalId,
-                // f: flag,
-                // rev,
-                id,
-                e: mailList,
-                su: subject,
-                fr: body
-              }) => (
-                <MailCard
-                  key={`${size}-${id}-${conversationalId}`}
-                  mailId={mailList[mailList.length - 1]?.a || ''}
-                  subject={subject.substring(0, 42) + '...'}
-                  excerpt={body.substring(0, 48) + '...'}
-                  onClick={() =>
-                    changeHistory(
-                      'push',
-                      `/view/${id}?zauthtoken=${getQueryParam('zauthtoken')}`
-                    )
-                  }
-                />
-              )
-            )}
-          </div>
-
-          <FloatingActionButton onClick={() => {}} />
-        </>
-      ) : (
-        <Flexbox justifyCenter alignCenter className="loading-container">
-          <img alt="Mails Loading" src={MailLoading} />
-        </Flexbox>
+      {inbox && (
+        <div className="body-container">
+          {inbox.map(
+            ({
+              s: size,
+              // d: date,
+              // l: box,
+              cid: conversationalId,
+              // f: flag,
+              // rev,
+              id,
+              e: mailList,
+              su: subject,
+              fr: body
+            }) => (
+              <MailCard
+                key={`${size}-${id}-${conversationalId}`}
+                mailId={mailList[mailList.length - 1]?.a || ''}
+                subject={subject.substring(0, 42) + '...'}
+                excerpt={body.substring(0, 48) + '...'}
+                onClick={() =>
+                  changeHistory(
+                    'push',
+                    `/view/${id}?zauthtoken=${getQueryParam('zauthtoken')}`
+                  )
+                }
+              />
+            )
+          )}
+        </div>
       )}
+
+      <FloatingActionButton onClick={() => {}} />
     </div>
   );
 };
