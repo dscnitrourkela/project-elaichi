@@ -26,6 +26,7 @@ class FeedPage extends StatelessWidget {
                     orElse: () => const Center(
                       child: CircularProgressIndicator(),
                     ),
+                    error: (error) => Text(error),
                     mailunchecked: () => const ZimbraCard(),
                     success: () => const TimeTableList(),
                   );

@@ -22,6 +22,10 @@ abstract class Strings {
       'Android Study Jam - Introductory session';
   static const String dummyEventOrganiserName = 'GDSC NIT Rourkela';
   static const String dummyEventLocation = 'LA117';
+  static const String webmailLogin = 'Webmail Login';
+  static const String rollNo = 'Roll Number';
+  static const String password = 'Password';
+  static const String rollNoIdHint = '111AB011';
 
   /// Images and Icons used in various files
   static const String calendarIconUri = 'assets/images/add_event_icon.png';
