@@ -10,12 +10,12 @@ AppBar customAppBar({
   IconData? rightButton,
 }) {
   return AppBar(
-    backgroundColor: Theme.of(context).backgroundColor,
+    backgroundColor: Theme.of(context).canvasColor,
     title: Text(
       text,
       style: Theme.of(context).textTheme.headline6,
     ),
-    elevation: 0,
+    elevation: 2,
     centerTitle: true,
     leading: (leftButton != null)
         ? IconButton(
