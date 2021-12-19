@@ -62,6 +62,7 @@ class TimeTableItem extends StatelessWidget {
                   children: [
                     Image.asset(Strings.kCalendarLogoUri),
                     Text(
+                      // ignore: lines_longer_than_80_chars
                       '${startTime!.hour.toString().padLeft(2, '0')}:${startTime!.minute.toString().padLeft(2, '0')}',
                       style: Theme.of(context).textTheme.headline6!.copyWith(
                             fontSize: SizeConfig.safeBlockHorizontal! * 4.5,
