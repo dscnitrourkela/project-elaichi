@@ -20,13 +20,13 @@ class ZimbraCard extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Image.asset(
-              Strings.kNitrImage,
+              Strings.nitrImage,
               fit: BoxFit.fill,
             ),
             Opacity(
               opacity: 0.7,
               child: Image.asset(
-                Strings.kShaderImage,
+                Strings.shaderImage,
                 fit: BoxFit.cover,
               ),
             ),
@@ -34,7 +34,7 @@ class ZimbraCard extends StatelessWidget {
               top: SizeConfig.safeBlockHorizontal! * 7,
               left: SizeConfig.safeBlockHorizontal! * 7,
               child: Text(
-                Strings.kRegisterNow,
+                Strings.registerNow,
                 style: Theme.of(context).textTheme.headline6!.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -46,7 +46,7 @@ class ZimbraCard extends StatelessWidget {
               top: SizeConfig.safeBlockHorizontal! * 19,
               left: SizeConfig.safeBlockHorizontal! * 7,
               child: Text(
-                Strings.kZimbraCardText,
+                Strings.zimbraCardText,
                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
                       color: Colors.white.withOpacity(0.8),
                       fontWeight: FontWeight.w800,
@@ -69,7 +69,7 @@ class ZimbraCard extends StatelessWidget {
                 ),
                 onPressed: () {},
                 child: Text(
-                  Strings.kVerifyNow,
+                  Strings.verifyNow,
                   style: Theme.of(context).textTheme.button!.copyWith(
                         color: Colors.white,
                       ),

@@ -33,7 +33,7 @@ class SignInPage extends StatelessWidget {
                   SizedBox(
                     height: SizeConfig.screenHeight! * 0.08,
                   ),
-                  Image.asset(Strings.kAvenueLogoFileUri),
+                  Image.asset(Strings.avenueLogoFileUri),
                   SizedBox(
                     height: SizeConfig.screenHeight! * 0.02,
                   ),
@@ -44,7 +44,7 @@ class SignInPage extends StatelessWidget {
                   SizedBox(
                     height: SizeConfig.screenHeight! * 0.12,
                   ),
-                  Image.asset(Strings.kPlantLogoFileUri),
+                  Image.asset(Strings.plantImageUri),
                   SizedBox(
                     height: SizeConfig.screenHeight! * 0.12,
                   ),
@@ -66,10 +66,10 @@ class SignInPage extends StatelessWidget {
                     builder: (context, state) {
                       return state.maybeWhen(
                         orElse: () => Button(
-                          text: 'Sign in with Google',
+                          text: Strings.signinWithGoogle,
                           onTapped: () =>
                               context.read<SignInCubit>().signInWithGoogle(),
-                          icon: SvgPicture.asset(Strings.kGoogleLogoFileUri),
+                          icon: SvgPicture.asset(Strings.googleLogoFileUri),
                         ),
                         loading: () => const Center(
                           child: CircularProgressIndicator(),

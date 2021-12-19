@@ -26,7 +26,7 @@ class TimeTableList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  Strings.kToday,
+                  Strings.today,
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 SizedBox(
@@ -35,7 +35,7 @@ class TimeTableList extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        Strings.kViewCalendar,
+                        Strings.viewCalendar,
                         style: Theme.of(context)
                             .textTheme
                             .headline6!
@@ -60,9 +60,9 @@ class TimeTableList extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return TimeTableItem(
-                  title: 'This is a long title $index',
-                  organiser: 'Developers NITR',
-                  location: 'LA117',
+                  title: Strings.dummyEventsName,
+                  organiser: Strings.dummyEventOrganiserName,
+                  location: Strings.dummyEventLocation,
                   startTime: DateTime.now(),
                   endTime: DateTime.utc(
                     2021,

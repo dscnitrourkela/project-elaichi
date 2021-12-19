@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 ///Widget containing the list of MM articles
 class ArticleList extends StatelessWidget {
-  /// Default Articles
+  /// Default Constructor
   const ArticleList({Key? key}) : super(key: key);
 
   @override
@@ -25,12 +25,12 @@ class ArticleList extends StatelessWidget {
             child: Row(
               children: [
                 Image.asset(
-                  Strings.kMmLogo,
+                  Strings.mmLogoUri,
                   height: SizeConfig.safeBlockVertical! * 5,
                   fit: BoxFit.cover,
                 ),
                 Text(
-                  Strings.kStoriesthisWeek,
+                  Strings.storiesthisWeek,
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ],
@@ -44,8 +44,8 @@ class ArticleList extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return MMArticleCard(
-                  title: Strings.kMmCardTitle,
-                  imageUrl: Strings.kMmCardImageUri,
+                  title: Strings.mmCardDummyTitle,
+                  imageUrl: Strings.mmCardDummyImageUri,
                   onTapped: () {},
                 );
               },

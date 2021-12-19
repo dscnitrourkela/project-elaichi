@@ -1,4 +1,5 @@
 import 'package:elaichi/app/utils/sizeconfig.dart';
+import 'package:elaichi/app/utils/strings.dart';
 import 'package:elaichi/auth/domain/datamodel/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
   /// The icon for Feed Page
   const BottomNavigationBarItem(
-    label: 'Feed',
+    label: Strings.feed,
     icon: Icon(Icons.home_outlined),
     activeIcon: Icon(
       Icons.home_rounded,
@@ -15,7 +16,7 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
 
   /// The icon for Browwse Page
   const BottomNavigationBarItem(
-    label: 'Browse',
+    label: Strings.browse,
     icon: Icon(
       Icons.dashboard_outlined,
     ),
@@ -26,7 +27,7 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
 
   /// The icon for Zimbra Webmail Page
   const BottomNavigationBarItem(
-    label: 'Zimbra',
+    label: Strings.mail,
     icon: Icon(
       Icons.email_outlined,
     ),
@@ -37,7 +38,7 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
 
   /// The icon for Profile Page
   BottomNavigationBarItem(
-    label: 'Profile',
+    label: Strings.profile,
     icon: ClipRRect(
       borderRadius: BorderRadius.circular(
         SizeConfig.safeBlockHorizontal! * 10,

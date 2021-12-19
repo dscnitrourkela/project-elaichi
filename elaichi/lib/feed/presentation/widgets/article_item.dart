@@ -34,7 +34,7 @@ class MMArticleCard extends StatelessWidget {
                 imageUrl.toString(),
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) =>
-                    Image.asset(Strings.kNitrImage, fit: BoxFit.cover),
+                    Image.asset(Strings.nitrImage, fit: BoxFit.cover),
               ),
             ),
             Positioned(
