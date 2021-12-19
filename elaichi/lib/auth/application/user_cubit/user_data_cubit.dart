@@ -4,6 +4,7 @@ import 'package:elaichi/auth/domain/repository/auth_repository.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'user_data_state.dart';
 part 'user_data_cubit.freezed.dart';
@@ -22,12 +23,19 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(const UserDataState.loading());
     try {
       final userInfo = await _authenticationRepository.getSignedInUser();
+      final prefs = await SharedPreferences.getInstance();
       userInfo.fold(
         () {
           emit(const UserDataState.unauthenticated());
         },
-        (userInput) {
-          UserData.instance().user = userInput;
+        (userObject) {
+          UserData.instance().user = userObject;
+          UserData.instance().email = (prefs.getString('email') != null)
+              ? prefs.getString('email')
+              : null;
+          UserData.instance().token = (prefs.getString('token') != null)
+              ? prefs.getString('token')
+              : null;
           emit(const UserDataState.googleAuthenticated());
         },
       );

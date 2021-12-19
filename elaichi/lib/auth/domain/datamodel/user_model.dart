@@ -16,8 +16,8 @@ class UserData {
   /// The user's zimbra email address
   String? email;
 
-  /// The user's zimbra password
-  String? password;
+  /// The user's zimbra password and email base-64 encrypted token
+  String? token;
 
   /// Get Function to retreive the  authenticated user
   User? get getUser => _instance.user;
@@ -26,5 +26,5 @@ class UserData {
   String? get getEmail => _instance.email;
 
   /// Get Function to retreive the  authenticated user's zimbra credentials
-  String? get getPassword => _instance.password;
+  String? get getPassword => _instance.token;
 }

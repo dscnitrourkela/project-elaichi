@@ -58,7 +58,7 @@ class SignInPage extends StatelessWidget {
                           ),
                         ),
                         success: () {
-                          GoRouter.of(context).go('/home');
+                          GoRouter.of(context).go('/');
                         },
                         orElse: () {},
                       );

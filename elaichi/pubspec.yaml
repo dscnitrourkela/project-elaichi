@@ -27,7 +27,8 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   lottie: ^1.2.1
 
-
+  #local storage
+  shared_preferences: ^2.0.11
 
   # Firebase Plugins
   google_sign_in: ^5.2.1
