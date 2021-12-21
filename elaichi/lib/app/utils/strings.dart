@@ -26,6 +26,7 @@ abstract class Strings {
   static const String rollNo = 'Roll Number';
   static const String password = 'Password';
   static const String rollNoIdHint = '111AB011';
+  static const String noInternet = 'Please Check Your internet Connection';
 
   /// Images and Icons used in various files
   static const String calendarIconUri = 'assets/images/add_event_icon.png';
@@ -38,6 +39,7 @@ abstract class Strings {
   /// Button's text used in various files
   static const String signinWithGoogle = 'Sign in with Google';
   static const String verifyNow = 'Verify Now';
+  static const String login = 'Login';
 
   /// Bottom Navigation Bar labels
   static const String feed = 'Feed';

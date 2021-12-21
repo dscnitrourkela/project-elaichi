@@ -1,5 +1,6 @@
 import 'package:elaichi/auth/domain/repository/auth_repository.dart';
 import 'package:elaichi/browse/presentation/browse_page.dart';
+import 'package:elaichi/feed/application/feed_cubit.dart';
 import 'package:elaichi/feed/presentation/feed_page.dart';
 import 'package:elaichi/home/application/home_cubit.dart';
 import 'package:elaichi/home/presentation/widgets/bottomnavbaritems.dart';
@@ -76,11 +77,14 @@ class HomePageState extends State<HomePage> {
                               .pageController
                               .jumpToPage(value);
                         },
-                        children: const [
-                          FeedPage(),
-                          BrowsePage(),
-                          MailPage(),
-                          ProfilePage(),
+                        children: [
+                          BlocProvider.value(
+                            value: BlocProvider.of<FeedCubit>(context),
+                            child: const FeedPage(),
+                          ),
+                          const BrowsePage(),
+                          const MailPage(),
+                          const ProfilePage(),
                         ],
                       ),
                     ),

@@ -1,6 +1,9 @@
 import 'package:elaichi/auth/domain/repository/auth_repository.dart';
 import 'package:elaichi/auth/presentation/sign_in_view.dart';
+import 'package:elaichi/feed/application/feed_cubit.dart';
 import 'package:elaichi/home/home.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 /// Handles the routing and navigation of the app.
@@ -35,8 +38,15 @@ class AppRouter {
         path: '/home',
         builder: (context, state) {
           final authenticationRepository = AuthenticationRepository();
-          return HomePage(
-            authenticationRepository: authenticationRepository,
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider<FeedCubit>(
+                create: (BuildContext context) => FeedCubit(),
+              )
+            ],
+            child: HomePage(
+              authenticationRepository: authenticationRepository,
+            ),
           );
         },
       ),

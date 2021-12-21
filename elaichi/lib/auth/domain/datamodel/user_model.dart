@@ -13,18 +13,24 @@ class UserData {
   /// The user object that is returned by FirebaseAuth.
   User? user;
 
-  /// The user's zimbra email address
-  String? email;
+  /// The user's zimbra roll number
+  String? rollNumber;
 
   /// The user's zimbra password and email base-64 encrypted token
   String? token;
 
+  /// The user's zimbra authentication token
+  String? authToken;
+
   /// Get Function to retreive the  authenticated user
   User? get getUser => _instance.user;
 
-  /// Get Function to retreive the  authenticated user's zimbra email address
-  String? get getEmail => _instance.email;
+  /// Get Function to retreive the  authenticated user's zimbra roll Number
+  String? get getRollNumber => _instance.rollNumber;
 
   /// Get Function to retreive the  authenticated user's zimbra credentials
   String? get getPassword => _instance.token;
+
+  /// Get the authentication token of the user
+  String? get getAuthToken => _instance.authToken;
 }

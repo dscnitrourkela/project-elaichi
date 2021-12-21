@@ -30,9 +30,10 @@ class UserDataCubit extends Cubit<UserDataState> {
         },
         (userObject) {
           UserData.instance().user = userObject;
-          UserData.instance().email = (prefs.getString('email') != null)
-              ? prefs.getString('email')
-              : null;
+          UserData.instance().rollNumber =
+              (prefs.getString('rollNumber') != null)
+                  ? prefs.getString('rollNumber')
+                  : null;
           UserData.instance().token = (prefs.getString('token') != null)
               ? prefs.getString('token')
               : null;

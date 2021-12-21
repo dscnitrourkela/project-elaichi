@@ -27,7 +27,10 @@ class FeedPage extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     ),
                     error: (error) => Text(error),
-                    mailunchecked: () => const ZimbraCard(),
+                    mailunchecked: () => BlocProvider.value(
+                      value: BlocProvider.of<FeedCubit>(context),
+                      child: const ZimbraCard(),
+                    ),
                     success: () => const TimeTableList(),
                   );
                 },

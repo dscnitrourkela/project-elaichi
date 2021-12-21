@@ -1,9 +1,12 @@
 import 'package:elaichi/app/utils/measurements.dart';
 import 'package:elaichi/app/utils/sizeconfig.dart';
 import 'package:elaichi/app/utils/strings.dart';
+import 'package:elaichi/feed/application/feed_cubit.dart';
+import 'package:elaichi/feed/presentation/widgets/modal_sheet.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 ///[ZimbraCard] is the idget that will be displayed if the user is not verified
 ///as a student of NIT Rourkela
@@ -81,24 +84,10 @@ class ZimbraCard extends StatelessWidget {
                         topRight: Radius.circular(16),
                       ),
                     ),
-                    builder: (context) {
-                      return SizedBox(
-                        height: SizeConfig.screenHeight! * 0.5,
-                        child: Column(
-                          children: [
-                            Text(
-                              Strings.webmailLogin,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline6!
-                                  .copyWith(
-                                    color: Theme.of(context).primaryColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Divider(color: Theme.of(context).focusColor)
-                          ],
-                        ),
+                    builder: (_) {
+                      return BlocProvider.value(
+                        value: BlocProvider.of<FeedCubit>(context),
+                        child: const ModalSheet(),
                       );
                     },
                   );
@@ -114,78 +103,6 @@ class ZimbraCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-/// Form Text Box for the roll number
-class TextBoxRollNo extends StatelessWidget {
-  /// Default Constructore for [TextBoxRollNo]
-  const TextBoxRollNo({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.safeBlockHorizontal!,
-            vertical: SizeConfig.safeBlockHorizontal!,
-          ),
-          child: Text(
-            Strings.rollNo,
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-        ),
-        TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          keyboardType: TextInputType.emailAddress,
-          textCapitalization: TextCapitalization.words,
-          style: Theme.of(context).textTheme.bodyText2,
-        ),
-      ],
-    );
-  }
-}
-
-/// Form text box for the password
-class TextBoxPassword extends StatelessWidget {
-  /// Default Constructor
-  const TextBoxPassword({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.safeBlockHorizontal!,
-            vertical: SizeConfig.safeBlockHorizontal!,
-          ),
-          child: Text(
-            Strings.password,
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-        ),
-        TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          keyboardType: TextInputType.visiblePassword,
-          textCapitalization: TextCapitalization.words,
-          style: Theme.of(context).textTheme.bodyText2,
-        ),
-      ],
     );
   }
 }
