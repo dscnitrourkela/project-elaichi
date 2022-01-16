@@ -7,10 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 ///The Feed Page
-class FeedPage extends StatelessWidget {
+class FeedPage extends StatefulWidget {
   /// Default constructor
   const FeedPage({Key? key}) : super(key: key);
 
+  @override
+  State<FeedPage> createState() => _FeedPageState();
+}
+
+class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,13 +24,27 @@ class FeedPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              BlocBuilder<FeedCubit, FeedState>(
+              BlocConsumer<FeedCubit, FeedState>(
+                listener: (context, state) {
+                  debugPrint('from listner $state');
+                  state.maybeWhen(
+                    orElse: () {},
+                    initial: () {
+                      setState(() {
+                        context.read<FeedCubit>().getMailId();
+                      });
+                    },
+                  );
+                },
                 builder: (context, state) {
-                  context.read<FeedCubit>().getMailId();
                   return state.maybeWhen(
-                    orElse: () => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                    orElse: () {
+                      context.read<FeedCubit>().getMailId();
+                      debugPrint('from builder $state');
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
                     error: (error) => Text(error),
                     mailunchecked: () => BlocProvider.value(
                       value: BlocProvider.of<FeedCubit>(context),

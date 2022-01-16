@@ -52,6 +52,7 @@ class FeedCubit extends Cubit<FeedState> {
     try {
       await prefs.setString('rollNumber', rollNumber);
       await prefs.setString('token', token);
+
       UserData.instance().rollNumber = rollNumber;
       UserData.instance().token = token;
 
