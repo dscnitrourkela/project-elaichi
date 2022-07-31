@@ -34,7 +34,7 @@ if (keystorePropertiesFile.exists()) {
 
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 32
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -51,7 +51,7 @@ android {
 
     defaultConfig {
         applicationId "org.dscnitrourkela.elaichi"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
