@@ -16,7 +16,7 @@ class FeedPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Column(
-            children: const [TimeTableList(), ZimbraCard(), ArticleList()],
+            children: const [CalenderList(), ZimbraCard(), ArticleList()],
           ),
         ),
       ),

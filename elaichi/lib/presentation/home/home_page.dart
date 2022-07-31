@@ -4,7 +4,7 @@ import 'package:elaichi/presentation/components/custom_app_bar.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/home/bloc/home_bloc.dart';
 import 'package:elaichi/presentation/home/feed/feed_page.dart';
-import 'package:elaichi/presentation/home/widgets/bottomnavbaritems.dart';
+import 'package:elaichi/presentation/home/widgets/bottom_navbar_items.dart';
 import 'package:elaichi/presentation/mail/mail_page.dart';
 import 'package:elaichi/presentation/user_settings/account/account_page.dart';
 import 'package:flutter/material.dart';
@@ -65,23 +65,12 @@ class _HomePageState extends State<HomePage> {
                     rightTap: () => _bloc.add(const HomeEvent.logout()),
                   ),
                   body: Center(
-                    child: PageView(
-                      controller: _bloc.pageController,
-                      physics: const NeverScrollableScrollPhysics(),
-                      scrollBehavior: const ScrollBehavior(),
-                      onPageChanged: (value) {
-                        setState(() {
-                          pageIndex = value;
-                        });
-                        _bloc.pageController.jumpToPage(value);
-                      },
-                      children: const [
-                        FeedPage(),
-                        BrowsePage(),
-                        MailPage(),
-                        ProfilePage(),
-                      ],
-                    ),
+                    child: const [
+                      FeedPage(),
+                      BrowsePage(),
+                      MailPage(),
+                      ProfilePage(),
+                    ][pageIndex],
                   ),
                   bottomNavigationBar: BottomNavigationBar(
                     showSelectedLabels: false,
@@ -90,11 +79,6 @@ class _HomePageState extends State<HomePage> {
                       setState(() {
                         pageIndex = value;
                       });
-                      _bloc.pageController.animateToPage(
-                        value,
-                        duration: const Duration(milliseconds: 100),
-                        curve: Curves.easeIn,
-                      );
                     },
                     currentIndex: pageIndex,
                     selectedItemColor: Theme.of(context).primaryColor,

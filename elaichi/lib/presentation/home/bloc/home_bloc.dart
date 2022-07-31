@@ -24,8 +24,5 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
   }
 
-  ///Page Controller for the home page
-  PageController pageController = PageController();
-
   final UserRepository _userRepository;
 }

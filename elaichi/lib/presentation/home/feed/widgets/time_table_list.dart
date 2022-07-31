@@ -4,9 +4,9 @@ import 'package:elaichi/presentation/home/feed/widgets/time_table_item.dart';
 import 'package:flutter/material.dart';
 
 /// TimeTable List customised for all users
-class TimeTableList extends StatelessWidget {
+class CalenderList extends StatelessWidget {
   ///Default Constructor
-  const TimeTableList({Key? key}) : super(key: key);
+  const CalenderList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
