@@ -25,10 +25,10 @@ class AppColors {
   static const Color cardHeader60 = Color.fromRGBO(79, 79, 79, 0.6);
 
   // Buttons
-  static const Color newEventBtn = Color.fromRGBO(47, 128, 237, 1);
+  static const Color newEventBtn = Color.fromARGB(255, 47, 128, 237);
   static const Color enabledBorderColor = Color.fromRGBO(150, 150, 150, 1);
   static const Color errorBorderColor = Color.fromRGBO(218, 0, 0, 1);
-  static const Color disabledBorderColor = Color.fromRGBO(218, 218, 218, 1);
+  static const Color disabledBorderColor = Color(0xffDADADA);
   static const Color focusedBorderColor = Color.fromRGBO(79, 79, 79, 1);
 
   //icons
@@ -47,4 +47,10 @@ class AppColors {
   static const Color failureRedLight1 = Color(0xFFFFE6E3);
   static const Color yellow = Color(0xFFFEBE00);
   static const Color yellowLight = Color(0xFFFFF3E0);
+
+  static const Color lightBlue = Color(0xff2F80ED);
+
+  static const Color grey = Color(0xffC4C4C4);
+  static const Color grey2 = Color(0xff4F4F4F);
+  static const Color grey3 = Color(0xff828282);
 }

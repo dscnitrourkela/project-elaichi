@@ -1,6 +1,6 @@
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/feed/widgets/article_item.dart';
+import 'package:elaichi/presentation/home/feed/widgets/articles/article_item.dart';
 import 'package:flutter/material.dart';
 
 ///Widget containing the list of MM articles
@@ -12,14 +12,12 @@ class ArticleList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: SizeConfig.safeBlockHorizontal! * 2,
         vertical: SizeConfig.safeBlockVertical! * 2,
       ),
       child: Column(
         children: [
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: SizeConfig.safeBlockHorizontal!,
               vertical: SizeConfig.safeBlockVertical! * 0.8,
             ),
             child: Row(

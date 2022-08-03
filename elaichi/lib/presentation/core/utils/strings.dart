@@ -24,7 +24,7 @@ abstract class Strings {
   static const String kNitrImage = 'assets/images/nitr.png';
   static const String kShaderImage = 'assets/images/shader.png';
   static const String kStoriesthisWeek = '  Stories this week';
-  static const String kToday = '  Today';
+  static const String kToday = 'Today';
   static const String kViewCalendar = 'View Calendar';
   static const String kRegisterNow = 'Register Now';
   static const String kVerifyNow = 'Verify Now';

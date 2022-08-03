@@ -1,3 +1,4 @@
+import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -55,6 +56,7 @@ final TextTheme textTheme = TextTheme(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     letterSpacing: 1.25,
+    color: Colors.white,
   ),
   caption: GoogleFonts.inter(
     fontSize: 12,
@@ -96,9 +98,9 @@ abstract class AppTheme {
     focusColor: const Color(0xff333333),
     splashColor: const Color(0xffbdbdbd),
     unselectedWidgetColor: const Color(0xffe0e0e0),
-    disabledColor: const Color(0xffe0e0e0),
-    hintColor: const Color(0xff828282),
-    errorColor: const Color(0xffeb5757),
+    disabledColor: AppColors.disabledBorderColor,
+    hintColor: AppColors.grey3,
+    errorColor: AppColors.errorBorderColor,
     toggleableActiveColor: const Color(0xff333333),
   );
 }

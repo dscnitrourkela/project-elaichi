@@ -19,8 +19,8 @@ class MMArticleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: SizeConfig.safeBlockHorizontal! * 4,
+      margin: EdgeInsets.only(
+        right: SizeConfig.safeBlockHorizontal! * 4,
       ),
       width: SizeConfig.screenWidth! * 0.7,
       child: ClipRRect(

@@ -1,11 +1,12 @@
+import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:flutter/material.dart';
 
 ///The function returning the widget for each item in the calendar feed page.
-class TimeTableItem extends StatelessWidget {
+class CalenderItem extends StatelessWidget {
   /// DEfault Constructor
-  const TimeTableItem({
+  const CalenderItem({
     Key? key,
     this.title,
     this.organiser,
@@ -38,7 +39,11 @@ class TimeTableItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTapped,
       child: Container(
-        margin: EdgeInsets.all(SizeConfig.safeBlockHorizontal! * 2),
+        margin: EdgeInsets.only(
+          top: SizeConfig.safeBlockHorizontal! * 2,
+          right: SizeConfig.safeBlockHorizontal! * 3,
+          bottom: SizeConfig.safeBlockHorizontal! * 2,
+        ),
         padding: const EdgeInsets.only(
           top: 4,
           left: 16,
@@ -59,7 +64,10 @@ class TimeTableItem extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(Strings.kCalendarLogoUri),
+                    Image.asset(
+                      Strings.kCalendarLogoUri,
+                      color: AppColors.lightBlue,
+                    ),
                     Text(
                       '${startTime!.hour.toString().padLeft(2, '0')}:${startTime!.minute.toString().padLeft(2, '0')}',
                       style: Theme.of(context).textTheme.headline6!.copyWith(
