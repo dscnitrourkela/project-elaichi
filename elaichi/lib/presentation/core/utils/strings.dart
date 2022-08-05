@@ -5,12 +5,18 @@ abstract class Strings {
   static const String kAvenueLogoFileUri = 'assets/images/avenue_logo.png';
 
   static const String kPlantLogoFileUri = 'assets/images/plants.png';
-  static const String kGoogleLogoFileUri = 'assets/images/google_logo.svg';
+  static const String kGoogleLogoFileUri = 'assets/icons/google_logo.svg';
   static const String kCalendarLogoUri = 'assets/images/add_event_icon.png';
   static const String kMmLogo = 'assets/images/mm.png';
+  static const String browseActive = 'assets/icons/browse_active.svg';
+  static const String browseInactive = 'assets/icons/browse_inactive.svg';
+  static const String mailActive = 'assets/icons/mail_active.svg';
+  static const String mailInactive = 'assets/icons/mail_inactive.svg';
+  static const String homeActive = 'assets/icons/home_active.svg';
+  static const String homeInactive = 'assets/icons/home_inactive.svg';
+
   static const String kZimbraCardText =
       'Verify your NITR webmail to access \ntime table, mess menu and much more';
-
   static const String kMmCardTitle =
       'A Noble Breakthrough: NIT Rourkela produces alcohol-based sanitizers';
   static const String kMmCardImageUri =
@@ -18,7 +24,7 @@ abstract class Strings {
   static const String kNitrImage = 'assets/images/nitr.png';
   static const String kShaderImage = 'assets/images/shader.png';
   static const String kStoriesthisWeek = '  Stories this week';
-  static const String kToday = '  Today';
+  static const String kToday = 'Today';
   static const String kViewCalendar = 'View Calendar';
   static const String kRegisterNow = 'Register Now';
   static const String kVerifyNow = 'Verify Now';

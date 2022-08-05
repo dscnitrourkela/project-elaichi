@@ -1,13 +1,14 @@
 import 'package:elaichi/presentation/core/utils/measurements.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
+import 'package:elaichi/presentation/home/feed/widgets/webmail_login/webmai_login_bottomsheet.dart';
 import 'package:flutter/material.dart';
 
-///[ZimbraCard] is the idget that will be displayed if the user is not verified
+///[WebMailCard] is the idget that will be displayed if the user is not verified
 ///as a student of NIT Rourkela
-class ZimbraCard extends StatelessWidget {
+class WebMailCard extends StatelessWidget {
   ///Default Constructor
-  const ZimbraCard({Key? key}) : super(key: key);
+  const WebMailCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +68,17 @@ class ZimbraCard extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.all(10),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet<Widget>(
+                    context: context,
+                    builder: (context) => const WebMailLoginBottomSheet(),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(16),
+                      ),
+                    ),
+                  );
+                },
                 child: Text(
                   Strings.kVerifyNow,
                   style: Theme.of(context).textTheme.button!.copyWith(

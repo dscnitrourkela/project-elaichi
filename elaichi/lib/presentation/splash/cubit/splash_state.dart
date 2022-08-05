@@ -15,9 +15,6 @@ class SplashState with _$SplashState {
   ///The state where the User is Google Authenticated
   const factory SplashState.googleAuthenticated() = _GoogleAuthenticated;
 
-  ///The state where the User is Zimbra Authenticated
-  const factory SplashState.zimbraAuthenticated() = _ZimbraAuthenticated;
-
   /// Error state.
   const factory SplashState.error(String error) = _Error;
 }

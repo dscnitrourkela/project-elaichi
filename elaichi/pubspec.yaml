@@ -11,9 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
-  # Routing
-  auto_route: ^3.1.3
 
   # State Management
   flutter_bloc: ^8.0.0
@@ -27,8 +24,6 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   lottie: ^1.2.1
 
-
-
   # Firebase Plugins
   google_sign_in: ^5.2.1
   firebase_auth: ^3.2.0
@@ -36,11 +31,13 @@ dependencies:
   google_fonts: ^2.1.0
   flutter_svg: ^1.0.0
   fluttertoast: ^8.0.9
+  shared_preferences: ^2.0.15
+  http_parser: ^4.0.1
+  webview_flutter: ^3.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  auto_route_generator: ^3.1.0
   build_runner: ^2.1.5
   freezed: ^1.0.0
   very_good_analysis: ^2.4.0
@@ -50,6 +47,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/    
+    - assets/icons/
   fonts:
     - family: Avenue
       fonts:

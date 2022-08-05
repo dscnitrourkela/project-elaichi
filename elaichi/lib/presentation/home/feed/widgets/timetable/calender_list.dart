@@ -1,25 +1,24 @@
+import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/feed/widgets/time_table_item.dart';
+import 'package:elaichi/presentation/home/feed/widgets/timetable/calender_item.dart';
 import 'package:flutter/material.dart';
 
 /// TimeTable List customised for all users
-class TimeTableList extends StatelessWidget {
+class CalenderList extends StatelessWidget {
   ///Default Constructor
-  const TimeTableList({Key? key}) : super(key: key);
+  const CalenderList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: SizeConfig.safeBlockHorizontal! * 2,
         vertical: SizeConfig.safeBlockVertical! * 2,
       ),
       child: Column(
         children: [
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: SizeConfig.safeBlockHorizontal!,
               vertical: SizeConfig.safeBlockVertical! * 1.0,
             ),
             child: Row(
@@ -39,12 +38,12 @@ class TimeTableList extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .headline6!
-                            .copyWith(color: const Color(0XFF2F80ED)),
+                            .copyWith(color: AppColors.lightBlue),
                       ),
                       const Icon(
                         Icons.arrow_forward_ios_rounded,
                         size: 16,
-                        color: Color(0XFF2F80ED),
+                        color: AppColors.lightBlue,
                       ),
                     ],
                   ),
@@ -59,7 +58,7 @@ class TimeTableList extends StatelessWidget {
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return TimeTableItem(
+                return CalenderItem(
                   title: 'This is a long title $index',
                   organiser: 'Developers NITR',
                   location: 'LA117',

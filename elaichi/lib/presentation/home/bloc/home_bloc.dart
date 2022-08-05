@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_event.dart';
@@ -23,9 +22,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     });
   }
-
-  ///Page Controller for the home page
-  PageController pageController = PageController();
 
   final UserRepository _userRepository;
 }

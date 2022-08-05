@@ -5,62 +5,57 @@ import 'package:flutter/material.dart';
 class Button extends StatelessWidget {
   /// Constructor
   const Button({
+    this.textStyle,
+    this.color,
     required this.text,
     required this.onTapped,
     this.icon,
     Key? key,
   }) : super(key: key);
 
-  /// Icon in the starting of button
+  /// Icon at the starting of button
   final Widget? icon;
 
   /// Text on the button
   final String text;
+
+  final Color? color;
+
+  final TextStyle? textStyle;
 
   /// Callback function when button is tapped
   final Function onTapped;
 
   @override
   Widget build(BuildContext context) {
-    if (icon != null) {
-      return TextButton(
-        style: TextButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: Measurements.inputRadius,
-            side: Measurements.enabledBorderSide,
-          ),
-          padding: const EdgeInsets.all(16),
+    return TextButton(
+      style: TextButton.styleFrom(
+        backgroundColor: color,
+        shape: const RoundedRectangleBorder(
+          borderRadius: Measurements.inputRadius,
         ),
-        onPressed: onTapped as void Function(),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            icon!,
+        padding: const EdgeInsets.all(16),
+      ),
+      onPressed: onTapped as void Function(),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (icon != null) icon!,
+          if (icon != null)
             const Padding(
               padding: EdgeInsets.only(left: 6),
             ),
-            Text(
-              text,
-              style: Theme.of(context).textTheme.button,
-            ),
-          ],
-        ),
-      );
-    } else {
-      return TextButton(
-        style: TextButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: Measurements.inputRadius,
-            side: Measurements.enabledBorderSide,
+          Text(
+            text,
+            style: textStyle ??
+                Theme.of(context).textTheme.button!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      letterSpacing: 0.5,
+                    ),
           ),
-          padding: const EdgeInsets.all(16),
-        ),
-        onPressed: onTapped as void Function(),
-        child: Text(
-          text,
-          style: Theme.of(context).textTheme.button,
-        ),
-      );
-    }
+        ],
+      ),
+    );
   }
 }

@@ -1,38 +1,30 @@
 import 'package:elaichi/domain/models/user_model.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
+import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 ///Array containing the bootom nav bar items.
 List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
   /// The icon for Feed Page
-  const BottomNavigationBarItem(
+  BottomNavigationBarItem(
     label: 'Feed',
-    icon: Icon(Icons.home_outlined),
-    activeIcon: Icon(
-      Icons.home_rounded,
-    ),
+    icon: SvgPicture.asset(Strings.homeInactive),
+    activeIcon: SvgPicture.asset(Strings.homeActive),
   ),
 
   /// The icon for Browwse Page
-  const BottomNavigationBarItem(
+  BottomNavigationBarItem(
     label: 'Browse',
-    icon: Icon(
-      Icons.dashboard_outlined,
-    ),
-    activeIcon: Icon(
-      Icons.dashboard_rounded,
-    ),
+    icon: SvgPicture.asset(Strings.browseInactive),
+    activeIcon: SvgPicture.asset(Strings.browseActive),
   ),
 
   /// The icon for Zimbra Webmail Page
-  const BottomNavigationBarItem(
+  BottomNavigationBarItem(
     label: 'Zimbra',
-    icon: Icon(
-      Icons.email_outlined,
-    ),
-    activeIcon: Icon(
-      Icons.email_rounded,
-    ),
+    icon: SvgPicture.asset(Strings.mailInactive),
+    activeIcon: SvgPicture.asset(Strings.mailActive),
   ),
 
   /// The icon for Profile Page
@@ -46,8 +38,8 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
         Splash.instance().getUser!.photoURL.toString(),
         fit: BoxFit.fill,
         errorBuilder: (context, error, stackTrace) => const Icon(Icons.person),
-        height: SizeConfig.safeBlockHorizontal! * 10,
-        width: SizeConfig.safeBlockHorizontal! * 10,
+        height: SizeConfig.safeBlockHorizontal! * 7,
+        width: SizeConfig.safeBlockHorizontal! * 7,
       ),
     ),
     activeIcon: Container(
@@ -66,8 +58,8 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
           fit: BoxFit.fill,
           errorBuilder: (context, error, stackTrace) =>
               const Icon(Icons.person),
-          height: SizeConfig.safeBlockHorizontal! * 9.75,
-          width: SizeConfig.safeBlockHorizontal! * 9.75,
+          height: SizeConfig.safeBlockHorizontal! * 6.75,
+          width: SizeConfig.safeBlockHorizontal! * 6.75,
         ),
       ),
     ),
