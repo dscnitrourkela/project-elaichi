@@ -5,7 +5,7 @@ class Env {
   );
 
   static const String avenueWebMailBaseUrl = String.fromEnvironment(
-    'ZIMRA_BASE_URL',
+    'AVENUE_MAIL_BASE_URL',
     defaultValue: 'https://avenue-webmail.netlify.app/?zauthtoken=',
   );
 }
