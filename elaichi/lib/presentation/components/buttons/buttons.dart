@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// Simple button for this project.
 class Button extends StatelessWidget {
   /// Constructor
-  Button({
+  const Button({
     this.textStyle,
     this.color,
     required this.text,
@@ -19,9 +19,9 @@ class Button extends StatelessWidget {
   /// Text on the button
   final String text;
 
-  Color? color;
+  final Color? color;
 
-  TextStyle? textStyle;
+  final TextStyle? textStyle;
 
   /// Callback function when button is tapped
   final Function onTapped;
@@ -33,7 +33,6 @@ class Button extends StatelessWidget {
         backgroundColor: color,
         shape: const RoundedRectangleBorder(
           borderRadius: Measurements.inputRadius,
-          side: Measurements.enabledBorderSide,
         ),
         padding: const EdgeInsets.all(16),
       ),

@@ -24,6 +24,7 @@ class TextFieldInput extends StatelessWidget {
     this.prefixTextFontWeight,
     this.onChanged,
     Key? key,
+    this.obscureText = false,
   }) : super(key: key);
 
   final String? title;
@@ -45,6 +46,7 @@ class TextFieldInput extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final FontWeight? prefixTextFontWeight;
   final void Function(String)? onChanged;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,7 @@ class TextFieldInput extends StatelessWidget {
             height: 8,
           ),
           TextFormField(
+            obscureText: obscureText,
             onChanged: onChanged,
             onTap: onTap,
             controller: controller,
@@ -75,7 +78,7 @@ class TextFieldInput extends StatelessWidget {
             readOnly: readOnly ?? false,
             maxLengthEnforcement:
                 (maxLength == null) ? null : MaxLengthEnforcement.enforced,
-            maxLines: maxLines,
+            maxLines: obscureText ? 1 : maxLines,
             style: Theme.of(context).textTheme.bodyText1?.copyWith(
                   fontWeight: FontWeight.w600,
                   // color: enabled ? null : Theme.of(context).,

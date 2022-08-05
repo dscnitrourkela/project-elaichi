@@ -1,3 +1,5 @@
+import 'package:elaichi/data/local/local_storage_service.dart';
+import 'package:elaichi/data/remote/api_service.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/router/navigation_service.dart';
@@ -23,10 +25,16 @@ class ElaichiApp extends StatelessWidget {
   }
 
   static Future<Widget> run() async {
+    final localStorageService = await LocalStorageService.init();
+    final apiService = APIService();
+
     return MultiRepositoryProvider(
       providers: <RepositoryProvider<dynamic>>[
         RepositoryProvider<UserRepository>(
-          create: (BuildContext context) => UserRepository(),
+          create: (BuildContext context) => UserRepository(
+            localStorageService: localStorageService,
+            apiService: apiService,
+          ),
         )
       ],
       child: const ElaichiApp(),
