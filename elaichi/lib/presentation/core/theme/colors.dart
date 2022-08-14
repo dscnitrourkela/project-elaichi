@@ -14,7 +14,7 @@ class AppColors {
   //Text
   static const Color lightAnnouncementText = Color.fromRGBO(79, 79, 79, 1);
   static const Color bodyText = Color.fromRGBO(79, 79, 79, 1);
-  static const Color titleText = Color.fromRGBO(51, 51, 51, 1);
+  static const Color titleText = Color(0xff333333);
   static const Color overlineText = Color.fromRGBO(130, 130, 130, 1);
   static const Color darkAnnouncementDocBackground =
       Color.fromRGBO(238, 109, 109, 0.05);
@@ -54,4 +54,6 @@ class AppColors {
   static const Color grey = Color(0xffC4C4C4);
   static const Color grey2 = Color(0xff4F4F4F);
   static const Color grey3 = Color(0xff828282);
+
+  static const Color warningRed = Color(0xffEB5757);
 }
