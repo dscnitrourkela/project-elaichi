@@ -37,7 +37,7 @@ class APIService {
     } else if (response.statusCode == 401) {
       throw Exception('Authentication Error');
     } else {
-      throw Exception('Unknown Error');
+      throw Exception(response.reasonPhrase.toString());
     }
   }
 }

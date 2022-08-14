@@ -38,10 +38,13 @@ class _WebMailLoginBottomSheetState extends State<WebMailLoginBottomSheet> {
         listener: (context, state) {
           state.maybeWhen(
             orElse: () {},
-            error: (error) => _toastUtil.showToast(
-              mode: ToastMode.Error,
-              title: error,
-            ),
+            error: (error) {
+              _toastUtil.showToast(
+                mode: ToastMode.Error,
+                title: error,
+              );
+              Navigator.pop(context);
+            },
             success: () {
               _toastUtil.showToast(
                 mode: ToastMode.Success,
