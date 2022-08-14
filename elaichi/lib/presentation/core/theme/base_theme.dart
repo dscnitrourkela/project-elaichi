@@ -56,7 +56,6 @@ final TextTheme textTheme = TextTheme(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     letterSpacing: 1.25,
-    color: Colors.white,
   ),
   caption: GoogleFonts.inter(
     fontSize: 12,

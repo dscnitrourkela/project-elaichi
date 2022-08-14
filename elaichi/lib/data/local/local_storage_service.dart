@@ -36,4 +36,13 @@ class LocalStorageService {
       return null;
     }
   }
+
+  void deleteWebmailDetails() {
+    if (_sharedPreferences.containsKey('roll_number')) {
+      _sharedPreferences.remove('roll_number');
+    }
+    if (_sharedPreferences.containsKey('password')) {
+      _sharedPreferences.remove('password');
+    }
+  }
 }

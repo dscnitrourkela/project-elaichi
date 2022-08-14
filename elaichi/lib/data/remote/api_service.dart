@@ -28,10 +28,16 @@ class APIService {
       headers: <String, String>{'authorization': basicAuth},
     );
 
-    final rawCookie = response.headers['set-cookie']!;
+    final rawCookie = response.headers['set-cookie'];
 
-    final cookie = rawCookie.substring(14);
+    if (response.statusCode == 400 && rawCookie != null) {
+      final cookie = rawCookie.substring(14);
 
-    return cookie.substring(0, cookie.indexOf(';'));
+      return cookie.substring(0, cookie.indexOf(';'));
+    } else if (response.statusCode == 401) {
+      throw Exception('Authentication Error');
+    } else {
+      throw Exception('Unknown Error');
+    }
   }
 }

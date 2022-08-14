@@ -2,9 +2,9 @@ import 'package:elaichi/presentation/core/utils/measurements.dart';
 import 'package:flutter/material.dart';
 
 /// Simple button for this project.
-class Button extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   /// Constructor
-  const Button({
+  const CustomButton({
     this.textStyle,
     this.color,
     required this.text,

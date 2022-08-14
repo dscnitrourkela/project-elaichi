@@ -4,8 +4,8 @@ import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/home/bloc/home_bloc.dart';
 import 'package:elaichi/presentation/home/feed/feed_page.dart';
 import 'package:elaichi/presentation/home/widgets/bottom_navbar_items.dart';
-import 'package:elaichi/presentation/mail/mail_page.dart';
-import 'package:elaichi/presentation/user_settings/account/account_page.dart';
+import 'package:elaichi/presentation/mail/webmail_page.dart';
+import 'package:elaichi/presentation/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                     child: const [
                       FeedPage(),
                       BrowsePage(),
-                      MailPage(),
+                      WebMailPage(),
                       ProfilePage(),
                     ][pageIndex],
                   ),
