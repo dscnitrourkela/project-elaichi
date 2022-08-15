@@ -13,3 +13,5 @@ export { default as PageTitle } from './molecules/PageTitle';
 export { default as NavTabs } from './molecules/NavTabs';
 export { default as MailCard } from './molecules/MailCard';
 export { default as FloatingActionButton } from './molecules/FloatingActionButton';
+export { default as Loading } from './molecules/Loading';
+export { default as Error } from './molecules/Error';
