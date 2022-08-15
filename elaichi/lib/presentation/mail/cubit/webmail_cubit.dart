@@ -18,18 +18,22 @@ class WebmailCubit extends Cubit<WebmailState> {
     emit(const WebmailState.loading());
     final token = _userRepository.zsToken;
 
-    if (token != null) {
-      zsAuthToken = token;
-      emit(const WebmailState.authenticated());
-    } else {
-      await _userRepository.logInToWebMail();
-
-      if (_userRepository.zsToken != null) {
-        zsAuthToken = _userRepository.zsToken;
+    try {
+      if (token != null) {
+        zsAuthToken = token;
         emit(const WebmailState.authenticated());
       } else {
-        emit(const WebmailState.unauthenticated());
+        await _userRepository.logInToWebMail();
+
+        if (_userRepository.zsToken != null) {
+          zsAuthToken = _userRepository.zsToken;
+          emit(const WebmailState.authenticated());
+        } else {
+          emit(const WebmailState.unauthenticated());
+        }
       }
+    } catch (e) {
+      emit(WebmailState.error(e.toString()));
     }
   }
 }

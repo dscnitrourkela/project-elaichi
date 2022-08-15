@@ -84,7 +84,7 @@ class ToastUtil {
         break;
       case ToastMode.Error:
         _foregroundColor = AppColors.failureRed;
-        _backgroundColor = AppColors.darkBottomNav;
+        _backgroundColor = AppColors.failureRedLight;
         _icon = Stack(
           children: <Widget>[
             Icon(

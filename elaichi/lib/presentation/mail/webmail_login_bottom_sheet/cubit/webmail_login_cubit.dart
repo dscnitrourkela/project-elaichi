@@ -19,11 +19,16 @@ class WebMailLoginCubit extends Cubit<WebMailLoginState> {
   }) async {
     emit(const WebMailLoginState.loading());
     try {
+      await _userRepository.logInToWebMail(
+        rollNumber: rollNumber,
+        password: password,
+      );
+      // Saving the details only if the login is successful, else the exception
+      // would be caught.
       await _userRepository.saveWebMailDetails(
         rollNumber: rollNumber,
         password: password,
       );
-      await _userRepository.logInToWebMail();
       emit(const WebMailLoginState.success());
     } catch (e) {
       emit(WebMailLoginState.error(e.toString()));

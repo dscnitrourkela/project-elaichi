@@ -15,7 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_Logout>((event, emit) {
       emit(const HomeState.loading());
       try {
-        unawaited(_userRepository.logOut());
+        unawaited(_userRepository.appLogOut());
         emit(const HomeState.loggedOut());
       } catch (e) {
         emit(HomeState.error(e.toString()));

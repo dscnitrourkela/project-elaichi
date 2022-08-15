@@ -14,11 +14,12 @@ class FeedCubit extends Cubit<FeedState> {
 
   late final UserRepository _userRepository;
 
-  bool isZimraAuthenticated = false;
-
   void getZimraLoginStatus() {
+    emit(const FeedState.loading());
     if (_userRepository.rollNumber != null) {
-      isZimraAuthenticated = true;
+      emit(const FeedState.webMailAuthenticated());
+    } else {
+      emit(const FeedState.webMailUnauthenticated());
     }
   }
 }

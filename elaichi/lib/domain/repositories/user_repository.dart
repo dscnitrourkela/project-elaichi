@@ -16,7 +16,7 @@ class UserRepository {
         _localStorageService = localStorageService,
         _firebaseAuth = FirebaseAuth.instance,
         _googleSignIn = GoogleSignIn.standard() {
-    getRollNumber();
+    setRollNumber();
   }
 
   final FirebaseAuth _firebaseAuth;
@@ -60,32 +60,43 @@ class UserRepository {
       rollNumber: rollNumber,
       password: password,
     );
+    this.rollNumber = rollNumber;
   }
 
-  Future<void> logInToWebMail() async {
-    final rollNumber = _localStorageService.rollNumber;
-    final password = _localStorageService.password;
-
-    if (rollNumber != null && password != null) {
-      zsToken = await _apiService.logInToWebMail(
-        rollNumber: rollNumber,
-        password: password,
-      );
-      getRollNumber();
+  Future<void> logInToWebMail({String? rollNumber, String? password}) async {
+    final roll = rollNumber ?? _localStorageService.rollNumber;
+    final pass = password ?? _localStorageService.password;
+    if (roll != null && pass != null) {
+      try {
+        final result = await _apiService.logInToWebMail(
+          rollNumber: roll,
+          password: pass,
+        );
+        zsToken = result;
+      } on Exception catch (_) {
+        rethrow;
+      }
     }
   }
 
-  void getRollNumber() {
+  void setRollNumber() {
     rollNumber = _localStorageService.rollNumber;
   }
 
+  void deleteWebMailDetails() {
+    zsToken = null;
+    rollNumber = null;
+    _localStorageService.deleteWebmailDetails();
+  }
+
   /// Logs out the user from the account.
-  Future<void> logOut() async {
+  Future<void> appLogOut() async {
     try {
       await Future.wait([
         _firebaseAuth.signOut(),
         _googleSignIn.signOut(),
       ]);
+      deleteWebMailDetails();
     } catch (error) {
       rethrow;
     }

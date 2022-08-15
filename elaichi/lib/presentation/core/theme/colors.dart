@@ -16,15 +16,16 @@ class AppColors {
   static const Color bodyText = Color.fromRGBO(79, 79, 79, 1);
   static const Color titleText = Color.fromRGBO(51, 51, 51, 1);
   static const Color overlineText = Color.fromRGBO(130, 130, 130, 1);
-  static const Color darkAnnouncementText = Color.fromRGBO(224, 224, 224, 1);
   static const Color darkAnnouncementDocBackground =
       Color.fromRGBO(238, 109, 109, 0.05);
   static const Color selectedIconColor = Color.fromRGBO(79, 79, 79, 1);
   static const Color unselectedIconColor = Color.fromRGBO(196, 196, 196, 1);
   static const Color cardHeader = Color.fromRGBO(79, 79, 79, 1);
   static const Color cardHeader60 = Color.fromRGBO(79, 79, 79, 0.6);
+  static const Color avenueTitle = Color(0xff141414);
 
   // Buttons
+  static const Color buttonBorderColor = Color(0xffE0E0E0);
   static const Color newEventBtn = Color.fromARGB(255, 47, 128, 237);
   static const Color enabledBorderColor = Color.fromRGBO(150, 150, 150, 1);
   static const Color errorBorderColor = Color.fromRGBO(218, 0, 0, 1);

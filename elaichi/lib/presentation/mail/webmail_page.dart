@@ -1,23 +1,23 @@
 import 'package:elaichi/data/constants/app_env.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
-import 'package:elaichi/presentation/components/buttons/buttons.dart';
+import 'package:elaichi/presentation/components/buttons/custom_button.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
-import 'package:elaichi/presentation/home/feed/widgets/webmail_login/webmai_login_bottomsheet.dart';
 import 'package:elaichi/presentation/mail/cubit/webmail_cubit.dart';
+import 'package:elaichi/presentation/mail/webmail_login_bottom_sheet/webmai_login_bottomsheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 ///The Mail Page
-class MailPage extends StatefulWidget {
+class WebMailPage extends StatefulWidget {
   /// Default constructor
-  const MailPage({Key? key}) : super(key: key);
+  const WebMailPage({Key? key}) : super(key: key);
 
   @override
-  State<MailPage> createState() => _MailPageState();
+  State<WebMailPage> createState() => _WebMailPageState();
 }
 
-class _MailPageState extends State<MailPage> {
+class _WebMailPageState extends State<WebMailPage> {
   late final WebmailCubit _cubit;
 
   final _toastUtil = ToastUtil.getInstance();
@@ -63,10 +63,11 @@ class _MailPageState extends State<MailPage> {
                       'Please click the below button to login to your account',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    Button(
+                    CustomButton(
                       text: 'Login',
                       onTapped: () {
                         showModalBottomSheet<dynamic>(
+                          isScrollControlled: true,
                           context: context,
                           builder: (context) => const WebMailLoginBottomSheet(),
                           shape: const RoundedRectangleBorder(
@@ -76,7 +77,7 @@ class _MailPageState extends State<MailPage> {
                           ),
                         ).then((dynamic value) => _cubit.getZsAuthToken());
                       },
-                    )
+                    ),
                   ],
                 ),
               ),

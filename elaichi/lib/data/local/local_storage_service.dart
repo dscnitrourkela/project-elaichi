@@ -1,3 +1,4 @@
+import 'package:elaichi/domain/exceptions/local_storage_exception.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageService {
@@ -16,9 +17,13 @@ class LocalStorageService {
     required String rollNumber,
     required String password,
   }) {
-    _sharedPreferences
-      ..setString('roll_number', rollNumber)
-      ..setString('password', password);
+    try {
+      _sharedPreferences
+        ..setString('roll_number', rollNumber)
+        ..setString('password', password);
+    } catch (e) {
+      throw LocalStorageException(e.toString());
+    }
   }
 
   String? get rollNumber {
@@ -34,6 +39,19 @@ class LocalStorageService {
       return _sharedPreferences.getString('password')!;
     } else {
       return null;
+    }
+  }
+
+  void deleteWebmailDetails() {
+    try {
+      if (_sharedPreferences.containsKey('roll_number')) {
+        _sharedPreferences.remove('roll_number');
+      }
+      if (_sharedPreferences.containsKey('password')) {
+        _sharedPreferences.remove('password');
+      }
+    } catch (e) {
+      throw LocalStorageException(e.toString());
     }
   }
 }

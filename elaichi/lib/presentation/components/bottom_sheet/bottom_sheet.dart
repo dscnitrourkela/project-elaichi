@@ -73,11 +73,6 @@ class CustomBottomSheet extends StatelessWidget {
               thickness: 1,
             ),
             body,
-            // const Divider(
-            //   color: AppColors.grey,
-            //   height: 1,
-            //   thickness: 1,
-            // ),
             footer,
           ],
         ),

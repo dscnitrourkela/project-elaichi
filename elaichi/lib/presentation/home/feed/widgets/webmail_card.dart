@@ -1,17 +1,19 @@
 import 'package:elaichi/presentation/core/utils/measurements.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/feed/widgets/webmail_login/webmai_login_bottomsheet.dart';
+import 'package:elaichi/presentation/home/feed/cubit/feed_cubit.dart';
+import 'package:elaichi/presentation/mail/webmail_login_bottom_sheet/webmai_login_bottomsheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 ///[WebMailCard] is the idget that will be displayed if the user is not verified
 ///as a student of NIT Rourkela
 class WebMailCard extends StatelessWidget {
   ///Default Constructor
   const WebMailCard({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final _cubit = context.read<FeedCubit>();
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: SizedBox(
@@ -69,7 +71,8 @@ class WebMailCard extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                 ),
                 onPressed: () {
-                  showModalBottomSheet<Widget>(
+                  showModalBottomSheet<void>(
+                    isScrollControlled: true,
                     context: context,
                     builder: (context) => const WebMailLoginBottomSheet(),
                     shape: const RoundedRectangleBorder(
@@ -77,7 +80,7 @@ class WebMailCard extends StatelessWidget {
                         top: Radius.circular(16),
                       ),
                     ),
-                  );
+                  ).then((value) => _cubit.getZimraLoginStatus());
                 },
                 child: Text(
                   Strings.kVerifyNow,
