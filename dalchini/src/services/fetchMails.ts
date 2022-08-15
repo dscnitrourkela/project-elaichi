@@ -18,7 +18,7 @@ export interface DataType {
   fr: string;
 }
 
-export const fetchMails = async (tab: string) => {
+export const fetchMails = async (tab: string): Promise<DataType[]> => {
   const {
     data: { m: data }
   } = await api.get<{ m: DataType[] }>('/', {
