@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:elaichi/data/local/local_storage_service.dart';
 import 'package:elaichi/data/remote/api_service.dart';
+import 'package:elaichi/data/remote/graphql/graphql_service.dart';
 import 'package:elaichi/domain/exceptions/auth_failure.dart';
 import 'package:elaichi/domain/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,7 +13,9 @@ class UserRepository {
   UserRepository({
     required LocalStorageService localStorageService,
     required APIService apiService,
+    required GraphQLService graphQLService,
   })  : _apiService = apiService,
+        _graphQLService = graphQLService,
         _localStorageService = localStorageService,
         _firebaseAuth = FirebaseAuth.instance,
         _googleSignIn = GoogleSignIn.standard() {
@@ -23,6 +26,7 @@ class UserRepository {
   final GoogleSignIn _googleSignIn;
   final LocalStorageService _localStorageService;
   final APIService _apiService;
+  final GraphQLService _graphQLService;
 
   String? rollNumber;
 

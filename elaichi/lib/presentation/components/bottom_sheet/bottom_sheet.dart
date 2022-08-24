@@ -20,7 +20,7 @@ class CustomBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: const BorderRadius.only(
