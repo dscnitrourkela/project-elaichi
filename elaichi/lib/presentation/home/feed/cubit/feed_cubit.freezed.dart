@@ -12,31 +12,7 @@ part of 'feed_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$FeedStateTearOff {
-  const _$FeedStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _Loading loading() {
-    return const _Loading();
-  }
-
-  _WebMailAuthenticated webMailAuthenticated() {
-    return const _WebMailAuthenticated();
-  }
-
-  _WebMailUnauthenticated webMailUnauthenticated() {
-    return const _WebMailUnauthenticated();
-  }
-}
-
-/// @nodoc
-const $FeedState = _$FeedStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$FeedState {
@@ -109,19 +85,20 @@ class _$FeedStateCopyWithImpl<$Res> implements $FeedStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class __$$_InitialCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, (v) => _then(v as _$_Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  _$_Initial get _value => super._value as _$_Initial;
 }
 
 /// @nodoc
@@ -137,7 +114,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -224,19 +201,20 @@ abstract class _Initial implements FeedState {
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
+class __$$_LoadingCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
 
   @override
-  _Loading get _value => super._value as _Loading;
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
@@ -252,7 +230,7 @@ class _$_Loading implements _Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading);
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -339,22 +317,22 @@ abstract class _Loading implements FeedState {
 }
 
 /// @nodoc
-abstract class _$WebMailAuthenticatedCopyWith<$Res> {
-  factory _$WebMailAuthenticatedCopyWith(_WebMailAuthenticated value,
-          $Res Function(_WebMailAuthenticated) then) =
-      __$WebMailAuthenticatedCopyWithImpl<$Res>;
+abstract class _$$_WebMailAuthenticatedCopyWith<$Res> {
+  factory _$$_WebMailAuthenticatedCopyWith(_$_WebMailAuthenticated value,
+          $Res Function(_$_WebMailAuthenticated) then) =
+      __$$_WebMailAuthenticatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WebMailAuthenticatedCopyWithImpl<$Res>
+class __$$_WebMailAuthenticatedCopyWithImpl<$Res>
     extends _$FeedStateCopyWithImpl<$Res>
-    implements _$WebMailAuthenticatedCopyWith<$Res> {
-  __$WebMailAuthenticatedCopyWithImpl(
-      _WebMailAuthenticated _value, $Res Function(_WebMailAuthenticated) _then)
-      : super(_value, (v) => _then(v as _WebMailAuthenticated));
+    implements _$$_WebMailAuthenticatedCopyWith<$Res> {
+  __$$_WebMailAuthenticatedCopyWithImpl(_$_WebMailAuthenticated _value,
+      $Res Function(_$_WebMailAuthenticated) _then)
+      : super(_value, (v) => _then(v as _$_WebMailAuthenticated));
 
   @override
-  _WebMailAuthenticated get _value => super._value as _WebMailAuthenticated;
+  _$_WebMailAuthenticated get _value => super._value as _$_WebMailAuthenticated;
 }
 
 /// @nodoc
@@ -370,7 +348,7 @@ class _$_WebMailAuthenticated implements _WebMailAuthenticated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _WebMailAuthenticated);
+        (other.runtimeType == runtimeType && other is _$_WebMailAuthenticated);
   }
 
   @override
@@ -457,22 +435,23 @@ abstract class _WebMailAuthenticated implements FeedState {
 }
 
 /// @nodoc
-abstract class _$WebMailUnauthenticatedCopyWith<$Res> {
-  factory _$WebMailUnauthenticatedCopyWith(_WebMailUnauthenticated value,
-          $Res Function(_WebMailUnauthenticated) then) =
-      __$WebMailUnauthenticatedCopyWithImpl<$Res>;
+abstract class _$$_WebMailUnauthenticatedCopyWith<$Res> {
+  factory _$$_WebMailUnauthenticatedCopyWith(_$_WebMailUnauthenticated value,
+          $Res Function(_$_WebMailUnauthenticated) then) =
+      __$$_WebMailUnauthenticatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WebMailUnauthenticatedCopyWithImpl<$Res>
+class __$$_WebMailUnauthenticatedCopyWithImpl<$Res>
     extends _$FeedStateCopyWithImpl<$Res>
-    implements _$WebMailUnauthenticatedCopyWith<$Res> {
-  __$WebMailUnauthenticatedCopyWithImpl(_WebMailUnauthenticated _value,
-      $Res Function(_WebMailUnauthenticated) _then)
-      : super(_value, (v) => _then(v as _WebMailUnauthenticated));
+    implements _$$_WebMailUnauthenticatedCopyWith<$Res> {
+  __$$_WebMailUnauthenticatedCopyWithImpl(_$_WebMailUnauthenticated _value,
+      $Res Function(_$_WebMailUnauthenticated) _then)
+      : super(_value, (v) => _then(v as _$_WebMailUnauthenticated));
 
   @override
-  _WebMailUnauthenticated get _value => super._value as _WebMailUnauthenticated;
+  _$_WebMailUnauthenticated get _value =>
+      super._value as _$_WebMailUnauthenticated;
 }
 
 /// @nodoc
@@ -488,7 +467,8 @@ class _$_WebMailUnauthenticated implements _WebMailUnauthenticated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _WebMailUnauthenticated);
+        (other.runtimeType == runtimeType &&
+            other is _$_WebMailUnauthenticated);
   }
 
   @override

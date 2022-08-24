@@ -13,34 +13,37 @@ dependencies:
     sdk: flutter
 
   # State Management
-  flutter_bloc: ^8.0.0
+  flutter_bloc: ^8.1.1
 
   # Code Generation
-  freezed_annotation: ^1.0.0
-  json_annotation: ^4.3.0
-  dartz: ^0.10.0
+  freezed_annotation: ^2.1.0
+  json_annotation: ^4.6.0
+  dartz: ^0.10.1
 
   # Icons and animations
-  font_awesome_flutter: ^9.2.0
-  lottie: ^1.2.1
+  font_awesome_flutter: ^10.1.0
+  lottie: ^1.4.1
 
   # Firebase Plugins
-  google_sign_in: ^5.2.1
-  firebase_auth: ^3.2.0
-  firebase_core: ^1.10.0
-  google_fonts: ^2.1.0
-  flutter_svg: ^1.0.0
+  google_sign_in: ^5.4.1
+  firebase_auth: ^3.6.3
+  firebase_core: ^1.20.1
+  google_fonts: ^3.0.1
+  flutter_svg: ^1.1.4
   fluttertoast: ^8.0.9
   shared_preferences: ^2.0.15
   http_parser: ^4.0.1
   webview_flutter: ^3.0.4
+  graphql: ^5.1.1
+  collection: ^1.16.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.1.5
-  freezed: ^1.0.0
-  very_good_analysis: ^2.4.0
+  build_runner: ^2.2.0
+  freezed: ^2.1.0+1
+  very_good_analysis: ^3.0.1
+  json_serializable: ^6.3.1
 
 
 flutter:

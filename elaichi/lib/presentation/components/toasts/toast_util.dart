@@ -105,7 +105,7 @@ class ToastUtil {
         break;
       case ToastMode.Info:
         _foregroundColor = Colors.blue;
-        _backgroundColor = AppColors.lightOnPrimary;
+        _backgroundColor = AppColors.lightScaffoldBackground;
         _icon = Icon(
           Icons.info_rounded,
           color: _foregroundColor,
@@ -171,7 +171,7 @@ class ToastUtil {
     _toast!.showToast(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(6),
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             border: Border(
               left: BorderSide(

@@ -4,9 +4,8 @@ import 'dart:ui';
 
 /// Contains all the colors used in the app.
 class AppColors {
-  static const Color lightScaffoldBackground = Color.fromRGBO(250, 250, 250, 1);
+  static const Color lightScaffoldBackground = Color(0xffFAFAFA);
   static const Color darkScaffoldBackground = Color.fromRGBO(23, 23, 23, 1);
-  static const Color lightOnPrimary = Color.fromRGBO(250, 250, 250, 1);
   static const Color lightBottomNav = Color.fromRGBO(255, 255, 255, 1);
   static const Color darkBottomNav = Color.fromRGBO(23, 23, 23, 1);
   static const Color divider = Color.fromRGBO(0, 0, 0, 0.1);
@@ -54,6 +53,7 @@ class AppColors {
   static const Color grey = Color(0xffC4C4C4);
   static const Color grey2 = Color(0xff4F4F4F);
   static const Color grey3 = Color(0xff828282);
+  static const Color grey5 = Color(0xffDDDDDD);
 
   static const Color warningRed = Color(0xffEB5757);
 }
