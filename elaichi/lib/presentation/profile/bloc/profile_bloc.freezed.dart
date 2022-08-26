@@ -12,23 +12,7 @@ part of 'profile_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ProfileEventTearOff {
-  const _$ProfileEventTearOff();
-
-  _WebMailLogOut webMailLogOut() {
-    return const _WebMailLogOut();
-  }
-
-  _AppLogOut appLogOut() {
-    return const _AppLogOut();
-  }
-}
-
-/// @nodoc
-const $ProfileEvent = _$ProfileEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ProfileEvent {
@@ -89,22 +73,22 @@ class _$ProfileEventCopyWithImpl<$Res> implements $ProfileEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$WebMailLogOutCopyWith<$Res> {
-  factory _$WebMailLogOutCopyWith(
-          _WebMailLogOut value, $Res Function(_WebMailLogOut) then) =
-      __$WebMailLogOutCopyWithImpl<$Res>;
+abstract class _$$_WebMailLogOutCopyWith<$Res> {
+  factory _$$_WebMailLogOutCopyWith(
+          _$_WebMailLogOut value, $Res Function(_$_WebMailLogOut) then) =
+      __$$_WebMailLogOutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WebMailLogOutCopyWithImpl<$Res>
+class __$$_WebMailLogOutCopyWithImpl<$Res>
     extends _$ProfileEventCopyWithImpl<$Res>
-    implements _$WebMailLogOutCopyWith<$Res> {
-  __$WebMailLogOutCopyWithImpl(
-      _WebMailLogOut _value, $Res Function(_WebMailLogOut) _then)
-      : super(_value, (v) => _then(v as _WebMailLogOut));
+    implements _$$_WebMailLogOutCopyWith<$Res> {
+  __$$_WebMailLogOutCopyWithImpl(
+      _$_WebMailLogOut _value, $Res Function(_$_WebMailLogOut) _then)
+      : super(_value, (v) => _then(v as _$_WebMailLogOut));
 
   @override
-  _WebMailLogOut get _value => super._value as _WebMailLogOut;
+  _$_WebMailLogOut get _value => super._value as _$_WebMailLogOut;
 }
 
 /// @nodoc
@@ -120,7 +104,7 @@ class _$_WebMailLogOut implements _WebMailLogOut {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _WebMailLogOut);
+        (other.runtimeType == runtimeType && other is _$_WebMailLogOut);
   }
 
   @override
@@ -194,20 +178,21 @@ abstract class _WebMailLogOut implements ProfileEvent {
 }
 
 /// @nodoc
-abstract class _$AppLogOutCopyWith<$Res> {
-  factory _$AppLogOutCopyWith(
-          _AppLogOut value, $Res Function(_AppLogOut) then) =
-      __$AppLogOutCopyWithImpl<$Res>;
+abstract class _$$_AppLogOutCopyWith<$Res> {
+  factory _$$_AppLogOutCopyWith(
+          _$_AppLogOut value, $Res Function(_$_AppLogOut) then) =
+      __$$_AppLogOutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$AppLogOutCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
-    implements _$AppLogOutCopyWith<$Res> {
-  __$AppLogOutCopyWithImpl(_AppLogOut _value, $Res Function(_AppLogOut) _then)
-      : super(_value, (v) => _then(v as _AppLogOut));
+class __$$_AppLogOutCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
+    implements _$$_AppLogOutCopyWith<$Res> {
+  __$$_AppLogOutCopyWithImpl(
+      _$_AppLogOut _value, $Res Function(_$_AppLogOut) _then)
+      : super(_value, (v) => _then(v as _$_AppLogOut));
 
   @override
-  _AppLogOut get _value => super._value as _AppLogOut;
+  _$_AppLogOut get _value => super._value as _$_AppLogOut;
 }
 
 /// @nodoc
@@ -223,7 +208,7 @@ class _$_AppLogOut implements _AppLogOut {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _AppLogOut);
+        (other.runtimeType == runtimeType && other is _$_AppLogOut);
   }
 
   @override
@@ -295,36 +280,6 @@ class _$_AppLogOut implements _AppLogOut {
 abstract class _AppLogOut implements ProfileEvent {
   const factory _AppLogOut() = _$_AppLogOut;
 }
-
-/// @nodoc
-class _$ProfileStateTearOff {
-  const _$ProfileStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _Loading loading() {
-    return const _Loading();
-  }
-
-  _WebMailLoggedOut webMailLoggedOut() {
-    return const _WebMailLoggedOut();
-  }
-
-  _AppLoggedOut appLoggedOut() {
-    return const _AppLoggedOut();
-  }
-
-  _Error error(String error) {
-    return _Error(
-      error,
-    );
-  }
-}
-
-/// @nodoc
-const $ProfileState = _$ProfileStateTearOff();
 
 /// @nodoc
 mixin _$ProfileState {
@@ -403,19 +358,20 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class __$$_InitialCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, (v) => _then(v as _$_Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  _$_Initial get _value => super._value as _$_Initial;
 }
 
 /// @nodoc
@@ -431,7 +387,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -523,19 +479,20 @@ abstract class _Initial implements ProfileState {
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
+class __$$_LoadingCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
 
   @override
-  _Loading get _value => super._value as _Loading;
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
@@ -551,7 +508,7 @@ class _$_Loading implements _Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading);
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -643,22 +600,22 @@ abstract class _Loading implements ProfileState {
 }
 
 /// @nodoc
-abstract class _$WebMailLoggedOutCopyWith<$Res> {
-  factory _$WebMailLoggedOutCopyWith(
-          _WebMailLoggedOut value, $Res Function(_WebMailLoggedOut) then) =
-      __$WebMailLoggedOutCopyWithImpl<$Res>;
+abstract class _$$_WebMailLoggedOutCopyWith<$Res> {
+  factory _$$_WebMailLoggedOutCopyWith(
+          _$_WebMailLoggedOut value, $Res Function(_$_WebMailLoggedOut) then) =
+      __$$_WebMailLoggedOutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WebMailLoggedOutCopyWithImpl<$Res>
+class __$$_WebMailLoggedOutCopyWithImpl<$Res>
     extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$WebMailLoggedOutCopyWith<$Res> {
-  __$WebMailLoggedOutCopyWithImpl(
-      _WebMailLoggedOut _value, $Res Function(_WebMailLoggedOut) _then)
-      : super(_value, (v) => _then(v as _WebMailLoggedOut));
+    implements _$$_WebMailLoggedOutCopyWith<$Res> {
+  __$$_WebMailLoggedOutCopyWithImpl(
+      _$_WebMailLoggedOut _value, $Res Function(_$_WebMailLoggedOut) _then)
+      : super(_value, (v) => _then(v as _$_WebMailLoggedOut));
 
   @override
-  _WebMailLoggedOut get _value => super._value as _WebMailLoggedOut;
+  _$_WebMailLoggedOut get _value => super._value as _$_WebMailLoggedOut;
 }
 
 /// @nodoc
@@ -674,7 +631,7 @@ class _$_WebMailLoggedOut implements _WebMailLoggedOut {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _WebMailLoggedOut);
+        (other.runtimeType == runtimeType && other is _$_WebMailLoggedOut);
   }
 
   @override
@@ -766,21 +723,22 @@ abstract class _WebMailLoggedOut implements ProfileState {
 }
 
 /// @nodoc
-abstract class _$AppLoggedOutCopyWith<$Res> {
-  factory _$AppLoggedOutCopyWith(
-          _AppLoggedOut value, $Res Function(_AppLoggedOut) then) =
-      __$AppLoggedOutCopyWithImpl<$Res>;
+abstract class _$$_AppLoggedOutCopyWith<$Res> {
+  factory _$$_AppLoggedOutCopyWith(
+          _$_AppLoggedOut value, $Res Function(_$_AppLoggedOut) then) =
+      __$$_AppLoggedOutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$AppLoggedOutCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$AppLoggedOutCopyWith<$Res> {
-  __$AppLoggedOutCopyWithImpl(
-      _AppLoggedOut _value, $Res Function(_AppLoggedOut) _then)
-      : super(_value, (v) => _then(v as _AppLoggedOut));
+class __$$_AppLoggedOutCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res>
+    implements _$$_AppLoggedOutCopyWith<$Res> {
+  __$$_AppLoggedOutCopyWithImpl(
+      _$_AppLoggedOut _value, $Res Function(_$_AppLoggedOut) _then)
+      : super(_value, (v) => _then(v as _$_AppLoggedOut));
 
   @override
-  _AppLoggedOut get _value => super._value as _AppLoggedOut;
+  _$_AppLoggedOut get _value => super._value as _$_AppLoggedOut;
 }
 
 /// @nodoc
@@ -796,7 +754,7 @@ class _$_AppLoggedOut implements _AppLoggedOut {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _AppLoggedOut);
+        (other.runtimeType == runtimeType && other is _$_AppLoggedOut);
   }
 
   @override
@@ -888,26 +846,26 @@ abstract class _AppLoggedOut implements ProfileState {
 }
 
 /// @nodoc
-abstract class _$ErrorCopyWith<$Res> {
-  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
-      __$ErrorCopyWithImpl<$Res>;
+abstract class _$$_ErrorCopyWith<$Res> {
+  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
+      __$$_ErrorCopyWithImpl<$Res>;
   $Res call({String error});
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$ErrorCopyWith<$Res> {
-  __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
-      : super(_value, (v) => _then(v as _Error));
+class __$$_ErrorCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+    implements _$$_ErrorCopyWith<$Res> {
+  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
+      : super(_value, (v) => _then(v as _$_Error));
 
   @override
-  _Error get _value => super._value as _Error;
+  _$_Error get _value => super._value as _$_Error;
 
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(_Error(
+    return _then(_$_Error(
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -933,7 +891,7 @@ class _$_Error implements _Error {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Error &&
+            other is _$_Error &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -943,8 +901,8 @@ class _$_Error implements _Error {
 
   @JsonKey(ignore: true)
   @override
-  _$ErrorCopyWith<_Error> get copyWith =>
-      __$ErrorCopyWithImpl<_Error>(this, _$identity);
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1028,9 +986,10 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements ProfileState {
-  const factory _Error(String error) = _$_Error;
+  const factory _Error(final String error) = _$_Error;
 
   String get error;
   @JsonKey(ignore: true)
-  _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      throw _privateConstructorUsedError;
 }

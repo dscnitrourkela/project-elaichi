@@ -1,4 +1,5 @@
 import 'package:elaichi/domain/models/user_model.dart';
+import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/components/bottom_sheet/bottom_sheet.dart';
 import 'package:elaichi/presentation/components/custom_app_bar.dart';
@@ -23,7 +24,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
-    _bloc = ProfileBloc(userRepository: context.read<UserRepository>());
+    _bloc = ProfileBloc(
+      userRepository: context.read<UserRepository>(),
+      eventRepository: context.read<EventRepository>(),
+    );
     super.initState();
   }
 
@@ -32,6 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return BlocProvider(
       create: (context) => _bloc,
       child: Scaffold(
+        backgroundColor: AppColors.lightScaffoldBackground,
         appBar: const CustomAppBar(title: 'Your Account'),
         body: Column(
           children: [
@@ -41,29 +46,202 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             BlocBuilder<ProfileBloc, ProfileState>(
               builder: (context, state) {
-                return ProfileDetails(
-                  icon: const Icon(Icons.settings, color: AppColors.grey3),
-                  imageSrc: Splash.instance().getUser!.photoURL.toString(),
-                  title: Splash.instance().getUser!.displayName!,
-                  subTitle: _bloc.isZimraAuthenticated
-                      ? _bloc.rollNumber!.toUpperCase()
-                      : null,
-                  onPressed: () {
-                    showModalBottomSheet<void>(
-                      context: context,
-                      builder: (context) => PreferencesBottomSheet(),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(16),
+                return ColoredBox(
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      ProfileDetailsCard(
+                        icon:
+                            const Icon(Icons.settings, color: AppColors.grey3),
+                        imageSrc:
+                            Splash.instance().getUser!.photoURL.toString(),
+                        title: Splash.instance().getUser!.displayName!,
+                        subTitle: _bloc.isZimraAuthenticated
+                            ? _bloc.rollNumber!.toUpperCase()
+                            : null,
+                        onPressed: () {
+                          showModalBottomSheet<void>(
+                            context: context,
+                            builder: (context) => PreferencesBottomSheet(),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(16),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      const Divider(
+                        thickness: 1,
+                        height: 1,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          'Calender',
+                          style:
+                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.grey2,
+                                  ),
                         ),
                       ),
-                    );
-                  },
+                      const Divider(
+                        thickness: 1,
+                        height: 1,
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: <Widget>[
+                  const Expanded(
+                    child: Divider(
+                      endIndent: 6,
+                      color: AppColors.grey,
+                    ),
+                  ),
+                  Text(
+                    'February ${DateTime.now().year}',
+                    style: Theme.of(context).textTheme.overline!.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.grey3,
+                        ),
+                  ),
+                  const Expanded(
+                    child: Divider(indent: 6, color: AppColors.grey),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 14),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: SingleChildScrollView(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const DateDisplay(dayName: 'MON', dayNumber: '10'),
+                    Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: _bloc.getEvents().length,
+                        itemBuilder: (context, index) {
+                          final event = _bloc.getEvents()[index];
+                          return EventListCard(
+                            name: event.name,
+                            startTime: event.startTime,
+                            description: event.description,
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class EventListCard extends StatelessWidget {
+  const EventListCard({
+    Key? key,
+    required this.name,
+    required this.startTime,
+    required this.description,
+  }) : super(key: key);
+
+  final String name;
+  final DateTime startTime;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                name,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontWeight: FontWeight.w600),
+              ),
+              const Spacer(),
+              Text(
+                '${startTime.hour}:${startTime.minute} PM',
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                      color: AppColors.grey3,
+                    ),
+              )
+            ],
+          ),
+          const SizedBox(height: 5),
+          Text(
+            description,
+            style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                  color: AppColors.grey3,
+                  fontSize: 12,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DateDisplay extends StatelessWidget {
+  const DateDisplay({
+    Key? key,
+    required this.dayName,
+    required this.dayNumber,
+  }) : super(key: key);
+
+  final String dayName;
+  final String dayNumber;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 9),
+      child: Column(
+        children: [
+          Text(
+            dayName,
+            style: Theme.of(context).textTheme.caption!.copyWith(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                ),
+          ),
+          Text(
+            dayNumber,
+            style: Theme.of(context).textTheme.caption!.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                ),
+          )
+        ],
       ),
     );
   }
@@ -78,7 +256,10 @@ class PreferencesBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _bloc = ProfileBloc(userRepository: context.read<UserRepository>());
+    final _bloc = ProfileBloc(
+      userRepository: context.read<UserRepository>(),
+      eventRepository: context.read<EventRepository>(),
+    );
     return BlocProvider(
       create: (context) => _bloc,
       child: SizedBox(
@@ -162,8 +343,8 @@ class PreferencesBottomSheet extends StatelessWidget {
   }
 }
 
-class ProfileDetails extends StatelessWidget {
-  const ProfileDetails({
+class ProfileDetailsCard extends StatelessWidget {
+  const ProfileDetailsCard({
     Key? key,
     required this.title,
     this.subTitle,

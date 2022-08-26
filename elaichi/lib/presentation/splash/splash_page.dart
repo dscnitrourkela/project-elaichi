@@ -1,3 +1,4 @@
+import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
@@ -21,8 +22,10 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    _cubit = SplashCubit(userRepository: context.read<UserRepository>())
-      ..getCorrectRoute();
+    _cubit = SplashCubit(
+      userRepository: context.read<UserRepository>(),
+      eventRepository: context.read<EventRepository>(),
+    )..getCorrectRoute();
     super.initState();
   }
 
