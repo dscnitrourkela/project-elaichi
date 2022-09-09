@@ -1,3 +1,4 @@
+import 'package:elaichi/data/local/encoding_service.dart';
 import 'package:elaichi/domain/exceptions/local_storage_exception.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,10 +18,12 @@ class LocalStorageService {
     required String rollNumber,
     required String password,
   }) {
+    final encodedPassword = encodedToBase64(password);
+
     try {
       _sharedPreferences
         ..setString('roll_number', rollNumber)
-        ..setString('password', password);
+        ..setString('password', encodedPassword);
     } catch (e) {
       throw LocalStorageException(e.toString());
     }
@@ -36,7 +39,8 @@ class LocalStorageService {
 
   String? get password {
     if (_sharedPreferences.containsKey('password')) {
-      return _sharedPreferences.getString('password')!;
+      final encodedPassword = _sharedPreferences.getString('password')!;
+      return decodedFromBase64(encodedPassword);
     } else {
       return null;
     }
