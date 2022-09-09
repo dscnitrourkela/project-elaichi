@@ -10,12 +10,13 @@ class BlueButton extends StatelessWidget {
     this.color,
     required this.text,
     required this.onTapped,
-    this.icon,
+    this.leadingIcon,
+    this.trailingIcon,
     Key? key,
   }) : super(key: key);
 
   /// Icon at the starting of button
-  final Widget? icon;
+  final Widget? leadingIcon, trailingIcon;
 
   /// Text on the button
   final String text;
@@ -41,8 +42,8 @@ class BlueButton extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (icon != null) icon!,
-          if (icon != null)
+          if (leadingIcon != null) leadingIcon!,
+          if (leadingIcon != null)
             const Padding(
               padding: EdgeInsets.only(left: 6),
             ),
@@ -55,6 +56,11 @@ class BlueButton extends StatelessWidget {
                   color: Colors.white,
                 ),
           ),
+          if (trailingIcon != null)
+            const Padding(
+              padding: EdgeInsets.only(left: 6),
+            ),
+          if (trailingIcon != null) trailingIcon!,
         ],
       ),
     );

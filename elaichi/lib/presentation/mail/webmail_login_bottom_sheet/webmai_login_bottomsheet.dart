@@ -96,6 +96,10 @@ class _WebMailLoginBottomSheetState extends State<WebMailLoginBottomSheet> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                 child: BlueButton(
+                  trailingIcon: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
                   text: 'Login',
                   onTapped: () async {
                     FocusScope.of(context).unfocus();
