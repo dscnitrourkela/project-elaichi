@@ -1,4 +1,5 @@
 import 'package:elaichi/presentation/core/theme/colors.dart';
+import 'package:elaichi/presentation/core/utils/measurements.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -84,11 +85,15 @@ class TextFieldInput extends StatelessWidget {
                   // color: enabled ? null : Theme.of(context).,
                 ),
             decoration: InputDecoration(
-              border: const OutlineInputBorder(),
+              border: const OutlineInputBorder(
+                borderRadius: Measurements.inputRadius,
+              ),
               enabledBorder: OutlineInputBorder(
+                borderRadius: Measurements.inputRadius,
                 borderSide: BorderSide(color: Theme.of(context).disabledColor),
               ),
               focusedBorder: const OutlineInputBorder(
+                borderRadius: Measurements.inputRadius,
                 borderSide: BorderSide(color: AppColors.lightBlue),
               ),
               contentPadding: contentPadding ?? const EdgeInsets.all(12),

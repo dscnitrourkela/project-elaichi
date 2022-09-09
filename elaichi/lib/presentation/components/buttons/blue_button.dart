@@ -50,7 +50,7 @@ class BlueButton extends StatelessWidget {
           Text(
             text,
             style: Theme.of(context).textTheme.button!.copyWith(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   fontSize: 16,
                   letterSpacing: 0.5,
                   color: Colors.white,
