@@ -1,5 +1,9 @@
+// ignore_for_file: avoid_dynamic_calls
+
+import 'package:elaichi/data/constants/app_env.dart';
 import 'package:elaichi/data/remote/graphql/queries.dart';
 import 'package:elaichi/domain/models/event.dart';
+import 'package:elaichi/domain/models/mm_article.dart';
 import 'package:graphql/client.dart';
 
 class GraphQLService {
@@ -10,12 +14,13 @@ class GraphQLService {
   GraphQLService._internal();
 
   late final GraphQLClient _client;
+  late final GraphQLClient _mmClient;
   static final GraphQLService _graphQLService = GraphQLService._internal();
 
   void init() {
-    final _httpLink = HttpLink(
-      'https://test.dscnitrourkela.org/graphql',
-    );
+    final _avenueLink = HttpLink(Env.avenueServerUrl);
+
+    final _mmLink = HttpLink(Env.mondayMorningUrl);
 
     // final _authLink = AuthLink(
     //   getToken: () async => 'Bearer $YOUR_PERSONAL_ACCESS_TOKEN',
@@ -25,18 +30,33 @@ class GraphQLService {
 
     _client = GraphQLClient(
       cache: GraphQLCache(),
-      link: _httpLink,
+      link: _avenueLink,
+    );
+
+    _mmClient = GraphQLClient(
+      link: _mmLink,
+      cache: GraphQLCache(),
     );
   }
 
   // Helper Functions
 
   /// Helper function for performing a GraphQL query.
-  Future<QueryResult> query({required String queryString}) async {
+  Future<QueryResult> query({
+    required String queryString,
+    GQlClient gQLClient = GQlClient.avenue,
+  }) async {
+    late GraphQLClient client;
+    if (gQLClient == GQlClient.avenue) {
+      client = _client;
+    } else {
+      client = _mmClient;
+    }
+
     try {
       final options = QueryOptions(document: gql(queryString));
 
-      final result = await _client.query(options);
+      final result = await client.query(options);
 
       if (result.data != null) {
         return result;
@@ -64,4 +84,33 @@ class GraphQLService {
       rethrow;
     }
   }
+
+  Future<List<MMArticle>> getArticles() async {
+    try {
+      final result = await query(
+        queryString: Queries.mmArticleQuery,
+        gQLClient: GQlClient.mondayMorning,
+      );
+
+      final articleList = <MMArticle>[];
+
+      final articles = result.data!['getLatestIssues'][0]['articles'] as List;
+
+      for (final element in articles) {
+        articleList.add(
+          MMArticle(
+            id: element['id'] as String,
+            title: element['title'] as String,
+            imageUrl: element['coverMedia']['rectangle']['storePath'] as String,
+          ),
+        );
+      }
+
+      return articleList;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
+
+enum GQlClient { mondayMorning, avenue }
