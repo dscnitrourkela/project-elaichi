@@ -12,9 +12,6 @@ class HomeState with _$HomeState {
   /// Success state of home page.
   const factory HomeState.success() = _Success;
 
-  /// Logouted of the app.
-  const factory HomeState.loggedOut() = _LoggedOut;
-
   /// Error state of home page.
   const factory HomeState.error(String error) = _Error;
 }

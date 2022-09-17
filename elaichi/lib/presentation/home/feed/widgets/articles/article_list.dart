@@ -1,7 +1,9 @@
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
+import 'package:elaichi/presentation/home/feed/bloc/feed_bloc.dart';
 import 'package:elaichi/presentation/home/feed/widgets/articles/article_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 ///Widget containing the list of MM articles
 class ArticleList extends StatelessWidget {
@@ -34,21 +36,26 @@ class ArticleList extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: SizeConfig.safeBlockVertical! * 20,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return MMArticleCard(
-                  title: Strings.kMmCardTitle,
-                  imageUrl: Strings.kMmCardImageUri,
-                  onTapped: () {},
-                );
-              },
-              itemCount: 10,
-            ),
+          BlocBuilder<FeedBloc, FeedState>(
+            bloc: context.read<FeedBloc>(),
+            builder: (context, state) {
+              return SizedBox(
+                height: SizeConfig.safeBlockVertical! * 20,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return MMArticleCard(
+                      index: index,
+                    );
+                  },
+                  itemCount: state.whenOrNull(
+                    success: (webMailState, data) => data.length,
+                  ),
+                ),
+              );
+            },
           )
         ],
       ),

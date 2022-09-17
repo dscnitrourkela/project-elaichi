@@ -1,7 +1,7 @@
 import 'package:elaichi/presentation/core/utils/measurements.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/feed/cubit/feed_cubit.dart';
+import 'package:elaichi/presentation/home/feed/bloc/feed_bloc.dart';
 import 'package:elaichi/presentation/mail/webmail_login_bottom_sheet/webmai_login_bottomsheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +13,7 @@ class WebMailCard extends StatelessWidget {
   const WebMailCard({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _cubit = context.read<FeedCubit>();
+    final _bloc = context.read<FeedBloc>();
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: SizedBox(
@@ -80,7 +80,7 @@ class WebMailCard extends StatelessWidget {
                         top: Radius.circular(16),
                       ),
                     ),
-                  ).then((value) => _cubit.getZimraLoginStatus());
+                  ).then((value) => _bloc.add(const FeedEvent.webMailLogIn()));
                 },
                 child: Text(
                   Strings.kVerifyNow,
