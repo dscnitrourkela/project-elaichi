@@ -222,4 +222,6 @@ lib/generated_plugin_registrant.dart
 # Linux
 /linux
 
+lib/data/constants/app_env.dart
+
 # End of https://www.toptal.com/developers/gitignore/api/dart,flutter,visualstudiocode,android,firebase
