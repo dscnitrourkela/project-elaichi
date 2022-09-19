@@ -30,14 +30,11 @@ class MMArticleCard extends StatelessWidget {
           child: state.maybeWhen(
             orElse: () {
               return Shimmer.fromColors(
-                baseColor: Colors.red,
-                highlightColor: Colors.yellow,
-                child: const Text(
-                  'Shimmer',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
                   ),
                 ),
               );
@@ -58,8 +55,15 @@ class MMArticleCard extends StatelessWidget {
                           imageUrl:
                               'https://ik.imagekit.io/adamantiumA${data[index].imageUrl}',
                           fit: BoxFit.cover,
-                          placeholder: (context, url) =>
-                              const Center(child: CircularProgressIndicator()),
+                          placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                          ),
                           errorWidget: (context, url, error) => Image.asset(
                             Strings.kNitrImage,
                             fit: BoxFit.cover,
