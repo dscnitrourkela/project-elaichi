@@ -20,13 +20,13 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
         started: () async {
           try {
             final status = getZimraLoginStatus();
-            final articles = await _eventRepository.fetchMMArticles();
+            _articles = await _eventRepository.fetchMMArticles();
             emit(
               FeedState.success(
                 webMailState: status
                     ? WebMailState.authenticated
                     : WebMailState.unAuthenticated,
-                data: articles,
+                data: _articles,
               ),
             );
           } catch (e) {
@@ -40,6 +40,7 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
               webMailState: status
                   ? WebMailState.authenticated
                   : WebMailState.unAuthenticated,
+              data: _articles,
             ),
           );
         },
@@ -49,6 +50,7 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
 
   late final UserRepository _userRepository;
   late final EventRepository _eventRepository;
+  late final List<MMArticle> _articles;
 
   bool getZimraLoginStatus() {
     if (_userRepository.rollNumber != null) {
