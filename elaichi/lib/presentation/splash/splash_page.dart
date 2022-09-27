@@ -44,7 +44,7 @@ class _SplashPageState extends State<SplashPage> {
                 );
               },
               listener: (context, state) {
-                state.maybeWhen<dynamic>(
+                state.whenOrNull<dynamic>(
                   unauthenticated: () {
                     Navigator.pushNamedAndRemoveUntil(
                       context,
@@ -62,7 +62,6 @@ class _SplashPageState extends State<SplashPage> {
                       content: Text(error),
                     ),
                   ),
-                  orElse: () {},
                 );
               },
             ),

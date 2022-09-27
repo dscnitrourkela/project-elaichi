@@ -2,7 +2,8 @@
 
 /// An abstract class that consists of all the strings used in the app.
 abstract class Strings {
-  static const String kAvenueLogoFileUri = 'assets/images/avenue_logo.png';
+  static const String avenueLogoFileUri = 'assets/images/avenue_logo.png';
+  static const String eventExample = 'assets/images/dt22.png';
 
   static const String kPlantLogoFileUri = 'assets/images/plants.png';
   static const String kGoogleLogoFileUri = 'assets/icons/google_logo.svg';

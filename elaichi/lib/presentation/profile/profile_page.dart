@@ -36,7 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return BlocProvider(
       create: (context) => _bloc,
       child: Scaffold(
-        backgroundColor: AppColors.lightScaffoldBackground,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: const CustomAppBar(title: 'Your Account'),
         body: Column(
           children: [

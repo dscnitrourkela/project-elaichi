@@ -41,7 +41,7 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(
                   height: SizeConfig.screenHeight! * 0.08,
                 ),
-                Image.asset(Strings.kAvenueLogoFileUri),
+                Image.asset(Strings.avenueLogoFileUri),
                 SizedBox(
                   height: SizeConfig.screenHeight! * 0.02,
                 ),
