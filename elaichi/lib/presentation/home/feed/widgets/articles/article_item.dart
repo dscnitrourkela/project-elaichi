@@ -39,10 +39,10 @@ class MMArticleCard extends StatelessWidget {
                 ),
               );
             },
-            success: (webMailState, data) {
+            initial: (webMailState, data) {
               return GestureDetector(
                 onTap: () => ThirdPartyServices().launchUrl(
-                  'https://mondaymorning.nitrkl.ac.in/article/${data[index].id}',
+                  '${Strings.mmArticleLink}${data[index].id}',
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
@@ -53,7 +53,7 @@ class MMArticleCard extends StatelessWidget {
                         opacity: 0.9,
                         child: CachedNetworkImage(
                           imageUrl:
-                              'https://ik.imagekit.io/adamantiumA${data[index].imageUrl}',
+                              '${Strings.mmImageKit}${data[index].imageUrl}',
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Shimmer.fromColors(
                             baseColor: Colors.grey[300]!,

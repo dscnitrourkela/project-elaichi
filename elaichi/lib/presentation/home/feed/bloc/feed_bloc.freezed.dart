@@ -283,22 +283,25 @@ mixin _$FeedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(WebMailState webMailState, List<MMArticle> data)
-        success,
+    required TResult Function(
+            WebMailState webMailState, List<MMArticle> articles)
+        initial,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(WebMailState webMailState, List<MMArticle> data)? success,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
+        initial,
     TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(WebMailState webMailState, List<MMArticle> data)? success,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
+        initial,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -306,21 +309,21 @@ mixin _$FeedState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -382,8 +385,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(WebMailState webMailState, List<MMArticle> data)
-        success,
+    required TResult Function(
+            WebMailState webMailState, List<MMArticle> articles)
+        initial,
     required TResult Function(String error) error,
   }) {
     return loading();
@@ -393,7 +397,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(WebMailState webMailState, List<MMArticle> data)? success,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
+        initial,
     TResult Function(String error)? error,
   }) {
     return loading?.call();
@@ -403,7 +408,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(WebMailState webMailState, List<MMArticle> data)? success,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
+        initial,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -417,7 +423,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -427,7 +433,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -437,7 +443,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -453,35 +459,35 @@ abstract class _Loading implements FeedState {
 }
 
 /// @nodoc
-abstract class _$$_SuccessCopyWith<$Res> {
-  factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({WebMailState webMailState, List<MMArticle> data});
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
+  $Res call({WebMailState webMailState, List<MMArticle> articles});
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
-    implements _$$_SuccessCopyWith<$Res> {
-  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
-      : super(_value, (v) => _then(v as _$_Success));
+class __$$_InitialCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, (v) => _then(v as _$_Initial));
 
   @override
-  _$_Success get _value => super._value as _$_Success;
+  _$_Initial get _value => super._value as _$_Initial;
 
   @override
   $Res call({
     Object? webMailState = freezed,
-    Object? data = freezed,
+    Object? articles = freezed,
   }) {
-    return _then(_$_Success(
+    return _then(_$_Initial(
       webMailState: webMailState == freezed
           ? _value.webMailState
           : webMailState // ignore: cast_nullable_to_non_nullable
               as WebMailState,
-      data: data == freezed
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
+      articles: articles == freezed
+          ? _value._articles
+          : articles // ignore: cast_nullable_to_non_nullable
               as List<MMArticle>,
     ));
   }
@@ -489,78 +495,81 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Success implements _Success {
-  const _$_Success(
-      {required this.webMailState, final List<MMArticle> data = const []})
-      : _data = data;
+class _$_Initial implements _Initial {
+  const _$_Initial(
+      {required this.webMailState, final List<MMArticle> articles = const []})
+      : _articles = articles;
 
   @override
   final WebMailState webMailState;
-  final List<MMArticle> _data;
+  final List<MMArticle> _articles;
   @override
   @JsonKey()
-  List<MMArticle> get data {
+  List<MMArticle> get articles {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
+    return EqualUnmodifiableListView(_articles);
   }
 
   @override
   String toString() {
-    return 'FeedState.success(webMailState: $webMailState, data: $data)';
+    return 'FeedState.initial(webMailState: $webMailState, articles: $articles)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Success &&
+            other is _$_Initial &&
             const DeepCollectionEquality()
                 .equals(other.webMailState, webMailState) &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            const DeepCollectionEquality().equals(other._articles, _articles));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(webMailState),
-      const DeepCollectionEquality().hash(_data));
+      const DeepCollectionEquality().hash(_articles));
 
   @JsonKey(ignore: true)
   @override
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(WebMailState webMailState, List<MMArticle> data)
-        success,
+    required TResult Function(
+            WebMailState webMailState, List<MMArticle> articles)
+        initial,
     required TResult Function(String error) error,
   }) {
-    return success(webMailState, data);
+    return initial(webMailState, articles);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(WebMailState webMailState, List<MMArticle> data)? success,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
+        initial,
     TResult Function(String error)? error,
   }) {
-    return success?.call(webMailState, data);
+    return initial?.call(webMailState, articles);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(WebMailState webMailState, List<MMArticle> data)? success,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
+        initial,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(webMailState, data);
+    if (initial != null) {
+      return initial(webMailState, articles);
     }
     return orElse();
   }
@@ -569,46 +578,46 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Error value) error,
   }) {
-    return success(this);
+    return initial(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
   }) {
-    return success?.call(this);
+    return initial?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (initial != null) {
+      return initial(this);
     }
     return orElse();
   }
 }
 
-abstract class _Success implements FeedState {
-  const factory _Success(
+abstract class _Initial implements FeedState {
+  const factory _Initial(
       {required final WebMailState webMailState,
-      final List<MMArticle> data}) = _$_Success;
+      final List<MMArticle> articles}) = _$_Initial;
 
   WebMailState get webMailState;
-  List<MMArticle> get data;
+  List<MMArticle> get articles;
   @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -675,8 +684,9 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(WebMailState webMailState, List<MMArticle> data)
-        success,
+    required TResult Function(
+            WebMailState webMailState, List<MMArticle> articles)
+        initial,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -686,7 +696,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(WebMailState webMailState, List<MMArticle> data)? success,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
+        initial,
     TResult Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -696,7 +707,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(WebMailState webMailState, List<MMArticle> data)? success,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
+        initial,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -710,7 +722,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -720,7 +732,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -730,7 +742,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

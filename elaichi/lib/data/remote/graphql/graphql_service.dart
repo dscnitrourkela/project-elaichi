@@ -2,9 +2,12 @@
 
 import 'package:elaichi/data/constants/app_env.dart';
 import 'package:elaichi/data/remote/graphql/queries.dart';
-import 'package:elaichi/domain/models/event.dart';
-import 'package:elaichi/domain/models/mm_article.dart';
+import 'package:elaichi/domain/models/event/event.dart';
+import 'package:elaichi/domain/models/mm_article/mm_article.dart';
+import 'package:elaichi/domain/models/user_model.dart';
 import 'package:graphql/client.dart';
+
+enum GQLClient { mondayMorning, avenue }
 
 class GraphQLService {
   factory GraphQLService() {
@@ -18,20 +21,22 @@ class GraphQLService {
   static final GraphQLService _graphQLService = GraphQLService._internal();
 
   void init() {
-    final _avenueLink = HttpLink(Env.avenueServerUrl);
+    // Avenue Config
+    final _avenueHttpLink = HttpLink(Env.avenueServerUrl);
 
-    final _mmLink = HttpLink(Env.mondayMorningUrl);
+    final _avenueAuthLink = AuthLink(
+      getToken: () async => 'Bearer ${Splash.instance().user!.getIdToken()}',
+    );
 
-    // final _authLink = AuthLink(
-    //   getToken: () async => 'Bearer $YOUR_PERSONAL_ACCESS_TOKEN',
-    // );
-
-    // final _link = _authLink.concat(_httpLink);
+    final _avenueLink = _avenueAuthLink.concat(_avenueHttpLink);
 
     _client = GraphQLClient(
       cache: GraphQLCache(),
       link: _avenueLink,
     );
+
+    // MM Config
+    final _mmLink = HttpLink(Env.mondayMorningUrl);
 
     _mmClient = GraphQLClient(
       link: _mmLink,
@@ -44,10 +49,10 @@ class GraphQLService {
   /// Helper function for performing a GraphQL query.
   Future<QueryResult> query({
     required String queryString,
-    GQlClient gQLClient = GQlClient.avenue,
+    GQLClient gQLClient = GQLClient.avenue,
   }) async {
     late GraphQLClient client;
-    if (gQLClient == GQlClient.avenue) {
+    if (gQLClient == GQLClient.avenue) {
       client = _client;
     } else {
       client = _mmClient;
@@ -89,7 +94,7 @@ class GraphQLService {
     try {
       final result = await query(
         queryString: Queries.mmArticleQuery,
-        gQLClient: GQlClient.mondayMorning,
+        gQLClient: GQLClient.mondayMorning,
       );
 
       final articleList = <MMArticle>[];
@@ -112,5 +117,3 @@ class GraphQLService {
     }
   }
 }
-
-enum GQlClient { mondayMorning, avenue }
