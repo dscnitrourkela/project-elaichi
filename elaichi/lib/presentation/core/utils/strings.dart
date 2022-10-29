@@ -29,4 +29,8 @@ abstract class Strings {
   static const String kViewCalendar = 'View Calendar';
   static const String kRegisterNow = 'Register Now';
   static const String kVerifyNow = 'Verify Now';
+
+  static const String mmArticleLink =
+      'https://mondaymorning.nitrkl.ac.in/article/';
+  static const String mmImageKit = 'https://ik.imagekit.io/adamantiumA';
 }

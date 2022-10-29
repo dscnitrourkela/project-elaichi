@@ -43,10 +43,8 @@ class FeedPage extends StatelessWidget {
                   return Column(
                     children: [
                       state.maybeWhen(
-                        orElse: () {
-                          return Container();
-                        },
-                        success: (webMailState, data) {
+                        orElse: () => Container(),
+                        initial: (webMailState, data) {
                           if (webMailState == WebMailState.authenticated) {
                             return const CalenderList();
                           } else {
