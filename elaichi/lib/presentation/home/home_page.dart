@@ -1,6 +1,4 @@
-import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/browse/browse_page.dart';
-import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/home/bloc/home_bloc.dart';
 import 'package:elaichi/presentation/home/feed/feed_page.dart';
 import 'package:elaichi/presentation/home/widgets/bottom_navbar_items.dart';
@@ -26,7 +24,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    _bloc = HomeBloc(userRepository: context.read<UserRepository>());
+    _bloc = HomeBloc();
     super.initState();
   }
 
@@ -41,11 +39,6 @@ class _HomePageState extends State<HomePage> {
           listener: (context, state) {
             state.maybeWhen<dynamic>(
               orElse: () {},
-              loggedOut: () => Navigator.pushNamedAndRemoveUntil(
-                context,
-                AppRouter.splash,
-                (route) => false,
-              ),
               error: (error) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(error),
@@ -57,7 +50,6 @@ class _HomePageState extends State<HomePage> {
             return state.maybeWhen(
               orElse: () {
                 return Scaffold(
-                  ///For Loging Out uncomment this and use this button.
                   body: Center(
                     child: const [
                       FeedPage(),

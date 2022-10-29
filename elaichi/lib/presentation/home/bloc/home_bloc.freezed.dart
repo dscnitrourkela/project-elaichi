@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() logout,
+    required TResult Function() initialise,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logout,
+    TResult Function()? initialise,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? logout,
+    TResult Function()? initialise,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Logout value) logout,
+    required TResult Function(_Initialise value) initialise,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Logout value)? logout,
+    TResult Function(_Initialise value)? initialise,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Logout value)? logout,
+    TResult Function(_Initialise value)? initialise,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,35 +66,37 @@ class _$HomeEventCopyWithImpl<$Res> implements $HomeEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_LogoutCopyWith<$Res> {
-  factory _$$_LogoutCopyWith(_$_Logout value, $Res Function(_$_Logout) then) =
-      __$$_LogoutCopyWithImpl<$Res>;
+abstract class _$$_InitialiseCopyWith<$Res> {
+  factory _$$_InitialiseCopyWith(
+          _$_Initialise value, $Res Function(_$_Initialise) then) =
+      __$$_InitialiseCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LogoutCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
-    implements _$$_LogoutCopyWith<$Res> {
-  __$$_LogoutCopyWithImpl(_$_Logout _value, $Res Function(_$_Logout) _then)
-      : super(_value, (v) => _then(v as _$_Logout));
+class __$$_InitialiseCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$$_InitialiseCopyWith<$Res> {
+  __$$_InitialiseCopyWithImpl(
+      _$_Initialise _value, $Res Function(_$_Initialise) _then)
+      : super(_value, (v) => _then(v as _$_Initialise));
 
   @override
-  _$_Logout get _value => super._value as _$_Logout;
+  _$_Initialise get _value => super._value as _$_Initialise;
 }
 
 /// @nodoc
 
-class _$_Logout implements _Logout {
-  const _$_Logout();
+class _$_Initialise implements _Initialise {
+  const _$_Initialise();
 
   @override
   String toString() {
-    return 'HomeEvent.logout()';
+    return 'HomeEvent.initialise()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Logout);
+        (other.runtimeType == runtimeType && other is _$_Initialise);
   }
 
   @override
@@ -103,27 +105,27 @@ class _$_Logout implements _Logout {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() logout,
+    required TResult Function() initialise,
   }) {
-    return logout();
+    return initialise();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logout,
+    TResult Function()? initialise,
   }) {
-    return logout?.call();
+    return initialise?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? logout,
+    TResult Function()? initialise,
     required TResult orElse(),
   }) {
-    if (logout != null) {
-      return logout();
+    if (initialise != null) {
+      return initialise();
     }
     return orElse();
   }
@@ -131,34 +133,34 @@ class _$_Logout implements _Logout {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Logout value) logout,
+    required TResult Function(_Initialise value) initialise,
   }) {
-    return logout(this);
+    return initialise(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Logout value)? logout,
+    TResult Function(_Initialise value)? initialise,
   }) {
-    return logout?.call(this);
+    return initialise?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Logout value)? logout,
+    TResult Function(_Initialise value)? initialise,
     required TResult orElse(),
   }) {
-    if (logout != null) {
-      return logout(this);
+    if (initialise != null) {
+      return initialise(this);
     }
     return orElse();
   }
 }
 
-abstract class _Logout implements HomeEvent {
-  const factory _Logout() = _$_Logout;
+abstract class _Initialise implements HomeEvent {
+  const factory _Initialise() = _$_Initialise;
 }
 
 /// @nodoc
@@ -168,7 +170,6 @@ mixin _$HomeState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() loggedOut,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -177,7 +178,6 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -186,7 +186,6 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -196,7 +195,6 @@ mixin _$HomeState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -205,7 +203,6 @@ mixin _$HomeState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -214,7 +211,6 @@ mixin _$HomeState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -278,7 +274,6 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() loggedOut,
     required TResult Function(String error) error,
   }) {
     return initial();
@@ -290,7 +285,6 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
   }) {
     return initial?.call();
@@ -302,7 +296,6 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -318,7 +311,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -330,7 +322,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -342,7 +333,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -399,7 +389,6 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() loggedOut,
     required TResult Function(String error) error,
   }) {
     return loading();
@@ -411,7 +400,6 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
   }) {
     return loading?.call();
@@ -423,7 +411,6 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -439,7 +426,6 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -451,7 +437,6 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -463,7 +448,6 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -520,7 +504,6 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() loggedOut,
     required TResult Function(String error) error,
   }) {
     return success();
@@ -532,7 +515,6 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
   }) {
     return success?.call();
@@ -544,7 +526,6 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -560,7 +541,6 @@ class _$_Success implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Error value) error,
   }) {
     return success(this);
@@ -572,7 +552,6 @@ class _$_Success implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
   }) {
     return success?.call(this);
@@ -584,7 +563,6 @@ class _$_Success implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -597,128 +575,6 @@ class _$_Success implements _Success {
 
 abstract class _Success implements HomeState {
   const factory _Success() = _$_Success;
-}
-
-/// @nodoc
-abstract class _$$_LoggedOutCopyWith<$Res> {
-  factory _$$_LoggedOutCopyWith(
-          _$_LoggedOut value, $Res Function(_$_LoggedOut) then) =
-      __$$_LoggedOutCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_LoggedOutCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements _$$_LoggedOutCopyWith<$Res> {
-  __$$_LoggedOutCopyWithImpl(
-      _$_LoggedOut _value, $Res Function(_$_LoggedOut) _then)
-      : super(_value, (v) => _then(v as _$_LoggedOut));
-
-  @override
-  _$_LoggedOut get _value => super._value as _$_LoggedOut;
-}
-
-/// @nodoc
-
-class _$_LoggedOut implements _LoggedOut {
-  const _$_LoggedOut();
-
-  @override
-  String toString() {
-    return 'HomeState.loggedOut()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoggedOut);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() loggedOut,
-    required TResult Function(String error) error,
-  }) {
-    return loggedOut();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? loggedOut,
-    TResult Function(String error)? error,
-  }) {
-    return loggedOut?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? loggedOut,
-    TResult Function(String error)? error,
-    required TResult orElse(),
-  }) {
-    if (loggedOut != null) {
-      return loggedOut();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_Error value) error,
-  }) {
-    return loggedOut(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_Error value)? error,
-  }) {
-    return loggedOut?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loggedOut != null) {
-      return loggedOut(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoggedOut implements HomeState {
-  const factory _LoggedOut() = _$_LoggedOut;
 }
 
 /// @nodoc
@@ -786,7 +642,6 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() loggedOut,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -798,7 +653,6 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -810,7 +664,6 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? loggedOut,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -826,7 +679,6 @@ class _$_Error implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -838,7 +690,6 @@ class _$_Error implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -850,7 +701,6 @@ class _$_Error implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

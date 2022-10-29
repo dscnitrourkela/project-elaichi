@@ -1,8 +1,10 @@
-import 'package:collection/collection.dart';
+import 'package:dartz/dartz.dart';
 import 'package:elaichi/data/local/local_storage_service.dart';
 import 'package:elaichi/data/remote/api_service.dart';
 import 'package:elaichi/data/remote/graphql/graphql_service.dart';
-import 'package:elaichi/domain/models/event.dart';
+import 'package:elaichi/domain/exceptions/custom_exception.dart';
+import 'package:elaichi/domain/models/event/event.dart';
+import 'package:elaichi/domain/models/mm_article/mm_article.dart';
 
 class EventRepository {
   EventRepository({
@@ -24,6 +26,14 @@ class EventRepository {
       events = await _graphQLService.getEvents();
     } catch (e) {
       rethrow;
+    }
+  }
+
+  Future<Either<CustomException, List<MMArticle>>> fetchMMArticles() async {
+    try {
+      return Right(await _graphQLService.getArticles());
+    } catch (e) {
+      return Left(CustomException(e, message: "Couldn't fetch articles"));
     }
   }
 

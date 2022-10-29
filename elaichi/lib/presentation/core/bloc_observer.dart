@@ -1,3 +1,5 @@
+// ignore_for_file: strict_raw_type
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 
