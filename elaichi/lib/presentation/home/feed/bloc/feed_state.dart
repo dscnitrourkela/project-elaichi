@@ -11,8 +11,3 @@ class FeedState with _$FeedState {
 
   const factory FeedState.error(String error) = _Error;
 }
-
-enum WebMailState {
-  authenticated,
-  unAuthenticated,
-}

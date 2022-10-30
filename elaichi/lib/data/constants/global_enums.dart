@@ -1,0 +1,4 @@
+enum WebMailState {
+  authenticated,
+  unAuthenticated,
+}

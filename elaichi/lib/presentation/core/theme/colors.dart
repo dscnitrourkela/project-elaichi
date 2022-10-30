@@ -30,6 +30,7 @@ class AppColors {
   static const Color errorBorderColor = Color.fromRGBO(218, 0, 0, 1);
   static const Color disabledBorderColor = Color(0xffDADADA);
   static const Color focusedBorderColor = Color.fromRGBO(79, 79, 79, 1);
+  static const Color yellowButton = Color(0xffFFD60A);
 
   //icons
   static const Color calendarIcon = Color.fromRGBO(47, 128, 237, 1);
@@ -54,6 +55,6 @@ class AppColors {
   static const Color grey2 = Color(0xff4F4F4F);
   static const Color grey3 = Color(0xff828282);
   static const Color grey5 = Color(0xffDDDDDD);
-  
+
   static const Color warningRed = Color(0xffEB5757);
 }

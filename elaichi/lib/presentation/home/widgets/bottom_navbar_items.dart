@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/domain/models/user_model.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
@@ -34,10 +35,10 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
       borderRadius: BorderRadius.circular(
         SizeConfig.safeBlockHorizontal! * 10,
       ),
-      child: Image.network(
-        Splash.instance().getUser!.photoURL.toString(),
+      child: CachedNetworkImage(
+        imageUrl: Splash.instance().getUser!.photoURL.toString(),
         fit: BoxFit.fill,
-        errorBuilder: (context, error, stackTrace) => const Icon(Icons.person),
+        placeholder: (context, url) => const Icon(Icons.person),
         height: SizeConfig.safeBlockHorizontal! * 7,
         width: SizeConfig.safeBlockHorizontal! * 7,
       ),
@@ -53,11 +54,10 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
         borderRadius: BorderRadius.circular(
           SizeConfig.safeBlockHorizontal! * 10,
         ),
-        child: Image.network(
-          Splash.instance().getUser!.photoURL.toString(),
+        child: CachedNetworkImage(
+          imageUrl: Splash.instance().getUser!.photoURL.toString(),
           fit: BoxFit.fill,
-          errorBuilder: (context, error, stackTrace) =>
-              const Icon(Icons.person),
+          placeholder: (context, url) => const Icon(Icons.person),
           height: SizeConfig.safeBlockHorizontal! * 6.75,
           width: SizeConfig.safeBlockHorizontal! * 6.75,
         ),

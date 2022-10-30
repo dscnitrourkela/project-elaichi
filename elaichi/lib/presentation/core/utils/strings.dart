@@ -16,7 +16,7 @@ abstract class Strings {
   static const String homeActive = 'assets/icons/home_active.svg';
   static const String homeInactive = 'assets/icons/home_inactive.svg';
 
-  static const String kZimbraCardText =
+  static const String zimbraCardText =
       'Verify your NITR webmail to access \ntime table, mess menu and much more';
   static const String kMmCardTitle =
       'A Noble Breakthrough: NIT Rourkela produces alcohol-based sanitizers';
@@ -27,8 +27,9 @@ abstract class Strings {
   static const String kStoriesthisWeek = '  Stories this week';
   static const String kToday = 'Today';
   static const String kViewCalendar = 'View Calendar';
-  static const String kRegisterNow = 'Register Now';
-  static const String kVerifyNow = 'Verify Now';
+  static const String registerNow = 'Register Now';
+  static const String verifyNow = 'Verify Now';
+  static const String featuredEvents = 'Featured Events';
 
   static const String mmArticleLink =
       'https://mondaymorning.nitrkl.ac.in/article/';

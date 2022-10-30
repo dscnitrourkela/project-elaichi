@@ -1,7 +1,7 @@
 import 'package:elaichi/presentation/core/utils/measurements.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/feed/bloc/feed_bloc.dart';
+import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
 import 'package:elaichi/presentation/mail/webmail_login_bottom_sheet/webmai_login_bottomsheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,12 +13,12 @@ class WebMailCard extends StatelessWidget {
   const WebMailCard({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _bloc = context.read<FeedBloc>();
+    final bloc = context.read<FestBloc>();
     return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(8),
       child: SizedBox(
-        height: SizeConfig.screenHeight! * 0.23,
-        width: SizeConfig.screenWidth! * 0.92,
+        height: 159,
+        width: 368,
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -27,17 +27,17 @@ class WebMailCard extends StatelessWidget {
               fit: BoxFit.fill,
             ),
             Opacity(
-              opacity: 0.7,
+              opacity: 1,
               child: Image.asset(
                 Strings.kShaderImage,
                 fit: BoxFit.cover,
               ),
             ),
             Positioned(
-              top: SizeConfig.safeBlockHorizontal! * 7,
-              left: SizeConfig.safeBlockHorizontal! * 7,
+              top: 20,
+              left: 20,
               child: Text(
-                Strings.kRegisterNow,
+                Strings.registerNow,
                 style: Theme.of(context).textTheme.headline6!.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -46,25 +46,23 @@ class WebMailCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: SizeConfig.safeBlockHorizontal! * 19,
-              left: SizeConfig.safeBlockHorizontal! * 7,
+              top: 50,
+              left: 20,
               child: Text(
-                Strings.kZimbraCardText,
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                Strings.zimbraCardText,
+                style: Theme.of(context).textTheme.caption!.copyWith(
                       color: Colors.white.withOpacity(0.8),
-                      fontWeight: FontWeight.w800,
-                      fontSize: SizeConfig.safeBlockHorizontal! * 3.7,
                     ),
               ),
             ),
             Positioned(
-              top: SizeConfig.safeBlockHorizontal! * 30,
-              left: SizeConfig.safeBlockHorizontal! * 7,
+              top: 100,
+              left: 20,
               child: TextButton(
                 style: TextButton.styleFrom(
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(8),
+                      Radius.circular(4),
                     ),
                     side: Measurements.enabledBorderSide,
                   ),
@@ -80,12 +78,15 @@ class WebMailCard extends StatelessWidget {
                         top: Radius.circular(16),
                       ),
                     ),
-                  ).then((value) => _bloc.add(const FeedEvent.webMailLogIn()));
+                  ).then((value) => bloc.add(const FestEvent.webMailLogIn()));
                 },
                 child: Text(
-                  Strings.kVerifyNow,
+                  Strings.verifyNow,
                   style: Theme.of(context).textTheme.button!.copyWith(
                         color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5,
                       ),
                 ),
               ),
