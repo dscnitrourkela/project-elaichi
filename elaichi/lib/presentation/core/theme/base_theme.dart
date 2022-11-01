@@ -4,10 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// Base text theme for the app.
 final TextTheme textTheme = TextTheme(
-  headline1: GoogleFonts.inter(
-    fontSize: 93,
-    fontWeight: FontWeight.w300,
-    letterSpacing: -1.5,
+  headline1: GoogleFonts.roboto(
+    fontSize: 40,
+    fontWeight: FontWeight.w900,
   ),
   headline2: GoogleFonts.inter(
     fontSize: 58,
@@ -37,10 +36,10 @@ final TextTheme textTheme = TextTheme(
     fontWeight: FontWeight.w400,
     letterSpacing: 0.15,
   ),
-  subtitle2: GoogleFonts.inter(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-    letterSpacing: 0.1,
+  subtitle2: GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.2,
   ),
   bodyText1: GoogleFonts.inter(
     fontSize: 16,
