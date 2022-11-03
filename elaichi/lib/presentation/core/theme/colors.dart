@@ -23,6 +23,8 @@ class AppColors {
   static const Color cardHeader60 = Color.fromRGBO(79, 79, 79, 0.6);
   static const Color avenueTitle = Color(0xff141414);
   static const Color festSubTitiles = Color(0xffC39B5A);
+  static const Color captionRed = Color(0xffFF6961);
+  static const Color teal = Color(0xff5AC8FA);
 
   // Buttons
   static const Color buttonBorderColor = Color(0xffE0E0E0);
@@ -59,6 +61,10 @@ class AppColors {
   static const Color grey5 = Color(0xffDDDDDD);
   static const Color grey6 = Color(0xffEBEBF5);
   static const Color grey7 = Color(0xff545458);
+  static const Color grey8 = Color(0xffD1D1D6);
+  static const Color grey9 = Color(0xff3C3C43);
+  static const Color grey10 = Color(0xffC7C7CC);
+  static const Color grey11 = Color(0xff8E8E93);
 
   static const Color warningRed = Color(0xffEB5757);
 

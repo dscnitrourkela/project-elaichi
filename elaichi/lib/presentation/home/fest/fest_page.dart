@@ -49,7 +49,10 @@ class FestPage extends StatelessWidget {
                   width: 32,
                 ),
               ),
-              bottomSubTitleWidget: const DurationDates(),
+              bottomSubTitleWidget: const DurationDates(
+                text: 'Jan 03 - Jan 07 2023',
+                mainAxisAlignment: MainAxisAlignment.center,
+              ),
               title: 'HackNITR 4.0',
               buttonTitle: 'Explore More',
               onTapped: () => Navigator.pushNamed(context, AppRouter.explore),

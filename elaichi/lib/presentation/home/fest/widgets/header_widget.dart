@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elaichi/presentation/components/buttons/yellow_button.dart';
+import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:flutter/material.dart';
 
 class HeaderWidget extends StatelessWidget {

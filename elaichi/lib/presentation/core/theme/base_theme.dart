@@ -102,3 +102,29 @@ abstract class AppTheme {
     toggleableActiveColor: const Color(0xff333333),
   );
 }
+
+TextTheme robotoTextTheme = TextTheme(
+  headline1: GoogleFonts.roboto(
+    fontSize: 40,
+    fontWeight: FontWeight.w900,
+  ),
+  subtitle1: GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.2,
+  ),
+  bodyText1: GoogleFonts.roboto(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
+  ),
+  caption: GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.32,
+  ),
+  overline: GoogleFonts.roboto(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -0.24,
+  ),
+);

@@ -1,4 +1,5 @@
 import 'package:elaichi/presentation/core/router/app_page_route.dart';
+import 'package:elaichi/presentation/home/fest/widgets/explore_page.dart';
 import 'package:elaichi/presentation/home/home_page.dart';
 import 'package:elaichi/presentation/sign_in/sign_in_page.dart';
 import 'package:elaichi/presentation/splash/splash_page.dart';
@@ -9,6 +10,7 @@ class AppRouter {
   static const String splash = '/';
   static const String signIn = '/signin';
   static const String home = '/home';
+  static const String explore = '/explore';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -28,6 +30,11 @@ class AppRouter {
         return AppPageRoute<void>(
           settings: settings,
           builder: (BuildContext context) => const HomePage(),
+        );
+      case explore:
+        return AppPageRoute(
+          settings: settings,
+          builder: (context) => ExplorePage(),
         );
 
       default:

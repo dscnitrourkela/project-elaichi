@@ -21,6 +21,42 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
     activeIcon: SvgPicture.asset(Strings.browseActive),
   ),
 
+  BottomNavigationBarItem(
+    label: 'Fest',
+    icon: ClipRRect(
+      borderRadius: BorderRadius.circular(
+        SizeConfig.safeBlockHorizontal! * 10,
+      ),
+      child: CachedNetworkImage(
+        imageUrl: Splash.instance().getUser!.photoURL.toString(),
+        fit: BoxFit.fill,
+        placeholder: (context, url) => const Icon(Icons.person),
+        height: SizeConfig.safeBlockHorizontal! * 7,
+        width: SizeConfig.safeBlockHorizontal! * 7,
+      ),
+    ),
+    activeIcon: DecoratedBox(
+      decoration: BoxDecoration(
+        border: Border.all(width: 2),
+        borderRadius: BorderRadius.circular(
+          SizeConfig.safeBlockHorizontal! * 10,
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          SizeConfig.safeBlockHorizontal! * 10,
+        ),
+        child: CachedNetworkImage(
+          imageUrl: Splash.instance().getUser!.photoURL.toString(),
+          fit: BoxFit.fill,
+          placeholder: (context, url) => const Icon(Icons.person),
+          height: SizeConfig.safeBlockHorizontal! * 6.75,
+          width: SizeConfig.safeBlockHorizontal! * 6.75,
+        ),
+      ),
+    ),
+  ),
+
   /// The icon for Zimbra Webmail Page
   BottomNavigationBarItem(
     label: 'Zimbra',
