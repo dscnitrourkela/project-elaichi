@@ -20,15 +20,25 @@ Event _$EventFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Event {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  EventCategory get category => throw _privateConstructorUsedError;
-  EventType get type => throw _privateConstructorUsedError;
-  DateTime get startTime => throw _privateConstructorUsedError;
-  int get durationInMin => throw _privateConstructorUsedError;
-  String get location => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  DateTime get endDate => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  Location? get location => throw _privateConstructorUsedError;
+  String get locationID => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  List<String> get notes => throw _privateConstructorUsedError;
+  List<Org> get org => throw _privateConstructorUsedError;
+  List<String> get orgID => throw _privateConstructorUsedError;
+  OrgType get orgType => throw _privateConstructorUsedError;
+  User get poc => throw _privateConstructorUsedError;
+  List<String> get pocID => throw _privateConstructorUsedError;
+  String get poster => throw _privateConstructorUsedError;
+  int get proiority => throw _privateConstructorUsedError;
+  RepeatType? get repeatDay => throw _privateConstructorUsedError;
+  DateTime get startDate => throw _privateConstructorUsedError;
+  StatusType get status => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
+  bool get weekly => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,77 +48,164 @@ mixin _$Event {
 /// @nodoc
 abstract class $EventCopyWith<$Res> {
   factory $EventCopyWith(Event value, $Res Function(Event) then) =
-      _$EventCopyWithImpl<$Res>;
+      _$EventCopyWithImpl<$Res, Event>;
+  @useResult
   $Res call(
-      {String id,
+      {String description,
+      DateTime endDate,
+      String id,
+      Location? location,
+      String locationID,
       String name,
-      EventCategory category,
-      EventType type,
-      DateTime startTime,
-      int durationInMin,
-      String location,
-      String image,
-      String description});
+      List<String> notes,
+      List<Org> org,
+      List<String> orgID,
+      OrgType orgType,
+      User poc,
+      List<String> pocID,
+      String poster,
+      int proiority,
+      RepeatType? repeatDay,
+      DateTime startDate,
+      StatusType status,
+      String? type,
+      bool weekly});
+
+  $LocationCopyWith<$Res>? get location;
+  $UserCopyWith<$Res> get poc;
 }
 
 /// @nodoc
-class _$EventCopyWithImpl<$Res> implements $EventCopyWith<$Res> {
+class _$EventCopyWithImpl<$Res, $Val extends Event>
+    implements $EventCopyWith<$Res> {
   _$EventCopyWithImpl(this._value, this._then);
 
-  final Event _value;
   // ignore: unused_field
-  final $Res Function(Event) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? category = freezed,
-    Object? type = freezed,
-    Object? startTime = freezed,
-    Object? durationInMin = freezed,
+    Object? description = null,
+    Object? endDate = null,
+    Object? id = null,
     Object? location = freezed,
-    Object? image = freezed,
-    Object? description = freezed,
+    Object? locationID = null,
+    Object? name = null,
+    Object? notes = null,
+    Object? org = null,
+    Object? orgID = null,
+    Object? orgType = null,
+    Object? poc = null,
+    Object? pocID = null,
+    Object? poster = null,
+    Object? proiority = null,
+    Object? repeatDay = freezed,
+    Object? startDate = null,
+    Object? status = null,
+    Object? type = freezed,
+    Object? weekly = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as EventCategory,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as EventType,
-      startTime: startTime == freezed
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      durationInMin: durationInMin == freezed
-          ? _value.durationInMin
-          : durationInMin // ignore: cast_nullable_to_non_nullable
-              as int,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location?,
+      locationID: null == locationID
+          ? _value.locationID
+          : locationID // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      notes: null == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      org: null == org
+          ? _value.org
+          : org // ignore: cast_nullable_to_non_nullable
+              as List<Org>,
+      orgID: null == orgID
+          ? _value.orgID
+          : orgID // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      orgType: null == orgType
+          ? _value.orgType
+          : orgType // ignore: cast_nullable_to_non_nullable
+              as OrgType,
+      poc: null == poc
+          ? _value.poc
+          : poc // ignore: cast_nullable_to_non_nullable
+              as User,
+      pocID: null == pocID
+          ? _value.pocID
+          : pocID // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      poster: null == poster
+          ? _value.poster
+          : poster // ignore: cast_nullable_to_non_nullable
+              as String,
+      proiority: null == proiority
+          ? _value.proiority
+          : proiority // ignore: cast_nullable_to_non_nullable
+              as int,
+      repeatDay: freezed == repeatDay
+          ? _value.repeatDay
+          : repeatDay // ignore: cast_nullable_to_non_nullable
+              as RepeatType?,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as StatusType,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      weekly: null == weekly
+          ? _value.weekly
+          : weekly // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationCopyWith<$Res>? get location {
+    if (_value.location == null) {
+      return null;
+    }
+
+    return $LocationCopyWith<$Res>(_value.location!, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get poc {
+    return $UserCopyWith<$Res>(_value.poc, (value) {
+      return _then(_value.copyWith(poc: value) as $Val);
+    });
   }
 }
 
@@ -117,76 +214,140 @@ abstract class _$$_EventCopyWith<$Res> implements $EventCopyWith<$Res> {
   factory _$$_EventCopyWith(_$_Event value, $Res Function(_$_Event) then) =
       __$$_EventCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
-      {String id,
+      {String description,
+      DateTime endDate,
+      String id,
+      Location? location,
+      String locationID,
       String name,
-      EventCategory category,
-      EventType type,
-      DateTime startTime,
-      int durationInMin,
-      String location,
-      String image,
-      String description});
+      List<String> notes,
+      List<Org> org,
+      List<String> orgID,
+      OrgType orgType,
+      User poc,
+      List<String> pocID,
+      String poster,
+      int proiority,
+      RepeatType? repeatDay,
+      DateTime startDate,
+      StatusType status,
+      String? type,
+      bool weekly});
+
+  @override
+  $LocationCopyWith<$Res>? get location;
+  @override
+  $UserCopyWith<$Res> get poc;
 }
 
 /// @nodoc
-class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
+class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res, _$_Event>
     implements _$$_EventCopyWith<$Res> {
   __$$_EventCopyWithImpl(_$_Event _value, $Res Function(_$_Event) _then)
-      : super(_value, (v) => _then(v as _$_Event));
+      : super(_value, _then);
 
-  @override
-  _$_Event get _value => super._value as _$_Event;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? category = freezed,
-    Object? type = freezed,
-    Object? startTime = freezed,
-    Object? durationInMin = freezed,
+    Object? description = null,
+    Object? endDate = null,
+    Object? id = null,
     Object? location = freezed,
-    Object? image = freezed,
-    Object? description = freezed,
+    Object? locationID = null,
+    Object? name = null,
+    Object? notes = null,
+    Object? org = null,
+    Object? orgID = null,
+    Object? orgType = null,
+    Object? poc = null,
+    Object? pocID = null,
+    Object? poster = null,
+    Object? proiority = null,
+    Object? repeatDay = freezed,
+    Object? startDate = null,
+    Object? status = null,
+    Object? type = freezed,
+    Object? weekly = null,
   }) {
     return _then(_$_Event(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as EventCategory,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as EventType,
-      startTime: startTime == freezed
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      durationInMin: durationInMin == freezed
-          ? _value.durationInMin
-          : durationInMin // ignore: cast_nullable_to_non_nullable
-              as int,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location?,
+      locationID: null == locationID
+          ? _value.locationID
+          : locationID // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      notes: null == notes
+          ? _value._notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      org: null == org
+          ? _value._org
+          : org // ignore: cast_nullable_to_non_nullable
+              as List<Org>,
+      orgID: null == orgID
+          ? _value._orgID
+          : orgID // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      orgType: null == orgType
+          ? _value.orgType
+          : orgType // ignore: cast_nullable_to_non_nullable
+              as OrgType,
+      poc: null == poc
+          ? _value.poc
+          : poc // ignore: cast_nullable_to_non_nullable
+              as User,
+      pocID: null == pocID
+          ? _value._pocID
+          : pocID // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      poster: null == poster
+          ? _value.poster
+          : poster // ignore: cast_nullable_to_non_nullable
+              as String,
+      proiority: null == proiority
+          ? _value.proiority
+          : proiority // ignore: cast_nullable_to_non_nullable
+              as int,
+      repeatDay: freezed == repeatDay
+          ? _value.repeatDay
+          : repeatDay // ignore: cast_nullable_to_non_nullable
+              as RepeatType?,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as StatusType,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      weekly: null == weekly
+          ? _value.weekly
+          : weekly // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -195,41 +356,95 @@ class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Event implements _Event {
   const _$_Event(
-      {required this.id,
+      {required this.description,
+      required this.endDate,
+      required this.id,
+      this.location,
+      required this.locationID,
       required this.name,
-      required this.category,
-      required this.type,
-      required this.startTime,
-      required this.durationInMin,
-      required this.location,
-      required this.image,
-      required this.description});
+      required final List<String> notes,
+      required final List<Org> org,
+      required final List<String> orgID,
+      required this.orgType,
+      required this.poc,
+      required final List<String> pocID,
+      required this.poster,
+      required this.proiority,
+      this.repeatDay,
+      required this.startDate,
+      required this.status,
+      this.type,
+      required this.weekly})
+      : _notes = notes,
+        _org = org,
+        _orgID = orgID,
+        _pocID = pocID;
 
   factory _$_Event.fromJson(Map<String, dynamic> json) =>
       _$$_EventFromJson(json);
 
   @override
+  final String description;
+  @override
+  final DateTime endDate;
+  @override
   final String id;
   @override
+  final Location? location;
+  @override
+  final String locationID;
+  @override
   final String name;
+  final List<String> _notes;
   @override
-  final EventCategory category;
+  List<String> get notes {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notes);
+  }
+
+  final List<Org> _org;
   @override
-  final EventType type;
+  List<Org> get org {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_org);
+  }
+
+  final List<String> _orgID;
   @override
-  final DateTime startTime;
+  List<String> get orgID {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_orgID);
+  }
+
   @override
-  final int durationInMin;
+  final OrgType orgType;
   @override
-  final String location;
+  final User poc;
+  final List<String> _pocID;
   @override
-  final String image;
+  List<String> get pocID {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_pocID);
+  }
+
   @override
-  final String description;
+  final String poster;
+  @override
+  final int proiority;
+  @override
+  final RepeatType? repeatDay;
+  @override
+  final DateTime startDate;
+  @override
+  final StatusType status;
+  @override
+  final String? type;
+  @override
+  final bool weekly;
 
   @override
   String toString() {
-    return 'Event(id: $id, name: $name, category: $category, type: $type, startTime: $startTime, durationInMin: $durationInMin, location: $location, image: $image, description: $description)';
+    return 'Event(description: $description, endDate: $endDate, id: $id, location: $location, locationID: $locationID, name: $name, notes: $notes, org: $org, orgID: $orgID, orgType: $orgType, poc: $poc, pocID: $pocID, poster: $poster, proiority: $proiority, repeatDay: $repeatDay, startDate: $startDate, status: $status, type: $type, weekly: $weekly)';
   }
 
   @override
@@ -237,35 +452,61 @@ class _$_Event implements _Event {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Event &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.category, category) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.startTime, startTime) &&
-            const DeepCollectionEquality()
-                .equals(other.durationInMin, durationInMin) &&
-            const DeepCollectionEquality().equals(other.location, location) &&
-            const DeepCollectionEquality().equals(other.image, image) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description));
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.locationID, locationID) ||
+                other.locationID == locationID) &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other._notes, _notes) &&
+            const DeepCollectionEquality().equals(other._org, _org) &&
+            const DeepCollectionEquality().equals(other._orgID, _orgID) &&
+            (identical(other.orgType, orgType) || other.orgType == orgType) &&
+            (identical(other.poc, poc) || other.poc == poc) &&
+            const DeepCollectionEquality().equals(other._pocID, _pocID) &&
+            (identical(other.poster, poster) || other.poster == poster) &&
+            (identical(other.proiority, proiority) ||
+                other.proiority == proiority) &&
+            (identical(other.repeatDay, repeatDay) ||
+                other.repeatDay == repeatDay) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.weekly, weekly) || other.weekly == weekly));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(category),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(startTime),
-      const DeepCollectionEquality().hash(durationInMin),
-      const DeepCollectionEquality().hash(location),
-      const DeepCollectionEquality().hash(image),
-      const DeepCollectionEquality().hash(description));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        description,
+        endDate,
+        id,
+        location,
+        locationID,
+        name,
+        const DeepCollectionEquality().hash(_notes),
+        const DeepCollectionEquality().hash(_org),
+        const DeepCollectionEquality().hash(_orgID),
+        orgType,
+        poc,
+        const DeepCollectionEquality().hash(_pocID),
+        poster,
+        proiority,
+        repeatDay,
+        startDate,
+        status,
+        type,
+        weekly
+      ]);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_EventCopyWith<_$_Event> get copyWith =>
       __$$_EventCopyWithImpl<_$_Event>(this, _$identity);
 
@@ -279,36 +520,66 @@ class _$_Event implements _Event {
 
 abstract class _Event implements Event {
   const factory _Event(
-      {required final String id,
+      {required final String description,
+      required final DateTime endDate,
+      required final String id,
+      final Location? location,
+      required final String locationID,
       required final String name,
-      required final EventCategory category,
-      required final EventType type,
-      required final DateTime startTime,
-      required final int durationInMin,
-      required final String location,
-      required final String image,
-      required final String description}) = _$_Event;
+      required final List<String> notes,
+      required final List<Org> org,
+      required final List<String> orgID,
+      required final OrgType orgType,
+      required final User poc,
+      required final List<String> pocID,
+      required final String poster,
+      required final int proiority,
+      final RepeatType? repeatDay,
+      required final DateTime startDate,
+      required final StatusType status,
+      final String? type,
+      required final bool weekly}) = _$_Event;
 
   factory _Event.fromJson(Map<String, dynamic> json) = _$_Event.fromJson;
 
   @override
+  String get description;
+  @override
+  DateTime get endDate;
+  @override
   String get id;
+  @override
+  Location? get location;
+  @override
+  String get locationID;
   @override
   String get name;
   @override
-  EventCategory get category;
+  List<String> get notes;
   @override
-  EventType get type;
+  List<Org> get org;
   @override
-  DateTime get startTime;
+  List<String> get orgID;
   @override
-  int get durationInMin;
+  OrgType get orgType;
   @override
-  String get location;
+  User get poc;
   @override
-  String get image;
+  List<String> get pocID;
   @override
-  String get description;
+  String get poster;
+  @override
+  int get proiority;
+  @override
+  RepeatType? get repeatDay;
+  @override
+  DateTime get startDate;
+  @override
+  StatusType get status;
+  @override
+  String? get type;
+  @override
+  bool get weekly;
   @override
   @JsonKey(ignore: true)
   _$$_EventCopyWith<_$_Event> get copyWith =>
