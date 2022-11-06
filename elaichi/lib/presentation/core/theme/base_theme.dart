@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// Base text theme for the app.
 final TextTheme textTheme = TextTheme(
-  headline1: GoogleFonts.roboto(
+  headline1: GoogleFonts.inter(
     fontSize: 40,
     fontWeight: FontWeight.w900,
   ),
@@ -36,7 +36,7 @@ final TextTheme textTheme = TextTheme(
     fontWeight: FontWeight.w400,
     letterSpacing: 0.15,
   ),
-  subtitle2: GoogleFonts.roboto(
+  subtitle2: GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     letterSpacing: 1.2,
@@ -103,28 +103,50 @@ abstract class AppTheme {
   );
 }
 
-TextTheme robotoTextTheme = TextTheme(
-  headline1: GoogleFonts.roboto(
+TextTheme interTextTheme = TextTheme(
+  headline1: GoogleFonts.inter(
     fontSize: 40,
     fontWeight: FontWeight.w900,
+    height: 1.21,
+    color: Colors.white,
   ),
-  subtitle1: GoogleFonts.roboto(
+  headline2: GoogleFonts.inter(
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+    height: 1.21,
+    letterSpacing: -0.41,
+    color: Colors.white,
+  ),
+  subtitle1: GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     letterSpacing: 1.2,
+    color: Colors.white,
   ),
-  bodyText1: GoogleFonts.roboto(
+  subtitle2: GoogleFonts.inter(
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.5,
+    height: 1.21,
+    color: Colors.white,
+  ),
+  bodyText1: GoogleFonts.inter(
     fontSize: 17,
     fontWeight: FontWeight.w400,
+    letterSpacing: -0.41,
+    height: 1.3,
+    color: Colors.white,
   ),
-  caption: GoogleFonts.roboto(
+  caption: GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     letterSpacing: -0.32,
+    color: Colors.white,
   ),
-  overline: GoogleFonts.roboto(
+  overline: GoogleFonts.inter(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     letterSpacing: -0.24,
+    color: Colors.white,
   ),
 );

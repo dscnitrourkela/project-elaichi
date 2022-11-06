@@ -35,7 +35,7 @@ class SessionsCard extends StatelessWidget {
         children: [
           Text(
             json.decode(name)['heading'] as String,
-            style: robotoTextTheme.bodyText1!
+            style: interTextTheme.bodyText1!
                 .copyWith(fontSize: 40, color: Colors.white),
           ),
           const SizedBox(height: 16),

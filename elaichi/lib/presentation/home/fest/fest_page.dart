@@ -49,77 +49,85 @@ class _FestPageState extends State<FestPage> {
                 return const Center(child: Text('Something Went Wrong'));
               },
               initial: (webMailState, fests) {
-                return Stack(
-                  children: [
-                    CarouselSlider.builder(
-                      itemCount: fests.length,
-                      options: CarouselOptions(
-                        height: 440,
-                        autoPlay: true,
-                        enableInfiniteScroll: false,
-                        autoPlayAnimationDuration: const Duration(seconds: 3),
-                        viewportFraction: 1,
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      CarouselSlider.builder(
+                        itemCount: fests.length,
+                        options: CarouselOptions(
+                          height: 440,
+                          autoPlay: true,
+                          enableInfiniteScroll: false,
+                          autoPlayAnimationDuration: const Duration(seconds: 3),
+                          viewportFraction: 1,
+                        ),
+                        itemBuilder: (context, index, realIndex) {
+                          final fest = fests[index];
+                          final format1 = DateFormat('MMM');
+                          final duration =
+                              '${format1.format(fest.startDate!)} ${fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(fest.endDate!)} ${fest.endDate!.day.toString().padLeft(2, '0')} ${fest.endDate!.year}';
+                          return HeaderWidget(
+                            imageUrl: fest.coverImg ?? Strings.placeholderImage,
+                            leadingWidget: Text(
+                              fest.name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: Colors.white),
+                            ),
+                            trailingWidget: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                SizeConfig.safeBlockHorizontal! * 10,
+                              ),
+                              child: CachedNetworkImage(
+                                imageUrl: fest.logo,
+                                fit: BoxFit.fill,
+                                placeholder: (context, url) =>
+                                    const Icon(Icons.circle),
+                                height: 34,
+                                width: 32,
+                              ),
+                            ),
+                            bottomSubTitleWidget: DurationDates(
+                              text: duration,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                            ),
+                            title: fest.name,
+                            buttonTitle: 'Explore More',
+                            onTapped: () async {
+                              final calenderAndCategorisedEvents = await _bloc
+                                  .getCalenderAndCategorisedEvents(fest.id);
+                              // ignore: use_build_context_synchronously
+                              return Navigator.pushNamed(
+                                context,
+                                AppRouter.explore,
+                                arguments: <String, dynamic>{
+                                  'fest': fest,
+                                  'categorisedEvents':
+                                      calenderAndCategorisedEvents[
+                                          'categorisedEvents'],
+                                  'calender':
+                                      calenderAndCategorisedEvents['calender']
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
-                      itemBuilder: (context, index, realIndex) {
-                        final fest = fests[index];
-                        final format1 = DateFormat('MMM');
-                        final duration =
-                            '${format1.format(fest.startDate!)} ${fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(fest.endDate!)} ${fest.endDate!.day.toString().padLeft(2, '0')} ${fest.endDate!.year}';
-                        return HeaderWidget(
-                          imageUrl: fest.coverImg ?? Strings.placeholderImage,
-                          leadingWidget: Text(
-                            fest.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2!
-                                .copyWith(color: Colors.white),
-                          ),
-                          trailingWidget: ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                              SizeConfig.safeBlockHorizontal! * 10,
-                            ),
-                            child: CachedNetworkImage(
-                              imageUrl: fest.logo,
-                              fit: BoxFit.fill,
-                              placeholder: (context, url) =>
-                                  const Icon(Icons.circle),
-                              height: 34,
-                              width: 32,
-                            ),
-                          ),
-                          bottomSubTitleWidget: DurationDates(
-                            text: duration,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                          ),
-                          title: fest.name,
-                          buttonTitle: 'Explore More',
-                          onTapped: () async {
-                            final calenderAndCategorisedEvents = await _bloc
-                                .getCalenderAndCategorisedEvents(fest.id);
-                            // ignore: use_build_context_synchronously
-                            return Navigator.pushNamed(
-                              context,
-                              AppRouter.explore,
-                              arguments: <String, dynamic>{
-                                'fest': fest,
-                                'categorisedEvents':
-                                    calenderAndCategorisedEvents[
-                                        'categorisedEvents'],
-                                'calender':
-                                    calenderAndCategorisedEvents['calender']
-                              },
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    CustomDraggableSheet(
-                      children: [
-                        if (!_bloc.isVerified()) const WebMailCard(),
-                        const FeaturedEvents(),
-                      ],
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 17.5,
+                          vertical: 20,
+                        ),
+                        child: Column(
+                          children: [
+                            if (!_bloc.isVerified()) const WebMailCard(),
+                            const FeaturedEvents(),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 );
               },
             );

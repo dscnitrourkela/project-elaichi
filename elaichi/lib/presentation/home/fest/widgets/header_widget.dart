@@ -63,7 +63,7 @@ class HeaderWidget extends StatelessWidget {
             bottom: 24,
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: YellowWideButton(
+              child: YellowFlatButton(
                 text: buttonTitle!,
                 onTapped: (onTapped != null) ? onTapped! : () {},
               ),

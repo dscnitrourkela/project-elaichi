@@ -62,7 +62,7 @@ class FestEventCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               r'1st Prize: $800  |  2nd Prize: $50',
-              style: robotoTextTheme.bodyText1!.copyWith(
+              style: interTextTheme.bodyText1!.copyWith(
                 fontWeight: FontWeight.w600,
                 color: AppColors.captionRed,
               ),
@@ -70,7 +70,7 @@ class FestEventCard extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               'Pellentesque eu tortor pulvinar nulla massa morbi ut volutpat, non. Vitae ullamcorper fermentum, sem convallis. Lorem ipsum.',
-              style: robotoTextTheme.bodyText1!.copyWith(
+              style: interTextTheme.bodyText1!.copyWith(
                 fontWeight: FontWeight.w200,
                 color: AppColors.grey6.withOpacity(0.6),
               ),

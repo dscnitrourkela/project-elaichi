@@ -10,7 +10,6 @@ class FeaturedEvents extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 20),
         Text(
           Strings.featuredEvents,
           style: Theme.of(context).textTheme.headline6,
@@ -25,21 +24,27 @@ class FeaturedEvents extends StatelessWidget {
 class FeaturedEventCard extends StatelessWidget {
   const FeaturedEventCard({
     Key? key,
+    // required this.text,
+    // required this.description,
+    // required this.duration,
   }) : super(key: key);
+
+  // final String text;
+  // final String description;
+  // final String duration;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 405,
       child: PhysicalModel(
-        borderRadius: BorderRadius.circular(8),
         elevation: 3,
         color: Colors.white,
         shadowColor: Colors.grey,
         child: Column(
           children: [
             Image.network(
-              'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667107340/unsplash_bdAXr0mRHrY_imvnr4.png',
+              Strings.placeholderImage,
               height: 250,
               fit: BoxFit.fill,
             ),
@@ -84,7 +89,7 @@ class FeaturedEventCard extends StatelessWidget {
                         style: TextButton.styleFrom(
                           backgroundColor: AppColors.lightBlue,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                            borderRadius: BorderRadius.circular(0),
                           ),
                           padding: const EdgeInsets.fromLTRB(18, 12, 18, 12),
                         ),

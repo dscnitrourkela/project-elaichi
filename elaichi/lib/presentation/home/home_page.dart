@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   /// to maintain the page index of the bottom navigation bar
-  int pageIndex = 0;
+  int pageIndex = 2;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(

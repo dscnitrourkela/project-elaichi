@@ -25,6 +25,7 @@ class AppColors {
   static const Color festSubTitiles = Color(0xffC39B5A);
   static const Color captionRed = Color(0xffFF6961);
   static const Color teal = Color(0xff5AC8FA);
+  static const Color red = Color(0xffFF453A);
 
   // Buttons
   static const Color buttonBorderColor = Color(0xffE0E0E0);
@@ -65,6 +66,10 @@ class AppColors {
   static const Color grey9 = Color(0xff3C3C43);
   static const Color grey10 = Color(0xffC7C7CC);
   static const Color grey11 = Color(0xff8E8E93);
+  static const Color grey12 = Color(0xff38383A);
+  static const Color grey13 = Color(0xff262629);
+
+  static const Color white1 = Color(0xffE6E6E6);
 
   static const Color warningRed = Color(0xffEB5757);
 

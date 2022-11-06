@@ -46,7 +46,7 @@ class SpeakerWidget extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'Designation of Person',
-              style: robotoTextTheme.bodyText1!.copyWith(color: Colors.white),
+              style: interTextTheme.bodyText1!.copyWith(color: Colors.white),
             ),
             const SizedBox(height: 24),
             Container(
@@ -118,9 +118,10 @@ class SpeakerInfo extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           name,
-          style: robotoTextTheme.bodyText1!.copyWith(
+          style: interTextTheme.bodyText1!.copyWith(
             color: AppColors.grey8,
             fontSize: fontSize,
+            height: 1.34,
           ),
         ),
       ],

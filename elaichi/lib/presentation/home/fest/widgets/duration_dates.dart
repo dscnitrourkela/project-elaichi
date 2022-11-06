@@ -6,10 +6,12 @@ class DurationDates extends StatelessWidget {
     Key? key,
     required this.text,
     required this.mainAxisAlignment,
+    this.fontSize,
   }) : super(key: key);
 
   final String text;
   final MainAxisAlignment mainAxisAlignment;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,8 @@ class DurationDates extends StatelessWidget {
         const SizedBox(width: 10),
         Text(
           text,
-          style: robotoTextTheme.caption!.copyWith(color: Colors.white),
+          style: interTextTheme.caption!
+              .copyWith(color: Colors.white, fontSize: fontSize),
         ),
       ],
     );

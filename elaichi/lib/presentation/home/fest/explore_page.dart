@@ -1,23 +1,27 @@
 // ignore_for_file: avoid_unnecessary_containers, use_decorated_box
 
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
-import 'package:elaichi/presentation/components/custom_carousel/custom_carousel.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
+import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/home/fest/widgets/duration_dates.dart';
 import 'package:elaichi/presentation/home/fest/widgets/fest_calender.dart';
-import 'package:elaichi/presentation/home/fest/widgets/fest_event_card.dart';
 import 'package:elaichi/presentation/home/fest/widgets/header_widget.dart';
+import 'package:elaichi/presentation/home/fest/widgets/low_priority_event_card.dart';
+import 'package:elaichi/presentation/home/fest/widgets/major_event_card.dart';
+import 'package:elaichi/presentation/home/fest/widgets/scrolling_text.dart';
 import 'package:elaichi/presentation/home/fest/widgets/sessions_card.dart';
-import 'package:elaichi/presentation/home/fest/widgets/speaker_widget.dart';
 import 'package:flutter/material.dart';
-// import 'package:package'
+import 'package:intl/intl.dart';
+import 'package:marquee/marquee.dart';
+import 'package:quiver/iterables.dart';
 
 class ExplorePage extends StatefulWidget {
   ExplorePage({
@@ -34,8 +38,7 @@ class ExplorePage extends StatefulWidget {
   final Map<String, List<Event>> calender;
 
   late final eventPageController = PageController(
-    initialPage: 1,
-    viewportFraction: 0.75,
+    viewportFraction: 0.9,
     keepPage: false,
   );
 
@@ -76,6 +79,11 @@ class _ExplorePageState extends State<ExplorePage>
 
   @override
   Widget build(BuildContext context) {
+    final format1 = DateFormat('MMM');
+    final duration =
+        '${format1.format(widget.fest.startDate!)} ${widget.fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(widget.fest.endDate!)} ${widget.fest.endDate!.day.toString().padLeft(2, '0')} ${widget.fest.endDate!.year}';
+    final partedList = partition(widget.categorisedEvents['FUN']!, 3).toList();
+
     return Scaffold(
       bottomNavigationBar: SizedBox(
         height: 95,
@@ -86,25 +94,25 @@ class _ExplorePageState extends State<ExplorePage>
             children: [
               const Divider(height: 1, thickness: 1, color: AppColors.grey7),
               const SizedBox(height: 13),
-              YellowWideButton(text: 'Register Now!', onTapped: () {}),
+              YellowFlatButton(text: 'Register Now!', onTapped: () {}),
             ],
           ),
         ),
       ),
-      backgroundColor: AppColors.translucentButton,
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-              height: SizeConfig.screenHeight! * 0.77,
+            Container(
+              constraints:
+                  BoxConstraints(minHeight: SizeConfig.screenHeight! * 0.7),
               width: SizeConfig.screenWidth,
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
                   HeaderWidget(
-                    imageUrl: widget.fest.coverImg ??
-                        'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
+                    imageUrl: widget.fest.coverImg ?? Strings.placeholderImage,
                     leadingWidget: Container(
                       height: 30,
                       width: 75,
@@ -148,44 +156,37 @@ class _ExplorePageState extends State<ExplorePage>
                     ),
                   ),
                   Positioned(
-                    top: 308,
+                    top: 298,
                     left: 16,
                     right: 16,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
-                        child: Container(
-                          width: 338,
-                          color: Colors.grey.withOpacity(0.07),
-                          constraints: const BoxConstraints(minHeight: 258),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 16,
-                              horizontal: 30,
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  widget.fest.name,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline1!
-                                      .copyWith(
-                                        color: Colors.white,
-                                      ),
-                                ),
-                                const SizedBox(height: 24),
-                                Text(
-                                  widget.fest.description,
-                                  style: robotoTextTheme.bodyText1!.copyWith(
-                                    color: AppColors.grey6.withOpacity(0.6),
+                    child: Container(
+                      constraints: const BoxConstraints(minHeight: 208),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.fest.name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1!
+                                  .copyWith(
+                                    color: Colors.white,
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
                             ),
-                          ),
+                            const SizedBox(height: 24),
+                            Text(
+                              widget.fest.description,
+                              style: interTextTheme.bodyText1!.copyWith(
+                                color: AppColors.grey6.withOpacity(0.8),
+                              ),
+                              maxLines: 7,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -193,101 +194,104 @@ class _ExplorePageState extends State<ExplorePage>
                 ],
               ),
             ),
-            const SizedBox(height: 10),
-            const DurationDates(
-              text: 'Jan 03 - Jan 07 2023',
-              mainAxisAlignment: MainAxisAlignment.center,
+            Divider(
+              indent: 16,
+              endIndent: 16,
+              thickness: 1,
+              height: 1,
+              color: Colors.white.withOpacity(0.2),
             ),
-            const SizedBox(height: 62),
-            Text(
-              'EXCITING EVENTS',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle2!
-                  .copyWith(color: AppColors.festSubTitiles),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              child: DurationDates(
+                text: duration,
+                mainAxisAlignment: MainAxisAlignment.start,
+                fontSize: 20,
+              ),
             ),
-            const SizedBox(height: 16),
-            Text(
-              'Name of Event',
-              style: Theme.of(context).textTheme.headline1!.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 34,
-                    color: Colors.white,
+            const SizedBox(height: 60),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Pro Shows',
+                    style: interTextTheme.headline2,
                   ),
-            ),
-            const SizedBox(height: 7),
-            Text(
-              '03 Jan | 16:00 IST | 4 Members',
-              style: robotoTextTheme.bodyText1!.copyWith(color: Colors.white),
-            ),
-            const SizedBox(height: 11),
-            CustomCarousel(
-              height: 500,
-              width: 340,
-              pageController: widget.eventPageController,
-              itemCount: 3,
-              itemBuilder: (context, index) => FestEventCard(
-                currentIndex: currentEventIndex,
-                index: index,
-              ),
-            ),
-            const SizedBox(height: 70),
-            Text(
-              'FABULOUS SPEAKERS',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle2!
-                  .copyWith(color: AppColors.festSubTitiles),
-            ),
-            const SizedBox(height: 16),
-            CustomCarousel(
-              height: 400,
-              width: 400,
-              itemCount: 3,
-              pageController: widget.speakerPageController,
-              itemBuilder: (context, selectedIndex) => SpeakerWidget(
-                currentIndex: currentSpeakerIndex,
-                index: selectedIndex,
-              ),
-            ),
-            Text(
-              'INSPIRING SESSIONS',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle2!
-                  .copyWith(color: AppColors.festSubTitiles),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              height: 234,
-              width: 350,
-              child: PageView.builder(
-                clipBehavior: Clip.none,
-                padEnds: false,
-                itemBuilder: (context, index) {
-                  final session = widget.categorisedEvents['FUN']![index];
-                  return SessionsCard(
-                    name: session.name,
-                    startDate: session.startDate,
-                  );
-                },
-                itemCount: widget.categorisedEvents['FUN']!.length,
-                controller: widget.sessionListController,
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    height: 466,
+                    child: ListView.builder(
+                      clipBehavior: Clip.none,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => MajorEventCard(
+                        event: widget.categorisedEvents['PRO']![index],
+                      ),
+                      itemCount: widget.categorisedEvents['PRO']!.length,
+                    ),
+                  ),
+                  const SizedBox(height: 86),
+                  Text(
+                    'Technical Events',
+                    style: interTextTheme.headline2,
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    height: 466,
+                    child: ListView.builder(
+                      clipBehavior: Clip.none,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => MajorEventCard(
+                        event: widget.categorisedEvents['TECHNICAL']![index],
+                      ),
+                      itemCount: widget.categorisedEvents['TECHNICAL']!.length,
+                    ),
+                  ),
+                  const SizedBox(height: 86),
+                  Text(
+                    'Fun Events',
+                    style: interTextTheme.headline2,
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    height: 330,
+                    child: ListView.separated(
+                      clipBehavior: Clip.none,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index1) {
+                        return Column(
+                          children: List.generate(
+                            partedList[index1].length,
+                            (index2) => Column(
+                              children: [
+                                LowPriorityEventItem(
+                                  event: partedList[index1][index2],
+                                ),
+                                const SizedBox(height: 16)
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 24),
+                      itemCount: partedList.length,
+                    ),
+                  ),
+                  Text(
+                    'Our Schedule',
+                    style: interTextTheme.headline2,
+                  ),
+                  const SizedBox(height: 16),
+                  CalenderTabView(
+                    tabController: _tabController,
+                    calender: widget.calender,
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 72),
-            Text(
-              'OUR CALENDER',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle2!
-                  .copyWith(color: AppColors.festSubTitiles),
-            ),
-            const SizedBox(height: 16),
-            CalenderTabView(
-              tabController: _tabController,
-              calender: widget.calender,
-            ),
           ],
         ),
       ),
