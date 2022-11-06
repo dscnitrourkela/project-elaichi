@@ -12,12 +12,12 @@ class CalenderTabView extends StatelessWidget {
   const CalenderTabView({
     Key? key,
     required TabController tabController,
-    required this.calenderEvents,
+    required this.calender,
   })  : _tabController = tabController,
         super(key: key);
 
   final TabController _tabController;
-  final Map<String, List<Event>> calenderEvents;
+  final Map<String, List<Event>> calender;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +32,12 @@ class CalenderTabView extends StatelessWidget {
           indicatorSize: TabBarIndicatorSize.label,
           indicatorColor: Colors.white,
           padding: const EdgeInsets.only(bottom: 8),
-          isScrollable: calenderEvents.length > 3 ? true : false,
+          isScrollable: calender.length > 3 ? true : false,
           tabs: List.generate(
-            calenderEvents.keys.toList().length,
+            calender.keys.toList().length,
             (index) => Tab(
               child: Text(
-                calenderEvents.keys.toList()[index],
+                calender.keys.toList()[index],
                 style: robotoTextTheme.bodyText1!.copyWith(
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
@@ -47,18 +47,17 @@ class CalenderTabView extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 600,
+          height: 500,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TabBarView(
               controller: _tabController,
               children: List.generate(
-                calenderEvents.length,
+                calender.length,
                 (index) {
-                  final list = calenderEvents.values.toList()[index];
+                  final list = calender.values.toList()[index];
                   return ListView.builder(
                     shrinkWrap: true,
-                    // physics: const NeverScrollableScrollPhysics(),
                     itemCount: list.length,
                     itemBuilder: (context, index) {
                       final itemList = list[index];

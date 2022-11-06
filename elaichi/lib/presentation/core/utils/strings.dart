@@ -31,6 +31,9 @@ abstract class Strings {
   static const String verifyNow = 'Verify Now';
   static const String featuredEvents = 'Featured Events';
 
+  static const String placeholderImage =
+      'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png';
+
   static const String mmArticleLink =
       'https://mondaymorning.nitrkl.ac.in/article/';
   static const String mmImageKit = 'https://ik.imagekit.io/adamantiumA';

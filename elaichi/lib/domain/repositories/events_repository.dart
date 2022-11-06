@@ -61,7 +61,8 @@ class EventRepository {
     final format = DateFormat('MMM');
     for (final element in events) {
       if (map.keys.contains(
-          '${element.startDate.day} ${format.format(element.startDate)}')) {
+        '${element.startDate.day} ${format.format(element.startDate)}',
+      )) {
         map['${element.startDate.day} ${format.format(element.startDate)}']!
             .add(element);
       } else {

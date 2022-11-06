@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:dartz/dartz.dart';
 import 'package:elaichi/data/constants/global_enums.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
@@ -9,7 +6,6 @@ import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:intl/intl.dart';
 
 part 'fest_event.dart';
 part 'fest_state.dart';

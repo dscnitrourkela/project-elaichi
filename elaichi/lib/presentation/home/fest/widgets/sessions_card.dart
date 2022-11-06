@@ -8,44 +8,53 @@ import 'package:flutter/material.dart';
 class SessionsCard extends StatelessWidget {
   const SessionsCard({
     Key? key,
+    required this.name,
+    required this.startDate,
+    this.imageUrl,
   }) : super(key: key);
+
+  final String name;
+  final String? imageUrl;
+  final DateTime startDate;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 16),
-      height: 234,
-      width: 296,
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.grey6.withOpacity(0.3)),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Koi bhi tadga sa naam session ka',
-            style: robotoTextTheme.bodyText1!
-                .copyWith(fontSize: 40, color: Colors.white),
-          ),
-          const SizedBox(height: 16),
-          const SpeakerInfo(
-            imageUrl:
-                'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
-            name: 'Name of Speaker',
-          ),
-          const SizedBox(height: 16),
-          const DurationDates(
-            text: 'Jan 03 | 12:00 Noon',
-            mainAxisAlignment: MainAxisAlignment.start,
-          ),
-          YellowTextButton(
-            mainAxisAlignment: MainAxisAlignment.start,
-            onPressed: () {},
-            text: 'Mark In Calender',
-          )
-        ],
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.only(left: 16),
+        constraints: const BoxConstraints(minHeight: 190),
+        width: 296,
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.grey6.withOpacity(0.3)),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              name,
+              style: robotoTextTheme.bodyText1!
+                  .copyWith(fontSize: 40, color: Colors.white),
+            ),
+            const SizedBox(height: 16),
+            if (imageUrl != null)
+              SpeakerInfo(
+                imageUrl: imageUrl!,
+                name: 'Name of Speaker',
+              ),
+            const SizedBox(height: 16),
+            const DurationDates(
+              text: 'Jan 03 | 12:00 Noon',
+              mainAxisAlignment: MainAxisAlignment.start,
+            ),
+            YellowTextButton(
+              mainAxisAlignment: MainAxisAlignment.start,
+              onPressed: () {},
+              text: 'Mark In Calender',
+            )
+          ],
+        ),
       ),
     );
   }

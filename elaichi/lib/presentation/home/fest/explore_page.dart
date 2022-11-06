@@ -258,15 +258,22 @@ class _ExplorePageState extends State<ExplorePage>
                   .copyWith(color: AppColors.festSubTitiles),
             ),
             const SizedBox(height: 16),
-            SizedBox(
-              height: 234,
-              width: 350,
-              child: PageView.builder(
-                clipBehavior: Clip.none,
-                padEnds: false,
-                itemBuilder: (context, index) => const SessionsCard(),
-                itemCount: 3,
-                controller: widget.sessionListController,
+            Expanded(
+              child: SizedBox(
+                width: 350,
+                child: PageView.builder(
+                  clipBehavior: Clip.none,
+                  padEnds: false,
+                  itemBuilder: (context, index) {
+                    final session = widget.categorisedEvents['FUN']![index];
+                    return SessionsCard(
+                      name: session.name,
+                      startDate: session.startDate,
+                    );
+                  },
+                  itemCount: 3,
+                  controller: widget.sessionListController,
+                ),
               ),
             ),
             const SizedBox(height: 72),
@@ -280,7 +287,7 @@ class _ExplorePageState extends State<ExplorePage>
             const SizedBox(height: 16),
             CalenderTabView(
               tabController: _tabController,
-              calenderEvents: widget.calender,
+              calender: widget.calender,
             ),
           ],
         ),
