@@ -34,45 +34,42 @@ class _HomePageState extends State<HomePage> {
   int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeCubit>(
-      create: (context) => _cubit,
-      child: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          if (!_cubit.isVerified) {
-            return const FestPage();
-          } else {
-            return Scaffold(
-              body: Center(
-                child: const [
-                  FeedPage(),
-                  BrowsePage(),
-                  FestPage(),
-                  WebMailPage(),
-                  ProfilePage(),
-                ][pageIndex],
-              ),
-              bottomNavigationBar: BottomNavigationBar(
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                onTap: (int value) {
-                  setState(() {
-                    pageIndex = value;
-                  });
-                },
-                currentIndex: pageIndex,
-                selectedItemColor: Theme.of(context).primaryColor,
-                unselectedItemColor: Theme.of(context).hintColor,
-                selectedIconTheme: const IconThemeData(size: 32),
-                backgroundColor: Theme.of(context).canvasColor,
-                iconSize: 28,
-                type: BottomNavigationBarType.fixed,
-                elevation: 16,
-                items: navBarItems,
-              ),
-            );
-          }
-        },
-      ),
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        return state.when(
+          initial: () => const FestPage(),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          isVerified: () => Scaffold(
+            body: Center(
+              child: const [
+                FeedPage(),
+                BrowsePage(),
+                FestPage(),
+                WebMailPage(),
+                ProfilePage(),
+              ][pageIndex],
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              onTap: (int value) {
+                setState(() {
+                  pageIndex = value;
+                });
+              },
+              currentIndex: pageIndex,
+              selectedItemColor: Theme.of(context).primaryColor,
+              unselectedItemColor: Theme.of(context).hintColor,
+              selectedIconTheme: const IconThemeData(size: 32),
+              backgroundColor: Theme.of(context).canvasColor,
+              iconSize: 28,
+              type: BottomNavigationBarType.fixed,
+              elevation: 16,
+              items: navBarItems,
+            ),
+          ),
+        );
+      },
     );
   }
 }

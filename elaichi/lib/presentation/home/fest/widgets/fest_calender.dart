@@ -47,7 +47,7 @@ class CalenderTabView extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 1000,
+          height: 600,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TabBarView(
@@ -58,15 +58,17 @@ class CalenderTabView extends StatelessWidget {
                   final list = calenderEvents.values.toList()[index];
                   return ListView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    // physics: const NeverScrollableScrollPhysics(),
                     itemCount: list.length,
                     itemBuilder: (context, index) {
                       final itemList = list[index];
-                      return CalenderItem(
-                        name: json.decode(itemList.name)['heading'] as String,
-                        endDate: itemList.endDate,
-                        startDate: itemList.startDate,
-                        type: itemList.type!,
+                      return Expanded(
+                        child: CalenderItem(
+                          name: json.decode(itemList.name)['heading'] as String,
+                          endDate: itemList.endDate,
+                          startDate: itemList.startDate,
+                          type: itemList.type!,
+                        ),
                       );
                     },
                   );
@@ -126,11 +128,15 @@ class CalenderItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              Text(
-                name,
-                style: robotoTextTheme.bodyText1!.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
+              SizedBox(
+                width: 200,
+                child: Text(
+                  name,
+                  overflow: TextOverflow.ellipsis,
+                  style: robotoTextTheme.bodyText1!.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               if (image != null) const SizedBox(height: 4),

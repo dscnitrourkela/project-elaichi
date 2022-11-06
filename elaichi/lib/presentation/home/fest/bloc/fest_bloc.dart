@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
 import 'package:elaichi/data/constants/global_enums.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
@@ -35,24 +36,12 @@ class FestBloc extends Bloc<FestEvent, FestState> {
                 emit(FestState.error(error: exception.message!));
               },
               (fests) async {
-                final events = await _eventRepository.getEvents(fests[0].id);
-
-                events.fold(
-                  (exception) =>
-                      emit(FestState.error(error: exception.message!)),
-                  (r) => r,
-                );
-
-                final categorisedEvents =
-                    _eventRepository.getCategorisedEvents();
-
                 emit(
                   FestState.initial(
                     webMailState: status
                         ? WebMailState.authenticated
                         : WebMailState.unAuthenticated,
                     fests: fests,
-                    categorisedEvents: categorisedEvents,
                   ),
                 );
               },
@@ -84,25 +73,22 @@ class FestBloc extends Bloc<FestEvent, FestState> {
     }
   }
 
-  Map<String, List<Event>> getCalender(List<Event> events) {
-    final map = <String, List<Event>>{};
+  Future<Map<String, Map<String, List<Event>>>> getCalenderAndCategorisedEvents(
+    String orgID,
+  ) async {
+    final getEvents = await _eventRepository.getEvents(orgID);
 
-    events.sort(
-      (a, b) => a.startDate.compareTo(b.startDate),
+    return getEvents.fold(
+      (exception) => {},
+      (events) {
+        final calender = _eventRepository.getCalender(events);
+        final getCategorisedEvents =
+            _eventRepository.getCategorisedEvents(events);
+        return {
+          'calender': calender,
+          'categorisedEvents': getCategorisedEvents
+        };
+      },
     );
-
-    final format = DateFormat('MMM');
-    for (final element in events) {
-      if (map.keys.contains(
-          '${element.startDate.day} ${format.format(element.startDate)}')) {
-        map['${element.startDate.day} ${format.format(element.startDate)}']!
-            .add(element);
-      } else {
-        map['${element.startDate.day} ${format.format(element.startDate)}'] = [
-          element
-        ];
-      }
-    }
-    return map;
   }
 }

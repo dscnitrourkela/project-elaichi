@@ -5,11 +5,10 @@ import 'package:elaichi/domain/exceptions/custom_exception.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/mm_article/mm_article.dart';
 import 'package:elaichi/domain/models/org/org.dart';
+import 'package:intl/intl.dart';
 
 class EventRepository {
   final GraphQLService _graphQLService = GraphQLService.instance();
-
-  late List<Event>? events;
 
   Future<Either<CustomException, List<MMArticle>>> fetchMMArticles() async {
     try {
@@ -30,19 +29,19 @@ class EventRepository {
     }
   }
 
-  Future<Either<CustomException, Unit>> getEvents(String orgID) async {
+  Future<Either<CustomException, List<Event>>> getEvents(String orgID) async {
     try {
-      events = await _graphQLService.getEvents(orgID);
-      return const Right(unit);
+      final events = await _graphQLService.getEvents(orgID);
+      return Right(events);
     } catch (e) {
       return Left(CustomException(e));
     }
   }
 
-  Map<String, List<Event>> getCategorisedEvents() {
+  Map<String, List<Event>> getCategorisedEvents(List<Event> events) {
     final map = <String, List<Event>>{};
 
-    for (final element in events!) {
+    for (final element in events) {
       if (map.keys.contains(element.type)) {
         map[element.type!]!.add(element);
       } else {
@@ -50,6 +49,27 @@ class EventRepository {
       }
     }
 
+    return map;
+  }
+
+  Map<String, List<Event>> getCalender(List<Event> events) {
+    final map = <String, List<Event>>{};
+    events.sort(
+      (a, b) => a.startDate.compareTo(b.startDate),
+    );
+
+    final format = DateFormat('MMM');
+    for (final element in events) {
+      if (map.keys.contains(
+          '${element.startDate.day} ${format.format(element.startDate)}')) {
+        map['${element.startDate.day} ${format.format(element.startDate)}']!
+            .add(element);
+      } else {
+        map['${element.startDate.day} ${format.format(element.startDate)}'] = [
+          element
+        ];
+      }
+    }
     return map;
   }
 }

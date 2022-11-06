@@ -20,18 +20,21 @@ mixin _$HomeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() isVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? isVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? isVerified,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$HomeState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_IsVerified value) isVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_IsVerified value)? isVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerified value)? isVerified,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +118,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() isVerified,
   }) {
     return initial();
   }
@@ -121,6 +128,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? isVerified,
   }) {
     return initial?.call();
   }
@@ -130,6 +138,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? isVerified,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -143,6 +152,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_IsVerified value) isVerified,
   }) {
     return initial(this);
   }
@@ -152,6 +162,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_IsVerified value)? isVerified,
   }) {
     return initial?.call(this);
   }
@@ -161,6 +172,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerified value)? isVerified,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -213,6 +225,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() isVerified,
   }) {
     return loading();
   }
@@ -222,6 +235,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? isVerified,
   }) {
     return loading?.call();
   }
@@ -231,6 +245,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? isVerified,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -244,6 +259,7 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_IsVerified value) isVerified,
   }) {
     return loading(this);
   }
@@ -253,6 +269,7 @@ class _$_Loading implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_IsVerified value)? isVerified,
   }) {
     return loading?.call(this);
   }
@@ -262,6 +279,7 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerified value)? isVerified,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -273,4 +291,112 @@ class _$_Loading implements _Loading {
 
 abstract class _Loading implements HomeState {
   const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$$_IsVerifiedCopyWith<$Res> {
+  factory _$$_IsVerifiedCopyWith(
+          _$_IsVerified value, $Res Function(_$_IsVerified) then) =
+      __$$_IsVerifiedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_IsVerifiedCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$_IsVerified>
+    implements _$$_IsVerifiedCopyWith<$Res> {
+  __$$_IsVerifiedCopyWithImpl(
+      _$_IsVerified _value, $Res Function(_$_IsVerified) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_IsVerified implements _IsVerified {
+  const _$_IsVerified();
+
+  @override
+  String toString() {
+    return 'HomeState.isVerified()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_IsVerified);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() isVerified,
+  }) {
+    return isVerified();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? isVerified,
+  }) {
+    return isVerified?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? isVerified,
+    required TResult orElse(),
+  }) {
+    if (isVerified != null) {
+      return isVerified();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_IsVerified value) isVerified,
+  }) {
+    return isVerified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_IsVerified value)? isVerified,
+  }) {
+    return isVerified?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerified value)? isVerified,
+    required TResult orElse(),
+  }) {
+    if (isVerified != null) {
+      return isVerified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IsVerified implements HomeState {
+  const factory _IsVerified() = _$_IsVerified;
 }

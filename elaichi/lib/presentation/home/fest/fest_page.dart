@@ -45,7 +45,7 @@ class _FestPageState extends State<FestPage> {
                 debugPrint(error);
                 return const Center(child: Text('Something Went Wrong'));
               },
-              initial: (webMailState, fests, categorisedEvents) {
+              initial: (webMailState, fests) {
                 final fest = fests[0];
                 return Stack(
                   children: [
@@ -78,15 +78,21 @@ class _FestPageState extends State<FestPage> {
                       ),
                       title: fest.name,
                       buttonTitle: 'Explore More',
-                      onTapped: () => Navigator.pushNamed(
-                        context,
-                        AppRouter.explore,
-                        arguments: <String, dynamic>{
-                          'fest': fest,
-                          'categorisedEvents': categorisedEvents,
-                          'bloc': _bloc
-                        },
-                      ),
+                      onTapped: () async {
+                        final calenderAndCategorisedEvents = await _bloc
+                            .getCalenderAndCategorisedEvents(fest.id);
+                        // ignore: use_build_context_synchronously
+                        return Navigator.pushNamed(
+                          context,
+                          AppRouter.explore,
+                          arguments: <String, dynamic>{
+                            'fest': fest,
+                            'categorisedEvents': calenderAndCategorisedEvents[
+                                'categorisedEvents'],
+                            'calender': calenderAndCategorisedEvents['calender']
+                          },
+                        );
+                      },
                     ),
                     CustomDraggableSheet(
                       children: [

@@ -38,54 +38,56 @@ class _WebMailPageState extends State<WebMailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) => _cubit,
-        child: BlocConsumer<WebmailCubit, WebmailState>(
-          listener: (context, state) {
-            state.maybeWhen(
-              orElse: () {},
-              error: (error) =>
-                  _toastUtil.showToast(mode: ToastMode.Error, title: error),
-            );
-          },
-          builder: (context, state) {
-            return state.maybeWhen(
-              orElse: () => Center(
-                child: Text(
-                  'Something Went Wrong',
-                  style: Theme.of(context).textTheme.bodyMedium,
+    return SafeArea(
+      child: Scaffold(
+        body: BlocProvider(
+          create: (context) => _cubit,
+          child: BlocConsumer<WebmailCubit, WebmailState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                orElse: () {},
+                error: (error) =>
+                    _toastUtil.showToast(mode: ToastMode.Error, title: error),
+              );
+            },
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => Center(
+                  child: Text(
+                    'Something Went Wrong',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ),
-              ),
-              loading: () => const Center(child: CircularProgressIndicator()),
-              authenticated: () => WebViewStack(controller: controller),
-              unauthenticated: () => Center(
-                child: Column(
-                  children: [
-                    Text(
-                      'Please click the below button to login to your account',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    CustomButton(
-                      text: 'Login',
-                      onTapped: () {
-                        showModalBottomSheet<dynamic>(
-                          isScrollControlled: true,
-                          context: context,
-                          builder: (context) => WebMailLoginBottomSheet(),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(16),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                authenticated: () => WebViewStack(controller: controller),
+                unauthenticated: () => Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Please click the below button to login to your account',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      CustomButton(
+                        text: 'Login',
+                        onTapped: () {
+                          showModalBottomSheet<dynamic>(
+                            isScrollControlled: true,
+                            context: context,
+                            builder: (context) => WebMailLoginBottomSheet(),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(16),
+                              ),
                             ),
-                          ),
-                        ).then((dynamic value) => _cubit.getZsAuthToken());
-                      },
-                    ),
-                  ],
+                          ).then((dynamic value) => _cubit.getZsAuthToken());
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

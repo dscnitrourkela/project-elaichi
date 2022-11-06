@@ -1,7 +1,6 @@
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/presentation/core/router/app_page_route.dart';
-import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
 import 'package:elaichi/presentation/home/fest/explore_page.dart';
 import 'package:elaichi/presentation/home/home_page.dart';
 import 'package:elaichi/presentation/sign_in/sign_in_page.dart';
@@ -42,7 +41,7 @@ class AppRouter {
             fest: map['fest'] as Org,
             categorisedEvents:
                 map['categorisedEvents'] as Map<String, List<Event>>,
-            bloc: map['bloc'] as FestBloc,
+            calender: map['calender'] as Map<String, List<Event>>,
           ),
         );
 

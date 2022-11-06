@@ -8,15 +8,13 @@ part 'home_cubit.freezed.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit({required UserRepository userRepository})
       : _userRepository = userRepository,
-        super(const HomeState.initial());
-
-  bool isVerified = false;
+        super(const HomeState.loading());
 
   void checkIfVerified() {
     if (_userRepository.rollNumber != null) {
-      isVerified = true;
+      emit(const HomeState.isVerified());
     } else {
-      isVerified = false;
+      emit(const HomeState.initial());
     }
   }
 

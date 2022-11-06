@@ -292,8 +292,7 @@ abstract class _WebMailLogIn implements FestEvent {
 mixin _$FestState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)
+    required TResult Function(WebMailState webMailState, List<Org> fests)
         initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -301,18 +300,14 @@ mixin _$FestState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)?
-        initial,
+    TResult? Function(WebMailState webMailState, List<Org> fests)? initial,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)?
-        initial,
+    TResult Function(WebMailState webMailState, List<Org> fests)? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
@@ -365,10 +360,7 @@ abstract class _$$_InitialCopyWith<$Res> {
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {WebMailState webMailState,
-      List<Org> fests,
-      Map<String, List<Event>> categorisedEvents});
+  $Res call({WebMailState webMailState, List<Org> fests});
 }
 
 /// @nodoc
@@ -383,7 +375,6 @@ class __$$_InitialCopyWithImpl<$Res>
   $Res call({
     Object? webMailState = null,
     Object? fests = null,
-    Object? categorisedEvents = null,
   }) {
     return _then(_$_Initial(
       webMailState: null == webMailState
@@ -394,10 +385,6 @@ class __$$_InitialCopyWithImpl<$Res>
           ? _value._fests
           : fests // ignore: cast_nullable_to_non_nullable
               as List<Org>,
-      categorisedEvents: null == categorisedEvents
-          ? _value._categorisedEvents
-          : categorisedEvents // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<Event>>,
     ));
   }
 }
@@ -405,12 +392,8 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial with DiagnosticableTreeMixin implements _Initial {
-  const _$_Initial(
-      {required this.webMailState,
-      required final List<Org> fests,
-      required final Map<String, List<Event>> categorisedEvents})
-      : _fests = fests,
-        _categorisedEvents = categorisedEvents;
+  const _$_Initial({required this.webMailState, required final List<Org> fests})
+      : _fests = fests;
 
   @override
   final WebMailState webMailState;
@@ -421,16 +404,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     return EqualUnmodifiableListView(_fests);
   }
 
-  final Map<String, List<Event>> _categorisedEvents;
-  @override
-  Map<String, List<Event>> get categorisedEvents {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_categorisedEvents);
-  }
-
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FestState.initial(webMailState: $webMailState, fests: $fests, categorisedEvents: $categorisedEvents)';
+    return 'FestState.initial(webMailState: $webMailState, fests: $fests)';
   }
 
   @override
@@ -439,8 +415,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     properties
       ..add(DiagnosticsProperty('type', 'FestState.initial'))
       ..add(DiagnosticsProperty('webMailState', webMailState))
-      ..add(DiagnosticsProperty('fests', fests))
-      ..add(DiagnosticsProperty('categorisedEvents', categorisedEvents));
+      ..add(DiagnosticsProperty('fests', fests));
   }
 
   @override
@@ -450,17 +425,12 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
             other is _$_Initial &&
             (identical(other.webMailState, webMailState) ||
                 other.webMailState == webMailState) &&
-            const DeepCollectionEquality().equals(other._fests, _fests) &&
-            const DeepCollectionEquality()
-                .equals(other._categorisedEvents, _categorisedEvents));
+            const DeepCollectionEquality().equals(other._fests, _fests));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      webMailState,
-      const DeepCollectionEquality().hash(_fests),
-      const DeepCollectionEquality().hash(_categorisedEvents));
+      runtimeType, webMailState, const DeepCollectionEquality().hash(_fests));
 
   @JsonKey(ignore: true)
   @override
@@ -471,39 +441,34 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)
+    required TResult Function(WebMailState webMailState, List<Org> fests)
         initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) {
-    return initial(webMailState, fests, categorisedEvents);
+    return initial(webMailState, fests);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)?
-        initial,
+    TResult? Function(WebMailState webMailState, List<Org> fests)? initial,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
-    return initial?.call(webMailState, fests, categorisedEvents);
+    return initial?.call(webMailState, fests);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)?
-        initial,
+    TResult Function(WebMailState webMailState, List<Org> fests)? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(webMailState, fests, categorisedEvents);
+      return initial(webMailState, fests);
     }
     return orElse();
   }
@@ -546,12 +511,10 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
 abstract class _Initial implements FestState {
   const factory _Initial(
       {required final WebMailState webMailState,
-      required final List<Org> fests,
-      required final Map<String, List<Event>> categorisedEvents}) = _$_Initial;
+      required final List<Org> fests}) = _$_Initial;
 
   WebMailState get webMailState;
   List<Org> get fests;
-  Map<String, List<Event>> get categorisedEvents;
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
       throw _privateConstructorUsedError;
@@ -600,8 +563,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)
+    required TResult Function(WebMailState webMailState, List<Org> fests)
         initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -612,9 +574,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)?
-        initial,
+    TResult? Function(WebMailState webMailState, List<Org> fests)? initial,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
@@ -624,9 +584,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)?
-        initial,
+    TResult Function(WebMailState webMailState, List<Org> fests)? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
@@ -746,8 +704,7 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)
+    required TResult Function(WebMailState webMailState, List<Org> fests)
         initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -758,9 +715,7 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)?
-        initial,
+    TResult? Function(WebMailState webMailState, List<Org> fests)? initial,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
@@ -770,9 +725,7 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WebMailState webMailState, List<Org> fests,
-            Map<String, List<Event>> categorisedEvents)?
-        initial,
+    TResult Function(WebMailState webMailState, List<Org> fests)? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
