@@ -9,8 +9,8 @@ import 'package:elaichi/presentation/home/fest/widgets/scrolling_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class MajorEventCard extends StatelessWidget {
-  const MajorEventCard({
+class HighPriorityEventCard extends StatelessWidget {
+  const HighPriorityEventCard({
     Key? key,
     required this.event,
   }) : super(key: key);

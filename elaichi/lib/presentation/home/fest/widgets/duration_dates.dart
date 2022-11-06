@@ -5,7 +5,7 @@ class DurationDates extends StatelessWidget {
   const DurationDates({
     Key? key,
     required this.text,
-    required this.mainAxisAlignment,
+    this.mainAxisAlignment = MainAxisAlignment.start,
     this.fontSize,
   }) : super(key: key);
 

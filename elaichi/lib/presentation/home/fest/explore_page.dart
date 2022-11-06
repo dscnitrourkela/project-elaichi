@@ -1,8 +1,4 @@
 // ignore_for_file: avoid_unnecessary_containers, use_decorated_box
-
-import 'dart:convert';
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
@@ -14,13 +10,11 @@ import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/home/fest/widgets/duration_dates.dart';
 import 'package:elaichi/presentation/home/fest/widgets/fest_calender.dart';
 import 'package:elaichi/presentation/home/fest/widgets/header_widget.dart';
+import 'package:elaichi/presentation/home/fest/widgets/high_priority_event_card.dart';
 import 'package:elaichi/presentation/home/fest/widgets/low_priority_event_card.dart';
-import 'package:elaichi/presentation/home/fest/widgets/major_event_card.dart';
-import 'package:elaichi/presentation/home/fest/widgets/scrolling_text.dart';
-import 'package:elaichi/presentation/home/fest/widgets/sessions_card.dart';
+import 'package:elaichi/presentation/home/fest/widgets/speaker_event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:marquee/marquee.dart';
 import 'package:quiver/iterables.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -82,7 +76,10 @@ class _ExplorePageState extends State<ExplorePage>
     final format1 = DateFormat('MMM');
     final duration =
         '${format1.format(widget.fest.startDate!)} ${widget.fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(widget.fest.endDate!)} ${widget.fest.endDate!.day.toString().padLeft(2, '0')} ${widget.fest.endDate!.year}';
-    final partedList = partition(widget.categorisedEvents['FUN']!, 3).toList();
+    final funEventsPartedList =
+        partition(widget.categorisedEvents['FUN']!, 3).toList();
+    final exhibitionsPartedList =
+        partition(widget.categorisedEvents['EXHIBITIONS']!, 3).toList();
 
     return Scaffold(
       bottomNavigationBar: SizedBox(
@@ -205,7 +202,6 @@ class _ExplorePageState extends State<ExplorePage>
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               child: DurationDates(
                 text: duration,
-                mainAxisAlignment: MainAxisAlignment.start,
                 fontSize: 20,
               ),
             ),
@@ -225,7 +221,7 @@ class _ExplorePageState extends State<ExplorePage>
                     child: ListView.builder(
                       clipBehavior: Clip.none,
                       scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => MajorEventCard(
+                      itemBuilder: (context, index) => HighPriorityEventCard(
                         event: widget.categorisedEvents['PRO']![index],
                       ),
                       itemCount: widget.categorisedEvents['PRO']!.length,
@@ -242,13 +238,13 @@ class _ExplorePageState extends State<ExplorePage>
                     child: ListView.builder(
                       clipBehavior: Clip.none,
                       scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => MajorEventCard(
+                      itemBuilder: (context, index) => HighPriorityEventCard(
                         event: widget.categorisedEvents['TECHNICAL']![index],
                       ),
                       itemCount: widget.categorisedEvents['TECHNICAL']!.length,
                     ),
                   ),
-                  const SizedBox(height: 86),
+                  const SizedBox(height: 80),
                   Text(
                     'Fun Events',
                     style: interTextTheme.headline2,
@@ -262,11 +258,11 @@ class _ExplorePageState extends State<ExplorePage>
                       itemBuilder: (context, index1) {
                         return Column(
                           children: List.generate(
-                            partedList[index1].length,
+                            funEventsPartedList[index1].length,
                             (index2) => Column(
                               children: [
                                 LowPriorityEventItem(
-                                  event: partedList[index1][index2],
+                                  event: funEventsPartedList[index1][index2],
                                 ),
                                 const SizedBox(height: 16)
                               ],
@@ -276,9 +272,77 @@ class _ExplorePageState extends State<ExplorePage>
                       },
                       separatorBuilder: (context, index) =>
                           const SizedBox(width: 24),
-                      itemCount: partedList.length,
+                      itemCount: funEventsPartedList.length,
                     ),
                   ),
+                  const SizedBox(height: 80),
+                  Text(
+                    'Exhibitions',
+                    style: interTextTheme.headline2,
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    height: 330,
+                    child: ListView.separated(
+                      clipBehavior: Clip.none,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index1) {
+                        return Column(
+                          children: List.generate(
+                            exhibitionsPartedList[index1].length,
+                            (index2) => Column(
+                              children: [
+                                LowPriorityEventItem(
+                                  event: exhibitionsPartedList[index1][index2],
+                                ),
+                                const SizedBox(height: 16)
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 24),
+                      itemCount: exhibitionsPartedList.length,
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                  Text(
+                    'Guest Lectures',
+                    style: interTextTheme.headline2,
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    height: 394,
+                    child: ListView.builder(
+                      clipBehavior: Clip.none,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => SpeakerEventCard(
+                        event:
+                            widget.categorisedEvents['GUEST-LECTURES ']![index],
+                      ),
+                      itemCount:
+                          widget.categorisedEvents['GUEST-LECTURES ']!.length,
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                  Text(
+                    'Workshops',
+                    style: interTextTheme.headline2,
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    height: 394,
+                    child: ListView.builder(
+                      clipBehavior: Clip.none,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => SpeakerEventCard(
+                        event: widget.categorisedEvents['WORKSHOPS']![index],
+                      ),
+                      itemCount: widget.categorisedEvents['WORKSHOPS']!.length,
+                    ),
+                  ),
+                  const SizedBox(height: 80),
                   Text(
                     'Our Schedule',
                     style: interTextTheme.headline2,
