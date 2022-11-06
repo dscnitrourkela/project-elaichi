@@ -8,7 +8,7 @@ import 'package:elaichi/domain/models/org/org.dart';
 import 'package:intl/intl.dart';
 
 class EventRepository {
-  final GraphQLService _graphQLService = GraphQLService.instance();
+  final GraphQLService _graphQLService = GraphQLService();
 
   Future<Either<CustomException, List<MMArticle>>> fetchMMArticles() async {
     try {

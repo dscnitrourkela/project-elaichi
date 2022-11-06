@@ -17,13 +17,10 @@ class SplashCubit extends Cubit<SplashState> {
   /// Default constructor.
   SplashCubit({
     required UserRepository userRepository,
-    required EventRepository eventRepository,
   })  : _userRepository = userRepository,
-        _eventRepository = eventRepository,
         super(const SplashState.loading());
 
   final UserRepository _userRepository;
-  final EventRepository _eventRepository;
   late final StreamSubscription<User?> _userSubscription;
   int count = 0;
 

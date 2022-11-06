@@ -61,13 +61,11 @@ class CalenderTabView extends StatelessWidget {
                     itemCount: list.length,
                     itemBuilder: (context, index) {
                       final itemList = list[index];
-                      return Expanded(
-                        child: CalenderItem(
-                          name: json.decode(itemList.name)['heading'] as String,
-                          endDate: itemList.endDate,
-                          startDate: itemList.startDate,
-                          type: itemList.type!,
-                        ),
+                      return CalenderItem(
+                        name: json.decode(itemList.name)['heading'] as String,
+                        endDate: itemList.endDate,
+                        startDate: itemList.startDate,
+                        type: itemList.type!,
                       );
                     },
                   );

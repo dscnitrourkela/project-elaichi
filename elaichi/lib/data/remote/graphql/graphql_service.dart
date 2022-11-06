@@ -13,7 +13,7 @@ import 'package:graphql/client.dart';
 enum GQLClient { mondayMorning, avenue }
 
 class GraphQLService {
-  factory GraphQLService.instance() => _graphQLService;
+  factory GraphQLService() => _graphQLService;
 
   GraphQLService._internal();
 

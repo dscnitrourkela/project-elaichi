@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
@@ -19,42 +21,40 @@ class SessionsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: const EdgeInsets.only(left: 16),
-        constraints: const BoxConstraints(minHeight: 190),
-        width: 296,
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.grey6.withOpacity(0.3)),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              name,
-              style: robotoTextTheme.bodyText1!
-                  .copyWith(fontSize: 40, color: Colors.white),
+    return Container(
+      margin: const EdgeInsets.only(left: 16),
+      constraints: const BoxConstraints(minHeight: 190),
+      width: 296,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.grey6.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            json.decode(name)['heading'] as String,
+            style: robotoTextTheme.bodyText1!
+                .copyWith(fontSize: 40, color: Colors.white),
+          ),
+          const SizedBox(height: 16),
+          if (imageUrl != null)
+            SpeakerInfo(
+              imageUrl: imageUrl!,
+              name: 'Name of Speaker',
             ),
-            const SizedBox(height: 16),
-            if (imageUrl != null)
-              SpeakerInfo(
-                imageUrl: imageUrl!,
-                name: 'Name of Speaker',
-              ),
-            const SizedBox(height: 16),
-            const DurationDates(
-              text: 'Jan 03 | 12:00 Noon',
-              mainAxisAlignment: MainAxisAlignment.start,
-            ),
-            YellowTextButton(
-              mainAxisAlignment: MainAxisAlignment.start,
-              onPressed: () {},
-              text: 'Mark In Calender',
-            )
-          ],
-        ),
+          const SizedBox(height: 16),
+          const DurationDates(
+            text: 'Jan 03 | 12:00 Noon',
+            mainAxisAlignment: MainAxisAlignment.start,
+          ),
+          YellowTextButton(
+            mainAxisAlignment: MainAxisAlignment.start,
+            onPressed: () {},
+            text: 'Mark In Calender',
+          )
+        ],
       ),
     );
   }

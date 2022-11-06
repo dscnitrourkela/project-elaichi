@@ -258,22 +258,21 @@ class _ExplorePageState extends State<ExplorePage>
                   .copyWith(color: AppColors.festSubTitiles),
             ),
             const SizedBox(height: 16),
-            Expanded(
-              child: SizedBox(
-                width: 350,
-                child: PageView.builder(
-                  clipBehavior: Clip.none,
-                  padEnds: false,
-                  itemBuilder: (context, index) {
-                    final session = widget.categorisedEvents['FUN']![index];
-                    return SessionsCard(
-                      name: session.name,
-                      startDate: session.startDate,
-                    );
-                  },
-                  itemCount: 3,
-                  controller: widget.sessionListController,
-                ),
+            SizedBox(
+              height: 234,
+              width: 350,
+              child: PageView.builder(
+                clipBehavior: Clip.none,
+                padEnds: false,
+                itemBuilder: (context, index) {
+                  final session = widget.categorisedEvents['FUN']![index];
+                  return SessionsCard(
+                    name: session.name,
+                    startDate: session.startDate,
+                  );
+                },
+                itemCount: widget.categorisedEvents['FUN']!.length,
+                controller: widget.sessionListController,
               ),
             ),
             const SizedBox(height: 72),

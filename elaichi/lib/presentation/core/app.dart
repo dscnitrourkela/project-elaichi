@@ -1,6 +1,5 @@
 import 'package:elaichi/data/local/local_storage_service.dart';
 import 'package:elaichi/data/remote/api_service.dart';
-import 'package:elaichi/data/remote/graphql/graphql_service.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
@@ -47,10 +46,8 @@ class ElaichiApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => SplashCubit(
-              eventRepository: context.read<EventRepository>(),
-              userRepository: context.read<UserRepository>(),
-            ),
+            create: (context) =>
+                SplashCubit(userRepository: context.read<UserRepository>()),
           ),
           BlocProvider(
             create: (context) =>

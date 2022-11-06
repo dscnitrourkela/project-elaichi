@@ -28,6 +28,11 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
+            
+            <meta-data
+              android:name="com.google.firebase.messaging.default_notification_channel_id"
+              android:value="high_importance_channel"
+              />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

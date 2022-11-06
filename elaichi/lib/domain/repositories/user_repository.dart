@@ -26,7 +26,7 @@ class UserRepository {
   final GoogleSignIn _googleSignIn;
   final LocalStorageService _localStorageService;
   final APIService _apiService;
-  final GraphQLService _graphQLService = GraphQLService.instance();
+  final GraphQLService _graphQLService = GraphQLService();
 
   String? rollNumber;
 
