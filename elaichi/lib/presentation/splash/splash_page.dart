@@ -1,5 +1,6 @@
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
+import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/splash/cubit/splash_cubit.dart';
@@ -22,51 +23,39 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    _cubit = SplashCubit(
-      userRepository: context.read<UserRepository>(),
-      eventRepository: context.read<EventRepository>(),
-    )..getCorrectRoute();
+    _cubit = context.read<SplashCubit>()..getCorrectRoute();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return BlocProvider<SplashCubit>(
-      create: (context) => _cubit,
-      child: Scaffold(
-        body: Column(
-          children: [
-            BlocConsumer<SplashCubit, SplashState>(
-              builder: (context, state) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-              listener: (context, state) {
-                state.whenOrNull<dynamic>(
-                  unauthenticated: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      AppRouter.signIn,
-                      (route) => false,
-                    );
-                  },
-                  googleAuthenticated: () => Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    AppRouter.home,
-                    (route) => false,
-                  ),
-                  error: (error) => ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(error),
-                    ),
-                  ),
-                );
-              },
+    return BlocProvider.value(
+      value: _cubit,
+      child: BlocConsumer<SplashCubit, SplashState>(
+        listener: (context, state) {
+          state.whenOrNull<dynamic>(
+            unauthenticated: () => Navigator.pushNamedAndRemoveUntil(
+              context,
+              AppRouter.signIn,
+              (route) => false,
             ),
-          ],
-        ),
+            googleAuthenticated: () => Navigator.pushNamedAndRemoveUntil(
+              context,
+              AppRouter.home,
+              (route) => false,
+            ),
+            error: (error) =>
+                ToastUtil().showToast(mode: ToastMode.Error, title: error),
+          );
+        },
+        builder: (context, state) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        },
       ),
     );
   }

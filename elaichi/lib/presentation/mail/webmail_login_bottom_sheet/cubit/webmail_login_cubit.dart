@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'webmail_login_state.dart';
@@ -23,12 +23,8 @@ class WebMailLoginCubit extends Cubit<WebMailLoginState> {
         rollNumber: rollNumber,
         password: password,
       );
-      // Saving the details only if the login is successful, else the exception
-      // would be caught.
-      await _userRepository.saveWebMailDetails(
-        rollNumber: rollNumber,
-        password: password,
-      );
+
+      await _userRepository.getOrCreateUser();
       emit(const WebMailLoginState.success());
     } catch (e) {
       emit(WebMailLoginState.error(e.toString()));

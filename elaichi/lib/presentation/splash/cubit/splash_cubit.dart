@@ -1,7 +1,10 @@
+import 'dart:async';
+
+import 'package:elaichi/data/remote/graphql/graphql_service.dart';
 import 'package:elaichi/domain/exceptions/auth_failure.dart';
-import 'package:elaichi/domain/models/user_model.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,33 +20,37 @@ class SplashCubit extends Cubit<SplashState> {
     required EventRepository eventRepository,
   })  : _userRepository = userRepository,
         _eventRepository = eventRepository,
-        super(const SplashState.initial());
+        super(const SplashState.loading());
 
   final UserRepository _userRepository;
   final EventRepository _eventRepository;
+  late final StreamSubscription<User?> _userSubscription;
+  int count = 0;
 
   /// Loads the user data.
   /// This method is called when the [SplashCubit] is initialized.
   Future<void> getCorrectRoute() async {
-    emit(const SplashState.loading());
     try {
-      final userInfo = await _userRepository.getSignedInUser();
-      // ignore: unawaited_futures
-      userInfo.fold(
-        () {
+      _userSubscription =
+          _userRepository.firebaseAuthStream.listen((firebaseUser) async {
+        print(count++);
+        if (firebaseUser == null) {
           emit(const SplashState.unauthenticated());
-        },
-        (userInput) async {
-          await _userRepository.logInToWebMail();
-          await _eventRepository.fetchEvents();
-          Splash.instance().user = userInput;
+        } else {
+          await _userRepository.googleAuthenticated();
           emit(const SplashState.googleAuthenticated());
-        },
-      );
+        }
+      });
     } on LogInWithGoogleFailure catch (e) {
       emit(SplashState.error(e.message));
     } catch (e) {
       emit(SplashState.error(e.toString()));
     }
+  }
+
+  @override
+  Future<void> close() {
+    _userSubscription.cancel();
+    return super.close();
   }
 }

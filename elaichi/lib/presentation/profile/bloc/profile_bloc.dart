@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
-import 'package:elaichi/domain/models/event.dart';
+import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_event.dart';
@@ -43,14 +43,5 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     } else {
       return false;
     }
-  }
-
-  List<Event> getEvents() {
-    return _eventRepository.events!;
-  }
-
-  Future<List<Event>?> refreshAndGetEvents() async {
-    await _eventRepository.fetchEvents();
-    return _eventRepository.events;
   }
 }

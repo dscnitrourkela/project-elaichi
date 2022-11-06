@@ -1,33 +1,15 @@
 import 'package:dartz/dartz.dart';
-import 'package:elaichi/data/local/local_storage_service.dart';
-import 'package:elaichi/data/remote/api_service.dart';
+import 'package:elaichi/data/constants/global_enums.dart';
 import 'package:elaichi/data/remote/graphql/graphql_service.dart';
 import 'package:elaichi/domain/exceptions/custom_exception.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/mm_article/mm_article.dart';
+import 'package:elaichi/domain/models/org/org.dart';
 
 class EventRepository {
-  EventRepository({
-    required LocalStorageService localStorageService,
-    required APIService apiService,
-    required GraphQLService graphQLService,
-  })  : _apiService = apiService,
-        _graphQLService = graphQLService,
-        _localStorageService = localStorageService;
-
-  final GraphQLService _graphQLService;
-  final APIService _apiService;
-  final LocalStorageService _localStorageService;
+  final GraphQLService _graphQLService = GraphQLService.instance();
 
   late List<Event>? events;
-
-  Future<void> fetchEvents() async {
-    try {
-      events = await _graphQLService.getEvents();
-    } catch (e) {
-      rethrow;
-    }
-  }
 
   Future<Either<CustomException, List<MMArticle>>> fetchMMArticles() async {
     try {
@@ -37,16 +19,37 @@ class EventRepository {
     }
   }
 
-  // void getEventByDateList() {
-  //   List<List<Event>> fullEventList;
+  Future<Either<CustomException, List<Org>>> getFests() async {
+    try {
+      final orgs = await _graphQLService.getOrgs();
+      final list =
+          orgs.where((element) => element.status == StatusType.ACTIVE).toList();
+      return Right(list);
+    } catch (e) {
+      return Left(CustomException(e, message: 'Unkown Error Occured'));
+    }
+  }
 
-  //   final list = <Event>[];
+  Future<Either<CustomException, Unit>> getEvents(String orgID) async {
+    try {
+      events = await _graphQLService.getEvents(orgID);
+      return const Right(unit);
+    } catch (e) {
+      return Left(CustomException(e));
+    }
+  }
 
-  //   final groupList = groupBy(
-  //     events!,
-  //     (Event event) => DateTime(event.startTime.day),
-  //   ).entries.toList();
+  Map<String, List<Event>> getCategorisedEvents() {
+    final map = <String, List<Event>>{};
 
-  //   print(groupList);
-  // }
+    for (final element in events!) {
+      if (map.keys.contains(element.type)) {
+        map[element.type!]!.add(element);
+      } else {
+        map[element.type!] = [element];
+      }
+    }
+
+    return map;
+  }
 }

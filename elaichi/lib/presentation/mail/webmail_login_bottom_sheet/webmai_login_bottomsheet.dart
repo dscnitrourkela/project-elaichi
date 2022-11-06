@@ -3,13 +3,13 @@ import 'package:elaichi/presentation/components/bottom_sheet/bottom_sheet.dart';
 import 'package:elaichi/presentation/components/buttons/blue_button.dart';
 import 'package:elaichi/presentation/components/inputs/text_field_input.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
+import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/mail/webmail_login_bottom_sheet/cubit/webmail_login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WebMailLoginBottomSheet extends StatefulWidget {
   const WebMailLoginBottomSheet({Key? key}) : super(key: key);
-
   @override
   State<WebMailLoginBottomSheet> createState() =>
       _WebMailLoginBottomSheetState();
@@ -46,6 +46,7 @@ class _WebMailLoginBottomSheetState extends State<WebMailLoginBottomSheet> {
               Navigator.pop(context);
             },
             success: () {
+              context.read<HomeCubit>().checkIfVerified();
               _toastUtil.showToast(
                 mode: ToastMode.Success,
                 title: 'Logged In Successfully',

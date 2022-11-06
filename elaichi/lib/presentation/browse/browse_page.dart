@@ -102,10 +102,10 @@ class EventCard extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   '$date • $location',
-                  style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                  style: Theme.of(context).textTheme.caption!.copyWith(
                         color: AppColors.grey2,
                         letterSpacing: 0.05,
-                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
                       ),
                 ),
                 const SizedBox(height: 12),

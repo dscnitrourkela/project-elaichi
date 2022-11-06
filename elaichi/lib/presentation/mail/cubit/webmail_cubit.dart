@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'webmail_state.dart';
@@ -34,6 +34,7 @@ class WebmailCubit extends Cubit<WebmailState> {
       }
     } catch (e) {
       emit(WebmailState.error(e.toString()));
+      emit(const WebmailState.unauthenticated());
     }
   }
 }

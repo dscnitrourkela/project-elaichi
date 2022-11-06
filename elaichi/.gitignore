@@ -224,9 +224,6 @@ lib/generated_plugin_registrant.dart
 
 lib/data/constants/app_env.dart
 
-<<<<<<< HEAD
-=======
 lib/firebase_options.dart
 
->>>>>>> 9ba1a685f58a949367491547f5777ad2a82f7569
 # End of https://www.toptal.com/developers/gitignore/api/dart,flutter,visualstudiocode,android,firebase

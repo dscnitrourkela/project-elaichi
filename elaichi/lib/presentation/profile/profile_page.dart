@@ -1,4 +1,3 @@
-import 'package:elaichi/domain/models/user_model.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/components/bottom_sheet/bottom_sheet.dart';
@@ -6,6 +5,7 @@ import 'package:elaichi/presentation/components/custom_app_bar.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
+import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,8 +54,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon:
                             const Icon(Icons.settings, color: AppColors.grey3),
                         imageSrc:
-                            Splash.instance().getUser!.photoURL.toString(),
-                        title: Splash.instance().getUser!.displayName!,
+                            'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
+                        title: 'Sriram',
                         subTitle: _bloc.isZimraAuthenticated
                             ? _bloc.rollNumber!.toUpperCase()
                             : null,
@@ -127,21 +127,21 @@ class _ProfilePageState extends State<ProfilePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const DateDisplay(dayName: 'MON', dayNumber: '10'),
-                    Expanded(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _bloc.getEvents().length,
-                        itemBuilder: (context, index) {
-                          final event = _bloc.getEvents()[index];
-                          return EventListCard(
-                            name: event.name,
-                            startTime: event.startTime,
-                            description: event.description,
-                          );
-                        },
-                      ),
-                    )
+                    // Expanded(
+                    //   child: ListView.builder(
+                    //     shrinkWrap: true,
+                    //     physics: const NeverScrollableScrollPhysics(),
+                    //     itemCount: _bloc.getEvents().length,
+                    //     itemBuilder: (context, index) {
+                    //       final event = _bloc.getEvents()[index];
+                    //       return EventListCard(
+                    //         name: event.name,
+                    //         startTime: event.startTime,
+                    //         description: event.description,
+                    //       );
+                    //     },
+                    //   ),
+                    // )
                   ],
                 ),
               ),
@@ -256,12 +256,12 @@ class PreferencesBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _bloc = ProfileBloc(
+    final bloc = ProfileBloc(
       userRepository: context.read<UserRepository>(),
       eventRepository: context.read<EventRepository>(),
     );
     return BlocProvider(
-      create: (context) => _bloc,
+      create: (context) => bloc,
       child: SizedBox(
         height: 200,
         child: Column(
@@ -279,6 +279,7 @@ class PreferencesBottomSheet extends StatelessWidget {
                     );
                   },
                   webMailLoggedOut: () {
+                    context.read<HomeCubit>().checkIfVerified();
                     _toastUtil.showToast(
                       mode: ToastMode.Success,
                       title: 'Successfully Deregistered webmail',
@@ -299,7 +300,7 @@ class PreferencesBottomSheet extends StatelessWidget {
                         children: [
                           TextButton(
                             onPressed: () {
-                              _bloc.add(const ProfileEvent.appLogOut());
+                              bloc.add(const ProfileEvent.appLogOut());
                             },
                             child: Text(
                               'Sign Out of Avenue',
@@ -312,10 +313,10 @@ class PreferencesBottomSheet extends StatelessWidget {
                                   ),
                             ),
                           ),
-                          if (_bloc.isZimraAuthenticated)
+                          if (bloc.isZimraAuthenticated)
                             TextButton(
                               onPressed: () {
-                                _bloc.add(const ProfileEvent.webMailLogOut());
+                                bloc.add(const ProfileEvent.webMailLogOut());
                               },
                               child: Text(
                                 'Deregister Webmail',
@@ -391,10 +392,10 @@ class ProfileDetailsCard extends StatelessWidget {
               if (subTitle != null)
                 Text(
                   subTitle!,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2!
-                      .copyWith(color: AppColors.titleText),
+                  style: Theme.of(context).textTheme.button!.copyWith(
+                        color: AppColors.titleText,
+                        letterSpacing: 0.1,
+                      ),
                 ),
             ],
           ),
