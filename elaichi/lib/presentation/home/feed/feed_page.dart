@@ -7,7 +7,6 @@ import 'package:elaichi/presentation/home/feed/bloc/feed_bloc.dart';
 import 'package:elaichi/presentation/home/feed/widgets/announcements.dart';
 import 'package:elaichi/presentation/home/feed/widgets/articles/article_list.dart';
 import 'package:elaichi/presentation/home/feed/widgets/timetable/calender_list.dart';
-import 'package:elaichi/presentation/home/feed/widgets/webmail_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elaichi/domain/models/user_model.dart';
+import 'package:elaichi/domain/models/user/user.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,8 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
         SizeConfig.safeBlockHorizontal! * 10,
       ),
       child: CachedNetworkImage(
-        imageUrl: Splash.instance().getUser!.photoURL.toString(),
+        imageUrl:
+            'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
         fit: BoxFit.fill,
         placeholder: (context, url) => const Icon(Icons.person),
         height: SizeConfig.safeBlockHorizontal! * 7,
@@ -47,7 +48,8 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
           SizeConfig.safeBlockHorizontal! * 10,
         ),
         child: CachedNetworkImage(
-          imageUrl: Splash.instance().getUser!.photoURL.toString(),
+          imageUrl:
+              'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
           fit: BoxFit.fill,
           placeholder: (context, url) => const Icon(Icons.person),
           height: SizeConfig.safeBlockHorizontal! * 6.75,
@@ -72,7 +74,8 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
         SizeConfig.safeBlockHorizontal! * 10,
       ),
       child: CachedNetworkImage(
-        imageUrl: Splash.instance().getUser!.photoURL.toString(),
+        imageUrl:
+            'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
         fit: BoxFit.fill,
         placeholder: (context, url) => const Icon(Icons.person),
         height: SizeConfig.safeBlockHorizontal! * 7,
@@ -91,7 +94,8 @@ List<BottomNavigationBarItem> navBarItems = <BottomNavigationBarItem>[
           SizeConfig.safeBlockHorizontal! * 10,
         ),
         child: CachedNetworkImage(
-          imageUrl: Splash.instance().getUser!.photoURL.toString(),
+          imageUrl:
+              'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
           fit: BoxFit.fill,
           placeholder: (context, url) => const Icon(Icons.person),
           height: SizeConfig.safeBlockHorizontal! * 6.75,

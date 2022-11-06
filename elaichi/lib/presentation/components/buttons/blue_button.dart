@@ -16,7 +16,9 @@ class BlueButton extends StatelessWidget {
   }) : super(key: key);
 
   /// Icon at the starting of button
-  final Widget? leadingIcon, trailingIcon;
+  final Widget? leadingIcon;
+
+  final Widget? trailingIcon;
 
   /// Text on the button
   final String text;

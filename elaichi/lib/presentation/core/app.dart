@@ -6,6 +6,8 @@ import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/router/navigation_service.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
+import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
+import 'package:elaichi/presentation/splash/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,26 +31,34 @@ class ElaichiApp extends StatelessWidget {
   static Future<Widget> run() async {
     final localStorageService = await LocalStorageService.init();
     final apiService = APIService();
-    final graphQLService = GraphQLService()..init();
 
     return MultiRepositoryProvider(
       providers: <RepositoryProvider<dynamic>>[
         RepositoryProvider<UserRepository>(
           create: (BuildContext context) => UserRepository(
-            graphQLService: graphQLService,
             localStorageService: localStorageService,
             apiService: apiService,
           ),
         ),
         RepositoryProvider<EventRepository>(
-          create: (context) => EventRepository(
-            localStorageService: localStorageService,
-            apiService: apiService,
-            graphQLService: graphQLService,
-          ),
+          create: (context) => EventRepository(),
         )
       ],
-      child: const ElaichiApp(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => SplashCubit(
+              eventRepository: context.read<EventRepository>(),
+              userRepository: context.read<UserRepository>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) =>
+                HomeCubit(userRepository: context.read<UserRepository>()),
+          ),
+        ],
+        child: const ElaichiApp(),
+      ),
     );
   }
 }

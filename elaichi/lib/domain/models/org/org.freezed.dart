@@ -25,8 +25,8 @@ mixin _$Org {
   String get logo => throw _privateConstructorUsedError;
   OrgType get orgType => throw _privateConstructorUsedError;
   OrgSubType get orgSubType => throw _privateConstructorUsedError;
-  StatusType get statusType => throw _privateConstructorUsedError;
-  int get registrtionFee => throw _privateConstructorUsedError;
+  StatusType get status => throw _privateConstructorUsedError;
+  int get registrationFee => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   DateTime? get startDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
@@ -54,8 +54,8 @@ abstract class $OrgCopyWith<$Res> {
       String logo,
       OrgType orgType,
       OrgSubType orgSubType,
-      StatusType statusType,
-      int registrtionFee,
+      StatusType status,
+      int registrationFee,
       String description,
       DateTime? startDate,
       DateTime? endDate,
@@ -88,8 +88,8 @@ class _$OrgCopyWithImpl<$Res, $Val extends Org> implements $OrgCopyWith<$Res> {
     Object? logo = null,
     Object? orgType = null,
     Object? orgSubType = null,
-    Object? statusType = null,
-    Object? registrtionFee = null,
+    Object? status = null,
+    Object? registrationFee = null,
     Object? description = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
@@ -122,13 +122,13 @@ class _$OrgCopyWithImpl<$Res, $Val extends Org> implements $OrgCopyWith<$Res> {
           ? _value.orgSubType
           : orgSubType // ignore: cast_nullable_to_non_nullable
               as OrgSubType,
-      statusType: null == statusType
-          ? _value.statusType
-          : statusType // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as StatusType,
-      registrtionFee: null == registrtionFee
-          ? _value.registrtionFee
-          : registrtionFee // ignore: cast_nullable_to_non_nullable
+      registrationFee: null == registrationFee
+          ? _value.registrationFee
+          : registrationFee // ignore: cast_nullable_to_non_nullable
               as int,
       description: null == description
           ? _value.description
@@ -210,8 +210,8 @@ abstract class _$$_OrgCopyWith<$Res> implements $OrgCopyWith<$Res> {
       String logo,
       OrgType orgType,
       OrgSubType orgSubType,
-      StatusType statusType,
-      int registrtionFee,
+      StatusType status,
+      int registrationFee,
       String description,
       DateTime? startDate,
       DateTime? endDate,
@@ -243,8 +243,8 @@ class __$$_OrgCopyWithImpl<$Res> extends _$OrgCopyWithImpl<$Res, _$_Org>
     Object? logo = null,
     Object? orgType = null,
     Object? orgSubType = null,
-    Object? statusType = null,
-    Object? registrtionFee = null,
+    Object? status = null,
+    Object? registrationFee = null,
     Object? description = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
@@ -277,13 +277,13 @@ class __$$_OrgCopyWithImpl<$Res> extends _$OrgCopyWithImpl<$Res, _$_Org>
           ? _value.orgSubType
           : orgSubType // ignore: cast_nullable_to_non_nullable
               as OrgSubType,
-      statusType: null == statusType
-          ? _value.statusType
-          : statusType // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as StatusType,
-      registrtionFee: null == registrtionFee
-          ? _value.registrtionFee
-          : registrtionFee // ignore: cast_nullable_to_non_nullable
+      registrationFee: null == registrationFee
+          ? _value.registrationFee
+          : registrationFee // ignore: cast_nullable_to_non_nullable
               as int,
       description: null == description
           ? _value.description
@@ -338,8 +338,8 @@ class _$_Org implements _Org {
       required this.logo,
       required this.orgType,
       required this.orgSubType,
-      required this.statusType,
-      required this.registrtionFee,
+      required this.status,
+      required this.registrationFee,
       required this.description,
       this.startDate,
       this.endDate,
@@ -364,9 +364,9 @@ class _$_Org implements _Org {
   @override
   final OrgSubType orgSubType;
   @override
-  final StatusType statusType;
+  final StatusType status;
   @override
-  final int registrtionFee;
+  final int registrationFee;
   @override
   final String description;
   @override
@@ -390,7 +390,7 @@ class _$_Org implements _Org {
 
   @override
   String toString() {
-    return 'Org(id: $id, name: $name, logo: $logo, orgType: $orgType, orgSubType: $orgSubType, statusType: $statusType, registrtionFee: $registrtionFee, description: $description, startDate: $startDate, endDate: $endDate, tagline: $tagline, theme: $theme, locationID: $locationID, coverImg: $coverImg, location: $location, festID: $festID, fest: $fest)';
+    return 'Org(id: $id, name: $name, logo: $logo, orgType: $orgType, orgSubType: $orgSubType, status: $status, registrationFee: $registrationFee, description: $description, startDate: $startDate, endDate: $endDate, tagline: $tagline, theme: $theme, locationID: $locationID, coverImg: $coverImg, location: $location, festID: $festID, fest: $fest)';
   }
 
   @override
@@ -404,10 +404,9 @@ class _$_Org implements _Org {
             (identical(other.orgType, orgType) || other.orgType == orgType) &&
             (identical(other.orgSubType, orgSubType) ||
                 other.orgSubType == orgSubType) &&
-            (identical(other.statusType, statusType) ||
-                other.statusType == statusType) &&
-            (identical(other.registrtionFee, registrtionFee) ||
-                other.registrtionFee == registrtionFee) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.registrationFee, registrationFee) ||
+                other.registrationFee == registrationFee) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.startDate, startDate) ||
@@ -434,8 +433,8 @@ class _$_Org implements _Org {
       logo,
       orgType,
       orgSubType,
-      statusType,
-      registrtionFee,
+      status,
+      registrationFee,
       description,
       startDate,
       endDate,
@@ -468,8 +467,8 @@ abstract class _Org implements Org {
       required final String logo,
       required final OrgType orgType,
       required final OrgSubType orgSubType,
-      required final StatusType statusType,
-      required final int registrtionFee,
+      required final StatusType status,
+      required final int registrationFee,
       required final String description,
       final DateTime? startDate,
       final DateTime? endDate,
@@ -494,9 +493,9 @@ abstract class _Org implements Org {
   @override
   OrgSubType get orgSubType;
   @override
-  StatusType get statusType;
+  StatusType get status;
   @override
-  int get registrtionFee;
+  int get registrationFee;
   @override
   String get description;
   @override

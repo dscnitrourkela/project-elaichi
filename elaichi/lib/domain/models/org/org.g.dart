@@ -12,8 +12,8 @@ _$_Org _$$_OrgFromJson(Map<String, dynamic> json) => _$_Org(
       logo: json['logo'] as String,
       orgType: $enumDecode(_$OrgTypeEnumMap, json['orgType']),
       orgSubType: $enumDecode(_$OrgSubTypeEnumMap, json['orgSubType']),
-      statusType: $enumDecode(_$StatusTypeEnumMap, json['statusType']),
-      registrtionFee: json['registrtionFee'] as int,
+      status: $enumDecode(_$StatusTypeEnumMap, json['status']),
+      registrationFee: json['registrationFee'] as int,
       description: json['description'] as String,
       startDate: json['startDate'] == null
           ? null
@@ -40,8 +40,8 @@ Map<String, dynamic> _$$_OrgToJson(_$_Org instance) => <String, dynamic>{
       'logo': instance.logo,
       'orgType': _$OrgTypeEnumMap[instance.orgType]!,
       'orgSubType': _$OrgSubTypeEnumMap[instance.orgSubType]!,
-      'statusType': _$StatusTypeEnumMap[instance.statusType]!,
-      'registrtionFee': instance.registrtionFee,
+      'status': _$StatusTypeEnumMap[instance.status]!,
+      'registrationFee': instance.registrationFee,
       'description': instance.description,
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),

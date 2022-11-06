@@ -22,11 +22,11 @@ User _$UserFromJson(Map<String, dynamic> json) {
 mixin _$User {
   String get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  List<String> get ca => throw _privateConstructorUsedError;
-  List<String> get festID => throw _privateConstructorUsedError;
-  List<Org> get fests => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
+  List<String>? get ca => throw _privateConstructorUsedError;
+  List<String>? get festID => throw _privateConstructorUsedError;
+  List<Org>? get fests => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get uid => throw _privateConstructorUsedError;
   String? get photo => throw _privateConstructorUsedError;
   GenderType? get gender => throw _privateConstructorUsedError;
   DateTime? get dob => throw _privateConstructorUsedError;
@@ -52,11 +52,11 @@ abstract class $UserCopyWith<$Res> {
   $Res call(
       {String id,
       String email,
-      List<String> ca,
-      List<String> festID,
-      List<Org> fests,
+      String uid,
+      List<String>? ca,
+      List<String>? festID,
+      List<Org>? fests,
       String? name,
-      String? uid,
       String? photo,
       GenderType? gender,
       DateTime? dob,
@@ -85,11 +85,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   $Res call({
     Object? id = null,
     Object? email = null,
-    Object? ca = null,
-    Object? festID = null,
-    Object? fests = null,
+    Object? uid = null,
+    Object? ca = freezed,
+    Object? festID = freezed,
+    Object? fests = freezed,
     Object? name = freezed,
-    Object? uid = freezed,
     Object? photo = freezed,
     Object? gender = freezed,
     Object? dob = freezed,
@@ -111,25 +111,25 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      ca: null == ca
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      ca: freezed == ca
           ? _value.ca
           : ca // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      festID: null == festID
+              as List<String>?,
+      festID: freezed == festID
           ? _value.festID
           : festID // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      fests: null == fests
+              as List<String>?,
+      fests: freezed == fests
           ? _value.fests
           : fests // ignore: cast_nullable_to_non_nullable
-              as List<Org>,
+              as List<Org>?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uid: freezed == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       photo: freezed == photo
           ? _value.photo
@@ -188,11 +188,11 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   $Res call(
       {String id,
       String email,
-      List<String> ca,
-      List<String> festID,
-      List<Org> fests,
+      String uid,
+      List<String>? ca,
+      List<String>? festID,
+      List<Org>? fests,
       String? name,
-      String? uid,
       String? photo,
       GenderType? gender,
       DateTime? dob,
@@ -217,11 +217,11 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
   $Res call({
     Object? id = null,
     Object? email = null,
-    Object? ca = null,
-    Object? festID = null,
-    Object? fests = null,
+    Object? uid = null,
+    Object? ca = freezed,
+    Object? festID = freezed,
+    Object? fests = freezed,
     Object? name = freezed,
-    Object? uid = freezed,
     Object? photo = freezed,
     Object? gender = freezed,
     Object? dob = freezed,
@@ -243,25 +243,25 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      ca: null == ca
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      ca: freezed == ca
           ? _value._ca
           : ca // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      festID: null == festID
+              as List<String>?,
+      festID: freezed == festID
           ? _value._festID
           : festID // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      fests: null == fests
+              as List<String>?,
+      fests: freezed == fests
           ? _value._fests
           : fests // ignore: cast_nullable_to_non_nullable
-              as List<Org>,
+              as List<Org>?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uid: freezed == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       photo: freezed == photo
           ? _value.photo
@@ -317,11 +317,11 @@ class _$_User implements _User {
   const _$_User(
       {required this.id,
       required this.email,
-      required final List<String> ca,
-      required final List<String> festID,
-      required final List<Org> fests,
+      required this.uid,
+      final List<String>? ca,
+      final List<String>? festID,
+      final List<Org>? fests,
       this.name,
-      this.uid,
       this.photo,
       this.gender,
       this.dob,
@@ -343,31 +343,37 @@ class _$_User implements _User {
   final String id;
   @override
   final String email;
-  final List<String> _ca;
   @override
-  List<String> get ca {
+  final String uid;
+  final List<String>? _ca;
+  @override
+  List<String>? get ca {
+    final value = _ca;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ca);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<String> _festID;
+  final List<String>? _festID;
   @override
-  List<String> get festID {
+  List<String>? get festID {
+    final value = _festID;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_festID);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Org> _fests;
+  final List<Org>? _fests;
   @override
-  List<Org> get fests {
+  List<Org>? get fests {
+    final value = _fests;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_fests);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   final String? name;
-  @override
-  final String? uid;
   @override
   final String? photo;
   @override
@@ -393,7 +399,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, ca: $ca, festID: $festID, fests: $fests, name: $name, uid: $uid, photo: $photo, gender: $gender, dob: $dob, state: $state, city: $city, college: $college, stream: $stream, mobile: $mobile, selfID: $selfID, refferedBy: $refferedBy, rollNumber: $rollNumber)';
+    return 'User(id: $id, email: $email, uid: $uid, ca: $ca, festID: $festID, fests: $fests, name: $name, photo: $photo, gender: $gender, dob: $dob, state: $state, city: $city, college: $college, stream: $stream, mobile: $mobile, selfID: $selfID, refferedBy: $refferedBy, rollNumber: $rollNumber)';
   }
 
   @override
@@ -403,11 +409,11 @@ class _$_User implements _User {
             other is _$_User &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             const DeepCollectionEquality().equals(other._ca, _ca) &&
             const DeepCollectionEquality().equals(other._festID, _festID) &&
             const DeepCollectionEquality().equals(other._fests, _fests) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.photo, photo) || other.photo == photo) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.dob, dob) || other.dob == dob) &&
@@ -429,11 +435,11 @@ class _$_User implements _User {
       runtimeType,
       id,
       email,
+      uid,
       const DeepCollectionEquality().hash(_ca),
       const DeepCollectionEquality().hash(_festID),
       const DeepCollectionEquality().hash(_fests),
       name,
-      uid,
       photo,
       gender,
       dob,
@@ -464,11 +470,11 @@ abstract class _User implements User {
   const factory _User(
       {required final String id,
       required final String email,
-      required final List<String> ca,
-      required final List<String> festID,
-      required final List<Org> fests,
+      required final String uid,
+      final List<String>? ca,
+      final List<String>? festID,
+      final List<Org>? fests,
       final String? name,
-      final String? uid,
       final String? photo,
       final GenderType? gender,
       final DateTime? dob,
@@ -488,15 +494,15 @@ abstract class _User implements User {
   @override
   String get email;
   @override
-  List<String> get ca;
+  String get uid;
   @override
-  List<String> get festID;
+  List<String>? get ca;
   @override
-  List<Org> get fests;
+  List<String>? get festID;
+  @override
+  List<Org>? get fests;
   @override
   String? get name;
-  @override
-  String? get uid;
   @override
   String? get photo;
   @override

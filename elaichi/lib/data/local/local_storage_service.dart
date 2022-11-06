@@ -1,9 +1,11 @@
 import 'package:elaichi/domain/exceptions/local_storage_exception.dart';
+import 'package:elaichi/domain/models/user/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageService {
   static late final SharedPreferences _sharedPreferences;
   static late final LocalStorageService _instance;
+  static User? _currentUser;
 
   ///Must only be called once.
   static Future<LocalStorageService> init() async {
@@ -25,6 +27,25 @@ class LocalStorageService {
       throw LocalStorageException(e.toString());
     }
   }
+
+  set rollNumber(String? rollNumber) =>
+      _sharedPreferences.setString('roll_number', rollNumber!);
+
+  set firebaseToken(String firebaseToken) {
+    _sharedPreferences.setString('firebaseToken', firebaseToken);
+  }
+
+  String get firebaseToken {
+    if (_sharedPreferences.containsKey('firebaseToken')) {
+      return _sharedPreferences.getString('firebaseToken')!;
+    } else {
+      return 'Token not found';
+    }
+  }
+
+  set currentUser(User? user) => _currentUser = user;
+
+  User? get currentUser => _currentUser;
 
   String? get rollNumber {
     if (_sharedPreferences.containsKey('roll_number')) {

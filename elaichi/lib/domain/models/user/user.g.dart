@@ -9,14 +9,14 @@ part of 'user.dart';
 _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       id: json['id'] as String,
       email: json['email'] as String,
-      ca: (json['ca'] as List<dynamic>).map((e) => e as String).toList(),
+      uid: json['uid'] as String,
+      ca: (json['ca'] as List<dynamic>?)?.map((e) => e as String).toList(),
       festID:
-          (json['festID'] as List<dynamic>).map((e) => e as String).toList(),
-      fests: (json['fests'] as List<dynamic>)
-          .map((e) => Org.fromJson(e as Map<String, dynamic>))
+          (json['festID'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      fests: (json['fests'] as List<dynamic>?)
+          ?.map((e) => Org.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] as String?,
-      uid: json['uid'] as String?,
       photo: json['photo'] as String?,
       gender: $enumDecodeNullable(_$GenderTypeEnumMap, json['gender']),
       dob: json['dob'] == null ? null : DateTime.parse(json['dob'] as String),
@@ -33,11 +33,11 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
+      'uid': instance.uid,
       'ca': instance.ca,
       'festID': instance.festID,
       'fests': instance.fests,
       'name': instance.name,
-      'uid': instance.uid,
       'photo': instance.photo,
       'gender': _$GenderTypeEnumMap[instance.gender],
       'dob': instance.dob?.toIso8601String(),

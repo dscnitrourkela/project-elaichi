@@ -1,7 +1,7 @@
 // ignore_for_file: strict_raw_type
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// logs all the changes of the app.
 class AppBlocObserver extends BlocObserver {
