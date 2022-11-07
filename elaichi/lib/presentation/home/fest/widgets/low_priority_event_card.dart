@@ -2,14 +2,20 @@ import 'dart:convert';
 
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
+import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/home/fest/widgets/scrolling_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class LowPriorityEventItem extends StatelessWidget {
-  const LowPriorityEventItem({Key? key, required this.event}) : super(key: key);
+  const LowPriorityEventItem({
+    Key? key,
+    required this.event,
+    this.fullWidth = false,
+  }) : super(key: key);
 
   final Event event;
+  final bool fullWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class LowPriorityEventItem extends StatelessWidget {
 
     return SizedBox(
       height: 94,
-      width: 290,
+      width: fullWidth ? 358 : 298,
       child: Column(
         children: [
           Row(
@@ -44,6 +50,7 @@ class LowPriorityEventItem extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: 24,
+                    width: fullWidth ? 235 : 200,
                     child: ScrollingText(
                       text: jsonDecode(
                         event.name,

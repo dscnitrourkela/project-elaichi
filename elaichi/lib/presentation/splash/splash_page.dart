@@ -48,9 +48,16 @@ class _SplashPageState extends State<SplashPage> {
           );
         },
         builder: (context, state) {
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
+          return Scaffold(
+            body: state.maybeWhen(
+              orElse: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              error: (error) => const Center(
+                child: Text(
+                  'Unable to establish connection, please lauch the app again',
+                ),
+              ),
             ),
           );
         },

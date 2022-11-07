@@ -80,9 +80,10 @@ class FestBloc extends Bloc<FestEvent, FestState> {
         final calender = _eventRepository.getCalender(events);
         final getCategorisedEvents =
             _eventRepository.getCategorisedEvents(events);
+        getCategorisedEvents['ALL'] = events;
         return {
           'calender': calender,
-          'categorisedEvents': getCategorisedEvents
+          'categorisedEvents': getCategorisedEvents,
         };
       },
     );

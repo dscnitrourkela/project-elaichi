@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
+import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
@@ -35,6 +36,9 @@ class HighPriorityEventCard extends StatelessWidget {
               width: SizeConfig.screenWidth,
               decoration: BoxDecoration(
                 image: DecorationImage(
+                  onError: (exception, stackTrace) => const NetworkImage(
+                    Strings.placeholderImage,
+                  ),
                   image: event.poster == ''
                       ? const NetworkImage(
                           Strings.placeholderImage,
@@ -110,7 +114,11 @@ class HighPriorityEventCard extends StatelessWidget {
                           ),
                         const SizedBox(width: 2),
                         YellowFlatButton(
-                          onTapped: () {},
+                          onTapped: () => Navigator.pushNamed(
+                            context,
+                            AppRouter.eventDetails,
+                            arguments: {'event': event},
+                          ),
                           text: 'Register',
                           width: 105,
                         )

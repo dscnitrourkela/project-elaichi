@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
+import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
@@ -21,15 +22,12 @@ class ExplorePage extends StatefulWidget {
   const ExplorePage({
     Key? key,
     required this.fest,
-    required this.categorisedEvents,
-    required this.calender,
+    required this.events,
   }) : super(key: key);
 
   final Org fest;
 
-  final Map<String, List<Event>> categorisedEvents;
-
-  final Map<String, List<Event>> calender;
+  final Map<String, Map<String, List<Event>>> events;
 
   @override
   State<ExplorePage> createState() => _ExplorePageState();
@@ -50,24 +48,21 @@ class _ExplorePageState extends State<ExplorePage>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.events.isEmpty) {
+      return const Scaffold(
+        body: Center(
+          child: Text('Uh oh! Could not fetch the events'),
+        ),
+      );
+    }
     final format1 = DateFormat('MMM');
     final duration =
         '${format1.format(widget.fest.startDate!)} ${widget.fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(widget.fest.endDate!)} ${widget.fest.endDate!.day.toString().padLeft(2, '0')} ${widget.fest.endDate!.year}';
+    final categorisedEvents = widget.events['categorisedEvents'];
+    final calender = widget.events['calender'];
+
     return Scaffold(
-      bottomNavigationBar: SizedBox(
-        height: 95,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Divider(height: 1, thickness: 1, color: AppColors.grey7),
-              const SizedBox(height: 13),
-              YellowFlatButton(text: 'Register Now!', onTapped: () {}),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const RegisterBottomBar(),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
@@ -82,35 +77,7 @@ class _ExplorePageState extends State<ExplorePage>
                 children: [
                   HeaderWidget(
                     imageUrl: widget.fest.coverImg ?? Strings.placeholderImage,
-                    leadingWidget: Container(
-                      height: 30,
-                      width: 75,
-                      decoration: BoxDecoration(
-                        color: AppColors.translucentButton.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: GestureDetector(
-                        onTap: () => Navigator.pop(context),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              'Back',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(color: Colors.white),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+                    leadingWidget: const BackButton(),
                     trailingWidget: ClipRRect(
                       borderRadius: BorderRadius.circular(
                         SizeConfig.safeBlockHorizontal! * 10,
@@ -189,7 +156,7 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   HighPriorityEventList(
-                    events: widget.categorisedEvents['PRO']!,
+                    events: categorisedEvents!['PRO']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -198,16 +165,33 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   HighPriorityEventList(
-                    events: widget.categorisedEvents['TECHNICAL']!,
+                    events: categorisedEvents['TECHNICAL']!,
                   ),
                   const SizedBox(height: 80),
-                  Text(
-                    'Fun Events',
-                    style: interTextTheme.headline2,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Fun Events',
+                        style: interTextTheme.headline2,
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          AppRouter.allEvents,
+                          arguments: {'events': widget.events},
+                        ),
+                        child: Text(
+                          'View More',
+                          style: interTextTheme.bodyText1!
+                              .copyWith(fontSize: 14, height: 1.21),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(height: 24),
                   LowPriorityEventsList(
-                    events: widget.categorisedEvents['FUN']!,
+                    events: categorisedEvents['FUN']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -216,7 +200,7 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   LowPriorityEventsList(
-                    events: widget.categorisedEvents['EXHIBITIONS']!,
+                    events: categorisedEvents['EXHIBITIONS']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -225,7 +209,7 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   SpeakerEventList(
-                    events: widget.categorisedEvents['GUEST-LECTURES ']!,
+                    events: categorisedEvents['GUEST-LECTURES ']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -234,7 +218,7 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 16),
                   SpeakerEventList(
-                    events: widget.categorisedEvents['WORKSHOPS']!,
+                    events: categorisedEvents['WORKSHOPS']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -244,12 +228,37 @@ class _ExplorePageState extends State<ExplorePage>
                   const SizedBox(height: 16),
                   CalenderTabView(
                     tabController: _tabController,
-                    calender: widget.calender,
+                    calender: calender!,
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 72),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RegisterBottomBar extends StatelessWidget {
+  const RegisterBottomBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 95,
+      child: ColoredBox(
+        color: AppColors.translucentButton,
+        child: Column(
+          children: [
+            const Divider(height: 1, thickness: 1, color: AppColors.grey7),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 13, 16, 20),
+              child: YellowFlatButton(text: 'Register Now!', onTapped: () {}),
+            ),
           ],
         ),
       ),

@@ -26,20 +26,17 @@ class _FestPageState extends State<FestPage> {
 
   @override
   void initState() {
-    _bloc = FestBloc(
-      eventRepository: context.read<EventRepository>(),
-      userRepository: context.read<UserRepository>(),
-    )..add(const FestEvent.started());
+    _bloc = context.read<FestBloc>()..add(const FestEvent.started());
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) => _bloc,
-        child: BlocBuilder<FestBloc, FestState>(
+    return BlocProvider.value(
+      value: _bloc,
+      child: Scaffold(
+        body: BlocBuilder<FestBloc, FestState>(
           builder: (context, state) {
             return state.when(
               loading: () => const Center(child: CircularProgressIndicator()),
@@ -102,11 +99,7 @@ class _FestPageState extends State<FestPage> {
                                 AppRouter.explore,
                                 arguments: <String, dynamic>{
                                   'fest': fest,
-                                  'categorisedEvents':
-                                      calenderAndCategorisedEvents[
-                                          'categorisedEvents'],
-                                  'calender':
-                                      calenderAndCategorisedEvents['calender']
+                                  'events': calenderAndCategorisedEvents,
                                 },
                               );
                             },

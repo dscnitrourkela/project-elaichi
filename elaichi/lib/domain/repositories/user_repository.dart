@@ -56,17 +56,25 @@ class UserRepository {
   }
 
   Future<void> googleAuthenticated() async {
-    await initializeGraphQL();
-    await logInToWebMail();
-    await getUser();
+    try {
+      await initializeGraphQL();
+      await logInToWebMail();
+      await getUser();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> initializeGraphQL() async {
-    final token = await _firebaseAuth.currentUser!.getIdToken(true);
+    try {
+      final token = await _firebaseAuth.currentUser!.getIdToken(true);
 
-    firebaseToken = token;
+      firebaseToken = token;
 
-    await _graphQLService.init(token);
+      await _graphQLService.init(token);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> getUser() async {
@@ -134,7 +142,7 @@ class UserRepository {
   User? get user => _localStorageService.currentUser;
 
   Stream<firebase_auth.User?> get firebaseAuthStream {
-    return _firebaseAuth.idTokenChanges();
+    return _firebaseAuth.authStateChanges();
   }
 
   Future<void> saveWebMailDetails({
@@ -167,6 +175,7 @@ class UserRepository {
         }
       } on Exception catch (e) {
         debugPrint(e.toString());
+        rethrow;
       }
     }
   }

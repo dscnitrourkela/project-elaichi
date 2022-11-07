@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
+import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
@@ -29,84 +30,94 @@ class SpeakerEventCard extends StatelessWidget {
       child: Container(
         color: Colors.white,
         margin: const EdgeInsets.only(right: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 160,
-              width: 160,
-              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: event.poster == ''
-                      ? const NetworkImage(
-                          Strings.placeholderImage,
-                        )
-                      : NetworkImage(event.poster),
-                  fit: BoxFit.fill,
+            SizedBox(
+              height: 184,
+              child: Container(
+                height: 160,
+                width: 160,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: event.poster == ''
+                        ? const NetworkImage(
+                            Strings.placeholderImage,
+                          )
+                        : NetworkImage(event.poster),
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(
+              height: 29,
+              child: ScrollingText(
+                text: jsonDecode(event.name)['heading'].toString(),
+                style: interTextTheme.subtitle2!.copyWith(
+                  color: Colors.black,
+                ),
+                condition: 28,
+              ),
+            ),
+            const SizedBox(height: 4),
+            SizedBox(
+              height: 17,
+              child: Text(
+                'Designation of Person',
+                style: interTextTheme.bodyText1!.copyWith(
+                  color: Colors.black.withOpacity(0.6),
+                  fontSize: 14,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Divider(
+              thickness: 1,
+              height: 1,
+              color: AppColors.grey12.withOpacity(0.2),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 19,
+              child: ScrollingText(
+                text: '"Name of the Session"',
+                style: interTextTheme.subtitle2!.copyWith(
+                  height: 1.18,
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+                condition: 24,
+              ),
+            ),
+            const SizedBox(height: 4),
+            DurationDates(
+              text: duration,
+              color: Colors.black.withOpacity(0.6),
+              style: interTextTheme.caption!.copyWith(
+                color: Colors.black.withOpacity(0.6),
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: 240,
+              height: 48,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    height: 29,
-                    child: ScrollingText(
-                      text: jsonDecode(event.name)['heading'].toString(),
-                      style: interTextTheme.subtitle2!.copyWith(
-                        color: Colors.black,
-                      ),
-                      condition: 28,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Designation of Person',
-                    style: interTextTheme.bodyText1!.copyWith(
-                      color: Colors.black.withOpacity(0.6),
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Divider(
-                    thickness: 1,
-                    height: 1,
-                    color: AppColors.grey12.withOpacity(0.2),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 19,
-                    child: ScrollingText(
-                      text: '"Name of the Session"',
-                      style: interTextTheme.bodyText1!.copyWith(
-                        height: 1.18,
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                      condition: 24,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  DurationDates(text: duration),
-                  SizedBox(
-                    width: 240,
-                    height: 48,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const SizedBox(width: 2),
-                        YellowFlatButton(
-                          onTapped: () {},
-                          text: 'Mark In Calender',
-                          width: 163,
-                        )
-                      ],
-                    ),
-                  ),
+                  const SizedBox(width: 2),
+                  YellowFlatButton(
+                    onTapped: () {},
+                    text: 'Mark In Calender',
+                    width: 163,
+                  )
                 ],
               ),
             )

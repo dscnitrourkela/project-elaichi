@@ -1,7 +1,9 @@
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/presentation/core/router/app_page_route.dart';
+import 'package:elaichi/presentation/home/fest/event_details_page.dart';
 import 'package:elaichi/presentation/home/fest/explore_page.dart';
+import 'package:elaichi/presentation/home/fest/widgets/all_events_page.dart';
 import 'package:elaichi/presentation/home/home_page.dart';
 import 'package:elaichi/presentation/sign_in/sign_in_page.dart';
 import 'package:elaichi/presentation/splash/splash_page.dart';
@@ -10,9 +12,11 @@ import 'package:flutter/widgets.dart';
 /// Handles the routing and navigation of the app.
 class AppRouter {
   static const String splash = '/';
-  static const String signIn = '/signin';
+  static const String signIn = '/signIn';
   static const String home = '/home';
   static const String explore = '/explore';
+  static const String eventDetails = '/eventDetails';
+  static const String allEvents = '/allEvents';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -33,16 +37,30 @@ class AppRouter {
           settings: settings,
           builder: (BuildContext context) => const HomePage(),
         );
+
       case explore:
         final map = settings.arguments! as Map<String, dynamic>;
         return AppPageRoute(
           settings: settings,
           builder: (context) => ExplorePage(
             fest: map['fest'] as Org,
-            categorisedEvents:
-                map['categorisedEvents'] as Map<String, List<Event>>,
-            calender: map['calender'] as Map<String, List<Event>>,
+            events: map['events'] as Map<String, Map<String, List<Event>>>,
           ),
+        );
+
+      case eventDetails:
+        final map = settings.arguments! as Map<String, dynamic>;
+        return AppPageRoute(
+          settings: settings,
+          builder: (context) => EventDetailsPage(event: map['event'] as Event),
+        );
+
+      case allEvents:
+        final map = settings.arguments! as Map<String, dynamic>;
+        return AppPageRoute(
+          settings: settings,
+          builder: (context) => AllEventsPage(
+              events: map['events'] as Map<String, Map<String, List<Event>>>),
         );
 
       default:

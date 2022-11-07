@@ -15,6 +15,7 @@ abstract class Strings {
   static const String mailInactive = 'assets/icons/mail_inactive.svg';
   static const String homeActive = 'assets/icons/home_active.svg';
   static const String homeInactive = 'assets/icons/home_inactive.svg';
+  static const String searchIcon = 'assets/icons/search_icon.svg';
 
   static const String zimbraCardText =
       'Verify your NITR webmail to access \ntime table, mess menu and much more';

@@ -137,6 +137,11 @@ TextTheme interTextTheme = TextTheme(
     height: 1.3,
     color: Colors.white,
   ),
+  bodyText2: GoogleFonts.inter(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+    height: 1.28,
+  ),
   caption: GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.w600,
