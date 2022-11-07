@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
@@ -33,15 +32,19 @@ class SpeakerEventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(500),
-                child: CachedNetworkImage(
-                  imageUrl: Strings.placeholderImage,
+            Container(
+              height: 160,
+              width: 160,
+              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: event.poster == ''
+                      ? const NetworkImage(
+                          Strings.placeholderImage,
+                        )
+                      : NetworkImage(event.poster),
                   fit: BoxFit.fill,
-                  height: 160,
-                  width: 160,
                 ),
               ),
             ),

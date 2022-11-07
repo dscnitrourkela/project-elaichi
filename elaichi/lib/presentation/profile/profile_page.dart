@@ -125,8 +125,8 @@ class _ProfilePageState extends State<ProfilePage> {
               child: SingleChildScrollView(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const DateDisplay(dayName: 'MON', dayNumber: '10'),
+                  children: const [
+                    DateDisplay(dayName: 'MON', dayNumber: '10'),
                     // Expanded(
                     //   child: ListView.builder(
                     //     shrinkWrap: true,

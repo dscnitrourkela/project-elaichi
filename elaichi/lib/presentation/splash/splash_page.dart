@@ -1,5 +1,3 @@
-import 'package:elaichi/domain/repositories/events_repository.dart';
-import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';

@@ -5,11 +5,9 @@ import 'dart:convert';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
-import 'package:elaichi/presentation/home/fest/explore_page.dart';
 import 'package:elaichi/presentation/home/fest/widgets/scrolling_text.dart';
 import 'package:elaichi/presentation/home/fest/widgets/speaker_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:marquee/marquee.dart';
 
 class CalenderTabView extends StatelessWidget {
   const CalenderTabView({

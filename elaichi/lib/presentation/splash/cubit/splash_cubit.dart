@@ -1,8 +1,6 @@
 import 'dart:async';
 
-import 'package:elaichi/data/remote/graphql/graphql_service.dart';
 import 'package:elaichi/domain/exceptions/auth_failure.dart';
-import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

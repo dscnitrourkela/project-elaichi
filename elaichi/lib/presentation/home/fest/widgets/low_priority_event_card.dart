@@ -30,7 +30,8 @@ class LowPriorityEventItem extends StatelessWidget {
                   image: DecorationImage(
                     image: event.poster == ''
                         ? const NetworkImage(
-                            'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667755113/Rectangle_32_j9v13n.png')
+                            'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667755113/Rectangle_32_j9v13n.png',
+                          )
                         : NetworkImage(event.poster),
                     fit: BoxFit.fill,
                   ),

@@ -7,7 +7,6 @@ import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/home/feed/widgets/webmail_card.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
-import 'package:elaichi/presentation/home/fest/widgets/custom_draggable_sheet.dart';
 import 'package:elaichi/presentation/home/fest/widgets/duration_dates.dart';
 import 'package:elaichi/presentation/home/fest/widgets/featured_events.dart';
 import 'package:elaichi/presentation/home/fest/widgets/header_widget.dart';

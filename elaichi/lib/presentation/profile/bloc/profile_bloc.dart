@@ -1,4 +1,3 @@
-import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

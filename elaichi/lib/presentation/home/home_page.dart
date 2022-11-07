@@ -1,4 +1,3 @@
-import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/browse/browse_page.dart';
 import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/home/feed/feed_page.dart';
@@ -22,11 +21,9 @@ class HomePage extends StatefulWidget {
 
 ///To manage the state of [HomePage]
 class _HomePageState extends State<HomePage> {
-  late final HomeCubit _cubit;
-
   @override
   void initState() {
-    _cubit = context.read<HomeCubit>()..checkIfVerified();
+    context.read<HomeCubit>().checkIfVerified();
     super.initState();
   }
 

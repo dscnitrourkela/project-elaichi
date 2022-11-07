@@ -18,7 +18,7 @@ import 'package:intl/intl.dart';
 import 'package:quiver/iterables.dart';
 
 class ExplorePage extends StatefulWidget {
-  ExplorePage({
+  const ExplorePage({
     Key? key,
     required this.fest,
     required this.categorisedEvents,
@@ -31,22 +31,6 @@ class ExplorePage extends StatefulWidget {
 
   final Map<String, List<Event>> calender;
 
-  late final eventPageController = PageController(
-    viewportFraction: 0.9,
-    keepPage: false,
-  );
-
-  final speakerPageController = PageController(
-    initialPage: 1,
-    viewportFraction: 0.65,
-    keepPage: false,
-  );
-
-  final sessionListController = PageController(
-    viewportFraction: 0.9,
-    keepPage: false,
-  );
-
   @override
   State<ExplorePage> createState() => _ExplorePageState();
 }
@@ -57,17 +41,10 @@ class _ExplorePageState extends State<ExplorePage>
 
   int currentEventIndex = 1;
   int currentSpeakerIndex = 1;
+
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
-    widget.eventPageController.addListener(
-      () {
-        setState(() {
-          currentEventIndex = widget.eventPageController.page!.floor();
-          currentSpeakerIndex = widget.speakerPageController.page!.floor();
-        });
-      },
-    );
     super.initState();
   }
 
@@ -76,11 +53,6 @@ class _ExplorePageState extends State<ExplorePage>
     final format1 = DateFormat('MMM');
     final duration =
         '${format1.format(widget.fest.startDate!)} ${widget.fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(widget.fest.endDate!)} ${widget.fest.endDate!.day.toString().padLeft(2, '0')} ${widget.fest.endDate!.year}';
-    final funEventsPartedList =
-        partition(widget.categorisedEvents['FUN']!, 3).toList();
-    final exhibitionsPartedList =
-        partition(widget.categorisedEvents['EXHIBITIONS']!, 3).toList();
-
     return Scaffold(
       bottomNavigationBar: SizedBox(
         height: 95,
@@ -216,33 +188,17 @@ class _ExplorePageState extends State<ExplorePage>
                     style: interTextTheme.headline2,
                   ),
                   const SizedBox(height: 24),
-                  SizedBox(
-                    height: 466,
-                    child: ListView.builder(
-                      clipBehavior: Clip.none,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => HighPriorityEventCard(
-                        event: widget.categorisedEvents['PRO']![index],
-                      ),
-                      itemCount: widget.categorisedEvents['PRO']!.length,
-                    ),
+                  HighPriorityEventList(
+                    events: widget.categorisedEvents['PRO']!,
                   ),
-                  const SizedBox(height: 86),
+                  const SizedBox(height: 80),
                   Text(
                     'Technical Events',
                     style: interTextTheme.headline2,
                   ),
                   const SizedBox(height: 24),
-                  SizedBox(
-                    height: 466,
-                    child: ListView.builder(
-                      clipBehavior: Clip.none,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => HighPriorityEventCard(
-                        event: widget.categorisedEvents['TECHNICAL']![index],
-                      ),
-                      itemCount: widget.categorisedEvents['TECHNICAL']!.length,
-                    ),
+                  HighPriorityEventList(
+                    events: widget.categorisedEvents['TECHNICAL']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -250,30 +206,8 @@ class _ExplorePageState extends State<ExplorePage>
                     style: interTextTheme.headline2,
                   ),
                   const SizedBox(height: 24),
-                  SizedBox(
-                    height: 330,
-                    child: ListView.separated(
-                      clipBehavior: Clip.none,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index1) {
-                        return Column(
-                          children: List.generate(
-                            funEventsPartedList[index1].length,
-                            (index2) => Column(
-                              children: [
-                                LowPriorityEventItem(
-                                  event: funEventsPartedList[index1][index2],
-                                ),
-                                const SizedBox(height: 16)
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(width: 24),
-                      itemCount: funEventsPartedList.length,
-                    ),
+                  LowPriorityEventsList(
+                    events: widget.categorisedEvents['FUN']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -281,49 +215,17 @@ class _ExplorePageState extends State<ExplorePage>
                     style: interTextTheme.headline2,
                   ),
                   const SizedBox(height: 24),
-                  SizedBox(
-                    height: 330,
-                    child: ListView.separated(
-                      clipBehavior: Clip.none,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index1) {
-                        return Column(
-                          children: List.generate(
-                            exhibitionsPartedList[index1].length,
-                            (index2) => Column(
-                              children: [
-                                LowPriorityEventItem(
-                                  event: exhibitionsPartedList[index1][index2],
-                                ),
-                                const SizedBox(height: 16)
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(width: 24),
-                      itemCount: exhibitionsPartedList.length,
-                    ),
+                  LowPriorityEventsList(
+                    events: widget.categorisedEvents['EXHIBITIONS']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
                     'Guest Lectures',
                     style: interTextTheme.headline2,
                   ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 394,
-                    child: ListView.builder(
-                      clipBehavior: Clip.none,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => SpeakerEventCard(
-                        event:
-                            widget.categorisedEvents['GUEST-LECTURES ']![index],
-                      ),
-                      itemCount:
-                          widget.categorisedEvents['GUEST-LECTURES ']!.length,
-                    ),
+                  const SizedBox(height: 24),
+                  SpeakerEventList(
+                    events: widget.categorisedEvents['GUEST-LECTURES ']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -331,16 +233,8 @@ class _ExplorePageState extends State<ExplorePage>
                     style: interTextTheme.headline2,
                   ),
                   const SizedBox(height: 16),
-                  SizedBox(
-                    height: 394,
-                    child: ListView.builder(
-                      clipBehavior: Clip.none,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => SpeakerEventCard(
-                        event: widget.categorisedEvents['WORKSHOPS']![index],
-                      ),
-                      itemCount: widget.categorisedEvents['WORKSHOPS']!.length,
-                    ),
+                  SpeakerEventList(
+                    events: widget.categorisedEvents['WORKSHOPS']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -358,6 +252,92 @@ class _ExplorePageState extends State<ExplorePage>
             const SizedBox(height: 72),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SpeakerEventList extends StatelessWidget {
+  const SpeakerEventList({
+    Key? key,
+    required this.events,
+  }) : super(key: key);
+
+  final List<Event> events;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 394,
+      child: ListView.builder(
+        clipBehavior: Clip.none,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) => SpeakerEventCard(
+          event: events[index],
+        ),
+        itemCount: events.length,
+      ),
+    );
+  }
+}
+
+class LowPriorityEventsList extends StatelessWidget {
+  const LowPriorityEventsList({
+    Key? key,
+    required this.events,
+  }) : super(key: key);
+
+  final List<Event> events;
+
+  @override
+  Widget build(BuildContext context) {
+    final partedList = partition(events, 3).toList();
+    return SizedBox(
+      height: 330,
+      child: ListView.separated(
+        clipBehavior: Clip.none,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index1) {
+          return Column(
+            children: List.generate(
+              partedList[index1].length,
+              (index2) => Column(
+                children: [
+                  LowPriorityEventItem(
+                    event: partedList[index1][index2],
+                  ),
+                  const SizedBox(height: 16)
+                ],
+              ),
+            ),
+          );
+        },
+        separatorBuilder: (context, index) => const SizedBox(width: 24),
+        itemCount: partedList.length,
+      ),
+    );
+  }
+}
+
+class HighPriorityEventList extends StatelessWidget {
+  const HighPriorityEventList({
+    Key? key,
+    required this.events,
+  }) : super(key: key);
+
+  final List<Event> events;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 466,
+      child: ListView.builder(
+        clipBehavior: Clip.none,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) => HighPriorityEventCard(
+          event: events[index],
+        ),
+        itemCount: events.length,
       ),
     );
   }

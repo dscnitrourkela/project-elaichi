@@ -47,10 +47,8 @@ class SessionsCard extends StatelessWidget {
           const SizedBox(height: 16),
           const DurationDates(
             text: 'Jan 03 | 12:00 Noon',
-            mainAxisAlignment: MainAxisAlignment.start,
           ),
           YellowTextButton(
-            mainAxisAlignment: MainAxisAlignment.start,
             onPressed: () {},
             text: 'Mark In Calender',
           )
