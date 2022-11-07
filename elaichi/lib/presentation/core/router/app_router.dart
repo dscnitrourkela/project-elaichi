@@ -1,9 +1,9 @@
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/presentation/core/router/app_page_route.dart';
+import 'package:elaichi/presentation/home/fest/all_events/all_events_page.dart';
 import 'package:elaichi/presentation/home/fest/event_details_page.dart';
 import 'package:elaichi/presentation/home/fest/explore_page.dart';
-import 'package:elaichi/presentation/home/fest/widgets/all_events_page.dart';
 import 'package:elaichi/presentation/home/home_page.dart';
 import 'package:elaichi/presentation/sign_in/sign_in_page.dart';
 import 'package:elaichi/presentation/splash/splash_page.dart';

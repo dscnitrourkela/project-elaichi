@@ -24,7 +24,11 @@ class WebMailLoginCubit extends Cubit<WebMailLoginState> {
         password: password,
       );
 
-      await _userRepository.getOrCreateUser();
+      await _userRepository.getOrCreateUser(rollNumber: rollNumber);
+      await _userRepository.saveWebMailDetails(
+        rollNumber: rollNumber,
+        password: password,
+      );
       emit(const WebMailLoginState.success());
     } catch (e) {
       emit(WebMailLoginState.error(e.toString()));

@@ -37,14 +37,15 @@ class _HomePageState extends State<HomePage> {
           initial: () => const FestPage(),
           loading: () => const Center(child: CircularProgressIndicator()),
           isVerified: () => Scaffold(
-            body: Center(
-              child: const [
+            body: IndexedStack(
+              index: pageIndex,
+              children: const [
                 FeedPage(),
                 BrowsePage(),
                 FestPage(),
                 WebMailPage(),
                 ProfilePage(),
-              ][pageIndex],
+              ],
             ),
             bottomNavigationBar: BottomNavigationBar(
               showSelectedLabels: false,

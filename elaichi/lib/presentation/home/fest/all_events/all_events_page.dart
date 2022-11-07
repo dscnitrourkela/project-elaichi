@@ -4,7 +4,7 @@ import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/event_type_map.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/fest/cubit/all_events_cubit.dart';
+import 'package:elaichi/presentation/home/fest/all_events/cubit/all_events_cubit.dart';
 import 'package:elaichi/presentation/home/fest/widgets/low_priority_event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,10 +22,38 @@ class AllEventsPage extends StatefulWidget {
 class _AllEventsPageState extends State<AllEventsPage> {
   late final AllEventsCubit _cubit;
 
+  late final TextEditingController _controller;
+
+  late List<Event> _allEvents;
+
+  late int _length;
+
   @override
   void initState() {
+    _controller = TextEditingController();
+    _controller.clear();
+    _length = _controller.text.length;
+    final events = widget.events['categorisedEvents']!['ALL']!;
+    _controller.addListener(() {
+      _length = _controller.text.length;
+
+      _allEvents = events
+          .where(
+            (element) => element.name
+                .toLowerCase()
+                .contains(_controller.text.toLowerCase()),
+          )
+          .toList();
+      setState(() {});
+    });
     _cubit = AllEventsCubit();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -40,10 +68,16 @@ class _AllEventsPageState extends State<AllEventsPage> {
               builder: (context, state) {
                 return state.when(
                   initial: (selectedIndex) {
+                    if (_length > 0) {
+                      _cubit.selectChip(0);
+                    }
                     final categorisedEvents =
                         widget.events['categorisedEvents'];
-                    final list = categorisedEvents![
-                        eventTypeMapping.keys.toList()[selectedIndex]];
+                    final list = _length == 0
+                        ? categorisedEvents![
+                            eventTypeMapping.keys.toList()[selectedIndex]]
+                        : _allEvents;
+
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -62,12 +96,12 @@ class _AllEventsPageState extends State<AllEventsPage> {
                                 ),
                               ),
                               const SizedBox(height: 16),
-                              const SearchBox(),
+                              SearchBox(controller: _controller),
                               const SizedBox(height: 16),
-                              const SizedBox(
+                              SizedBox(
                                 height: 34,
                                 width: 358,
-                                child: Filters(),
+                                child: Filters(controller: _controller),
                               ),
                               const SizedBox(height: 32),
                             ],
@@ -78,7 +112,7 @@ class _AllEventsPageState extends State<AllEventsPage> {
                           height: 1,
                           color: AppColors.white2,
                         ),
-                        const SizedBox(height: 56),
+                        const SizedBox(height: 32),
                         ...List.generate(
                           list!.length,
                           (index) => Padding(
@@ -110,16 +144,14 @@ class _AllEventsPageState extends State<AllEventsPage> {
   }
 }
 
-class Filters extends StatefulWidget {
+class Filters extends StatelessWidget {
   const Filters({
     Key? key,
+    required this.controller,
   }) : super(key: key);
 
-  @override
-  State<Filters> createState() => _FiltersState();
-}
+  final TextEditingController controller;
 
-class _FiltersState extends State<Filters> {
   @override
   Widget build(BuildContext context) {
     final eventTypes = eventTypeMapping.values.toList();
@@ -131,7 +163,10 @@ class _FiltersState extends State<Filters> {
           builder: (context, state) {
             return state.when(
               initial: (selectedIndex) => GestureDetector(
-                onTap: () => context.read<AllEventsCubit>().selectChip(index),
+                onTap: () {
+                  controller.clear();
+                  context.read<AllEventsCubit>().selectChip(index);
+                },
                 child: CustomChip(
                   name: eventTypes[index],
                   enabled: selectedIndex == index ? true : false,
@@ -166,14 +201,11 @@ class CustomChip extends StatelessWidget {
         border: Border.all(color: Colors.white.withOpacity(0.4)),
         color: enabled ? Colors.white : Colors.black,
       ),
-      height: 34,
-      width: 100,
-      child: Center(
-        child: Text(
-          name,
-          style: interTextTheme.bodyText2!
-              .copyWith(color: enabled ? Colors.black : Colors.white),
-        ),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+      child: Text(
+        name,
+        style: interTextTheme.bodyText2!
+            .copyWith(color: enabled ? Colors.black : Colors.white),
       ),
     );
   }
@@ -182,7 +214,10 @@ class CustomChip extends StatelessWidget {
 class SearchBox extends StatelessWidget {
   const SearchBox({
     Key? key,
+    required this.controller,
   }) : super(key: key);
+
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -190,16 +225,22 @@ class SearchBox extends StatelessWidget {
       height: 50,
       width: 358,
       color: AppColors.grey14,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
-      child: Row(
-        children: [
-          SvgPicture.asset(Strings.searchIcon, height: 18, width: 18),
-          const SizedBox(width: 12),
-          Text(
-            'Search for any event',
-            style: interTextTheme.bodyText2!.copyWith(color: AppColors.grey15),
-          )
-        ],
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: TextField(
+        style: interTextTheme.bodyText2!.copyWith(color: Colors.white),
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          fillColor: AppColors.grey15,
+          prefixIcon: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child:
+                  SvgPicture.asset(Strings.searchIcon, height: 18, width: 18)),
+          contentPadding: const EdgeInsets.symmetric(vertical: 16),
+          hintText: 'Search for any event',
+          hintStyle:
+              interTextTheme.bodyText2!.copyWith(color: AppColors.grey15),
+        ),
+        controller: controller,
       ),
     );
   }

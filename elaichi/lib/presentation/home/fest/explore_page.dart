@@ -2,6 +2,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
+import 'package:elaichi/presentation/components/buttons/back_button.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
@@ -67,17 +68,17 @@ class _ExplorePageState extends State<ExplorePage>
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              constraints:
-                  BoxConstraints(minHeight: SizeConfig.screenHeight! * 0.7),
+            SizedBox(
+              height: 640,
               width: SizeConfig.screenWidth,
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
                   HeaderWidget(
                     imageUrl: widget.fest.coverImg ?? Strings.placeholderImage,
-                    leadingWidget: const BackButton(),
+                    leadingWidget: const CustomBackButton(),
                     trailingWidget: ClipRRect(
                       borderRadius: BorderRadius.circular(
                         SizeConfig.safeBlockHorizontal! * 10,
@@ -92,29 +93,27 @@ class _ExplorePageState extends State<ExplorePage>
                     ),
                   ),
                   Positioned(
-                    top: 298,
+                    top: 382,
                     left: 16,
                     right: 16,
                     child: Container(
-                      constraints: const BoxConstraints(minHeight: 208),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 48,
+                            child: Text(
                               widget.fest.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline1!
-                                  .copyWith(
-                                    color: Colors.white,
-                                  ),
+                              style: interTextTheme.headline1,
                             ),
-                            const SizedBox(height: 24),
-                            Text(
+                          ),
+                          const SizedBox(height: 24),
+                          SizedBox(
+                            height: 154,
+                            child: Text(
                               widget.fest.description,
                               style: interTextTheme.bodyText1!.copyWith(
                                 color: AppColors.grey6.withOpacity(0.8),
@@ -122,14 +121,15 @@ class _ExplorePageState extends State<ExplorePage>
                               maxLines: 7,
                               overflow: TextOverflow.ellipsis,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ],
               ),
             ),
+            const SizedBox(height: 16),
             Divider(
               indent: 16,
               endIndent: 16,
@@ -137,14 +137,21 @@ class _ExplorePageState extends State<ExplorePage>
               height: 1,
               color: Colors.white.withOpacity(0.2),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            const SizedBox(height: 24),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 32),
+              height: 28,
+              width: 237,
               child: DurationDates(
+                iconSize: 18,
                 text: duration,
-                fontSize: 20,
+                style: interTextTheme.caption!.copyWith(
+                  height: 1.05,
+                  fontSize: 20,
+                ),
               ),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 80),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
@@ -183,8 +190,10 @@ class _ExplorePageState extends State<ExplorePage>
                         ),
                         child: Text(
                           'View More',
-                          style: interTextTheme.bodyText1!
-                              .copyWith(fontSize: 14, height: 1.21),
+                          style: interTextTheme.bodyText1!.copyWith(
+                              fontSize: 14,
+                              height: 1.21,
+                              decoration: TextDecoration.underline),
                         ),
                       )
                     ],
@@ -194,9 +203,28 @@ class _ExplorePageState extends State<ExplorePage>
                     events: categorisedEvents['FUN']!,
                   ),
                   const SizedBox(height: 80),
-                  Text(
-                    'Exhibitions',
-                    style: interTextTheme.headline2,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Exhibitions',
+                        style: interTextTheme.headline2,
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          AppRouter.allEvents,
+                          arguments: {'events': widget.events},
+                        ),
+                        child: Text(
+                          'View More',
+                          style: interTextTheme.bodyText1!.copyWith(
+                              fontSize: 14,
+                              height: 1.21,
+                              decoration: TextDecoration.underline),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(height: 24),
                   LowPriorityEventsList(
@@ -216,7 +244,7 @@ class _ExplorePageState extends State<ExplorePage>
                     'Workshops',
                     style: interTextTheme.headline2,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
                   SpeakerEventList(
                     events: categorisedEvents['WORKSHOPS']!,
                   ),
@@ -225,7 +253,7 @@ class _ExplorePageState extends State<ExplorePage>
                     'Our Schedule',
                     style: interTextTheme.headline2,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
                   CalenderTabView(
                     tabController: _tabController,
                     calender: calender!,

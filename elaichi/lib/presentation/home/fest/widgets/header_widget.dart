@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
+import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:flutter/material.dart';
 
 class HeaderWidget extends StatelessWidget {
@@ -28,25 +29,19 @@ class HeaderWidget extends StatelessWidget {
       children: [
         CachedNetworkImage(
           imageUrl: imageUrl,
-          height: 430,
+          height: 544,
           fit: BoxFit.fill,
         ),
-        Positioned(top: 64, left: 16, child: leadingWidget),
-        Positioned(
-          top: 64,
-          right: 16,
-          child: trailingWidget,
-        ),
+        Positioned(top: 60, left: 16, child: leadingWidget),
+        Positioned(top: 60, right: 16, child: trailingWidget),
         if (title != null)
           Positioned.fill(
             bottom: 124,
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Text(
-                title!,
-                style: Theme.of(context).textTheme.headline1!.copyWith(
-                      color: Colors.white,
-                    ),
+              child: SizedBox(
+                height: 48,
+                child: Text(title!, style: interTextTheme.headline1),
               ),
             ),
           ),
@@ -55,7 +50,7 @@ class HeaderWidget extends StatelessWidget {
             bottom: 88,
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: bottomSubTitleWidget,
+              child: SizedBox(height: 28, child: bottomSubTitleWidget),
             ),
           ),
         if (buttonTitle != null)

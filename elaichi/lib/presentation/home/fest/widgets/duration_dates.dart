@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +9,7 @@ class DurationDates extends StatelessWidget {
     this.fontSize,
     this.style,
     this.color = Colors.white,
+    this.iconSize = 28,
   }) : super(key: key);
 
   final String text;
@@ -18,6 +17,7 @@ class DurationDates extends StatelessWidget {
   final double? fontSize;
   final Color? color;
   final TextStyle? style;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +27,7 @@ class DurationDates extends StatelessWidget {
         Icon(
           Icons.calendar_month,
           color: color,
+          size: iconSize,
         ),
         const SizedBox(width: 10),
         Text(

@@ -94,7 +94,7 @@ class CalenderItem extends StatelessWidget {
         constraints: const BoxConstraints(minHeight: 67, maxHeight: 109),
         width: 326,
         color: AppColors.grey13,
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -108,11 +108,12 @@ class CalenderItem extends StatelessWidget {
                     color: event.poster != ''
                         ? AppColors.teal
                         : AppColors.yellowButton,
-                    fontSize: 12,
+                    fontSize: 11,
                     letterSpacing: 0.07,
+                    height: 1.18,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 8),
                 SizedBox(
                   width: 200,
                   child: ScrollingText(

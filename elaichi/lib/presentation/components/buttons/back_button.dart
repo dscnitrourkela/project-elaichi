@@ -1,3 +1,4 @@
+import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,8 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 30,
-      width: 75,
+      height: 36,
+      width: 92,
       decoration: BoxDecoration(
         color: AppColors.translucentButton.withOpacity(0.4),
       ),
@@ -22,15 +23,16 @@ class CustomBackButton extends StatelessWidget {
             const Icon(
               Icons.arrow_back,
               color: Colors.white,
-              size: 20,
+              size: 28,
             ),
             const SizedBox(width: 5),
             Text(
               'Back',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: Colors.white),
+              style: interTextTheme.subtitle2!.copyWith(
+                color: Colors.white,
+                fontSize: 15,
+                height: 1.33,
+              ),
             )
           ],
         ),

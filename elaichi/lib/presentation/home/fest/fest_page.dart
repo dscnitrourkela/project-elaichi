@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
+import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/home/feed/widgets/webmail_card.dart';
@@ -12,6 +13,7 @@ import 'package:elaichi/presentation/home/fest/widgets/featured_events.dart';
 import 'package:elaichi/presentation/home/fest/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 class FestPage extends StatefulWidget {
@@ -48,72 +50,77 @@ class _FestPageState extends State<FestPage> {
                 return SingleChildScrollView(
                   child: Column(
                     children: [
-                      CarouselSlider.builder(
-                        itemCount: fests.length,
-                        options: CarouselOptions(
-                          height: 440,
-                          autoPlay: true,
-                          enableInfiniteScroll: false,
-                          autoPlayAnimationDuration: const Duration(seconds: 3),
-                          viewportFraction: 1,
+                      SizedBox(
+                        height: 544,
+                        child: CarouselSlider.builder(
+                          itemCount: fests.length,
+                          options: CarouselOptions(
+                            height: 544,
+                            autoPlay: true,
+                            enableInfiniteScroll: false,
+                            autoPlayAnimationDuration:
+                                const Duration(seconds: 3),
+                            viewportFraction: 1,
+                          ),
+                          itemBuilder: (context, index, realIndex) {
+                            final fest = fests[index];
+                            final format1 = DateFormat('MMM');
+                            final duration =
+                                '${format1.format(fest.startDate!)} ${fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(fest.endDate!)} ${fest.endDate!.day.toString().padLeft(2, '0')} ${fest.endDate!.year}';
+                            return HeaderWidget(
+                              imageUrl:
+                                  fest.coverImg ?? Strings.placeholderImage,
+                              leadingWidget: SvgPicture.asset(
+                                Strings.avenueLogo,
+                                height: 18,
+                                color: Colors.white,
+                              ),
+                              trailingWidget: ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                  SizeConfig.safeBlockHorizontal! * 10,
+                                ),
+                                child: CachedNetworkImage(
+                                  imageUrl: fest.logo,
+                                  fit: BoxFit.fill,
+                                  placeholder: (context, url) =>
+                                      const Icon(Icons.circle),
+                                  height: 34,
+                                  width: 32,
+                                ),
+                              ),
+                              bottomSubTitleWidget: DurationDates(
+                                text: duration,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                style: interTextTheme.caption,
+                              ),
+                              title: fest.name,
+                              buttonTitle: 'Explore More',
+                              onTapped: () async {
+                                final calenderAndCategorisedEvents = await _bloc
+                                    .getCalenderAndCategorisedEvents(fest.id);
+                                // ignore: use_build_context_synchronously
+                                return Navigator.pushNamed(
+                                  context,
+                                  AppRouter.explore,
+                                  arguments: <String, dynamic>{
+                                    'fest': fest,
+                                    'events': calenderAndCategorisedEvents,
+                                  },
+                                );
+                              },
+                            );
+                          },
                         ),
-                        itemBuilder: (context, index, realIndex) {
-                          final fest = fests[index];
-                          final format1 = DateFormat('MMM');
-                          final duration =
-                              '${format1.format(fest.startDate!)} ${fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(fest.endDate!)} ${fest.endDate!.day.toString().padLeft(2, '0')} ${fest.endDate!.year}';
-                          return HeaderWidget(
-                            imageUrl: fest.coverImg ?? Strings.placeholderImage,
-                            leadingWidget: Text(
-                              fest.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .copyWith(color: Colors.white),
-                            ),
-                            trailingWidget: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                SizeConfig.safeBlockHorizontal! * 10,
-                              ),
-                              child: CachedNetworkImage(
-                                imageUrl: fest.logo,
-                                fit: BoxFit.fill,
-                                placeholder: (context, url) =>
-                                    const Icon(Icons.circle),
-                                height: 34,
-                                width: 32,
-                              ),
-                            ),
-                            bottomSubTitleWidget: DurationDates(
-                              text: duration,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                            ),
-                            title: fest.name,
-                            buttonTitle: 'Explore More',
-                            onTapped: () async {
-                              final calenderAndCategorisedEvents = await _bloc
-                                  .getCalenderAndCategorisedEvents(fest.id);
-                              // ignore: use_build_context_synchronously
-                              return Navigator.pushNamed(
-                                context,
-                                AppRouter.explore,
-                                arguments: <String, dynamic>{
-                                  'fest': fest,
-                                  'events': calenderAndCategorisedEvents,
-                                },
-                              );
-                            },
-                          );
-                        },
                       ),
+                      const SizedBox(height: 32),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 17.5,
-                          vertical: 20,
+                          horizontal: 16,
                         ),
                         child: Column(
                           children: [
                             if (!_bloc.isVerified()) const WebMailCard(),
+                            if (!_bloc.isVerified()) const SizedBox(height: 32),
                             const FeaturedEvents(),
                           ],
                         ),

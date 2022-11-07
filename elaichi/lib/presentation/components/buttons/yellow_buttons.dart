@@ -28,10 +28,11 @@ class YellowFlatButton extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
+              style: interTextTheme.subtitle2!.copyWith(
+                fontSize: 15,
+                height: 1.33,
+                color: Colors.black,
+              ),
             ),
           ),
         ),

@@ -60,6 +60,12 @@ class UserRepository {
       await initializeGraphQL();
       await logInToWebMail();
       await getUser();
+      if (rollNumber != null) {
+        await saveWebMailDetails(
+          rollNumber: rollNumber!,
+          password: _localStorageService.password!,
+        );
+      }
     } catch (e) {
       rethrow;
     }
@@ -89,11 +95,11 @@ class UserRepository {
         _localStorageService.rollNumber = user.rollNumber;
       }
     } catch (e) {
-      rethrow;
+      debugPrint(e.toString());
     }
   }
 
-  Future<void> getOrCreateUser() async {
+  Future<void> getOrCreateUser({required String rollNumber}) async {
     try {
       if (user == null) {
         final fbUser = _firebaseAuth.currentUser;
@@ -105,12 +111,13 @@ class UserRepository {
             email: fbUser.email!,
             name: fbUser.displayName!,
             photo: fbUser.photoURL,
-            rollNumber: rollNumber!,
+            rollNumber: rollNumber,
             college: 'National Institute of Technology, Rourkela',
           );
         }
       }
     } catch (e) {
+      debugPrint(e.toString());
       rethrow;
     }
   }
@@ -166,13 +173,6 @@ class UserRepository {
           password: pass,
         );
         zsToken = result;
-
-        if (rollNumber != null) {
-          await saveWebMailDetails(
-            rollNumber: roll,
-            password: pass,
-          );
-        }
       } on Exception catch (e) {
         debugPrint(e.toString());
         rethrow;
