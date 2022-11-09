@@ -22,6 +22,10 @@ class AppColors {
   static const Color cardHeader = Color.fromRGBO(79, 79, 79, 1);
   static const Color cardHeader60 = Color.fromRGBO(79, 79, 79, 0.6);
   static const Color avenueTitle = Color(0xff141414);
+  static const Color festSubTitiles = Color(0xffC39B5A);
+  static const Color captionRed = Color(0xffFF6961);
+  static const Color teal = Color(0xff5AC8FA);
+  static const Color red = Color(0xffFF453A);
 
   // Buttons
   static const Color buttonBorderColor = Color(0xffE0E0E0);
@@ -30,6 +34,7 @@ class AppColors {
   static const Color errorBorderColor = Color.fromRGBO(218, 0, 0, 1);
   static const Color disabledBorderColor = Color(0xffDADADA);
   static const Color focusedBorderColor = Color.fromRGBO(79, 79, 79, 1);
+  static const Color yellowButton = Color(0xffFFD60A);
 
   //icons
   static const Color calendarIcon = Color.fromRGBO(47, 128, 237, 1);
@@ -53,7 +58,27 @@ class AppColors {
   static const Color grey = Color(0xffC4C4C4);
   static const Color grey2 = Color(0xff4F4F4F);
   static const Color grey3 = Color(0xff828282);
+  static const Color grey4 = Color(0xff9A9BA2);
   static const Color grey5 = Color(0xffDDDDDD);
-  
+  static const Color grey6 = Color(0xffEBEBF5);
+  static const Color grey7 = Color(0xff545458);
+  static const Color grey8 = Color(0xffD1D1D6);
+  static const Color grey9 = Color(0xff3C3C43);
+  static const Color grey10 = Color(0xffC7C7CC);
+  static const Color grey11 = Color(0xff8E8E93);
+  static const Color grey12 = Color(0xff38383A);
+  static const Color grey13 = Color(0xff262629);
+  static const Color grey14 = Color(0xff1D1D1D);
+  static const Color grey15 = Color(0xff9F9F9F);
+  static const Color grey16 = Color(0xff636366);
+  static const Color grey17 = Color(0xffF2F2F2);
+
+  static const Color white1 = Color(0xffE6E6E6);
+  static const Color white2 = Color(0xffCDCDCD);
+
+  static const Color black1 = Color(0xff3A3A3C);
+
   static const Color warningRed = Color(0xffEB5757);
+
+  static const Color translucentButton = Color(0xff1C1C1E);
 }

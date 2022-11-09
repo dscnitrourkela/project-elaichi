@@ -2,7 +2,8 @@
 
 /// An abstract class that consists of all the strings used in the app.
 abstract class Strings {
-  static const String kAvenueLogoFileUri = 'assets/images/avenue_logo.png';
+  static const String avenueLogoFileUri = 'assets/images/avenue_logo.png';
+  static const String eventExample = 'assets/images/dt22.png';
 
   static const String kPlantLogoFileUri = 'assets/images/plants.png';
   static const String kGoogleLogoFileUri = 'assets/icons/google_logo.svg';
@@ -14,8 +15,10 @@ abstract class Strings {
   static const String mailInactive = 'assets/icons/mail_inactive.svg';
   static const String homeActive = 'assets/icons/home_active.svg';
   static const String homeInactive = 'assets/icons/home_inactive.svg';
+  static const String searchIcon = 'assets/icons/search_icon.svg';
+  static const String avenueLogo = 'assets/icons/avenue_logo.svg';
 
-  static const String kZimbraCardText =
+  static const String zimbraCardText =
       'Verify your NITR webmail to access \ntime table, mess menu and much more';
   static const String kMmCardTitle =
       'A Noble Breakthrough: NIT Rourkela produces alcohol-based sanitizers';
@@ -26,8 +29,12 @@ abstract class Strings {
   static const String kStoriesthisWeek = '  Stories this week';
   static const String kToday = 'Today';
   static const String kViewCalendar = 'View Calendar';
-  static const String kRegisterNow = 'Register Now';
-  static const String kVerifyNow = 'Verify Now';
+  static const String registerNow = 'Register Now';
+  static const String verifyNow = 'Verify Now';
+  static const String featuredEvents = 'Featured Events';
+
+  static const String placeholderImage =
+      'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png';
 
   static const String mmArticleLink =
       'https://mondaymorning.nitrkl.ac.in/article/';

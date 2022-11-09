@@ -30,7 +30,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).canvasColor,
+      backgroundColor: Colors.white,
       title: Text(
         title,
         style: Theme.of(context)
@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             .headline6!
             .copyWith(fontWeight: FontWeight.w700),
       ),
-      elevation: 0,
+      elevation: 1,
       centerTitle: true,
       leading: (leftButton != null)
           ? IconButton(

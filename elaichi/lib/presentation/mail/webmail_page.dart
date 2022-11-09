@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:elaichi/data/constants/app_env.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
+import 'package:elaichi/presentation/components/buttons/blue_button.dart';
 import 'package:elaichi/presentation/components/buttons/custom_button.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
@@ -37,54 +38,59 @@ class _WebMailPageState extends State<WebMailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) => _cubit,
-        child: BlocConsumer<WebmailCubit, WebmailState>(
-          listener: (context, state) {
-            state.maybeWhen(
-              orElse: () {},
-              error: (error) =>
-                  _toastUtil.showToast(mode: ToastMode.Error, title: error),
-            );
-          },
-          builder: (context, state) {
-            return state.maybeWhen(
-              orElse: () => Center(
-                child: Text(
-                  'Something Went Wrong',
-                  style: Theme.of(context).textTheme.bodyMedium,
+    return SafeArea(
+      child: Scaffold(
+        body: BlocProvider(
+          create: (context) => _cubit,
+          child: BlocConsumer<WebmailCubit, WebmailState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                orElse: () {},
+                error: (error) =>
+                    _toastUtil.showToast(mode: ToastMode.Error, title: error),
+              );
+            },
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => Center(
+                  child: Text(
+                    'Something Went Wrong',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ),
-              ),
-              loading: () => const Center(child: CircularProgressIndicator()),
-              authenticated: () => WebViewStack(controller: controller),
-              unauthenticated: () => Center(
-                child: Column(
-                  children: [
-                    Text(
-                      'Please click the below button to login to your account',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    CustomButton(
-                      text: 'Login',
-                      onTapped: () {
-                        showModalBottomSheet<dynamic>(
-                          isScrollControlled: true,
-                          context: context,
-                          builder: (context) => const WebMailLoginBottomSheet(),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(16),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                authenticated: () => WebViewStack(controller: controller),
+                unauthenticated: () => Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Please click the below button to login to your account',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      const SizedBox(height: 10),
+                      BlueButton(
+                        text: 'Login',
+                        onTapped: () {
+                          showModalBottomSheet<dynamic>(
+                            isScrollControlled: true,
+                            context: context,
+                            builder: (context) =>
+                                const WebMailLoginBottomSheet(),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(16),
+                              ),
                             ),
-                          ),
-                        ).then((dynamic value) => _cubit.getZsAuthToken());
-                      },
-                    ),
-                  ],
+                          ).then((dynamic value) => _cubit.getZsAuthToken());
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

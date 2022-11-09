@@ -1,10 +1,12 @@
-import 'package:dartz/dartz.dart';
+import 'dart:async';
+
 import 'package:elaichi/data/local/local_storage_service.dart';
 import 'package:elaichi/data/remote/api_service.dart';
 import 'package:elaichi/data/remote/graphql/graphql_service.dart';
 import 'package:elaichi/domain/exceptions/auth_failure.dart';
-import 'package:elaichi/domain/models/user_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:elaichi/domain/models/user/user.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 /// Repository which manages user authentication.
@@ -13,47 +15,133 @@ class UserRepository {
   UserRepository({
     required LocalStorageService localStorageService,
     required APIService apiService,
-    required GraphQLService graphQLService,
   })  : _apiService = apiService,
-        _graphQLService = graphQLService,
         _localStorageService = localStorageService,
-        _firebaseAuth = FirebaseAuth.instance,
+        _firebaseAuth = firebase_auth.FirebaseAuth.instance,
         _googleSignIn = GoogleSignIn.standard() {
     setRollNumber();
   }
 
-  final FirebaseAuth _firebaseAuth;
+  final firebase_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
   final LocalStorageService _localStorageService;
   final APIService _apiService;
-  final GraphQLService _graphQLService;
+  final GraphQLService _graphQLService = GraphQLService();
 
   String? rollNumber;
 
   String? zsToken;
 
-  /// Returns the signed in user if any
-  Future<Option<User?>> getSignedInUser() async =>
-      optionOf<User?>(_firebaseAuth.currentUser);
+  firebase_auth.User get firebaseUser => _firebaseAuth.currentUser!;
 
-  /// Handles the sign in process with [FirebaseAuth] and [GoogleSignIn].
+  /// Handles the sign in process with [firebase_auth.FirebaseAuth] and [GoogleSignIn].
   Future<void> signInWithGoogle() async {
     try {
       final googleUser = await _googleSignIn.signIn();
 
       final googleAuthentication = await googleUser!.authentication;
 
-      final authCrendential = GoogleAuthProvider.credential(
+      final authCrendential = firebase_auth.GoogleAuthProvider.credential(
         accessToken: googleAuthentication.accessToken,
         idToken: googleAuthentication.idToken,
       );
-      await _firebaseAuth.signInWithCredential(authCrendential);
-      Splash.instance().user = _firebaseAuth.currentUser;
-    } on FirebaseException catch (e) {
+      final userCredentials =
+          await _firebaseAuth.signInWithCredential(authCrendential);
+
+      await initializeGraphQL(await userCredentials.user!.getIdToken(true));
+    } on firebase_auth.FirebaseException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
-    } catch (_) {
+    } catch (e) {
       throw const LogInWithGoogleFailure();
     }
+  }
+
+  Future<void> googleAuthenticated(String token) async {
+    try {
+      await initializeGraphQL(token);
+      await logInToWebMail();
+      await getUser();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> initializeGraphQL(String token) async {
+    try {
+      firebaseToken = token;
+
+      await _graphQLService.init(firebaseToken);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> getUser() async {
+    try {
+      final user =
+          await _graphQLService.getUser(_firebaseAuth.currentUser!.uid);
+
+      _localStorageService.currentUser = user;
+
+      if (user.rollNumber != null) {
+        _localStorageService.rollNumber = user.rollNumber;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> getOrCreateUser({required String rollNumber}) async {
+    try {
+      if (user == null) {
+        final fbUser = _firebaseAuth.currentUser;
+        await getUser();
+
+        if (user == null) {
+          await createUser(
+            uid: fbUser!.uid,
+            email: fbUser.email!,
+            name: fbUser.displayName!,
+            photo: fbUser.photoURL,
+            rollNumber: rollNumber,
+            college: 'National Institute of Technology, Rourkela',
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<void> createUser({
+    required String uid,
+    required String email,
+    required String name,
+    required String rollNumber,
+    required String college,
+    String? photo,
+  }) async {
+    try {
+      final user = await _graphQLService.createUser(
+        uid: uid,
+        email: email,
+        name: name,
+        photo: photo,
+        rollNumber: rollNumber,
+        college: college,
+      );
+
+      _localStorageService.currentUser = user;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  User? get user => _localStorageService.currentUser;
+
+  Stream<firebase_auth.User?> get firebaseAuthStream {
+    return _firebaseAuth.idTokenChanges();
   }
 
   Future<void> saveWebMailDetails({
@@ -77,7 +165,8 @@ class UserRepository {
           password: pass,
         );
         zsToken = result;
-      } on Exception catch (_) {
+      } on Exception catch (e) {
+        debugPrint(e.toString());
         rethrow;
       }
     }
@@ -86,6 +175,10 @@ class UserRepository {
   void setRollNumber() {
     rollNumber = _localStorageService.rollNumber;
   }
+
+  set firebaseToken(String token) => _localStorageService.firebaseToken = token;
+
+  String get firebaseToken => _localStorageService.firebaseToken;
 
   void deleteWebMailDetails() {
     zsToken = null;

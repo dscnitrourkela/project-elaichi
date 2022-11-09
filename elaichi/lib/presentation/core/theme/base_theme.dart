@@ -5,9 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 /// Base text theme for the app.
 final TextTheme textTheme = TextTheme(
   headline1: GoogleFonts.inter(
-    fontSize: 93,
-    fontWeight: FontWeight.w300,
-    letterSpacing: -1.5,
+    fontSize: 40,
+    fontWeight: FontWeight.w900,
   ),
   headline2: GoogleFonts.inter(
     fontSize: 58,
@@ -38,9 +37,9 @@ final TextTheme textTheme = TextTheme(
     letterSpacing: 0.15,
   ),
   subtitle2: GoogleFonts.inter(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-    letterSpacing: 0.1,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.2,
   ),
   bodyText1: GoogleFonts.inter(
     fontSize: 16,
@@ -90,9 +89,9 @@ abstract class AppTheme {
     primarySwatch: Colors.blueGrey,
     primaryColor: const Color(0xff333333),
     primaryColorLight: const Color(0xff333333),
-    canvasColor: const Color(0xffffffff),
+    canvasColor: AppColors.lightScaffoldBackground,
     shadowColor: const Color(0xffe0e0e0),
-    scaffoldBackgroundColor: const Color(0xffffffff),
+    scaffoldBackgroundColor: AppColors.lightScaffoldBackground,
     cardColor: const Color(0xfff2f2f2),
     focusColor: const Color(0xff333333),
     splashColor: const Color(0xffbdbdbd),
@@ -103,3 +102,56 @@ abstract class AppTheme {
     toggleableActiveColor: const Color(0xff333333),
   );
 }
+
+TextTheme interTextTheme = TextTheme(
+  headline1: GoogleFonts.inter(
+    fontSize: 40,
+    fontWeight: FontWeight.w900,
+    height: 1.21,
+    color: Colors.white,
+  ),
+  headline2: GoogleFonts.inter(
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+    height: 1.21,
+    letterSpacing: -0.41,
+    color: Colors.white,
+  ),
+  subtitle1: GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.2,
+    color: Colors.white,
+  ),
+  subtitle2: GoogleFonts.inter(
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.5,
+    height: 1.21,
+    color: Colors.white,
+  ),
+  bodyText1: GoogleFonts.inter(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -0.41,
+    height: 1.3,
+    color: Colors.white,
+  ),
+  bodyText2: GoogleFonts.inter(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+    height: 1.28,
+  ),
+  caption: GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.32,
+    color: Colors.white,
+  ),
+  overline: GoogleFonts.inter(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -0.24,
+    color: Colors.white,
+  ),
+);

@@ -27,11 +27,11 @@ mixin _$WebmailState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
-    TResult Function(String error)? error,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,11 +55,11 @@ mixin _$WebmailState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_UnAuthenticated value)? unauthenticated,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Authenticated value)? authenticated,
+    TResult? Function(_UnAuthenticated value)? unauthenticated,
+    TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,16 +78,18 @@ mixin _$WebmailState {
 abstract class $WebmailStateCopyWith<$Res> {
   factory $WebmailStateCopyWith(
           WebmailState value, $Res Function(WebmailState) then) =
-      _$WebmailStateCopyWithImpl<$Res>;
+      _$WebmailStateCopyWithImpl<$Res, WebmailState>;
 }
 
 /// @nodoc
-class _$WebmailStateCopyWithImpl<$Res> implements $WebmailStateCopyWith<$Res> {
+class _$WebmailStateCopyWithImpl<$Res, $Val extends WebmailState>
+    implements $WebmailStateCopyWith<$Res> {
   _$WebmailStateCopyWithImpl(this._value, this._then);
 
-  final WebmailState _value;
   // ignore: unused_field
-  final $Res Function(WebmailState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -98,13 +100,11 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$WebmailStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$WebmailStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
-
-  @override
-  _$_Initial get _value => super._value as _$_Initial;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -141,11 +141,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
-    TResult Function(String error)? error,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -181,11 +181,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_UnAuthenticated value)? unauthenticated,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Authenticated value)? authenticated,
+    TResult? Function(_UnAuthenticated value)? unauthenticated,
+    TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -219,13 +219,11 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$WebmailStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$WebmailStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, (v) => _then(v as _$_Loading));
-
-  @override
-  _$_Loading get _value => super._value as _$_Loading;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -262,11 +260,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
-    TResult Function(String error)? error,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -302,11 +300,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_UnAuthenticated value)? unauthenticated,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Authenticated value)? authenticated,
+    TResult? Function(_UnAuthenticated value)? unauthenticated,
+    TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -341,14 +339,11 @@ abstract class _$$_AuthenticatedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AuthenticatedCopyWithImpl<$Res>
-    extends _$WebmailStateCopyWithImpl<$Res>
+    extends _$WebmailStateCopyWithImpl<$Res, _$_Authenticated>
     implements _$$_AuthenticatedCopyWith<$Res> {
   __$$_AuthenticatedCopyWithImpl(
       _$_Authenticated _value, $Res Function(_$_Authenticated) _then)
-      : super(_value, (v) => _then(v as _$_Authenticated));
-
-  @override
-  _$_Authenticated get _value => super._value as _$_Authenticated;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -385,11 +380,11 @@ class _$_Authenticated implements _Authenticated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
-    TResult Function(String error)? error,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function(String error)? error,
   }) {
     return authenticated?.call();
   }
@@ -425,11 +420,11 @@ class _$_Authenticated implements _Authenticated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_UnAuthenticated value)? unauthenticated,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Authenticated value)? authenticated,
+    TResult? Function(_UnAuthenticated value)? unauthenticated,
+    TResult? Function(_Error value)? error,
   }) {
     return authenticated?.call(this);
   }
@@ -464,14 +459,11 @@ abstract class _$$_UnAuthenticatedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_UnAuthenticatedCopyWithImpl<$Res>
-    extends _$WebmailStateCopyWithImpl<$Res>
+    extends _$WebmailStateCopyWithImpl<$Res, _$_UnAuthenticated>
     implements _$$_UnAuthenticatedCopyWith<$Res> {
   __$$_UnAuthenticatedCopyWithImpl(
       _$_UnAuthenticated _value, $Res Function(_$_UnAuthenticated) _then)
-      : super(_value, (v) => _then(v as _$_UnAuthenticated));
-
-  @override
-  _$_UnAuthenticated get _value => super._value as _$_UnAuthenticated;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -508,11 +500,11 @@ class _$_UnAuthenticated implements _UnAuthenticated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
-    TResult Function(String error)? error,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function(String error)? error,
   }) {
     return unauthenticated?.call();
   }
@@ -548,11 +540,11 @@ class _$_UnAuthenticated implements _UnAuthenticated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_UnAuthenticated value)? unauthenticated,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Authenticated value)? authenticated,
+    TResult? Function(_UnAuthenticated value)? unauthenticated,
+    TResult? Function(_Error value)? error,
   }) {
     return unauthenticated?.call(this);
   }
@@ -582,24 +574,24 @@ abstract class _UnAuthenticated implements WebmailState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res> extends _$WebmailStateCopyWithImpl<$Res>
+class __$$_ErrorCopyWithImpl<$Res>
+    extends _$WebmailStateCopyWithImpl<$Res, _$_Error>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
-      : super(_value, (v) => _then(v as _$_Error));
+      : super(_value, _then);
 
-  @override
-  _$_Error get _value => super._value as _$_Error;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$_Error(
-      error == freezed
+      null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
@@ -625,15 +617,15 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
@@ -652,11 +644,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? authenticated,
-    TResult Function()? unauthenticated,
-    TResult Function(String error)? error,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -692,11 +684,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_UnAuthenticated value)? unauthenticated,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Authenticated value)? authenticated,
+    TResult? Function(_UnAuthenticated value)? unauthenticated,
+    TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
   }

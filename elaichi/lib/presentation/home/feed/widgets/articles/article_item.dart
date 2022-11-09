@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/core/utils/third_party_services.dart';
 import 'package:elaichi/presentation/home/feed/bloc/feed_bloc.dart';
@@ -23,10 +22,11 @@ class MMArticleCard extends StatelessWidget {
       bloc: context.read<FeedBloc>(),
       builder: (context, state) {
         return Container(
-          margin: EdgeInsets.only(
-            right: SizeConfig.safeBlockHorizontal! * 4,
+          margin: const EdgeInsets.only(
+            right: 12,
           ),
-          width: SizeConfig.screenWidth! * 0.7,
+          width: 240,
+          height: 180,
           child: state.maybeWhen(
             orElse: () {
               return Shimmer.fromColors(
@@ -71,10 +71,10 @@ class MMArticleCard extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: SizeConfig.safeBlockVertical! * 13,
-                        left: SizeConfig.safeBlockHorizontal! * 4,
+                        top: 90,
+                        left: 20,
                         child: SizedBox(
-                          width: SizeConfig.safeBlockHorizontal! * 50,
+                          width: 200,
                           child: Text(
                             data[index].title,
                             maxLines: 2,

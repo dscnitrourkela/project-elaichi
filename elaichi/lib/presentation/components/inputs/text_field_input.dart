@@ -60,10 +60,10 @@ class TextFieldInput extends StatelessWidget {
             Text(
               title!,
               style: titleStyle ??
-                  Theme.of(context)
-                      .textTheme
-                      .subtitle2!
-                      .copyWith(color: Theme.of(context).hintColor),
+                  Theme.of(context).textTheme.button!.copyWith(
+                        color: Theme.of(context).hintColor,
+                        letterSpacing: 0.1,
+                      ),
             ),
           const SizedBox(
             height: 8,

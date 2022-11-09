@@ -1,7 +1,8 @@
-import 'package:bloc/bloc.dart';
+import 'package:elaichi/data/constants/global_enums.dart';
 import 'package:elaichi/domain/models/mm_article/mm_article.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'feed_bloc.freezed.dart';
@@ -25,17 +26,6 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
               (exception) => _articles = [],
               (articles) => _articles = articles,
             );
-            emit(
-              FeedState.initial(
-                webMailState: status
-                    ? WebMailState.authenticated
-                    : WebMailState.unAuthenticated,
-                articles: _articles,
-              ),
-            );
-          },
-          webMailLogIn: () {
-            final status = getZimraLoginStatus();
             emit(
               FeedState.initial(
                 webMailState: status
