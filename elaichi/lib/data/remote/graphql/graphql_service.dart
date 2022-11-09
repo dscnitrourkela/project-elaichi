@@ -4,6 +4,7 @@ import 'package:elaichi/data/constants/app_env.dart';
 import 'package:elaichi/data/remote/graphql/mutations.dart';
 import 'package:elaichi/data/remote/graphql/queries.dart';
 import 'package:elaichi/domain/models/event/event.dart';
+import 'package:elaichi/domain/models/event_registration/event_registration.dart';
 import 'package:elaichi/domain/models/mm_article/mm_article.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/domain/models/user/user.dart';
@@ -107,7 +108,7 @@ class GraphQLService {
         variables: {'orgId': orgID},
       );
 
-      final events = (result.data!['getEvents'] as List<dynamic>)
+      final events = (result.data!['event'] as List<dynamic>)
           .map((e) => Event.fromJson(e as Map<String, dynamic>))
           .toList();
 
@@ -121,7 +122,7 @@ class GraphQLService {
     try {
       final result = await query(queryString: Queries.getOrgs);
 
-      final orgsList = (result.data!['getOrgs'] as List<dynamic>)
+      final orgsList = (result.data!['org'] as List<dynamic>)
           .map((e) => Org.fromJson(e as Map<String, dynamic>))
           .toList();
       return orgsList;
@@ -135,10 +136,11 @@ class GraphQLService {
       final result =
           await query(queryString: Queries.getUser, variables: {'uid': uid});
 
-      final user =
-          User.fromJson(result.data!['getUser'] as Map<String, dynamic>);
+      final userList = (result.data!['user'] as List<dynamic>)
+          .map((e) => User.fromJson(e as Map<String, dynamic>))
+          .toList();
 
-      return user;
+      return userList[0];
     } catch (e) {
       rethrow;
     }
@@ -171,6 +173,49 @@ class GraphQLService {
       return user;
     } catch (e) {
       debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<EventRegistration> createEventRegistration({
+    required String eventID,
+    required String userID,
+  }) async {
+    try {
+      final result = await mutation(
+        mutationString: Mutations.createEventRegistration,
+        variables: {
+          'userId': userID,
+          'eventId': eventID,
+        },
+      );
+
+      final eventRegistration = EventRegistration.fromJson(
+        result.data!['createEventRegistration'] as Map<String, dynamic>,
+      );
+      return eventRegistration;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<EventRegistration>> getEventRegistration({
+    required String orgID,
+    required String userID,
+  }) async {
+    try {
+      final result = await query(
+        queryString: Queries.eventRegistrations,
+        variables: {'userId': userID, 'orgID': orgID},
+      );
+
+      final eventRegistrations =
+          (result.data!['eventRegistration'] as List<dynamic>)
+              .map((e) => EventRegistration.fromJson(e as Map<String, dynamic>))
+              .toList();
+
+      return eventRegistrations;
+    } catch (e) {
       rethrow;
     }
   }

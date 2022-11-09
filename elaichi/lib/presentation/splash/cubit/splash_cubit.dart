@@ -28,11 +28,11 @@ class SplashCubit extends Cubit<SplashState> {
     try {
       _userSubscription =
           _userRepository.firebaseAuthStream.listen((firebaseUser) async {
-        print(count++);
         if (firebaseUser == null) {
           emit(const SplashState.unauthenticated());
         } else {
-          await _userRepository.googleAuthenticated();
+          final token = await firebaseUser.getIdToken();
+          await _userRepository.googleAuthenticated(token);
           emit(const SplashState.googleAuthenticated());
         }
       });

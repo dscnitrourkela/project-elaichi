@@ -2,6 +2,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
+import 'package:elaichi/domain/repositories/events_repository.dart';
+import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/components/buttons/back_button.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
@@ -9,14 +11,17 @@ import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/fest/widgets/duration_dates.dart';
-import 'package:elaichi/presentation/home/fest/widgets/fest_calender.dart';
+import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
+import 'package:elaichi/presentation/home/fest/explore/cubit/registration_cubit.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/fest_calender.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/high_priority_event_card.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/low_priority_event_card.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/registration.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/speaker_event_card.dart';
 import 'package:elaichi/presentation/home/fest/widgets/header_widget.dart';
-import 'package:elaichi/presentation/home/fest/widgets/high_priority_event_card.dart';
-import 'package:elaichi/presentation/home/fest/widgets/low_priority_event_card.dart';
-import 'package:elaichi/presentation/home/fest/widgets/speaker_event_card.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiver/iterables.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -37,6 +42,7 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
+  late final RegistrationCubit _cubit;
 
   int currentEventIndex = 1;
   int currentSpeakerIndex = 1;
@@ -44,6 +50,10 @@ class _ExplorePageState extends State<ExplorePage>
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
+    _cubit = RegistrationCubit(
+      eventRepository: context.read<EventRepository>(),
+      userRepository: context.read<UserRepository>(),
+    );
     super.initState();
   }
 
@@ -56,14 +66,22 @@ class _ExplorePageState extends State<ExplorePage>
         ),
       );
     }
-    final format1 = DateFormat('MMM');
-    final duration =
-        '${format1.format(widget.fest.startDate!)} ${widget.fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(widget.fest.endDate!)} ${widget.fest.endDate!.day.toString().padLeft(2, '0')} ${widget.fest.endDate!.year}';
+    final duration = context
+        .read<FestBloc>()
+        .durationString(widget.fest.startDate, widget.fest.endDate);
     final categorisedEvents = widget.events['categorisedEvents'];
     final calender = widget.events['calender'];
 
     return Scaffold(
-      bottomNavigationBar: const RegisterBottomBar(),
+      bottomNavigationBar: !context.read<FestBloc>().isVerified()
+          ? RegisterBottomBar(
+              child: YellowFlatButton(
+                text: 'Register Now!',
+                onTapped: () =>
+                    Navigator.pushNamed(context, AppRouter.registration),
+              ),
+            )
+          : null,
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
@@ -71,7 +89,7 @@ class _ExplorePageState extends State<ExplorePage>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 640,
+              height: 620,
               width: SizeConfig.screenWidth,
               child: Stack(
                 clipBehavior: Clip.none,
@@ -138,19 +156,20 @@ class _ExplorePageState extends State<ExplorePage>
               color: Colors.white.withOpacity(0.2),
             ),
             const SizedBox(height: 24),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 32),
-              height: 28,
-              width: 237,
-              child: DurationDates(
-                iconSize: 18,
-                text: duration,
-                style: interTextTheme.caption!.copyWith(
-                  height: 1.05,
-                  fontSize: 20,
+            if (duration != '')
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 32),
+                height: 28,
+                width: 237,
+                child: DurationDates(
+                  iconSize: 18,
+                  text: duration,
+                  style: interTextTheme.caption!.copyWith(
+                    height: 1.05,
+                    fontSize: 20,
+                  ),
                 ),
               ),
-            ),
             const SizedBox(height: 80),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -191,9 +210,10 @@ class _ExplorePageState extends State<ExplorePage>
                         child: Text(
                           'View More',
                           style: interTextTheme.bodyText1!.copyWith(
-                              fontSize: 14,
-                              height: 1.21,
-                              decoration: TextDecoration.underline),
+                            fontSize: 14,
+                            height: 1.21,
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
                       )
                     ],
@@ -219,9 +239,10 @@ class _ExplorePageState extends State<ExplorePage>
                         child: Text(
                           'View More',
                           style: interTextTheme.bodyText1!.copyWith(
-                              fontSize: 14,
-                              height: 1.21,
-                              decoration: TextDecoration.underline),
+                            fontSize: 14,
+                            height: 1.21,
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
                       )
                     ],
@@ -238,15 +259,6 @@ class _ExplorePageState extends State<ExplorePage>
                   const SizedBox(height: 24),
                   SpeakerEventList(
                     events: categorisedEvents['GUEST-LECTURES ']!,
-                  ),
-                  const SizedBox(height: 80),
-                  Text(
-                    'Workshops',
-                    style: interTextTheme.headline2,
-                  ),
-                  const SizedBox(height: 24),
-                  SpeakerEventList(
-                    events: categorisedEvents['WORKSHOPS']!,
                   ),
                   const SizedBox(height: 80),
                   Text(
@@ -269,31 +281,6 @@ class _ExplorePageState extends State<ExplorePage>
   }
 }
 
-class RegisterBottomBar extends StatelessWidget {
-  const RegisterBottomBar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 95,
-      child: ColoredBox(
-        color: AppColors.translucentButton,
-        child: Column(
-          children: [
-            const Divider(height: 1, thickness: 1, color: AppColors.grey7),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 13, 16, 20),
-              child: YellowFlatButton(text: 'Register Now!', onTapped: () {}),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class SpeakerEventList extends StatelessWidget {
   const SpeakerEventList({
     Key? key,
@@ -305,7 +292,7 @@ class SpeakerEventList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 394,
+      height: 358,
       child: ListView.builder(
         clipBehavior: Clip.none,
         scrollDirection: Axis.horizontal,

@@ -1,20 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:elaichi/domain/repositories/events_repository.dart';
-import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/home/feed/widgets/webmail_card.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
-import 'package:elaichi/presentation/home/fest/widgets/duration_dates.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.dart';
 import 'package:elaichi/presentation/home/fest/widgets/featured_events.dart';
 import 'package:elaichi/presentation/home/fest/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 
 class FestPage extends StatefulWidget {
   const FestPage({Key? key}) : super(key: key);
@@ -64,9 +61,10 @@ class _FestPageState extends State<FestPage> {
                           ),
                           itemBuilder: (context, index, realIndex) {
                             final fest = fests[index];
-                            final format1 = DateFormat('MMM');
-                            final duration =
-                                '${format1.format(fest.startDate!)} ${fest.startDate!.day.toString().padLeft(2, '0')} - ${format1.format(fest.endDate!)} ${fest.endDate!.day.toString().padLeft(2, '0')} ${fest.endDate!.year}';
+                            final duration = _bloc.durationString(
+                              fest.startDate,
+                              fest.endDate,
+                            );
                             return HeaderWidget(
                               imageUrl:
                                   fest.coverImg ?? Strings.placeholderImage,
@@ -88,11 +86,14 @@ class _FestPageState extends State<FestPage> {
                                   width: 32,
                                 ),
                               ),
-                              bottomSubTitleWidget: DurationDates(
-                                text: duration,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                style: interTextTheme.caption,
-                              ),
+                              bottomSubTitleWidget: duration != null
+                                  ? DurationDates(
+                                      text: duration,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      style: interTextTheme.caption,
+                                    )
+                                  : null,
                               title: fest.name,
                               buttonTitle: 'Explore More',
                               onTapped: () async {

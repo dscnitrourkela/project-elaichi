@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
-import 'package:elaichi/presentation/home/fest/widgets/scrolling_text.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/scrolling_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -33,7 +33,6 @@ class LowPriorityEventItem extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   height: 76,

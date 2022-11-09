@@ -1,4 +1,5 @@
 import 'package:elaichi/domain/repositories/user_repository.dart';
+import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,6 +18,9 @@ class HomeCubit extends Cubit<HomeState> {
       emit(const HomeState.initial());
     }
   }
+
+  String get userImage =>
+      _userRepository.firebaseUser.photoURL ?? Strings.placeholderImage;
 
   final UserRepository _userRepository;
 }

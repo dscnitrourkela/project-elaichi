@@ -26,4 +26,14 @@ class Mutations {
       }
     }
 ''';
+
+  static const createEventRegistration = r'''
+    mutation CreateEventRegistration($userId: ID!, $eventId: ID!) {
+      createEventRegistration(eventRegistration: {userID: $userId, eventID: $eventId}) {
+        id
+        userID
+        eventID
+      }
+    }
+  ''';
 }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:math' as math;
 
+import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -48,7 +49,7 @@ class ToastUtil {
         second: context,
       ),
     );
-    _textTheme = Theme.of(_context).textTheme;
+    _textTheme = interTextTheme;
     _updateContext();
   }
 

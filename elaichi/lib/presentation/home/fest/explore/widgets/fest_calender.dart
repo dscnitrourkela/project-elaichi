@@ -6,8 +6,7 @@ import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
-import 'package:elaichi/presentation/home/fest/widgets/scrolling_text.dart';
-import 'package:elaichi/presentation/home/fest/widgets/speaker_widget.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/scrolling_text.dart';
 import 'package:flutter/material.dart';
 
 class CalenderTabView extends StatelessWidget {
@@ -56,13 +55,16 @@ class CalenderTabView extends StatelessWidget {
               calender.length,
               (index) {
                 final events = calender.values.toList()[index];
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: events.length,
-                  itemBuilder: (context, index) {
-                    final event = events[index];
-                    return CalenderItem(event: event);
-                  },
+                return Scrollbar(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: events.length,
+                    itemBuilder: (context, index) {
+                      final event = events[index];
+
+                      return CalenderItem(event: event);
+                    },
+                  ),
                 );
               },
             ),

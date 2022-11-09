@@ -7,6 +7,7 @@ import 'package:elaichi/presentation/core/router/navigation_service.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
+import 'package:elaichi/presentation/home/fest/explore/cubit/registration_cubit.dart';
 import 'package:elaichi/presentation/splash/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,8 +57,15 @@ class ElaichiApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => FestBloc(
-                eventRepository: context.read<EventRepository>(),
-                userRepository: context.read<UserRepository>()),
+              eventRepository: context.read<EventRepository>(),
+              userRepository: context.read<UserRepository>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => RegistrationCubit(
+              eventRepository: context.read<EventRepository>(),
+              userRepository: context.read<UserRepository>(),
+            ),
           )
         ],
         child: const ElaichiApp(),

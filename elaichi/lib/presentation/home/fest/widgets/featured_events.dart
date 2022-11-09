@@ -1,7 +1,7 @@
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/fest/widgets/duration_dates.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedEvents extends StatelessWidget {

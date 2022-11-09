@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:elaichi/data/constants/app_env.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
+import 'package:elaichi/presentation/components/buttons/blue_button.dart';
 import 'package:elaichi/presentation/components/buttons/custom_button.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
@@ -61,12 +62,14 @@ class _WebMailPageState extends State<WebMailPage> {
                 authenticated: () => WebViewStack(controller: controller),
                 unauthenticated: () => Center(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Please click the below button to login to your account',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      CustomButton(
+                      const SizedBox(height: 10),
+                      BlueButton(
                         text: 'Login',
                         onTapped: () {
                           showModalBottomSheet<dynamic>(

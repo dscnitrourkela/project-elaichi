@@ -18,8 +18,8 @@ class Queries {
 ''';
 
   static const getOrgs = '''
-  query GetOrgs {
-    getOrgs {
+  query Org {
+    org {
       id
       name
       description
@@ -40,8 +40,8 @@ class Queries {
 ''';
 
   static const getUser = r'''
-    query GetUser($uid: ID) {
-      getUser(uid: $uid) {
+    query User($uid: ID) {
+      user(uid: $uid) {
         id
         email
         uid
@@ -54,8 +54,8 @@ class Queries {
 ''';
 
   static const getEvents = r'''
-    query GetEvents($orgId: ID) {
-      getEvents(orgID: $orgId) {
+    query Events($orgId: ID) {
+      event(orgID: $orgId) {
         id
         name
         description
@@ -73,5 +73,14 @@ class Queries {
         pocID
         orgID
       }
-    } ''';
+    }
+    ''';
+
+  static const eventRegistrations = r'''
+    query EventRegistration($orgId: ID, $userId: ID) {
+      eventRegistration(orgID: $orgId, userID: $userId) {
+        eventID
+      }
+    }
+  ''';
 }

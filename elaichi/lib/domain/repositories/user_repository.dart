@@ -45,9 +45,10 @@ class UserRepository {
         accessToken: googleAuthentication.accessToken,
         idToken: googleAuthentication.idToken,
       );
-      await _firebaseAuth.signInWithCredential(authCrendential);
+      final userCredentials =
+          await _firebaseAuth.signInWithCredential(authCrendential);
 
-      await initializeGraphQL();
+      await initializeGraphQL(await userCredentials.user!.getIdToken(true));
     } on firebase_auth.FirebaseException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
     } catch (e) {
@@ -55,29 +56,21 @@ class UserRepository {
     }
   }
 
-  Future<void> googleAuthenticated() async {
+  Future<void> googleAuthenticated(String token) async {
     try {
-      await initializeGraphQL();
+      await initializeGraphQL(token);
       await logInToWebMail();
       await getUser();
-      if (rollNumber != null) {
-        await saveWebMailDetails(
-          rollNumber: rollNumber!,
-          password: _localStorageService.password!,
-        );
-      }
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<void> initializeGraphQL() async {
+  Future<void> initializeGraphQL(String token) async {
     try {
-      final token = await _firebaseAuth.currentUser!.getIdToken(true);
-
       firebaseToken = token;
 
-      await _graphQLService.init(token);
+      await _graphQLService.init(firebaseToken);
     } catch (e) {
       rethrow;
     }
@@ -90,8 +83,7 @@ class UserRepository {
 
       _localStorageService.currentUser = user;
 
-      if (user.college == 'National Institute of Technology, Rourkela' &&
-          user.rollNumber != null) {
+      if (user.rollNumber != null) {
         _localStorageService.rollNumber = user.rollNumber;
       }
     } catch (e) {
@@ -149,7 +141,7 @@ class UserRepository {
   User? get user => _localStorageService.currentUser;
 
   Stream<firebase_auth.User?> get firebaseAuthStream {
-    return _firebaseAuth.authStateChanges();
+    return _firebaseAuth.idTokenChanges();
   }
 
   Future<void> saveWebMailDetails({

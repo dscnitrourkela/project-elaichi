@@ -6,6 +6,7 @@ import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'fest_event.dart';
 part 'fest_state.dart';
@@ -53,6 +54,18 @@ class FestBloc extends Bloc<FestEvent, FestState> {
               ),
             );
           },
+          // createEventRegistration: (eventID) async {
+          //   final eventRegistration =
+          //       await eventRepository.createEventRegistration(
+          //     eventID: eventID,
+          //     userID: _userRepository.user!.id,
+          //   );
+
+          //   eventRegistration.fold(
+          //     (exception) => debugPrint(exception.toString()),
+          //     (eventRegistration) => null,
+          //   );
+          // },
         );
       },
     );
@@ -87,5 +100,14 @@ class FestBloc extends Bloc<FestEvent, FestState> {
         };
       },
     );
+  }
+
+  String durationString(DateTime? startDate, DateTime? endDate) {
+    final format1 = DateFormat('MMM');
+    if (startDate != null && endDate != null) {
+      return '${format1.format(startDate)} ${startDate.day.toString().padLeft(2, '0')} - ${format1.format(endDate)} ${endDate.day.toString().padLeft(2, '0')} ${endDate.year}';
+    } else {
+      return '';
+    }
   }
 }

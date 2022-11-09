@@ -2,22 +2,26 @@ import 'dart:convert';
 
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
+import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/fest/widgets/scrolling_text.dart';
+import 'package:elaichi/presentation/home/fest/explore/cubit/registration_cubit.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/scrolling_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class HighPriorityEventCard extends StatelessWidget {
-  const HighPriorityEventCard({
+  HighPriorityEventCard({
     Key? key,
     required this.event,
   }) : super(key: key);
 
   final Event event;
+  final toastUtil = ToastUtil.getInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -124,10 +128,74 @@ class HighPriorityEventCard extends StatelessWidget {
                               ),
                             ),
                           const SizedBox(width: 2),
-                          YellowFlatButton(
-                            onTapped: () {},
-                            text: 'Register',
-                            width: 105,
+                          BlocConsumer<RegistrationCubit, RegistrationState>(
+                            listener: (context, state) {
+                              state.whenOrNull(
+                                success: () {
+                                  toastUtil.showToast(
+                                    mode: ToastMode.Success,
+                                    title:
+                                        'Successfully Registered for the event',
+                                  );
+                                },
+                                error: (error) => toastUtil.showToast(
+                                  mode: ToastMode.Error,
+                                  title: error,
+                                ),
+                              );
+                            },
+                            builder: (context, state) {
+                              return state.maybeWhen(
+                                initial: (eventRegistrations) {
+                                  return (eventRegistrations
+                                          .where(
+                                            (element) =>
+                                                event.id == element.eventID,
+                                          )
+                                          .isNotEmpty)
+                                      ? const Text('Registered')
+                                      : YellowFlatButton(
+                                          onTapped: () async {
+                                            await context
+                                                .read<RegistrationCubit>()
+                                                .createEventRegistration(
+                                                  event: event,
+                                                );
+                                          },
+                                          text: 'Register',
+                                          width: 105,
+                                        );
+                                },
+                                orElse: () => YellowFlatButton(
+                                  onTapped: () async {
+                                    await context
+                                        .read<RegistrationCubit>()
+                                        .createEventRegistration(
+                                          event: event,
+                                        );
+                                  },
+                                  text: 'Register',
+                                  width: 105,
+                                ),
+                                loading: (eventID) {
+                                  return eventID == event.id
+                                      ? const Center(
+                                          child: CircularProgressIndicator(),
+                                        )
+                                      : YellowFlatButton(
+                                          onTapped: () async {
+                                            await context
+                                                .read<RegistrationCubit>()
+                                                .createEventRegistration(
+                                                  event: event,
+                                                );
+                                          },
+                                          text: 'Register',
+                                          width: 105,
+                                        );
+                                },
+                              );
+                            },
                           )
                         ],
                       ),

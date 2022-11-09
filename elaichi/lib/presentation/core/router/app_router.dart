@@ -1,9 +1,10 @@
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/presentation/core/router/app_page_route.dart';
-import 'package:elaichi/presentation/home/fest/all_events/all_events_page.dart';
-import 'package:elaichi/presentation/home/fest/event_details_page.dart';
-import 'package:elaichi/presentation/home/fest/explore_page.dart';
+import 'package:elaichi/presentation/home/fest/explore/all_events/all_events_page.dart';
+import 'package:elaichi/presentation/home/fest/explore/event_details_page.dart';
+import 'package:elaichi/presentation/home/fest/explore/explore_page.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/registration.dart';
 import 'package:elaichi/presentation/home/home_page.dart';
 import 'package:elaichi/presentation/sign_in/sign_in_page.dart';
 import 'package:elaichi/presentation/splash/splash_page.dart';
@@ -17,6 +18,7 @@ class AppRouter {
   static const String explore = '/explore';
   static const String eventDetails = '/eventDetails';
   static const String allEvents = '/allEvents';
+  static const String registration = '/registration';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -60,7 +62,14 @@ class AppRouter {
         return AppPageRoute(
           settings: settings,
           builder: (context) => AllEventsPage(
-              events: map['events'] as Map<String, Map<String, List<Event>>>),
+            events: map['events'] as Map<String, Map<String, List<Event>>>,
+          ),
+        );
+
+      case registration:
+        return AppPageRoute(
+          settings: settings,
+          builder: (context) => const StudentConfirmationPage(),
         );
 
       default:

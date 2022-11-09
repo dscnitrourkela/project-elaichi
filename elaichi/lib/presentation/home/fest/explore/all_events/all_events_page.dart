@@ -4,8 +4,8 @@ import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/event_type_map.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/fest/all_events/cubit/all_events_cubit.dart';
-import 'package:elaichi/presentation/home/fest/widgets/low_priority_event_card.dart';
+import 'package:elaichi/presentation/home/fest/explore/all_events/cubit/all_events_cubit.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/low_priority_event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,7 +36,6 @@ class _AllEventsPageState extends State<AllEventsPage> {
     final events = widget.events['categorisedEvents']!['ALL']!;
     _controller.addListener(() {
       _length = _controller.text.length;
-
       _allEvents = events
           .where(
             (element) => element.name
@@ -232,9 +231,9 @@ class SearchBox extends StatelessWidget {
           border: InputBorder.none,
           fillColor: AppColors.grey15,
           prefixIcon: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child:
-                  SvgPicture.asset(Strings.searchIcon, height: 18, width: 18)),
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: SvgPicture.asset(Strings.searchIcon, height: 18, width: 18),
+          ),
           contentPadding: const EdgeInsets.symmetric(vertical: 16),
           hintText: 'Search for any event',
           hintStyle:

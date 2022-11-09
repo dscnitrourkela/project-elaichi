@@ -6,6 +6,7 @@ class LocalStorageService {
   static late final SharedPreferences _sharedPreferences;
   static late final LocalStorageService _instance;
   static User? _currentUser;
+  static late String _token;
 
   ///Must only be called once.
   static Future<LocalStorageService> init() async {
@@ -31,17 +32,9 @@ class LocalStorageService {
   set rollNumber(String? rollNumber) =>
       _sharedPreferences.setString('roll_number', rollNumber!);
 
-  set firebaseToken(String firebaseToken) {
-    _sharedPreferences.setString('firebaseToken', firebaseToken);
-  }
+  set firebaseToken(String firebaseToken) => _token = firebaseToken;
 
-  String get firebaseToken {
-    if (_sharedPreferences.containsKey('firebaseToken')) {
-      return _sharedPreferences.getString('firebaseToken')!;
-    } else {
-      return 'Token not found';
-    }
-  }
+  String get firebaseToken => _token;
 
   set currentUser(User? user) => _currentUser = user;
 

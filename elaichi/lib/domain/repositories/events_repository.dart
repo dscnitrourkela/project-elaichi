@@ -3,6 +3,7 @@ import 'package:elaichi/data/constants/global_enums.dart';
 import 'package:elaichi/data/remote/graphql/graphql_service.dart';
 import 'package:elaichi/domain/exceptions/custom_exception.dart';
 import 'package:elaichi/domain/models/event/event.dart';
+import 'package:elaichi/domain/models/event_registration/event_registration.dart';
 import 'package:elaichi/domain/models/mm_article/mm_article.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:intl/intl.dart';
@@ -25,7 +26,7 @@ class EventRepository {
           orgs.where((element) => element.status == StatusType.ACTIVE).toList();
       return Right(list);
     } catch (e) {
-      return Left(CustomException(e, message: 'Unkown Error Occured'));
+      return Left(CustomException(e, message: "Coudn't fetch Fests"));
     }
   }
 
@@ -35,6 +36,44 @@ class EventRepository {
       return Right(events);
     } catch (e) {
       return Left(CustomException(e));
+    }
+  }
+
+  Future<Either<CustomException, EventRegistration>> createEventRegistration({
+    required String eventID,
+    required String userID,
+  }) async {
+    try {
+      final eventRegistration = await _graphQLService.createEventRegistration(
+        eventID: eventID,
+        userID: userID,
+      );
+
+      return Right(eventRegistration);
+    } catch (e) {
+      return Left(CustomException(e, message: 'Event Registration Failed'));
+    }
+  }
+
+  Future<Either<CustomException, List<EventRegistration>>>
+      getEventRegistration({
+    required String orgID,
+    required String userID,
+  }) async {
+    try {
+      final eventRegistrations = await _graphQLService.getEventRegistration(
+        orgID: orgID,
+        userID: userID,
+      );
+
+      return Right(eventRegistrations);
+    } catch (e) {
+      return Left(
+        CustomException(
+          e,
+          message: 'Unknown error Occured',
+        ),
+      );
     }
   }
 

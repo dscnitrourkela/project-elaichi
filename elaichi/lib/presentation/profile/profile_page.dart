@@ -5,6 +5,7 @@ import 'package:elaichi/presentation/components/custom_app_bar.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
+import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
@@ -53,9 +54,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ProfileDetailsCard(
                         icon:
                             const Icon(Icons.settings, color: AppColors.grey3),
-                        imageSrc:
-                            'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
-                        title: 'Sriram',
+                        imageSrc: _bloc.firebaseUser.photoURL ??
+                            Strings.placeholderImage,
+                        title: _bloc.firebaseUser.displayName!,
                         subTitle: _bloc.isZimraAuthenticated
                             ? _bloc.rollNumber!.toUpperCase()
                             : null,
@@ -71,81 +72,81 @@ class _ProfilePageState extends State<ProfilePage> {
                           );
                         },
                       ),
-                      const Divider(
-                        thickness: 1,
-                        height: 1,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          'Calender',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColors.grey2,
-                                  ),
-                        ),
-                      ),
-                      const Divider(
-                        thickness: 1,
-                        height: 1,
-                      ),
+                      // const Divider(
+                      //   thickness: 1,
+                      //   height: 1,
+                      // ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(16),
+                      //   child: Text(
+                      //     'Calender',
+                      //     style:
+                      //         Theme.of(context).textTheme.bodyText2!.copyWith(
+                      //               fontWeight: FontWeight.w600,
+                      //               color: AppColors.grey2,
+                      //             ),
+                      //   ),
+                      // ),
+                      // const Divider(
+                      //   thickness: 1,
+                      //   height: 1,
+                      // ),
                     ],
                   ),
                 );
               },
             ),
-            const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: <Widget>[
-                  const Expanded(
-                    child: Divider(
-                      endIndent: 6,
-                      color: AppColors.grey,
-                    ),
-                  ),
-                  Text(
-                    'February ${DateTime.now().year}',
-                    style: Theme.of(context).textTheme.overline!.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.grey3,
-                        ),
-                  ),
-                  const Expanded(
-                    child: Divider(indent: 6, color: AppColors.grey),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 14),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: SingleChildScrollView(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    DateDisplay(dayName: 'MON', dayNumber: '10'),
-                    // Expanded(
-                    //   child: ListView.builder(
-                    //     shrinkWrap: true,
-                    //     physics: const NeverScrollableScrollPhysics(),
-                    //     itemCount: _bloc.getEvents().length,
-                    //     itemBuilder: (context, index) {
-                    //       final event = _bloc.getEvents()[index];
-                    //       return EventListCard(
-                    //         name: event.name,
-                    //         startTime: event.startTime,
-                    //         description: event.description,
-                    //       );
-                    //     },
-                    //   ),
-                    // )
-                  ],
-                ),
-              ),
-            )
+            // const SizedBox(height: 30),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 16),
+            //   child: Row(
+            //     children: <Widget>[
+            //       const Expanded(
+            //         child: Divider(
+            //           endIndent: 6,
+            //           color: AppColors.grey,
+            //         ),
+            //       ),
+            //       Text(
+            //         'February ${DateTime.now().year}',
+            //         style: Theme.of(context).textTheme.overline!.copyWith(
+            //               fontWeight: FontWeight.w700,
+            //               color: AppColors.grey3,
+            //             ),
+            //       ),
+            //       const Expanded(
+            //         child: Divider(indent: 6, color: AppColors.grey),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // const SizedBox(height: 14),
+            // Padding(
+            //   padding: const EdgeInsets.all(16),
+            //   child: SingleChildScrollView(
+            //     child: Row(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: const [
+            //         DateDisplay(dayName: 'MON', dayNumber: '10'),
+            //         // Expanded(
+            //         //   child: ListView.builder(
+            //         //     shrinkWrap: true,
+            //         //     physics: const NeverScrollableScrollPhysics(),
+            //         //     itemCount: _bloc.getEvents().length,
+            //         //     itemBuilder: (context, index) {
+            //         //       final event = _bloc.getEvents()[index];
+            //         //       return EventListCard(
+            //         //         name: event.name,
+            //         //         startTime: event.startTime,
+            //         //         description: event.description,
+            //         //       );
+            //         //     },
+            //         //   ),
+            //         // )
+            //       ],
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),
@@ -263,7 +264,7 @@ class PreferencesBottomSheet extends StatelessWidget {
     return BlocProvider(
       create: (context) => bloc,
       child: SizedBox(
-        height: 200,
+        height: 230,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
