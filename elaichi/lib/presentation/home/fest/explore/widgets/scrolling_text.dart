@@ -16,7 +16,8 @@ class ScrollingText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (text.length > condition) {
-      return Marquee(text: text, style: style);
+      return SizedBox(
+          height: style.height, child: Marquee(text: text, style: style));
     } else {
       return Text(text, style: style);
     }

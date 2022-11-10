@@ -283,7 +283,9 @@ class PreferencesBottomSheet extends StatelessWidget {
                   },
                   webMailLoggedOut: () {
                     context.read<HomeCubit>().checkIfVerified();
-                    context.read<FestBloc>().isRegistered();
+                    context
+                        .read<FestBloc>()
+                        .add(const FestEvent.webMailLogIn());
                     _toastUtil.showToast(
                       mode: ToastMode.Success,
                       title: 'Successfully Deregistered webmail',
@@ -303,44 +305,44 @@ class PreferencesBottomSheet extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextButton(
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.pushNamed(
                                 context,
                                 AppRouter.privacyPolicy,
                               );
                             },
                             child: Container(
-                              width: width*0.87,
+                              width: width * 0.87,
                               child: Text(
                                 "Privacy Policy",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                  color: AppColors.grey13,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                      color: AppColors.grey13,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               ),
                             ),
                           ),
                           TextButton(
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.pushNamed(
                                 context,
                                 AppRouter.devInfo,
                               );
                             },
                             child: Container(
-                              width: width*0.87,
+                              width: width * 0.87,
                               child: Text(
                                 "Developer Information",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                  color: AppColors.grey13,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                      color: AppColors.grey13,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               ),
                             ),
                           ),
@@ -349,7 +351,7 @@ class PreferencesBottomSheet extends StatelessWidget {
                               bloc.add(const ProfileEvent.appLogOut());
                             },
                             child: Container(
-                              width: width*0.87,
+                              width: width * 0.87,
                               child: Text(
                                 'Sign Out of Avenue',
                                 style: Theme.of(context)
@@ -368,7 +370,7 @@ class PreferencesBottomSheet extends StatelessWidget {
                                 bloc.add(const ProfileEvent.webMailLogOut());
                               },
                               child: Container(
-                                width: width*0.87,
+                                width: width * 0.87,
                                 child: Text(
                                   "Deregister Webmail",
                                   style: Theme.of(context)

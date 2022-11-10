@@ -45,7 +45,7 @@ class FestBloc extends Bloc<FestEvent, FestState> {
             );
           },
           webMailLogIn: () {
-            final status = isRegistered();
+            final status = isVerified();
             emit(
               (state as _Initial).copyWith(
                 webMailState: status
