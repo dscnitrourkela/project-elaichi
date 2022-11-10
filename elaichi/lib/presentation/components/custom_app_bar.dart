@@ -1,3 +1,4 @@
+import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 ///Custom App Bar maintained through out the application
@@ -45,6 +46,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
               onPressed: leftTap,
               icon: Icon(
                 leftButton,
+                color: AppColors.darkBottomNav,
               ),
             )
           : Container(),
