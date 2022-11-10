@@ -1,5 +1,6 @@
 import 'package:elaichi/presentation/components/buttons/back_button.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
+import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
@@ -22,6 +23,7 @@ class _StudentConfirmationPageState extends State<StudentConfirmationPage> {
   NitrStudent? groupValue = NitrStudent.Yes;
   @override
   Widget build(BuildContext context) {
+    final toastUtil = ToastUtil.getInstance();
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: RegisterBottomBar(
@@ -42,6 +44,11 @@ class _StudentConfirmationPageState extends State<StudentConfirmationPage> {
                   (value) => context
                       .read<FestBloc>()
                       .add(const FestEvent.webMailLogIn()),
+                );
+              } else {
+                toastUtil.showToast(
+                  mode: ToastMode.Error,
+                  title: 'Uh Oh! Registrations closed!',
                 );
               }
             },

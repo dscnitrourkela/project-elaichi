@@ -7,7 +7,7 @@ class YellowFlatButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.onTapped,
-    this.width = 358,
+    this.width = 338,
   }) : super(key: key);
 
   final String text;

@@ -5,6 +5,7 @@ import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/components/buttons/back_button.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
+import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
@@ -39,10 +40,19 @@ class EventDetailsPage extends StatelessWidget {
                     title: 'Successfully Registered for the event',
                   );
                 },
-                error: (error) => toastUtil.showToast(
-                  mode: ToastMode.Error,
-                  title: error,
-                ),
+                error: (error) {
+                  if (error == 'User Not Registered') {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.registration,
+                    );
+                  } else {
+                    toastUtil.showToast(
+                      mode: ToastMode.Error,
+                      title: error,
+                    );
+                  }
+                },
               );
             },
             builder: (context, state) {

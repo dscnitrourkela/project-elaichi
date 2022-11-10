@@ -137,10 +137,19 @@ class SpeakerEventCard extends StatelessWidget {
                               title: 'Successfully Registered for the event',
                             );
                           },
-                          error: (error) => toastUtil.showToast(
-                            mode: ToastMode.Error,
-                            title: error,
-                          ),
+                          error: (error) {
+                            if (error == 'User Not Registered') {
+                              Navigator.pushNamed(
+                                context,
+                                AppRouter.registration,
+                              );
+                            } else {
+                              toastUtil.showToast(
+                                mode: ToastMode.Error,
+                                title: error,
+                              );
+                            }
+                          },
                         );
                       },
                       builder: (context, state) {

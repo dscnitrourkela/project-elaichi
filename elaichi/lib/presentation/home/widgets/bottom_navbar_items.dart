@@ -30,39 +30,14 @@ List<BottomNavigationBarItem> navBarItems(String profileImage) =>
 
       BottomNavigationBarItem(
         label: 'Fest',
-        icon: ClipRRect(
-          borderRadius: BorderRadius.circular(
-            SizeConfig.safeBlockHorizontal! * 10,
-          ),
-          child: CachedNetworkImage(
-            imageUrl:
-                'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
-            fit: BoxFit.fill,
-            placeholder: (context, url) => const Icon(Icons.person),
-            height: SizeConfig.safeBlockHorizontal! * 7,
-            width: SizeConfig.safeBlockHorizontal! * 7,
-          ),
+        icon: SvgPicture.asset(
+          Strings.festLogo,
+          height: 25,
+          color: Colors.grey,
         ),
-        activeIcon: DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border.all(width: 2),
-            borderRadius: BorderRadius.circular(
-              SizeConfig.safeBlockHorizontal! * 10,
-            ),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(
-              SizeConfig.safeBlockHorizontal! * 10,
-            ),
-            child: CachedNetworkImage(
-              imageUrl:
-                  'https://res.cloudinary.com/dvkroz7wz/image/upload/v1667122918/SWW_1_vhkdpl.png',
-              fit: BoxFit.fill,
-              placeholder: (context, url) => const Icon(Icons.person),
-              height: SizeConfig.safeBlockHorizontal! * 6.75,
-              width: SizeConfig.safeBlockHorizontal! * 6.75,
-            ),
-          ),
+        activeIcon: SvgPicture.asset(
+          Strings.festLogo,
+          height: 25,
         ),
       ),
 

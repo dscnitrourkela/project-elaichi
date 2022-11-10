@@ -30,9 +30,13 @@ class EventRepository {
     }
   }
 
-  Future<Either<CustomException, List<Event>>> getEvents(String orgID) async {
+  Future<Either<CustomException, List<Event>>> getEvents({
+    String? orgID,
+    String? eventID,
+  }) async {
     try {
-      final events = await _graphQLService.getEvents(orgID);
+      final events =
+          await _graphQLService.getEvents(orgID: orgID, eventID: eventID);
       return Right(events);
     } catch (e) {
       return Left(CustomException(e));

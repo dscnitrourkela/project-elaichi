@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:elaichi/presentation/core/router/remote_routing.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -14,28 +15,33 @@ class NotificationService {
   static final FlutterLocalNotificationsPlugin
       _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  ///Fetch the `RemoteMessaage` that was used to open the app.
-  Future<RemoteMessage?> get initialMessage async {
-    return _instance.getInitialMessage();
-  }
+  Future<String?> get token => _instance.getToken();
 
   Future<bool> setupNotifications() async {
     await _instance.requestPermission();
     await _instance.setForegroundNotificationPresentationOptions(
-      alert: true, // Required to display a heads up notification
+      alert: true,
       badge: true,
       sound: true,
     );
     await _createHighPriorityChannel();
+
+    final initialMessage = await _instance.getInitialMessage();
+
+    if (initialMessage != null) {
+      final payload = initialMessage.data;
+      await RemoteRouting().navigate(payload);
+    }
     return true;
   }
 
+  // Future<void> backgroundHandler(RemoteMessage message) async {
+  //   FirebaseMessaging.onBackgroundMessage((message) async {
+  //     await RemoteRouting().navigate(message.data);
+  //   });
+  // }
+
   Future<void> _createHighPriorityChannel() async {
-    await _flutterLocalNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('notification_icon'),
-      ),
-    );
     const channel = AndroidNotificationChannel(
       'high_importance_channel', // id
       'High Importance Notifications', // title
@@ -55,9 +61,7 @@ class NotificationService {
 
       // If `onMessage` is triggered with a notification, construct our own
       // local notification to show to users using the created channel.
-      if (notification != null &&
-          android != null &&
-          message.data['priority'] == 'High') {
+      if (notification != null && android != null) {
         _flutterLocalNotificationsPlugin.show(
           notification.hashCode,
           notification.title,
@@ -67,23 +71,11 @@ class NotificationService {
               channel.id,
               channel.name,
               channelDescription: channel.description,
-              icon: android.smallIcon,
             ),
           ),
           payload: json.encode(message.data),
         );
       }
     });
-  }
-
-  void notificationRedirect(String? payload) {
-    final data = json.decode(payload!) as Map<String, dynamic>;
-
-    // RemoteRouting().navigate(data);
-  }
-
-  ///Removes FCM token
-  Future<void> deleteToken() {
-    return _instance.deleteToken();
   }
 }

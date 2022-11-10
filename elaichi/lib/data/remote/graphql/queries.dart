@@ -54,8 +54,8 @@ class Queries {
 ''';
 
   static const getEvents = r'''
-    query Events($orgId: ID) {
-      event(orgID: $orgId) {
+    query Event($orgId: ID, $eventId: ID) {
+      event(orgID: $orgId, id: $eventId) {
         id
         name
         description

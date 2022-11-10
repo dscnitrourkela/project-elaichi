@@ -101,11 +101,11 @@ class GraphQLService {
 
   // Event Operations
 
-  Future<List<Event>> getEvents(String orgID) async {
+  Future<List<Event>> getEvents({String? orgID, String? eventID}) async {
     try {
       final result = await query(
         queryString: Queries.getEvents,
-        variables: {'orgId': orgID},
+        variables: {'orgId': orgID, 'eventId': eventID},
       );
 
       final events = (result.data!['event'] as List<dynamic>)
