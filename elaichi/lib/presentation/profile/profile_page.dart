@@ -262,10 +262,11 @@ class PreferencesBottomSheet extends StatelessWidget {
       userRepository: context.read<UserRepository>(),
       eventRepository: context.read<EventRepository>(),
     );
+    double width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => bloc,
       child: SizedBox(
-        height: 230,
+        height: 340,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -302,27 +303,55 @@ class PreferencesBottomSheet extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextButton(
+                            onPressed: (){
+                              Navigator.pushNamed(
+                                context,
+                                AppRouter.privacyPolicy,
+                              );
+                            },
+                            child: Container(
+                              width: width*0.87,
+                              child: Text(
+                                "Privacy Policy",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                  color: AppColors.grey13,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: (){
+                              Navigator.pushNamed(
+                                context,
+                                AppRouter.devInfo,
+                              );
+                            },
+                            child: Container(
+                              width: width*0.87,
+                              child: Text(
+                                "Developer Information",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                  color: AppColors.grey13,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextButton(
                             onPressed: () {
                               bloc.add(const ProfileEvent.appLogOut());
                             },
-                            child: Text(
-                              'Sign Out of Avenue',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    color: AppColors.warningRed,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                            ),
-                          ),
-                          if (bloc.isZimraAuthenticated)
-                            TextButton(
-                              onPressed: () {
-                                bloc.add(const ProfileEvent.webMailLogOut());
-                              },
+                            child: Container(
+                              width: width*0.87,
                               child: Text(
-                                'Deregister Webmail',
+                                'Sign Out of Avenue',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!
@@ -330,6 +359,26 @@ class PreferencesBottomSheet extends StatelessWidget {
                                       color: AppColors.warningRed,
                                       fontWeight: FontWeight.w600,
                                     ),
+                              ),
+                            ),
+                          ),
+                          if (bloc.isZimraAuthenticated)
+                            TextButton(
+                              onPressed: () {
+                                bloc.add(const ProfileEvent.webMailLogOut());
+                              },
+                              child: Container(
+                                width: width*0.87,
+                                child: Text(
+                                  "Deregister Webmail",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        color: AppColors.warningRed,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
                               ),
                             ),
                         ],
@@ -404,6 +453,7 @@ class ProfileDetailsCard extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
+            iconSize: 28,
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(),
             onPressed: onPressed,

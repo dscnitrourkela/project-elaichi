@@ -6,6 +6,8 @@ import 'package:elaichi/presentation/home/fest/explore/event_details_page.dart';
 import 'package:elaichi/presentation/home/fest/explore/explore_page.dart';
 import 'package:elaichi/presentation/home/fest/explore/widgets/registration.dart';
 import 'package:elaichi/presentation/home/home_page.dart';
+import 'package:elaichi/presentation/screens/PrivacyPolicy.dart';
+import 'package:elaichi/presentation/screens/dev_info.dart';
 import 'package:elaichi/presentation/sign_in/sign_in_page.dart';
 import 'package:elaichi/presentation/splash/splash_page.dart';
 import 'package:flutter/widgets.dart';
@@ -20,6 +22,8 @@ class AppRouter {
   static const String allEvents = '/allEvents';
   static const String registration = '/registration';
   static const String registrationForm = '/registrationForm';
+  static const String privacyPolicy = '/privacyPolicy';
+  static const String devInfo = '/developerInfo';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -77,6 +81,17 @@ class AppRouter {
         return AppPageRoute(
           settings: settings,
           builder: (context) => const RegistrationDetails(),
+         );
+      case privacyPolicy:
+        return AppPageRoute<void>(
+          settings: settings,
+          builder: (BuildContext context) => const PrivacyPolicy(),
+        );
+
+      case devInfo:
+        return AppPageRoute<void>(
+          settings: settings,
+          builder: (BuildContext context) => const DeveloperInfo(),
         );
 
       default:
