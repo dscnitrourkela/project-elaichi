@@ -1,5 +1,6 @@
 import 'package:elaichi/data/local/local_storage_service.dart';
 import 'package:elaichi/data/remote/api_service.dart';
+import 'package:elaichi/data/remote/notification_service.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
@@ -31,6 +32,8 @@ class ElaichiApp extends StatelessWidget {
 
   static Future<Widget> run() async {
     final localStorageService = await LocalStorageService.init();
+    final notificationService = NotificationService();
+    await notificationService.setupNotifications();
     final apiService = APIService();
 
     return MultiRepositoryProvider(
@@ -49,7 +52,8 @@ class ElaichiApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) =>
-                SplashCubit(userRepository: context.read<UserRepository>()),
+                SplashCubit(userRepository: context.read<UserRepository>())
+                  ..getCorrectRoute(),
           ),
           BlocProvider(
             create: (context) =>

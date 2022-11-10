@@ -85,7 +85,7 @@ class FestBloc extends Bloc<FestEvent, FestState> {
   Future<Map<String, Map<String, List<Event>>>> getCalenderAndCategorisedEvents(
     String orgID,
   ) async {
-    final getEvents = await _eventRepository.getEvents(orgID);
+    final getEvents = await _eventRepository.getEvents(orgID: orgID);
 
     return getEvents.fold(
       (exception) => {},

@@ -1,6 +1,8 @@
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
+import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
+import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/splash/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,12 +23,13 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    _cubit = context.read<SplashCubit>()..getCorrectRoute();
+    _cubit = context.read<SplashCubit>();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final toastUtil = ToastUtil.getInstance();
     SizeConfig().init(context);
     return BlocProvider.value(
       value: _cubit,
@@ -44,14 +47,39 @@ class _SplashPageState extends State<SplashPage> {
               (route) => false,
             ),
             error: (error) =>
-                ToastUtil().showToast(mode: ToastMode.Error, title: error),
+                toastUtil.showToast(mode: ToastMode.Error, title: error),
           );
         },
         builder: (context, state) {
           return Scaffold(
             body: state.maybeWhen(
-              orElse: () => const Center(
-                child: CircularProgressIndicator(),
+              orElse: () => Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: SizeConfig.screenHeight! * 0.08,
+                    ),
+                    Image.asset(Strings.avenueLogoFileUri),
+                    SizedBox(
+                      height: SizeConfig.screenHeight! * 0.02,
+                    ),
+                    Text(
+                      'AVENUE',
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            letterSpacing: 2,
+                            fontSize: 20,
+                            color: AppColors.avenueTitle.withOpacity(0.6),
+                          ),
+                    ),
+                    SizedBox(
+                      height: SizeConfig.screenHeight! * 0.12,
+                    ),
+                    Image.asset(Strings.kPlantLogoFileUri),
+                    SizedBox(
+                      height: SizeConfig.screenHeight! * 0.12,
+                    ),
+                  ],
+                ),
               ),
               error: (error) => const Center(
                 child: Text(

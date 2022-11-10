@@ -1,3 +1,4 @@
+import 'package:elaichi/data/remote/notification_service.dart';
 import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/home/fest/fest_page.dart';
 import 'package:elaichi/presentation/home/widgets/bottom_navbar_items.dart';
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> {
             bottomNavigationBar: BottomNavigationBar(
               showSelectedLabels: false,
               showUnselectedLabels: false,
-              onTap: (int value) {
+              onTap: (int value) async {
                 setState(() {
                   pageIndex = value;
                 });

@@ -1,5 +1,6 @@
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/components/buttons/transparent_button.dart';
+import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
@@ -31,6 +32,7 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+    final toastUtil = ToastUtil.getInstance();
     return BlocProvider<SignInCubit>(
       create: (context) => _cubit,
       child: SafeArea(
@@ -63,14 +65,16 @@ class _SignInPageState extends State<SignInPage> {
                 BlocConsumer<SignInCubit, SignInState>(
                   listener: (context, state) {
                     state.maybeWhen(
-                      error: (error) =>
-                          ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(error),
-                        ),
+                      error: (error) => toastUtil.showToast(
+                        mode: ToastMode.Error,
+                        title: error,
                       ),
                       success: () {
-                        Navigator.pushNamed(context, AppRouter.home);
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          AppRouter.home,
+                          (route) => false,
+                        );
                       },
                       orElse: () {},
                     );
