@@ -29,6 +29,7 @@ class CustomBottomSheet extends StatelessWidget {
           ),
         ),
         child: ListView(
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           children: <Widget>[
             Padding(
