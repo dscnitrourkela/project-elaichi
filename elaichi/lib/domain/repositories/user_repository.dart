@@ -48,7 +48,7 @@ class UserRepository {
       final userCredentials =
           await _firebaseAuth.signInWithCredential(authCrendential);
 
-      await initializeGraphQL(await userCredentials.user!.getIdToken(true));
+      await googleAuthenticated(await userCredentials.user!.getIdToken(true));
     } on firebase_auth.FirebaseException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
     } catch (e) {
@@ -59,10 +59,12 @@ class UserRepository {
   Future<void> googleAuthenticated(String token) async {
     try {
       await initializeGraphQL(token);
-      await logInToWebMail();
       await getUser();
+      await logInToWebMail();
     } catch (e) {
-      rethrow;
+      if (e.toString() != 'Exception: Authentication Error') {
+        rethrow;
+      }
     }
   }
 
@@ -91,7 +93,8 @@ class UserRepository {
     }
   }
 
-  Future<void> getOrCreateUser({required String rollNumber}) async {
+  Future<void> getOrCreateUser(
+      {required String rollNumber, required String mobileNumber}) async {
     try {
       if (user == null) {
         final fbUser = _firebaseAuth.currentUser;
@@ -99,6 +102,7 @@ class UserRepository {
 
         if (user == null) {
           await createUser(
+            mobileNumber: mobileNumber,
             uid: fbUser!.uid,
             email: fbUser.email!,
             name: fbUser.displayName!,
@@ -120,10 +124,12 @@ class UserRepository {
     required String name,
     required String rollNumber,
     required String college,
+    required String mobileNumber,
     String? photo,
   }) async {
     try {
       final user = await _graphQLService.createUser(
+        mobileNumber: mobileNumber,
         uid: uid,
         email: email,
         name: name,

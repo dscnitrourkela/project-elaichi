@@ -6,5 +6,7 @@ class HomeState with _$HomeState {
 
   const factory HomeState.loading() = _Loading;
 
-  const factory HomeState.isVerified() = _IsVerified;
+  const factory HomeState.isVerifiedUser(int pageIndex) = _IsVerifiedUser;
+
+  const factory HomeState.isRegisteredUser(int pageIndex) = _IsRegisteredUser;
 }

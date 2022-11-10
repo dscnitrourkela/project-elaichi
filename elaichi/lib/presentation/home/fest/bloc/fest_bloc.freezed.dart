@@ -24,8 +24,8 @@ mixin _$FestEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? webMailLogIn,
+    TResult Function()? started,
+    TResult Function()? webMailLogIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$FestEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_WebMailLogIn value)? webMailLogIn,
+    TResult Function(_Started value)? started,
+    TResult Function(_WebMailLogIn value)? webMailLogIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,18 +59,16 @@ mixin _$FestEvent {
 /// @nodoc
 abstract class $FestEventCopyWith<$Res> {
   factory $FestEventCopyWith(FestEvent value, $Res Function(FestEvent) then) =
-      _$FestEventCopyWithImpl<$Res, FestEvent>;
+      _$FestEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FestEventCopyWithImpl<$Res, $Val extends FestEvent>
-    implements $FestEventCopyWith<$Res> {
+class _$FestEventCopyWithImpl<$Res> implements $FestEventCopyWith<$Res> {
   _$FestEventCopyWithImpl(this._value, this._then);
 
+  final FestEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(FestEvent) _then;
 }
 
 /// @nodoc
@@ -81,27 +79,23 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$FestEventCopyWithImpl<$Res, _$_Started>
+class __$$_StartedCopyWithImpl<$Res> extends _$FestEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Started));
+
+  @override
+  _$_Started get _value => super._value as _$_Started;
 }
 
 /// @nodoc
 
-class _$_Started with DiagnosticableTreeMixin implements _Started {
+class _$_Started implements _Started {
   const _$_Started();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FestEvent.started()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'FestEvent.started'));
   }
 
   @override
@@ -125,8 +119,8 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? webMailLogIn,
+    TResult Function()? started,
+    TResult Function()? webMailLogIn,
   }) {
     return started?.call();
   }
@@ -156,8 +150,8 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_WebMailLogIn value)? webMailLogIn,
+    TResult Function(_Started value)? started,
+    TResult Function(_WebMailLogIn value)? webMailLogIn,
   }) {
     return started?.call(this);
   }
@@ -188,28 +182,24 @@ abstract class _$$_WebMailLogInCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_WebMailLogInCopyWithImpl<$Res>
-    extends _$FestEventCopyWithImpl<$Res, _$_WebMailLogIn>
+class __$$_WebMailLogInCopyWithImpl<$Res> extends _$FestEventCopyWithImpl<$Res>
     implements _$$_WebMailLogInCopyWith<$Res> {
   __$$_WebMailLogInCopyWithImpl(
       _$_WebMailLogIn _value, $Res Function(_$_WebMailLogIn) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_WebMailLogIn));
+
+  @override
+  _$_WebMailLogIn get _value => super._value as _$_WebMailLogIn;
 }
 
 /// @nodoc
 
-class _$_WebMailLogIn with DiagnosticableTreeMixin implements _WebMailLogIn {
+class _$_WebMailLogIn implements _WebMailLogIn {
   const _$_WebMailLogIn();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FestEvent.webMailLogIn()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'FestEvent.webMailLogIn'));
   }
 
   @override
@@ -233,8 +223,8 @@ class _$_WebMailLogIn with DiagnosticableTreeMixin implements _WebMailLogIn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? webMailLogIn,
+    TResult Function()? started,
+    TResult Function()? webMailLogIn,
   }) {
     return webMailLogIn?.call();
   }
@@ -264,8 +254,8 @@ class _$_WebMailLogIn with DiagnosticableTreeMixin implements _WebMailLogIn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_WebMailLogIn value)? webMailLogIn,
+    TResult Function(_Started value)? started,
+    TResult Function(_WebMailLogIn value)? webMailLogIn,
   }) {
     return webMailLogIn?.call(this);
   }
@@ -300,9 +290,9 @@ mixin _$FestState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WebMailState webMailState, List<Org> fests)? initial,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult Function(WebMailState webMailState, List<Org> fests)? initial,
+    TResult Function()? loading,
+    TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -322,9 +312,9 @@ mixin _$FestState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -340,18 +330,16 @@ mixin _$FestState {
 /// @nodoc
 abstract class $FestStateCopyWith<$Res> {
   factory $FestStateCopyWith(FestState value, $Res Function(FestState) then) =
-      _$FestStateCopyWithImpl<$Res, FestState>;
+      _$FestStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FestStateCopyWithImpl<$Res, $Val extends FestState>
-    implements $FestStateCopyWith<$Res> {
+class _$FestStateCopyWithImpl<$Res> implements $FestStateCopyWith<$Res> {
   _$FestStateCopyWithImpl(this._value, this._then);
 
+  final FestState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(FestState) _then;
 }
 
 /// @nodoc
@@ -359,29 +347,29 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
-  @useResult
   $Res call({WebMailState webMailState, List<Org> fests});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$FestStateCopyWithImpl<$Res, _$_Initial>
+class __$$_InitialCopyWithImpl<$Res> extends _$FestStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Initial));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Initial get _value => super._value as _$_Initial;
+
   @override
   $Res call({
-    Object? webMailState = null,
-    Object? fests = null,
+    Object? webMailState = freezed,
+    Object? fests = freezed,
   }) {
     return _then(_$_Initial(
-      webMailState: null == webMailState
+      webMailState: webMailState == freezed
           ? _value.webMailState
           : webMailState // ignore: cast_nullable_to_non_nullable
               as WebMailState,
-      fests: null == fests
+      fests: fests == freezed
           ? _value._fests
           : fests // ignore: cast_nullable_to_non_nullable
               as List<Org>,
@@ -391,7 +379,7 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+class _$_Initial implements _Initial {
   const _$_Initial({required this.webMailState, required final List<Org> fests})
       : _fests = fests;
 
@@ -405,17 +393,8 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FestState.initial(webMailState: $webMailState, fests: $fests)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'FestState.initial'))
-      ..add(DiagnosticsProperty('webMailState', webMailState))
-      ..add(DiagnosticsProperty('fests', fests));
   }
 
   @override
@@ -423,18 +402,19 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
-            (identical(other.webMailState, webMailState) ||
-                other.webMailState == webMailState) &&
+            const DeepCollectionEquality()
+                .equals(other.webMailState, webMailState) &&
             const DeepCollectionEquality().equals(other._fests, _fests));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, webMailState, const DeepCollectionEquality().hash(_fests));
+      runtimeType,
+      const DeepCollectionEquality().hash(webMailState),
+      const DeepCollectionEquality().hash(_fests));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
       __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
@@ -452,9 +432,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WebMailState webMailState, List<Org> fests)? initial,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult Function(WebMailState webMailState, List<Org> fests)? initial,
+    TResult Function()? loading,
+    TResult Function(String error)? error,
   }) {
     return initial?.call(webMailState, fests);
   }
@@ -486,9 +466,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -528,27 +508,23 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$FestStateCopyWithImpl<$Res, _$_Loading>
+class __$$_LoadingCopyWithImpl<$Res> extends _$FestStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
 
-class _$_Loading with DiagnosticableTreeMixin implements _Loading {
+class _$_Loading implements _Loading {
   const _$_Loading();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FestState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'FestState.loading'));
   }
 
   @override
@@ -574,9 +550,9 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WebMailState webMailState, List<Org> fests)? initial,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult Function(WebMailState webMailState, List<Org> fests)? initial,
+    TResult Function()? loading,
+    TResult Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -608,9 +584,9 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -638,24 +614,24 @@ abstract class _Loading implements FestState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
-  @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res>
-    extends _$FestStateCopyWithImpl<$Res, _$_Error>
+class __$$_ErrorCopyWithImpl<$Res> extends _$FestStateCopyWithImpl<$Res>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Error));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Error get _value => super._value as _$_Error;
+
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
   }) {
     return _then(_$_Error(
-      error: null == error
+      error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
@@ -665,23 +641,15 @@ class __$$_ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Error with DiagnosticableTreeMixin implements _Error {
+class _$_Error implements _Error {
   const _$_Error({required this.error});
 
   @override
   final String error;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FestState.error(error: $error)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'FestState.error'))
-      ..add(DiagnosticsProperty('error', error));
   }
 
   @override
@@ -689,15 +657,15 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
@@ -715,9 +683,9 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WebMailState webMailState, List<Org> fests)? initial,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult Function(WebMailState webMailState, List<Org> fests)? initial,
+    TResult Function()? loading,
+    TResult Function(String error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -749,9 +717,9 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
   }) {
     return error?.call(this);
   }

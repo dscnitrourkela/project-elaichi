@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
+import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:flutter/material.dart';
 
 class HeaderWidget extends StatelessWidget {
@@ -29,7 +30,8 @@ class HeaderWidget extends StatelessWidget {
       children: [
         CachedNetworkImage(
           imageUrl: imageUrl,
-          height: 544,
+          height: 550,
+          width: SizeConfig.screenWidth,
           fit: BoxFit.fill,
         ),
         Positioned(top: 60, left: 16, child: leadingWidget),

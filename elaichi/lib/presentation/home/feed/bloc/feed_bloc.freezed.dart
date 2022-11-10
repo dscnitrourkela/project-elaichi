@@ -23,7 +23,7 @@ mixin _$FeedEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult Function()? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,7 +39,7 @@ mixin _$FeedEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult Function(_Started value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,18 +53,16 @@ mixin _$FeedEvent {
 /// @nodoc
 abstract class $FeedEventCopyWith<$Res> {
   factory $FeedEventCopyWith(FeedEvent value, $Res Function(FeedEvent) then) =
-      _$FeedEventCopyWithImpl<$Res, FeedEvent>;
+      _$FeedEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FeedEventCopyWithImpl<$Res, $Val extends FeedEvent>
-    implements $FeedEventCopyWith<$Res> {
+class _$FeedEventCopyWithImpl<$Res> implements $FeedEventCopyWith<$Res> {
   _$FeedEventCopyWithImpl(this._value, this._then);
 
+  final FeedEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(FeedEvent) _then;
 }
 
 /// @nodoc
@@ -75,11 +73,13 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$FeedEventCopyWithImpl<$Res, _$_Started>
+class __$$_StartedCopyWithImpl<$Res> extends _$FeedEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Started));
+
+  @override
+  _$_Started get _value => super._value as _$_Started;
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult Function()? started,
   }) {
     return started?.call();
   }
@@ -140,7 +140,7 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult Function(_Started value)? started,
   }) {
     return started?.call(this);
   }
@@ -175,10 +175,10 @@ mixin _$FeedState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(WebMailState webMailState, List<MMArticle> articles)?
+    TResult Function()? loading,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
         initial,
-    TResult? Function(String error)? error,
+    TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -199,9 +199,9 @@ mixin _$FeedState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -217,18 +217,16 @@ mixin _$FeedState {
 /// @nodoc
 abstract class $FeedStateCopyWith<$Res> {
   factory $FeedStateCopyWith(FeedState value, $Res Function(FeedState) then) =
-      _$FeedStateCopyWithImpl<$Res, FeedState>;
+      _$FeedStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FeedStateCopyWithImpl<$Res, $Val extends FeedState>
-    implements $FeedStateCopyWith<$Res> {
+class _$FeedStateCopyWithImpl<$Res> implements $FeedStateCopyWith<$Res> {
   _$FeedStateCopyWithImpl(this._value, this._then);
 
+  final FeedState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(FeedState) _then;
 }
 
 /// @nodoc
@@ -239,11 +237,13 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$FeedStateCopyWithImpl<$Res, _$_Loading>
+class __$$_LoadingCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
@@ -280,10 +280,10 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(WebMailState webMailState, List<MMArticle> articles)?
+    TResult Function()? loading,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
         initial,
-    TResult? Function(String error)? error,
+    TResult Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -316,9 +316,9 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -347,29 +347,29 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
-  @useResult
   $Res call({WebMailState webMailState, List<MMArticle> articles});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$FeedStateCopyWithImpl<$Res, _$_Initial>
+class __$$_InitialCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Initial));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Initial get _value => super._value as _$_Initial;
+
   @override
   $Res call({
-    Object? webMailState = null,
-    Object? articles = null,
+    Object? webMailState = freezed,
+    Object? articles = freezed,
   }) {
     return _then(_$_Initial(
-      webMailState: null == webMailState
+      webMailState: webMailState == freezed
           ? _value.webMailState
           : webMailState // ignore: cast_nullable_to_non_nullable
               as WebMailState,
-      articles: null == articles
+      articles: articles == freezed
           ? _value._articles
           : articles // ignore: cast_nullable_to_non_nullable
               as List<MMArticle>,
@@ -404,18 +404,19 @@ class _$_Initial implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
-            (identical(other.webMailState, webMailState) ||
-                other.webMailState == webMailState) &&
+            const DeepCollectionEquality()
+                .equals(other.webMailState, webMailState) &&
             const DeepCollectionEquality().equals(other._articles, _articles));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, webMailState,
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(webMailState),
       const DeepCollectionEquality().hash(_articles));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
       __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
@@ -434,10 +435,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(WebMailState webMailState, List<MMArticle> articles)?
+    TResult Function()? loading,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
         initial,
-    TResult? Function(String error)? error,
+    TResult Function(String error)? error,
   }) {
     return initial?.call(webMailState, articles);
   }
@@ -470,9 +471,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -508,24 +509,24 @@ abstract class _Initial implements FeedState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
-  @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res>
-    extends _$FeedStateCopyWithImpl<$Res, _$_Error>
+class __$$_ErrorCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Error));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Error get _value => super._value as _$_Error;
+
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
   }) {
     return _then(_$_Error(
-      null == error
+      error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
@@ -551,15 +552,15 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
@@ -578,10 +579,10 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(WebMailState webMailState, List<MMArticle> articles)?
+    TResult Function()? loading,
+    TResult Function(WebMailState webMailState, List<MMArticle> articles)?
         initial,
-    TResult? Function(String error)? error,
+    TResult Function(String error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -614,9 +615,9 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Error value)? error,
   }) {
     return error?.call(this);
   }

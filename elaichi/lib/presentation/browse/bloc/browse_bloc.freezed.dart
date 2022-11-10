@@ -23,7 +23,7 @@ mixin _$BrowseEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult Function()? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,7 +39,7 @@ mixin _$BrowseEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult Function(_Started value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,18 +54,16 @@ mixin _$BrowseEvent {
 abstract class $BrowseEventCopyWith<$Res> {
   factory $BrowseEventCopyWith(
           BrowseEvent value, $Res Function(BrowseEvent) then) =
-      _$BrowseEventCopyWithImpl<$Res, BrowseEvent>;
+      _$BrowseEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$BrowseEventCopyWithImpl<$Res, $Val extends BrowseEvent>
-    implements $BrowseEventCopyWith<$Res> {
+class _$BrowseEventCopyWithImpl<$Res> implements $BrowseEventCopyWith<$Res> {
   _$BrowseEventCopyWithImpl(this._value, this._then);
 
+  final BrowseEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(BrowseEvent) _then;
 }
 
 /// @nodoc
@@ -76,11 +74,13 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$BrowseEventCopyWithImpl<$Res, _$_Started>
+class __$$_StartedCopyWithImpl<$Res> extends _$BrowseEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Started));
+
+  @override
+  _$_Started get _value => super._value as _$_Started;
 }
 
 /// @nodoc
@@ -113,7 +113,7 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult Function()? started,
   }) {
     return started?.call();
   }
@@ -141,7 +141,7 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult Function(_Started value)? started,
   }) {
     return started?.call(this);
   }
@@ -172,7 +172,7 @@ mixin _$BrowseState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -188,7 +188,7 @@ mixin _$BrowseState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
+    TResult Function(_Loading value)? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -203,18 +203,16 @@ mixin _$BrowseState {
 abstract class $BrowseStateCopyWith<$Res> {
   factory $BrowseStateCopyWith(
           BrowseState value, $Res Function(BrowseState) then) =
-      _$BrowseStateCopyWithImpl<$Res, BrowseState>;
+      _$BrowseStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$BrowseStateCopyWithImpl<$Res, $Val extends BrowseState>
-    implements $BrowseStateCopyWith<$Res> {
+class _$BrowseStateCopyWithImpl<$Res> implements $BrowseStateCopyWith<$Res> {
   _$BrowseStateCopyWithImpl(this._value, this._then);
 
+  final BrowseState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(BrowseState) _then;
 }
 
 /// @nodoc
@@ -225,11 +223,13 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$BrowseStateCopyWithImpl<$Res, _$_Loading>
+class __$$_LoadingCopyWithImpl<$Res> extends _$BrowseStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
@@ -262,7 +262,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult Function()? loading,
   }) {
     return loading?.call();
   }
@@ -290,7 +290,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
+    TResult Function(_Loading value)? loading,
   }) {
     return loading?.call(this);
   }

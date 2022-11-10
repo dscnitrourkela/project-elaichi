@@ -45,7 +45,7 @@ class FestBloc extends Bloc<FestEvent, FestState> {
             );
           },
           webMailLogIn: () {
-            final status = isVerified();
+            final status = isRegistered();
             emit(
               (state as _Initial).copyWith(
                 webMailState: status
@@ -73,6 +73,14 @@ class FestBloc extends Bloc<FestEvent, FestState> {
 
   late final EventRepository _eventRepository;
   late final UserRepository _userRepository;
+
+  bool isRegistered() {
+    if (_userRepository.user != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   bool isVerified() {
     if (_userRepository.rollNumber != null) {

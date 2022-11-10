@@ -60,7 +60,8 @@ class _WebMailPageState extends State<WebMailPage> {
                 ),
                 loading: () => const Center(child: CircularProgressIndicator()),
                 authenticated: () => WebViewStack(controller: controller),
-                unauthenticated: () => Center(
+                unauthenticated: () => Padding(
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

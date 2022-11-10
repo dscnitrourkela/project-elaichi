@@ -152,6 +152,7 @@ class GraphQLService {
     required String name,
     required String rollNumber,
     required String college,
+    required String mobileNumber,
     String? photo,
   }) async {
     try {
@@ -163,7 +164,8 @@ class GraphQLService {
           'name': name,
           'photo': photo,
           'rollNumber': rollNumber,
-          'college': college
+          'college': college,
+          'mobile': mobileNumber,
         },
       );
 

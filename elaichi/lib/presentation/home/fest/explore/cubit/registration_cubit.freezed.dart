@@ -27,10 +27,10 @@ mixin _$RegistrationState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<EventRegistration> eventRegistrations)? initial,
-    TResult? Function(String eventID)? loading,
-    TResult? Function()? success,
-    TResult? Function(String error)? error,
+    TResult Function(List<EventRegistration> eventRegistrations)? initial,
+    TResult Function(String eventID)? loading,
+    TResult Function()? success,
+    TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,10 +52,10 @@ mixin _$RegistrationState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,18 +73,17 @@ mixin _$RegistrationState {
 abstract class $RegistrationStateCopyWith<$Res> {
   factory $RegistrationStateCopyWith(
           RegistrationState value, $Res Function(RegistrationState) then) =
-      _$RegistrationStateCopyWithImpl<$Res, RegistrationState>;
+      _$RegistrationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RegistrationStateCopyWithImpl<$Res, $Val extends RegistrationState>
+class _$RegistrationStateCopyWithImpl<$Res>
     implements $RegistrationStateCopyWith<$Res> {
   _$RegistrationStateCopyWithImpl(this._value, this._then);
 
+  final RegistrationState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(RegistrationState) _then;
 }
 
 /// @nodoc
@@ -92,24 +91,25 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
-  @useResult
   $Res call({List<EventRegistration> eventRegistrations});
 }
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$RegistrationStateCopyWithImpl<$Res, _$_Initial>
+    extends _$RegistrationStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Initial));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Initial get _value => super._value as _$_Initial;
+
   @override
   $Res call({
-    Object? eventRegistrations = null,
+    Object? eventRegistrations = freezed,
   }) {
     return _then(_$_Initial(
-      eventRegistrations: null == eventRegistrations
+      eventRegistrations: eventRegistrations == freezed
           ? _value._eventRegistrations
           : eventRegistrations // ignore: cast_nullable_to_non_nullable
               as List<EventRegistration>,
@@ -150,7 +150,6 @@ class _$_Initial implements _Initial {
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
       __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
@@ -169,10 +168,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<EventRegistration> eventRegistrations)? initial,
-    TResult? Function(String eventID)? loading,
-    TResult? Function()? success,
-    TResult? Function(String error)? error,
+    TResult Function(List<EventRegistration> eventRegistrations)? initial,
+    TResult Function(String eventID)? loading,
+    TResult Function()? success,
+    TResult Function(String error)? error,
   }) {
     return initial?.call(eventRegistrations);
   }
@@ -206,10 +205,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -245,24 +244,25 @@ abstract class _$$_LoadingCopyWith<$Res> {
   factory _$$_LoadingCopyWith(
           _$_Loading value, $Res Function(_$_Loading) then) =
       __$$_LoadingCopyWithImpl<$Res>;
-  @useResult
   $Res call({String eventID});
 }
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$RegistrationStateCopyWithImpl<$Res, _$_Loading>
+    extends _$RegistrationStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Loading));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
+
   @override
   $Res call({
-    Object? eventID = null,
+    Object? eventID = freezed,
   }) {
     return _then(_$_Loading(
-      eventID: null == eventID
+      eventID: eventID == freezed
           ? _value.eventID
           : eventID // ignore: cast_nullable_to_non_nullable
               as String,
@@ -288,15 +288,15 @@ class _$_Loading implements _Loading {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loading &&
-            (identical(other.eventID, eventID) || other.eventID == eventID));
+            const DeepCollectionEquality().equals(other.eventID, eventID));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, eventID);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(eventID));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_LoadingCopyWith<_$_Loading> get copyWith =>
       __$$_LoadingCopyWithImpl<_$_Loading>(this, _$identity);
 
@@ -315,10 +315,10 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<EventRegistration> eventRegistrations)? initial,
-    TResult? Function(String eventID)? loading,
-    TResult? Function()? success,
-    TResult? Function(String error)? error,
+    TResult Function(List<EventRegistration> eventRegistrations)? initial,
+    TResult Function(String eventID)? loading,
+    TResult Function()? success,
+    TResult Function(String error)? error,
   }) {
     return loading?.call(eventID);
   }
@@ -352,10 +352,10 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -394,10 +394,13 @@ abstract class _$$_SuccessCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SuccessCopyWithImpl<$Res>
-    extends _$RegistrationStateCopyWithImpl<$Res, _$_Success>
+    extends _$RegistrationStateCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Success));
+
+  @override
+  _$_Success get _value => super._value as _$_Success;
 }
 
 /// @nodoc
@@ -434,10 +437,10 @@ class _$_Success implements _Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<EventRegistration> eventRegistrations)? initial,
-    TResult? Function(String eventID)? loading,
-    TResult? Function()? success,
-    TResult? Function(String error)? error,
+    TResult Function(List<EventRegistration> eventRegistrations)? initial,
+    TResult Function(String eventID)? loading,
+    TResult Function()? success,
+    TResult Function(String error)? error,
   }) {
     return success?.call();
   }
@@ -471,10 +474,10 @@ class _$_Success implements _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return success?.call(this);
   }
@@ -503,24 +506,24 @@ abstract class _Success implements RegistrationState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
-  @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res>
-    extends _$RegistrationStateCopyWithImpl<$Res, _$_Error>
+class __$$_ErrorCopyWithImpl<$Res> extends _$RegistrationStateCopyWithImpl<$Res>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Error));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Error get _value => super._value as _$_Error;
+
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
   }) {
     return _then(_$_Error(
-      error: null == error
+      error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
@@ -546,15 +549,15 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
@@ -573,10 +576,10 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<EventRegistration> eventRegistrations)? initial,
-    TResult? Function(String eventID)? loading,
-    TResult? Function()? success,
-    TResult? Function(String error)? error,
+    TResult Function(List<EventRegistration> eventRegistrations)? initial,
+    TResult Function(String eventID)? loading,
+    TResult Function()? success,
+    TResult Function(String error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -610,10 +613,10 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return error?.call(this);
   }

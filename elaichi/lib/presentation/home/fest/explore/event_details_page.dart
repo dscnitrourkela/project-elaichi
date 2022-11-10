@@ -34,12 +34,7 @@ class EventDetailsPage extends StatelessWidget {
           child: BlocConsumer<RegistrationCubit, RegistrationState>(
             listener: (context, state) {
               state.whenOrNull(
-                success: () {
-                  toastUtil.showToast(
-                    mode: ToastMode.Success,
-                    title: 'Successfully Registered for the event',
-                  );
-                },
+                success: () {},
                 error: (error) {
                   if (error == 'User Not Registered') {
                     Navigator.pushNamed(
@@ -63,7 +58,10 @@ class EventDetailsPage extends StatelessWidget {
                             (element) => event.id == element.eventID,
                           )
                           .isNotEmpty)
-                      ? const Text('Registered')
+                      ? Text(
+                          'Registered',
+                          style: interTextTheme.bodyText1,
+                        )
                       : YellowFlatButton(
                           onTapped: () async {
                             await context

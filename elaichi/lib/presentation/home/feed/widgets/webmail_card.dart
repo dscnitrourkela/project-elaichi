@@ -1,6 +1,8 @@
+import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
+import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
 import 'package:elaichi/presentation/mail/webmail_login_bottom_sheet/webmai_login_bottomsheet.dart';
 import 'package:flutter/material.dart';
@@ -66,16 +68,27 @@ class WebMailCard extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                 ),
                 onPressed: () {
-                  showModalBottomSheet<void>(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) => const WebMailLoginBottomSheet(),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(16),
+                  if (context.read<FestBloc>().isRegistered()) {
+                    showModalBottomSheet<void>(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) => const WebMailLoginBottomSheet(),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16),
+                        ),
                       ),
-                    ),
-                  ).then((value) => bloc.add(const FestEvent.webMailLogIn()));
+                    ).then(
+                      (value) {
+                        context
+                            .read<FestBloc>()
+                            .add(const FestEvent.webMailLogIn());
+                        context.read<HomeCubit>().checkIfVerified();
+                      },
+                    );
+                  } else {
+                    Navigator.pushNamed(context, AppRouter.registrationForm);
+                  }
                 },
                 child: Text(
                   Strings.verifyNow,

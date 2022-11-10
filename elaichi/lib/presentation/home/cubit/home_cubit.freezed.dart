@@ -20,21 +20,24 @@ mixin _$HomeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() isVerified,
+    required TResult Function(int pageIndex) isVerifiedUser,
+    required TResult Function(int pageIndex) isRegisteredUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? isVerified,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? isVerified,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,21 +45,24 @@ mixin _$HomeState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_IsVerified value) isVerified,
+    required TResult Function(_IsVerifiedUser value) isVerifiedUser,
+    required TResult Function(_IsRegisteredUser value) isRegisteredUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_IsVerified value)? isVerified,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_IsVerified value)? isVerified,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -65,18 +71,16 @@ mixin _$HomeState {
 /// @nodoc
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
-      _$HomeStateCopyWithImpl<$Res, HomeState>;
+      _$HomeStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
-    implements $HomeStateCopyWith<$Res> {
+class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   _$HomeStateCopyWithImpl(this._value, this._then);
 
+  final HomeState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(HomeState) _then;
 }
 
 /// @nodoc
@@ -87,11 +91,13 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$_Initial>
+class __$$_InitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Initial));
+
+  @override
+  _$_Initial get _value => super._value as _$_Initial;
 }
 
 /// @nodoc
@@ -118,7 +124,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() isVerified,
+    required TResult Function(int pageIndex) isVerifiedUser,
+    required TResult Function(int pageIndex) isRegisteredUser,
   }) {
     return initial();
   }
@@ -126,9 +133,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? isVerified,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
   }) {
     return initial?.call();
   }
@@ -138,7 +146,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? isVerified,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -152,7 +161,8 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_IsVerified value) isVerified,
+    required TResult Function(_IsVerifiedUser value) isVerifiedUser,
+    required TResult Function(_IsRegisteredUser value) isRegisteredUser,
   }) {
     return initial(this);
   }
@@ -160,9 +170,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_IsVerified value)? isVerified,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
   }) {
     return initial?.call(this);
   }
@@ -172,7 +183,8 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_IsVerified value)? isVerified,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -194,11 +206,13 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$_Loading>
+class __$$_LoadingCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
@@ -225,7 +239,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() isVerified,
+    required TResult Function(int pageIndex) isVerifiedUser,
+    required TResult Function(int pageIndex) isRegisteredUser,
   }) {
     return loading();
   }
@@ -233,9 +248,10 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? isVerified,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
   }) {
     return loading?.call();
   }
@@ -245,7 +261,8 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? isVerified,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -259,7 +276,8 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_IsVerified value) isVerified,
+    required TResult Function(_IsVerifiedUser value) isVerifiedUser,
+    required TResult Function(_IsRegisteredUser value) isRegisteredUser,
   }) {
     return loading(this);
   }
@@ -267,9 +285,10 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_IsVerified value)? isVerified,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
   }) {
     return loading?.call(this);
   }
@@ -279,7 +298,8 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_IsVerified value)? isVerified,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -294,58 +314,87 @@ abstract class _Loading implements HomeState {
 }
 
 /// @nodoc
-abstract class _$$_IsVerifiedCopyWith<$Res> {
-  factory _$$_IsVerifiedCopyWith(
-          _$_IsVerified value, $Res Function(_$_IsVerified) then) =
-      __$$_IsVerifiedCopyWithImpl<$Res>;
+abstract class _$$_IsVerifiedUserCopyWith<$Res> {
+  factory _$$_IsVerifiedUserCopyWith(
+          _$_IsVerifiedUser value, $Res Function(_$_IsVerifiedUser) then) =
+      __$$_IsVerifiedUserCopyWithImpl<$Res>;
+  $Res call({int pageIndex});
 }
 
 /// @nodoc
-class __$$_IsVerifiedCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$_IsVerified>
-    implements _$$_IsVerifiedCopyWith<$Res> {
-  __$$_IsVerifiedCopyWithImpl(
-      _$_IsVerified _value, $Res Function(_$_IsVerified) _then)
-      : super(_value, _then);
+class __$$_IsVerifiedUserCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res>
+    implements _$$_IsVerifiedUserCopyWith<$Res> {
+  __$$_IsVerifiedUserCopyWithImpl(
+      _$_IsVerifiedUser _value, $Res Function(_$_IsVerifiedUser) _then)
+      : super(_value, (v) => _then(v as _$_IsVerifiedUser));
+
+  @override
+  _$_IsVerifiedUser get _value => super._value as _$_IsVerifiedUser;
+
+  @override
+  $Res call({
+    Object? pageIndex = freezed,
+  }) {
+    return _then(_$_IsVerifiedUser(
+      pageIndex == freezed
+          ? _value.pageIndex
+          : pageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_IsVerified implements _IsVerified {
-  const _$_IsVerified();
+class _$_IsVerifiedUser implements _IsVerifiedUser {
+  const _$_IsVerifiedUser(this.pageIndex);
+
+  @override
+  final int pageIndex;
 
   @override
   String toString() {
-    return 'HomeState.isVerified()';
+    return 'HomeState.isVerifiedUser(pageIndex: $pageIndex)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_IsVerified);
+        (other.runtimeType == runtimeType &&
+            other is _$_IsVerifiedUser &&
+            const DeepCollectionEquality().equals(other.pageIndex, pageIndex));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(pageIndex));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_IsVerifiedUserCopyWith<_$_IsVerifiedUser> get copyWith =>
+      __$$_IsVerifiedUserCopyWithImpl<_$_IsVerifiedUser>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() isVerified,
+    required TResult Function(int pageIndex) isVerifiedUser,
+    required TResult Function(int pageIndex) isRegisteredUser,
   }) {
-    return isVerified();
+    return isVerifiedUser(pageIndex);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? isVerified,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
   }) {
-    return isVerified?.call();
+    return isVerifiedUser?.call(pageIndex);
   }
 
   @override
@@ -353,11 +402,12 @@ class _$_IsVerified implements _IsVerified {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? isVerified,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
     required TResult orElse(),
   }) {
-    if (isVerified != null) {
-      return isVerified();
+    if (isVerifiedUser != null) {
+      return isVerifiedUser(pageIndex);
     }
     return orElse();
   }
@@ -367,19 +417,21 @@ class _$_IsVerified implements _IsVerified {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_IsVerified value) isVerified,
+    required TResult Function(_IsVerifiedUser value) isVerifiedUser,
+    required TResult Function(_IsRegisteredUser value) isRegisteredUser,
   }) {
-    return isVerified(this);
+    return isVerifiedUser(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_IsVerified value)? isVerified,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
   }) {
-    return isVerified?.call(this);
+    return isVerifiedUser?.call(this);
   }
 
   @override
@@ -387,16 +439,168 @@ class _$_IsVerified implements _IsVerified {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_IsVerified value)? isVerified,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
     required TResult orElse(),
   }) {
-    if (isVerified != null) {
-      return isVerified(this);
+    if (isVerifiedUser != null) {
+      return isVerifiedUser(this);
     }
     return orElse();
   }
 }
 
-abstract class _IsVerified implements HomeState {
-  const factory _IsVerified() = _$_IsVerified;
+abstract class _IsVerifiedUser implements HomeState {
+  const factory _IsVerifiedUser(final int pageIndex) = _$_IsVerifiedUser;
+
+  int get pageIndex;
+  @JsonKey(ignore: true)
+  _$$_IsVerifiedUserCopyWith<_$_IsVerifiedUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_IsRegisteredUserCopyWith<$Res> {
+  factory _$$_IsRegisteredUserCopyWith(
+          _$_IsRegisteredUser value, $Res Function(_$_IsRegisteredUser) then) =
+      __$$_IsRegisteredUserCopyWithImpl<$Res>;
+  $Res call({int pageIndex});
+}
+
+/// @nodoc
+class __$$_IsRegisteredUserCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res>
+    implements _$$_IsRegisteredUserCopyWith<$Res> {
+  __$$_IsRegisteredUserCopyWithImpl(
+      _$_IsRegisteredUser _value, $Res Function(_$_IsRegisteredUser) _then)
+      : super(_value, (v) => _then(v as _$_IsRegisteredUser));
+
+  @override
+  _$_IsRegisteredUser get _value => super._value as _$_IsRegisteredUser;
+
+  @override
+  $Res call({
+    Object? pageIndex = freezed,
+  }) {
+    return _then(_$_IsRegisteredUser(
+      pageIndex == freezed
+          ? _value.pageIndex
+          : pageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_IsRegisteredUser implements _IsRegisteredUser {
+  const _$_IsRegisteredUser(this.pageIndex);
+
+  @override
+  final int pageIndex;
+
+  @override
+  String toString() {
+    return 'HomeState.isRegisteredUser(pageIndex: $pageIndex)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_IsRegisteredUser &&
+            const DeepCollectionEquality().equals(other.pageIndex, pageIndex));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(pageIndex));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_IsRegisteredUserCopyWith<_$_IsRegisteredUser> get copyWith =>
+      __$$_IsRegisteredUserCopyWithImpl<_$_IsRegisteredUser>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(int pageIndex) isVerifiedUser,
+    required TResult Function(int pageIndex) isRegisteredUser,
+  }) {
+    return isRegisteredUser(pageIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
+  }) {
+    return isRegisteredUser?.call(pageIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(int pageIndex)? isVerifiedUser,
+    TResult Function(int pageIndex)? isRegisteredUser,
+    required TResult orElse(),
+  }) {
+    if (isRegisteredUser != null) {
+      return isRegisteredUser(pageIndex);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_IsVerifiedUser value) isVerifiedUser,
+    required TResult Function(_IsRegisteredUser value) isRegisteredUser,
+  }) {
+    return isRegisteredUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
+  }) {
+    return isRegisteredUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_IsVerifiedUser value)? isVerifiedUser,
+    TResult Function(_IsRegisteredUser value)? isRegisteredUser,
+    required TResult orElse(),
+  }) {
+    if (isRegisteredUser != null) {
+      return isRegisteredUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IsRegisteredUser implements HomeState {
+  const factory _IsRegisteredUser(final int pageIndex) = _$_IsRegisteredUser;
+
+  int get pageIndex;
+  @JsonKey(ignore: true)
+  _$$_IsRegisteredUserCopyWith<_$_IsRegisteredUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }

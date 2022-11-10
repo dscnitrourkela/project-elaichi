@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   /// to maintain the page index of the bottom navigation bar
-  int pageIndex = 1;
+  // int pageIndex = 1;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
@@ -36,12 +36,10 @@ class _HomePageState extends State<HomePage> {
         return state.when(
           initial: () => const FestPage(),
           loading: () => const Center(child: CircularProgressIndicator()),
-          isVerified: () => Scaffold(
+          isVerifiedUser: (pageIndex) => Scaffold(
             body: IndexedStack(
               index: pageIndex,
               children: const [
-                // FeedPage(),
-                // BrowsePage(),
                 WebMailPage(),
                 FestPage(),
                 ProfilePage(),
@@ -51,9 +49,7 @@ class _HomePageState extends State<HomePage> {
               showSelectedLabels: false,
               showUnselectedLabels: false,
               onTap: (int value) async {
-                setState(() {
-                  pageIndex = value;
-                });
+                _cubit.checkIfVerified(pageIndex: value);
               },
               currentIndex: pageIndex,
               selectedItemColor: Theme.of(context).primaryColor,
@@ -63,7 +59,40 @@ class _HomePageState extends State<HomePage> {
               iconSize: 28,
               type: BottomNavigationBarType.fixed,
               elevation: 16,
-              items: navBarItems(_cubit.userImage),
+              items: navBarItems(
+                profileImage: _cubit.userImage,
+                isVerifiedUser: true,
+              ),
+            ),
+          ),
+          isRegisteredUser: (pageIndex) => Scaffold(
+            body: IndexedStack(
+              index: pageIndex,
+              children: const [
+                // FeedPage(),
+                // BrowsePage(),
+                FestPage(),
+                ProfilePage(),
+              ],
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              onTap: (int value) {
+                _cubit.checkIfVerified(pageIndex: value);
+              },
+              currentIndex: pageIndex,
+              selectedItemColor: Theme.of(context).primaryColor,
+              unselectedItemColor: Theme.of(context).hintColor,
+              selectedIconTheme: const IconThemeData(size: 32),
+              backgroundColor: Theme.of(context).canvasColor,
+              iconSize: 28,
+              type: BottomNavigationBarType.fixed,
+              elevation: 16,
+              items: navBarItems(
+                profileImage: _cubit.userImage,
+                isVerifiedUser: false,
+              ),
             ),
           ),
         );

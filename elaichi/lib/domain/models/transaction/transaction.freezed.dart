@@ -39,8 +39,7 @@ mixin _$Transaction {
 abstract class $TransactionCopyWith<$Res> {
   factory $TransactionCopyWith(
           Transaction value, $Res Function(Transaction) then) =
-      _$TransactionCopyWithImpl<$Res, Transaction>;
-  @useResult
+      _$TransactionCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String transactionID,
@@ -55,68 +54,64 @@ abstract class $TransactionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
-    implements $TransactionCopyWith<$Res> {
+class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
   _$TransactionCopyWithImpl(this._value, this._then);
 
+  final Transaction _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(Transaction) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? transactionID = null,
-    Object? type = null,
-    Object? user = null,
-    Object? userID = null,
-    Object? timestamp = null,
-    Object? amount = null,
+    Object? id = freezed,
+    Object? transactionID = freezed,
+    Object? type = freezed,
+    Object? user = freezed,
+    Object? userID = freezed,
+    Object? timestamp = freezed,
+    Object? amount = freezed,
     Object? comment = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      transactionID: null == transactionID
+      transactionID: transactionID == freezed
           ? _value.transactionID
           : transactionID // ignore: cast_nullable_to_non_nullable
               as String,
-      type: null == type
+      type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TransactionType,
-      user: null == user
+      user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
-      userID: null == userID
+      userID: userID == freezed
           ? _value.userID
           : userID // ignore: cast_nullable_to_non_nullable
               as String,
-      timestamp: null == timestamp
+      timestamp: timestamp == freezed
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      amount: null == amount
+      amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      comment: freezed == comment
+      comment: comment == freezed
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
-    ) as $Val);
+    ));
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get user {
     return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+      return _then(_value.copyWith(user: value));
     });
   }
 }
@@ -128,7 +123,6 @@ abstract class _$$_TransactionCopyWith<$Res>
           _$_Transaction value, $Res Function(_$_Transaction) then) =
       __$$_TransactionCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {String id,
       String transactionID,
@@ -144,55 +138,56 @@ abstract class _$$_TransactionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TransactionCopyWithImpl<$Res>
-    extends _$TransactionCopyWithImpl<$Res, _$_Transaction>
+class __$$_TransactionCopyWithImpl<$Res> extends _$TransactionCopyWithImpl<$Res>
     implements _$$_TransactionCopyWith<$Res> {
   __$$_TransactionCopyWithImpl(
       _$_Transaction _value, $Res Function(_$_Transaction) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Transaction));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Transaction get _value => super._value as _$_Transaction;
+
   @override
   $Res call({
-    Object? id = null,
-    Object? transactionID = null,
-    Object? type = null,
-    Object? user = null,
-    Object? userID = null,
-    Object? timestamp = null,
-    Object? amount = null,
+    Object? id = freezed,
+    Object? transactionID = freezed,
+    Object? type = freezed,
+    Object? user = freezed,
+    Object? userID = freezed,
+    Object? timestamp = freezed,
+    Object? amount = freezed,
     Object? comment = freezed,
   }) {
     return _then(_$_Transaction(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      transactionID: null == transactionID
+      transactionID: transactionID == freezed
           ? _value.transactionID
           : transactionID // ignore: cast_nullable_to_non_nullable
               as String,
-      type: null == type
+      type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TransactionType,
-      user: null == user
+      user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
-      userID: null == userID
+      userID: userID == freezed
           ? _value.userID
           : userID // ignore: cast_nullable_to_non_nullable
               as String,
-      timestamp: null == timestamp
+      timestamp: timestamp == freezed
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      amount: null == amount
+      amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      comment: freezed == comment
+      comment: comment == freezed
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -243,26 +238,32 @@ class _$_Transaction implements _Transaction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Transaction &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.transactionID, transactionID) ||
-                other.transactionID == transactionID) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.userID, userID) || other.userID == userID) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.comment, comment) || other.comment == comment));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.transactionID, transactionID) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.userID, userID) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
+            const DeepCollectionEquality().equals(other.amount, amount) &&
+            const DeepCollectionEquality().equals(other.comment, comment));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, transactionID, type, user,
-      userID, timestamp, amount, comment);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(transactionID),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(userID),
+      const DeepCollectionEquality().hash(timestamp),
+      const DeepCollectionEquality().hash(amount),
+      const DeepCollectionEquality().hash(comment));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_TransactionCopyWith<_$_Transaction> get copyWith =>
       __$$_TransactionCopyWithImpl<_$_Transaction>(this, _$identity);
 

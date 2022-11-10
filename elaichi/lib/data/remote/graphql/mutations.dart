@@ -7,6 +7,7 @@ class Mutations {
       $photo : String
       $rollNumber: String
       $college: String
+      $mobile: String!
     ) {
       createUser(user: {
         uid: $uid
@@ -15,6 +16,7 @@ class Mutations {
         photo: $photo
         rollNumber: $rollNumber
         college: $college
+        mobile: $mobile
       }) {
         id
         email
@@ -23,6 +25,7 @@ class Mutations {
         photo
         rollNumber
         college
+        mobile
       }
     }
 ''';

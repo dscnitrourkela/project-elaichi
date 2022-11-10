@@ -24,8 +24,8 @@ mixin _$AllEventsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int selectedIndex)? initial,
-    TResult? Function()? loading,
+    TResult Function(int selectedIndex)? initial,
+    TResult Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$AllEventsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,18 +60,17 @@ mixin _$AllEventsState {
 abstract class $AllEventsStateCopyWith<$Res> {
   factory $AllEventsStateCopyWith(
           AllEventsState value, $Res Function(AllEventsState) then) =
-      _$AllEventsStateCopyWithImpl<$Res, AllEventsState>;
+      _$AllEventsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AllEventsStateCopyWithImpl<$Res, $Val extends AllEventsState>
+class _$AllEventsStateCopyWithImpl<$Res>
     implements $AllEventsStateCopyWith<$Res> {
   _$AllEventsStateCopyWithImpl(this._value, this._then);
 
+  final AllEventsState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(AllEventsState) _then;
 }
 
 /// @nodoc
@@ -79,24 +78,24 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
-  @useResult
   $Res call({int selectedIndex});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$AllEventsStateCopyWithImpl<$Res, _$_Initial>
+class __$$_InitialCopyWithImpl<$Res> extends _$AllEventsStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Initial));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Initial get _value => super._value as _$_Initial;
+
   @override
   $Res call({
-    Object? selectedIndex = null,
+    Object? selectedIndex = freezed,
   }) {
     return _then(_$_Initial(
-      selectedIndex: null == selectedIndex
+      selectedIndex: selectedIndex == freezed
           ? _value.selectedIndex
           : selectedIndex // ignore: cast_nullable_to_non_nullable
               as int,
@@ -123,16 +122,16 @@ class _$_Initial implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
-            (identical(other.selectedIndex, selectedIndex) ||
-                other.selectedIndex == selectedIndex));
+            const DeepCollectionEquality()
+                .equals(other.selectedIndex, selectedIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedIndex);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(selectedIndex));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
       __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
@@ -148,8 +147,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int selectedIndex)? initial,
-    TResult? Function()? loading,
+    TResult Function(int selectedIndex)? initial,
+    TResult Function()? loading,
   }) {
     return initial?.call(selectedIndex);
   }
@@ -179,8 +178,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
   }) {
     return initial?.call(this);
   }
@@ -216,11 +215,13 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$AllEventsStateCopyWithImpl<$Res, _$_Loading>
+class __$$_LoadingCopyWithImpl<$Res> extends _$AllEventsStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
@@ -254,8 +255,8 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int selectedIndex)? initial,
-    TResult? Function()? loading,
+    TResult Function(int selectedIndex)? initial,
+    TResult Function()? loading,
   }) {
     return loading?.call();
   }
@@ -285,8 +286,8 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
   }) {
     return loading?.call(this);
   }

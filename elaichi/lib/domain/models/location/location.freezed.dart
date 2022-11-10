@@ -35,53 +35,49 @@ mixin _$Location {
 /// @nodoc
 abstract class $LocationCopyWith<$Res> {
   factory $LocationCopyWith(Location value, $Res Function(Location) then) =
-      _$LocationCopyWithImpl<$Res, Location>;
-  @useResult
+      _$LocationCopyWithImpl<$Res>;
   $Res call(
       {String id, String description, String name, double? lat, double? long});
 }
 
 /// @nodoc
-class _$LocationCopyWithImpl<$Res, $Val extends Location>
-    implements $LocationCopyWith<$Res> {
+class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
   _$LocationCopyWithImpl(this._value, this._then);
 
+  final Location _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(Location) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? description = null,
-    Object? name = null,
+    Object? id = freezed,
+    Object? description = freezed,
+    Object? name = freezed,
     Object? lat = freezed,
     Object? long = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      lat: freezed == lat
+      lat: lat == freezed
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as double?,
-      long: freezed == long
+      long: long == freezed
           ? _value.long
           : long // ignore: cast_nullable_to_non_nullable
               as double?,
-    ) as $Val);
+    ));
   }
 }
 
@@ -91,46 +87,46 @@ abstract class _$$_LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
           _$_Location value, $Res Function(_$_Location) then) =
       __$$_LocationCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {String id, String description, String name, double? lat, double? long});
 }
 
 /// @nodoc
-class __$$_LocationCopyWithImpl<$Res>
-    extends _$LocationCopyWithImpl<$Res, _$_Location>
+class __$$_LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
     implements _$$_LocationCopyWith<$Res> {
   __$$_LocationCopyWithImpl(
       _$_Location _value, $Res Function(_$_Location) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Location));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Location get _value => super._value as _$_Location;
+
   @override
   $Res call({
-    Object? id = null,
-    Object? description = null,
-    Object? name = null,
+    Object? id = freezed,
+    Object? description = freezed,
+    Object? name = freezed,
     Object? lat = freezed,
     Object? long = freezed,
   }) {
     return _then(_$_Location(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      lat: freezed == lat
+      lat: lat == freezed
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as double?,
-      long: freezed == long
+      long: long == freezed
           ? _value.long
           : long // ignore: cast_nullable_to_non_nullable
               as double?,
@@ -172,22 +168,26 @@ class _$_Location implements _Location {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Location &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.lat, lat) || other.lat == lat) &&
-            (identical(other.long, long) || other.long == long));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.lat, lat) &&
+            const DeepCollectionEquality().equals(other.long, long));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, description, name, lat, long);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(lat),
+      const DeepCollectionEquality().hash(long));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_LocationCopyWith<_$_Location> get copyWith =>
       __$$_LocationCopyWithImpl<_$_Location>(this, _$identity);
 

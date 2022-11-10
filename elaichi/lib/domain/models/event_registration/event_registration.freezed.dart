@@ -36,8 +36,7 @@ mixin _$EventRegistration {
 abstract class $EventRegistrationCopyWith<$Res> {
   factory $EventRegistrationCopyWith(
           EventRegistration value, $Res Function(EventRegistration) then) =
-      _$EventRegistrationCopyWithImpl<$Res, EventRegistration>;
-  @useResult
+      _$EventRegistrationCopyWithImpl<$Res>;
   $Res call(
       {String id, String eventID, String userID, User? user, Event? event});
 
@@ -46,69 +45,65 @@ abstract class $EventRegistrationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EventRegistrationCopyWithImpl<$Res, $Val extends EventRegistration>
+class _$EventRegistrationCopyWithImpl<$Res>
     implements $EventRegistrationCopyWith<$Res> {
   _$EventRegistrationCopyWithImpl(this._value, this._then);
 
+  final EventRegistration _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(EventRegistration) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? eventID = null,
-    Object? userID = null,
+    Object? id = freezed,
+    Object? eventID = freezed,
+    Object? userID = freezed,
     Object? user = freezed,
     Object? event = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      eventID: null == eventID
+      eventID: eventID == freezed
           ? _value.eventID
           : eventID // ignore: cast_nullable_to_non_nullable
               as String,
-      userID: null == userID
+      userID: userID == freezed
           ? _value.userID
           : userID // ignore: cast_nullable_to_non_nullable
               as String,
-      user: freezed == user
+      user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      event: freezed == event
+      event: event == freezed
           ? _value.event
           : event // ignore: cast_nullable_to_non_nullable
               as Event?,
-    ) as $Val);
+    ));
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
     return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+      return _then(_value.copyWith(user: value));
     });
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $EventCopyWith<$Res>? get event {
     if (_value.event == null) {
       return null;
     }
 
     return $EventCopyWith<$Res>(_value.event!, (value) {
-      return _then(_value.copyWith(event: value) as $Val);
+      return _then(_value.copyWith(event: value));
     });
   }
 }
@@ -120,7 +115,6 @@ abstract class _$$_EventRegistrationCopyWith<$Res>
           $Res Function(_$_EventRegistration) then) =
       __$$_EventRegistrationCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {String id, String eventID, String userID, User? user, Event? event});
 
@@ -132,39 +126,41 @@ abstract class _$$_EventRegistrationCopyWith<$Res>
 
 /// @nodoc
 class __$$_EventRegistrationCopyWithImpl<$Res>
-    extends _$EventRegistrationCopyWithImpl<$Res, _$_EventRegistration>
+    extends _$EventRegistrationCopyWithImpl<$Res>
     implements _$$_EventRegistrationCopyWith<$Res> {
   __$$_EventRegistrationCopyWithImpl(
       _$_EventRegistration _value, $Res Function(_$_EventRegistration) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_EventRegistration));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_EventRegistration get _value => super._value as _$_EventRegistration;
+
   @override
   $Res call({
-    Object? id = null,
-    Object? eventID = null,
-    Object? userID = null,
+    Object? id = freezed,
+    Object? eventID = freezed,
+    Object? userID = freezed,
     Object? user = freezed,
     Object? event = freezed,
   }) {
     return _then(_$_EventRegistration(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      eventID: null == eventID
+      eventID: eventID == freezed
           ? _value.eventID
           : eventID // ignore: cast_nullable_to_non_nullable
               as String,
-      userID: null == userID
+      userID: userID == freezed
           ? _value.userID
           : userID // ignore: cast_nullable_to_non_nullable
               as String,
-      user: freezed == user
+      user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      event: freezed == event
+      event: event == freezed
           ? _value.event
           : event // ignore: cast_nullable_to_non_nullable
               as Event?,
@@ -206,21 +202,25 @@ class _$_EventRegistration implements _EventRegistration {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EventRegistration &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.eventID, eventID) || other.eventID == eventID) &&
-            (identical(other.userID, userID) || other.userID == userID) &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.event, event) || other.event == event));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.eventID, eventID) &&
+            const DeepCollectionEquality().equals(other.userID, userID) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.event, event));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, eventID, userID, user, event);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(eventID),
+      const DeepCollectionEquality().hash(userID),
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(event));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_EventRegistrationCopyWith<_$_EventRegistration> get copyWith =>
       __$$_EventRegistrationCopyWithImpl<_$_EventRegistration>(
           this, _$identity);

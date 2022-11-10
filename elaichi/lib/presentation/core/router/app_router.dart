@@ -21,6 +21,7 @@ class AppRouter {
   static const String eventDetails = '/eventDetails';
   static const String allEvents = '/allEvents';
   static const String registration = '/registration';
+  static const String registrationForm = '/registrationForm';
   static const String privacyPolicy = '/privacyPolicy';
   static const String devInfo = '/developerInfo';
 
@@ -76,6 +77,11 @@ class AppRouter {
           builder: (context) => const StudentConfirmationPage(),
         );
 
+      case registrationForm:
+        return AppPageRoute(
+          settings: settings,
+          builder: (context) => const RegistrationDetails(),
+         );
       case privacyPolicy:
         return AppPageRoute<void>(
           settings: settings,

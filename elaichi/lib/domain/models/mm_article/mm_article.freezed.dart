@@ -33,42 +33,38 @@ mixin _$MMArticle {
 /// @nodoc
 abstract class $MMArticleCopyWith<$Res> {
   factory $MMArticleCopyWith(MMArticle value, $Res Function(MMArticle) then) =
-      _$MMArticleCopyWithImpl<$Res, MMArticle>;
-  @useResult
+      _$MMArticleCopyWithImpl<$Res>;
   $Res call({String id, String title, String imageUrl});
 }
 
 /// @nodoc
-class _$MMArticleCopyWithImpl<$Res, $Val extends MMArticle>
-    implements $MMArticleCopyWith<$Res> {
+class _$MMArticleCopyWithImpl<$Res> implements $MMArticleCopyWith<$Res> {
   _$MMArticleCopyWithImpl(this._value, this._then);
 
+  final MMArticle _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(MMArticle) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? imageUrl = null,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
+      title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
+      imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
+    ));
   }
 }
 
@@ -78,35 +74,35 @@ abstract class _$$_MMArticleCopyWith<$Res> implements $MMArticleCopyWith<$Res> {
           _$_MMArticle value, $Res Function(_$_MMArticle) then) =
       __$$_MMArticleCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call({String id, String title, String imageUrl});
 }
 
 /// @nodoc
-class __$$_MMArticleCopyWithImpl<$Res>
-    extends _$MMArticleCopyWithImpl<$Res, _$_MMArticle>
+class __$$_MMArticleCopyWithImpl<$Res> extends _$MMArticleCopyWithImpl<$Res>
     implements _$$_MMArticleCopyWith<$Res> {
   __$$_MMArticleCopyWithImpl(
       _$_MMArticle _value, $Res Function(_$_MMArticle) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_MMArticle));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_MMArticle get _value => super._value as _$_MMArticle;
+
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? imageUrl = null,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_$_MMArticle(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
+      title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
+      imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
@@ -140,19 +136,21 @@ class _$_MMArticle implements _MMArticle {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MMArticle &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, imageUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(imageUrl));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_MMArticleCopyWith<_$_MMArticle> get copyWith =>
       __$$_MMArticleCopyWithImpl<_$_MMArticle>(this, _$identity);
 

@@ -65,6 +65,7 @@ class HighPriorityEventCard extends StatelessWidget {
                   children: [
                     SizedBox(
                       height: 29,
+                      width: 240,
                       child: ScrollingText(
                         text: jsonDecode(event.name)['heading'].toString(),
                         style: interTextTheme.subtitle2!.copyWith(
@@ -131,13 +132,6 @@ class HighPriorityEventCard extends StatelessWidget {
                           BlocConsumer<RegistrationCubit, RegistrationState>(
                             listener: (context, state) {
                               state.whenOrNull(
-                                success: () {
-                                  toastUtil.showToast(
-                                    mode: ToastMode.Success,
-                                    title:
-                                        'Successfully Registered for the event',
-                                  );
-                                },
                                 error: (error) {
                                   if (error == 'User Not Registered') {
                                     Navigator.pushNamed(
