@@ -16,6 +16,7 @@ class WebMailLoginCubit extends Cubit<WebMailLoginState> {
   Future<void> logInToWebMail({
     required String rollNumber,
     required String password,
+    String? mobileNumber,
   }) async {
     emit(const WebMailLoginState.loading());
     try {
@@ -24,7 +25,11 @@ class WebMailLoginCubit extends Cubit<WebMailLoginState> {
         password: password,
       );
 
-      await _userRepository.getOrCreateUser(rollNumber: rollNumber);
+      await _userRepository.getOrCreateUser(
+        rollNumber: rollNumber,
+        mobileNumber: mobileNumber ?? _userRepository.user!.mobile!,
+      );
+
       await _userRepository.saveWebMailDetails(
         rollNumber: rollNumber,
         password: password,

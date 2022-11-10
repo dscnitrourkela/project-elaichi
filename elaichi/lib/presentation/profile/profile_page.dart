@@ -57,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         imageSrc: _bloc.firebaseUser.photoURL ??
                             Strings.placeholderImage,
                         title: _bloc.firebaseUser.displayName!,
-                        subTitle: _bloc.isZimraAuthenticated
+                        subTitle: _bloc.rollNumber != null
                             ? _bloc.rollNumber!.toUpperCase()
                             : null,
                         onPressed: () {

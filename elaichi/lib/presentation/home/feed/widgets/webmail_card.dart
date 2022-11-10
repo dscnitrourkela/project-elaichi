@@ -1,3 +1,4 @@
+import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
@@ -66,16 +67,7 @@ class WebMailCard extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                 ),
                 onPressed: () {
-                  showModalBottomSheet<void>(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) => const WebMailLoginBottomSheet(),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(16),
-                      ),
-                    ),
-                  ).then((value) => bloc.add(const FestEvent.webMailLogIn()));
+                  Navigator.pushNamed(context, AppRouter.registrationForm);
                 },
                 child: Text(
                   Strings.verifyNow,

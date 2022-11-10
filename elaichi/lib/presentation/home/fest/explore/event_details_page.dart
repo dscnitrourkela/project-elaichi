@@ -34,12 +34,7 @@ class EventDetailsPage extends StatelessWidget {
           child: BlocConsumer<RegistrationCubit, RegistrationState>(
             listener: (context, state) {
               state.whenOrNull(
-                success: () {
-                  toastUtil.showToast(
-                    mode: ToastMode.Success,
-                    title: 'Successfully Registered for the event',
-                  );
-                },
+                success: () {},
                 error: (error) {
                   if (error == 'User Not Registered') {
                     Navigator.pushNamed(

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:elaichi/data/remote/notification_service.dart';
+import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
@@ -122,8 +123,9 @@ class _FestPageState extends State<FestPage> {
                         ),
                         child: Column(
                           children: [
-                            if (!_bloc.isVerified()) const WebMailCard(),
-                            if (!_bloc.isVerified()) const SizedBox(height: 32),
+                            if (!_bloc.isRegistered()) const WebMailCard(),
+                            if (!_bloc.isRegistered())
+                              const SizedBox(height: 32),
                             // const FeaturedEvents(),
                           ],
                         ),

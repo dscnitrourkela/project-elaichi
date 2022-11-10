@@ -19,6 +19,7 @@ class AppRouter {
   static const String eventDetails = '/eventDetails';
   static const String allEvents = '/allEvents';
   static const String registration = '/registration';
+  static const String registrationForm = '/registrationForm';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -70,6 +71,12 @@ class AppRouter {
         return AppPageRoute(
           settings: settings,
           builder: (context) => const StudentConfirmationPage(),
+        );
+
+      case registrationForm:
+        return AppPageRoute(
+          settings: settings,
+          builder: (context) => const RegistrationDetails(),
         );
 
       default:

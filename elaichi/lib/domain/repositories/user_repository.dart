@@ -91,7 +91,8 @@ class UserRepository {
     }
   }
 
-  Future<void> getOrCreateUser({required String rollNumber}) async {
+  Future<void> getOrCreateUser(
+      {required String rollNumber, required String mobileNumber}) async {
     try {
       if (user == null) {
         final fbUser = _firebaseAuth.currentUser;
@@ -99,6 +100,7 @@ class UserRepository {
 
         if (user == null) {
           await createUser(
+            mobileNumber: mobileNumber,
             uid: fbUser!.uid,
             email: fbUser.email!,
             name: fbUser.displayName!,
@@ -120,10 +122,12 @@ class UserRepository {
     required String name,
     required String rollNumber,
     required String college,
+    required String mobileNumber,
     String? photo,
   }) async {
     try {
       final user = await _graphQLService.createUser(
+        mobileNumber: mobileNumber,
         uid: uid,
         email: email,
         name: name,

@@ -73,7 +73,7 @@ class _ExplorePageState extends State<ExplorePage>
     final calender = widget.events['calender'];
 
     return Scaffold(
-      bottomNavigationBar: !context.read<FestBloc>().isVerified()
+      bottomNavigationBar: !context.read<FestBloc>().isRegistered()
           ? RegisterBottomBar(
               child: YellowFlatButton(
                 text: 'Register Now!',

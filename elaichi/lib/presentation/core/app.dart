@@ -22,12 +22,6 @@ class ElaichiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.white.withOpacity(0.2),
-        statusBarIconBrightness: Brightness.light,
-      ),
-    );
     return MaterialApp(
       navigatorKey: NavigationService.navigatorKey,
       onGenerateRoute: AppRouter.generateRoute,
