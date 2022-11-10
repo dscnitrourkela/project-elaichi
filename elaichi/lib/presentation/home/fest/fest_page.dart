@@ -123,9 +123,8 @@ class _FestPageState extends State<FestPage> {
                         ),
                         child: Column(
                           children: [
-                            if (!_bloc.isRegistered()) const WebMailCard(),
-                            if (!_bloc.isRegistered())
-                              const SizedBox(height: 32),
+                            if (!_bloc.isVerified()) const WebMailCard(),
+                            if (!_bloc.isVerified()) const SizedBox(height: 32),
                             // const FeaturedEvents(),
                           ],
                         ),

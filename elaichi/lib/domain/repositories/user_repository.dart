@@ -48,7 +48,7 @@ class UserRepository {
       final userCredentials =
           await _firebaseAuth.signInWithCredential(authCrendential);
 
-      await initializeGraphQL(await userCredentials.user!.getIdToken(true));
+      await googleAuthenticated(await userCredentials.user!.getIdToken(true));
     } on firebase_auth.FirebaseException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
     } catch (e) {
@@ -59,10 +59,12 @@ class UserRepository {
   Future<void> googleAuthenticated(String token) async {
     try {
       await initializeGraphQL(token);
-      await logInToWebMail();
       await getUser();
+      await logInToWebMail();
     } catch (e) {
-      rethrow;
+      if (e.toString() != 'Exception: Authentication Error') {
+        rethrow;
+      }
     }
   }
 

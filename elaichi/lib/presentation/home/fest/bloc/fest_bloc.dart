@@ -23,7 +23,7 @@ class FestBloc extends Bloc<FestEvent, FestState> {
       (event, emit) async {
         await event.when(
           started: () async {
-            final status = isRegistered();
+            final status = isVerified();
 
             final fests = await _eventRepository.getFests();
 
@@ -75,7 +75,15 @@ class FestBloc extends Bloc<FestEvent, FestState> {
   late final UserRepository _userRepository;
 
   bool isRegistered() {
-    if (_userRepository.rollNumber != null || _userRepository.user != null) {
+    if (_userRepository.user != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool isVerified() {
+    if (_userRepository.rollNumber != null) {
       return true;
     } else {
       return false;

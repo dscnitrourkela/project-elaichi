@@ -7,6 +7,7 @@ import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
+import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
 import 'package:elaichi/presentation/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -275,12 +276,13 @@ class PreferencesBottomSheet extends StatelessWidget {
                   appLoggedOut: () {
                     Navigator.pushNamedAndRemoveUntil(
                       context,
-                      AppRouter.splash,
+                      AppRouter.signIn,
                       (route) => false,
                     );
                   },
                   webMailLoggedOut: () {
                     context.read<HomeCubit>().checkIfVerified();
+                    context.read<FestBloc>().isRegistered();
                     _toastUtil.showToast(
                       mode: ToastMode.Success,
                       title: 'Successfully Deregistered webmail',

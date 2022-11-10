@@ -49,6 +49,7 @@ class Queries {
         photo
         rollNumber
         college
+        mobile
       }
     }
 ''';
