@@ -304,6 +304,27 @@ class PreferencesBottomSheet extends StatelessWidget {
                             onPressed: (){
                               Navigator.pushNamed(
                                 context,
+                                AppRouter.privacyPolicy,
+                              );
+                            },
+                            child: Container(
+                              width: width*0.87,
+                              child: Text(
+                                "Privacy Policy",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                  color: AppColors.grey13,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: (){
+                              Navigator.pushNamed(
+                                context,
                                 AppRouter.devInfo,
                               );
                             },
@@ -358,27 +379,6 @@ class PreferencesBottomSheet extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          TextButton(
-                            onPressed: (){
-                              Navigator.pushNamed(
-                                context,
-                                AppRouter.privacyPolicy,
-                              );
-                            },
-                            child: Container(
-                              width: width*0.87,
-                              child: Text(
-                                "Privacy Policy",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                  color: AppColors.grey13,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
