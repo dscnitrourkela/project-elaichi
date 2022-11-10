@@ -24,8 +24,8 @@ mixin _$ProfileEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? webMailLogOut,
-    TResult? Function()? appLogOut,
+    TResult Function()? webMailLogOut,
+    TResult Function()? appLogOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$ProfileEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_WebMailLogOut value)? webMailLogOut,
-    TResult? Function(_AppLogOut value)? appLogOut,
+    TResult Function(_WebMailLogOut value)? webMailLogOut,
+    TResult Function(_AppLogOut value)? appLogOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,18 +60,16 @@ mixin _$ProfileEvent {
 abstract class $ProfileEventCopyWith<$Res> {
   factory $ProfileEventCopyWith(
           ProfileEvent value, $Res Function(ProfileEvent) then) =
-      _$ProfileEventCopyWithImpl<$Res, ProfileEvent>;
+      _$ProfileEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ProfileEventCopyWithImpl<$Res, $Val extends ProfileEvent>
-    implements $ProfileEventCopyWith<$Res> {
+class _$ProfileEventCopyWithImpl<$Res> implements $ProfileEventCopyWith<$Res> {
   _$ProfileEventCopyWithImpl(this._value, this._then);
 
+  final ProfileEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(ProfileEvent) _then;
 }
 
 /// @nodoc
@@ -83,11 +81,14 @@ abstract class _$$_WebMailLogOutCopyWith<$Res> {
 
 /// @nodoc
 class __$$_WebMailLogOutCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$_WebMailLogOut>
+    extends _$ProfileEventCopyWithImpl<$Res>
     implements _$$_WebMailLogOutCopyWith<$Res> {
   __$$_WebMailLogOutCopyWithImpl(
       _$_WebMailLogOut _value, $Res Function(_$_WebMailLogOut) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_WebMailLogOut));
+
+  @override
+  _$_WebMailLogOut get _value => super._value as _$_WebMailLogOut;
 }
 
 /// @nodoc
@@ -121,8 +122,8 @@ class _$_WebMailLogOut implements _WebMailLogOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? webMailLogOut,
-    TResult? Function()? appLogOut,
+    TResult Function()? webMailLogOut,
+    TResult Function()? appLogOut,
   }) {
     return webMailLogOut?.call();
   }
@@ -152,8 +153,8 @@ class _$_WebMailLogOut implements _WebMailLogOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_WebMailLogOut value)? webMailLogOut,
-    TResult? Function(_AppLogOut value)? appLogOut,
+    TResult Function(_WebMailLogOut value)? webMailLogOut,
+    TResult Function(_AppLogOut value)? appLogOut,
   }) {
     return webMailLogOut?.call(this);
   }
@@ -184,12 +185,14 @@ abstract class _$$_AppLogOutCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AppLogOutCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$_AppLogOut>
+class __$$_AppLogOutCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements _$$_AppLogOutCopyWith<$Res> {
   __$$_AppLogOutCopyWithImpl(
       _$_AppLogOut _value, $Res Function(_$_AppLogOut) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_AppLogOut));
+
+  @override
+  _$_AppLogOut get _value => super._value as _$_AppLogOut;
 }
 
 /// @nodoc
@@ -223,8 +226,8 @@ class _$_AppLogOut implements _AppLogOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? webMailLogOut,
-    TResult? Function()? appLogOut,
+    TResult Function()? webMailLogOut,
+    TResult Function()? appLogOut,
   }) {
     return appLogOut?.call();
   }
@@ -254,8 +257,8 @@ class _$_AppLogOut implements _AppLogOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_WebMailLogOut value)? webMailLogOut,
-    TResult? Function(_AppLogOut value)? appLogOut,
+    TResult Function(_WebMailLogOut value)? webMailLogOut,
+    TResult Function(_AppLogOut value)? appLogOut,
   }) {
     return appLogOut?.call(this);
   }
@@ -291,11 +294,11 @@ mixin _$ProfileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? webMailLoggedOut,
-    TResult? Function()? appLoggedOut,
-    TResult? Function(String error)? error,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? webMailLoggedOut,
+    TResult Function()? appLoggedOut,
+    TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -319,11 +322,11 @@ mixin _$ProfileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_WebMailLoggedOut value)? webMailLoggedOut,
-    TResult? Function(_AppLoggedOut value)? appLoggedOut,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_WebMailLoggedOut value)? webMailLoggedOut,
+    TResult Function(_AppLoggedOut value)? appLoggedOut,
+    TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -342,18 +345,16 @@ mixin _$ProfileState {
 abstract class $ProfileStateCopyWith<$Res> {
   factory $ProfileStateCopyWith(
           ProfileState value, $Res Function(ProfileState) then) =
-      _$ProfileStateCopyWithImpl<$Res, ProfileState>;
+      _$ProfileStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
-    implements $ProfileStateCopyWith<$Res> {
+class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
   _$ProfileStateCopyWithImpl(this._value, this._then);
 
+  final ProfileState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(ProfileState) _then;
 }
 
 /// @nodoc
@@ -364,11 +365,13 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$_Initial>
+class __$$_InitialCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Initial));
+
+  @override
+  _$_Initial get _value => super._value as _$_Initial;
 }
 
 /// @nodoc
@@ -405,11 +408,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? webMailLoggedOut,
-    TResult? Function()? appLoggedOut,
-    TResult? Function(String error)? error,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? webMailLoggedOut,
+    TResult Function()? appLoggedOut,
+    TResult Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -445,11 +448,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_WebMailLoggedOut value)? webMailLoggedOut,
-    TResult? Function(_AppLoggedOut value)? appLoggedOut,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_WebMailLoggedOut value)? webMailLoggedOut,
+    TResult Function(_AppLoggedOut value)? appLoggedOut,
+    TResult Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -483,11 +486,13 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$_Loading>
+class __$$_LoadingCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
@@ -524,11 +529,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? webMailLoggedOut,
-    TResult? Function()? appLoggedOut,
-    TResult? Function(String error)? error,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? webMailLoggedOut,
+    TResult Function()? appLoggedOut,
+    TResult Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -564,11 +569,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_WebMailLoggedOut value)? webMailLoggedOut,
-    TResult? Function(_AppLoggedOut value)? appLoggedOut,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_WebMailLoggedOut value)? webMailLoggedOut,
+    TResult Function(_AppLoggedOut value)? appLoggedOut,
+    TResult Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -603,11 +608,14 @@ abstract class _$$_WebMailLoggedOutCopyWith<$Res> {
 
 /// @nodoc
 class __$$_WebMailLoggedOutCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$_WebMailLoggedOut>
+    extends _$ProfileStateCopyWithImpl<$Res>
     implements _$$_WebMailLoggedOutCopyWith<$Res> {
   __$$_WebMailLoggedOutCopyWithImpl(
       _$_WebMailLoggedOut _value, $Res Function(_$_WebMailLoggedOut) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_WebMailLoggedOut));
+
+  @override
+  _$_WebMailLoggedOut get _value => super._value as _$_WebMailLoggedOut;
 }
 
 /// @nodoc
@@ -644,11 +652,11 @@ class _$_WebMailLoggedOut implements _WebMailLoggedOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? webMailLoggedOut,
-    TResult? Function()? appLoggedOut,
-    TResult? Function(String error)? error,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? webMailLoggedOut,
+    TResult Function()? appLoggedOut,
+    TResult Function(String error)? error,
   }) {
     return webMailLoggedOut?.call();
   }
@@ -684,11 +692,11 @@ class _$_WebMailLoggedOut implements _WebMailLoggedOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_WebMailLoggedOut value)? webMailLoggedOut,
-    TResult? Function(_AppLoggedOut value)? appLoggedOut,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_WebMailLoggedOut value)? webMailLoggedOut,
+    TResult Function(_AppLoggedOut value)? appLoggedOut,
+    TResult Function(_Error value)? error,
   }) {
     return webMailLoggedOut?.call(this);
   }
@@ -723,11 +731,14 @@ abstract class _$$_AppLoggedOutCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AppLoggedOutCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$_AppLoggedOut>
+    extends _$ProfileStateCopyWithImpl<$Res>
     implements _$$_AppLoggedOutCopyWith<$Res> {
   __$$_AppLoggedOutCopyWithImpl(
       _$_AppLoggedOut _value, $Res Function(_$_AppLoggedOut) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_AppLoggedOut));
+
+  @override
+  _$_AppLoggedOut get _value => super._value as _$_AppLoggedOut;
 }
 
 /// @nodoc
@@ -764,11 +775,11 @@ class _$_AppLoggedOut implements _AppLoggedOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? webMailLoggedOut,
-    TResult? Function()? appLoggedOut,
-    TResult? Function(String error)? error,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? webMailLoggedOut,
+    TResult Function()? appLoggedOut,
+    TResult Function(String error)? error,
   }) {
     return appLoggedOut?.call();
   }
@@ -804,11 +815,11 @@ class _$_AppLoggedOut implements _AppLoggedOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_WebMailLoggedOut value)? webMailLoggedOut,
-    TResult? Function(_AppLoggedOut value)? appLoggedOut,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_WebMailLoggedOut value)? webMailLoggedOut,
+    TResult Function(_AppLoggedOut value)? appLoggedOut,
+    TResult Function(_Error value)? error,
   }) {
     return appLoggedOut?.call(this);
   }
@@ -838,24 +849,24 @@ abstract class _AppLoggedOut implements ProfileState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
-  @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$_Error>
+class __$$_ErrorCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Error));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Error get _value => super._value as _$_Error;
+
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
   }) {
     return _then(_$_Error(
-      null == error
+      error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
@@ -881,15 +892,15 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
@@ -908,11 +919,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? webMailLoggedOut,
-    TResult? Function()? appLoggedOut,
-    TResult? Function(String error)? error,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? webMailLoggedOut,
+    TResult Function()? appLoggedOut,
+    TResult Function(String error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -948,11 +959,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_WebMailLoggedOut value)? webMailLoggedOut,
-    TResult? Function(_AppLoggedOut value)? appLoggedOut,
-    TResult? Function(_Error value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_WebMailLoggedOut value)? webMailLoggedOut,
+    TResult Function(_AppLoggedOut value)? appLoggedOut,
+    TResult Function(_Error value)? error,
   }) {
     return error?.call(this);
   }

@@ -65,6 +65,7 @@ class HighPriorityEventCard extends StatelessWidget {
                   children: [
                     SizedBox(
                       height: 29,
+                      width: 240,
                       child: ScrollingText(
                         text: jsonDecode(event.name)['heading'].toString(),
                         style: interTextTheme.subtitle2!.copyWith(

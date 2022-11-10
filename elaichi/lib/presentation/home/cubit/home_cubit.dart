@@ -11,9 +11,11 @@ class HomeCubit extends Cubit<HomeState> {
       : _userRepository = userRepository,
         super(const HomeState.loading());
 
-  void checkIfVerified() {
+  void checkIfVerified({int? pageIndex}) {
     if (_userRepository.rollNumber != null) {
-      emit(const HomeState.isVerified());
+      emit(HomeState.isVerifiedUser(pageIndex ?? 1));
+    } else if (_userRepository.user != null) {
+      emit(HomeState.isRegisteredUser(pageIndex ?? 0));
     } else {
       emit(const HomeState.initial());
     }

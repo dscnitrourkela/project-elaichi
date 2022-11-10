@@ -34,61 +34,56 @@ mixin _$Story {
 /// @nodoc
 abstract class $StoryCopyWith<$Res> {
   factory $StoryCopyWith(Story value, $Res Function(Story) then) =
-      _$StoryCopyWithImpl<$Res, Story>;
-  @useResult
+      _$StoryCopyWithImpl<$Res>;
   $Res call({String id, String image, Org org, String orgID, String? linkTo});
 
   $OrgCopyWith<$Res> get org;
 }
 
 /// @nodoc
-class _$StoryCopyWithImpl<$Res, $Val extends Story>
-    implements $StoryCopyWith<$Res> {
+class _$StoryCopyWithImpl<$Res> implements $StoryCopyWith<$Res> {
   _$StoryCopyWithImpl(this._value, this._then);
 
+  final Story _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(Story) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? image = null,
-    Object? org = null,
-    Object? orgID = null,
+    Object? id = freezed,
+    Object? image = freezed,
+    Object? org = freezed,
+    Object? orgID = freezed,
     Object? linkTo = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
+      image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      org: null == org
+      org: org == freezed
           ? _value.org
           : org // ignore: cast_nullable_to_non_nullable
               as Org,
-      orgID: null == orgID
+      orgID: orgID == freezed
           ? _value.orgID
           : orgID // ignore: cast_nullable_to_non_nullable
               as String,
-      linkTo: freezed == linkTo
+      linkTo: linkTo == freezed
           ? _value.linkTo
           : linkTo // ignore: cast_nullable_to_non_nullable
               as String?,
-    ) as $Val);
+    ));
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $OrgCopyWith<$Res> get org {
     return $OrgCopyWith<$Res>(_value.org, (value) {
-      return _then(_value.copyWith(org: value) as $Val);
+      return _then(_value.copyWith(org: value));
     });
   }
 }
@@ -98,7 +93,6 @@ abstract class _$$_StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
   factory _$$_StoryCopyWith(_$_Story value, $Res Function(_$_Story) then) =
       __$$_StoryCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call({String id, String image, Org org, String orgID, String? linkTo});
 
   @override
@@ -106,38 +100,40 @@ abstract class _$$_StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
+class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res>
     implements _$$_StoryCopyWith<$Res> {
   __$$_StoryCopyWithImpl(_$_Story _value, $Res Function(_$_Story) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Story));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Story get _value => super._value as _$_Story;
+
   @override
   $Res call({
-    Object? id = null,
-    Object? image = null,
-    Object? org = null,
-    Object? orgID = null,
+    Object? id = freezed,
+    Object? image = freezed,
+    Object? org = freezed,
+    Object? orgID = freezed,
     Object? linkTo = freezed,
   }) {
     return _then(_$_Story(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
+      image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      org: null == org
+      org: org == freezed
           ? _value.org
           : org // ignore: cast_nullable_to_non_nullable
               as Org,
-      orgID: null == orgID
+      orgID: orgID == freezed
           ? _value.orgID
           : orgID // ignore: cast_nullable_to_non_nullable
               as String,
-      linkTo: freezed == linkTo
+      linkTo: linkTo == freezed
           ? _value.linkTo
           : linkTo // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -179,20 +175,25 @@ class _$_Story implements _Story {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Story &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.org, org) || other.org == org) &&
-            (identical(other.orgID, orgID) || other.orgID == orgID) &&
-            (identical(other.linkTo, linkTo) || other.linkTo == linkTo));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality().equals(other.org, org) &&
+            const DeepCollectionEquality().equals(other.orgID, orgID) &&
+            const DeepCollectionEquality().equals(other.linkTo, linkTo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, image, org, orgID, linkTo);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(org),
+      const DeepCollectionEquality().hash(orgID),
+      const DeepCollectionEquality().hash(linkTo));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_StoryCopyWith<_$_Story> get copyWith =>
       __$$_StoryCopyWithImpl<_$_Story>(this, _$identity);
 

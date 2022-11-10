@@ -36,6 +36,7 @@ class _FestPageState extends State<FestPage> {
     return BlocProvider.value(
       value: _bloc,
       child: Scaffold(
+        backgroundColor: Colors.black,
         body: BlocBuilder<FestBloc, FestState>(
           builder: (context, state) {
             return state.when(

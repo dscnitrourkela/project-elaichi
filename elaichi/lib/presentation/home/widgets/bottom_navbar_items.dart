@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 ///Array containing the bootom nav bar items.
-List<BottomNavigationBarItem> navBarItems(String profileImage) =>
+List<BottomNavigationBarItem> navBarItems({
+  required String profileImage,
+  required bool isVerifiedUser,
+}) =>
     <BottomNavigationBarItem>[
       /// The icon for Feed Page
       // BottomNavigationBarItem(
@@ -22,11 +25,12 @@ List<BottomNavigationBarItem> navBarItems(String profileImage) =>
       // ),
 
       /// The icon for Zimbra Webmail Page
-      BottomNavigationBarItem(
-        label: 'Zimbra',
-        icon: SvgPicture.asset(Strings.mailInactive),
-        activeIcon: SvgPicture.asset(Strings.mailActive),
-      ),
+      if (isVerifiedUser)
+        BottomNavigationBarItem(
+          label: 'Zimbra',
+          icon: SvgPicture.asset(Strings.mailInactive),
+          activeIcon: SvgPicture.asset(Strings.mailActive),
+        ),
 
       BottomNavigationBarItem(
         label: 'Fest',

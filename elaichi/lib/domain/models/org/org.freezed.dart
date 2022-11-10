@@ -46,8 +46,7 @@ mixin _$Org {
 /// @nodoc
 abstract class $OrgCopyWith<$Res> {
   factory $OrgCopyWith(Org value, $Res Function(Org) then) =
-      _$OrgCopyWithImpl<$Res, Org>;
-  @useResult
+      _$OrgCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String name,
@@ -72,25 +71,23 @@ abstract class $OrgCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrgCopyWithImpl<$Res, $Val extends Org> implements $OrgCopyWith<$Res> {
+class _$OrgCopyWithImpl<$Res> implements $OrgCopyWith<$Res> {
   _$OrgCopyWithImpl(this._value, this._then);
 
+  final Org _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(Org) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? logo = null,
-    Object? orgType = null,
-    Object? orgSubType = null,
-    Object? status = null,
-    Object? registrationFee = null,
-    Object? description = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? logo = freezed,
+    Object? orgType = freezed,
+    Object? orgSubType = freezed,
+    Object? status = freezed,
+    Object? registrationFee = freezed,
+    Object? description = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? tagline = freezed,
@@ -102,98 +99,96 @@ class _$OrgCopyWithImpl<$Res, $Val extends Org> implements $OrgCopyWith<$Res> {
     Object? fest = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      logo: null == logo
+      logo: logo == freezed
           ? _value.logo
           : logo // ignore: cast_nullable_to_non_nullable
               as String,
-      orgType: null == orgType
+      orgType: orgType == freezed
           ? _value.orgType
           : orgType // ignore: cast_nullable_to_non_nullable
               as OrgType,
-      orgSubType: null == orgSubType
+      orgSubType: orgSubType == freezed
           ? _value.orgSubType
           : orgSubType // ignore: cast_nullable_to_non_nullable
               as OrgSubType,
-      status: null == status
+      status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StatusType,
-      registrationFee: null == registrationFee
+      registrationFee: registrationFee == freezed
           ? _value.registrationFee
           : registrationFee // ignore: cast_nullable_to_non_nullable
               as int,
-      description: null == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: freezed == startDate
+      startDate: startDate == freezed
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      endDate: freezed == endDate
+      endDate: endDate == freezed
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      tagline: freezed == tagline
+      tagline: tagline == freezed
           ? _value.tagline
           : tagline // ignore: cast_nullable_to_non_nullable
               as String?,
-      theme: freezed == theme
+      theme: theme == freezed
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String?,
-      locationID: freezed == locationID
+      locationID: locationID == freezed
           ? _value.locationID
           : locationID // ignore: cast_nullable_to_non_nullable
               as String?,
-      coverImg: freezed == coverImg
+      coverImg: coverImg == freezed
           ? _value.coverImg
           : coverImg // ignore: cast_nullable_to_non_nullable
               as String?,
-      location: freezed == location
+      location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location?,
-      festID: freezed == festID
+      festID: festID == freezed
           ? _value.festID
           : festID // ignore: cast_nullable_to_non_nullable
               as String?,
-      fest: freezed == fest
+      fest: fest == freezed
           ? _value.fest
           : fest // ignore: cast_nullable_to_non_nullable
               as Org?,
-    ) as $Val);
+    ));
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $LocationCopyWith<$Res>? get location {
     if (_value.location == null) {
       return null;
     }
 
     return $LocationCopyWith<$Res>(_value.location!, (value) {
-      return _then(_value.copyWith(location: value) as $Val);
+      return _then(_value.copyWith(location: value));
     });
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $OrgCopyWith<$Res>? get fest {
     if (_value.fest == null) {
       return null;
     }
 
     return $OrgCopyWith<$Res>(_value.fest!, (value) {
-      return _then(_value.copyWith(fest: value) as $Val);
+      return _then(_value.copyWith(fest: value));
     });
   }
 }
@@ -203,7 +198,6 @@ abstract class _$$_OrgCopyWith<$Res> implements $OrgCopyWith<$Res> {
   factory _$$_OrgCopyWith(_$_Org value, $Res Function(_$_Org) then) =
       __$$_OrgCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {String id,
       String name,
@@ -230,22 +224,24 @@ abstract class _$$_OrgCopyWith<$Res> implements $OrgCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_OrgCopyWithImpl<$Res> extends _$OrgCopyWithImpl<$Res, _$_Org>
+class __$$_OrgCopyWithImpl<$Res> extends _$OrgCopyWithImpl<$Res>
     implements _$$_OrgCopyWith<$Res> {
   __$$_OrgCopyWithImpl(_$_Org _value, $Res Function(_$_Org) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Org));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Org get _value => super._value as _$_Org;
+
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? logo = null,
-    Object? orgType = null,
-    Object? orgSubType = null,
-    Object? status = null,
-    Object? registrationFee = null,
-    Object? description = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? logo = freezed,
+    Object? orgType = freezed,
+    Object? orgSubType = freezed,
+    Object? status = freezed,
+    Object? registrationFee = freezed,
+    Object? description = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? tagline = freezed,
@@ -257,71 +253,71 @@ class __$$_OrgCopyWithImpl<$Res> extends _$OrgCopyWithImpl<$Res, _$_Org>
     Object? fest = freezed,
   }) {
     return _then(_$_Org(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      logo: null == logo
+      logo: logo == freezed
           ? _value.logo
           : logo // ignore: cast_nullable_to_non_nullable
               as String,
-      orgType: null == orgType
+      orgType: orgType == freezed
           ? _value.orgType
           : orgType // ignore: cast_nullable_to_non_nullable
               as OrgType,
-      orgSubType: null == orgSubType
+      orgSubType: orgSubType == freezed
           ? _value.orgSubType
           : orgSubType // ignore: cast_nullable_to_non_nullable
               as OrgSubType,
-      status: null == status
+      status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StatusType,
-      registrationFee: null == registrationFee
+      registrationFee: registrationFee == freezed
           ? _value.registrationFee
           : registrationFee // ignore: cast_nullable_to_non_nullable
               as int,
-      description: null == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: freezed == startDate
+      startDate: startDate == freezed
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      endDate: freezed == endDate
+      endDate: endDate == freezed
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      tagline: freezed == tagline
+      tagline: tagline == freezed
           ? _value.tagline
           : tagline // ignore: cast_nullable_to_non_nullable
               as String?,
-      theme: freezed == theme
+      theme: theme == freezed
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String?,
-      locationID: freezed == locationID
+      locationID: locationID == freezed
           ? _value.locationID
           : locationID // ignore: cast_nullable_to_non_nullable
               as String?,
-      coverImg: freezed == coverImg
+      coverImg: coverImg == freezed
           ? _value.coverImg
           : coverImg // ignore: cast_nullable_to_non_nullable
               as String?,
-      location: freezed == location
+      location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location?,
-      festID: freezed == festID
+      festID: festID == freezed
           ? _value.festID
           : festID // ignore: cast_nullable_to_non_nullable
               as String?,
-      fest: freezed == fest
+      fest: fest == freezed
           ? _value.fest
           : fest // ignore: cast_nullable_to_non_nullable
               as Org?,
@@ -398,57 +394,53 @@ class _$_Org implements _Org {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Org &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.logo, logo) || other.logo == logo) &&
-            (identical(other.orgType, orgType) || other.orgType == orgType) &&
-            (identical(other.orgSubType, orgSubType) ||
-                other.orgSubType == orgSubType) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.registrationFee, registrationFee) ||
-                other.registrationFee == registrationFee) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.tagline, tagline) || other.tagline == tagline) &&
-            (identical(other.theme, theme) || other.theme == theme) &&
-            (identical(other.locationID, locationID) ||
-                other.locationID == locationID) &&
-            (identical(other.coverImg, coverImg) ||
-                other.coverImg == coverImg) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.festID, festID) || other.festID == festID) &&
-            (identical(other.fest, fest) || other.fest == fest));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.logo, logo) &&
+            const DeepCollectionEquality().equals(other.orgType, orgType) &&
+            const DeepCollectionEquality()
+                .equals(other.orgSubType, orgSubType) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.registrationFee, registrationFee) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.startDate, startDate) &&
+            const DeepCollectionEquality().equals(other.endDate, endDate) &&
+            const DeepCollectionEquality().equals(other.tagline, tagline) &&
+            const DeepCollectionEquality().equals(other.theme, theme) &&
+            const DeepCollectionEquality()
+                .equals(other.locationID, locationID) &&
+            const DeepCollectionEquality().equals(other.coverImg, coverImg) &&
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality().equals(other.festID, festID) &&
+            const DeepCollectionEquality().equals(other.fest, fest));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      name,
-      logo,
-      orgType,
-      orgSubType,
-      status,
-      registrationFee,
-      description,
-      startDate,
-      endDate,
-      tagline,
-      theme,
-      locationID,
-      coverImg,
-      location,
-      festID,
-      fest);
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(logo),
+      const DeepCollectionEquality().hash(orgType),
+      const DeepCollectionEquality().hash(orgSubType),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(registrationFee),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(startDate),
+      const DeepCollectionEquality().hash(endDate),
+      const DeepCollectionEquality().hash(tagline),
+      const DeepCollectionEquality().hash(theme),
+      const DeepCollectionEquality().hash(locationID),
+      const DeepCollectionEquality().hash(coverImg),
+      const DeepCollectionEquality().hash(location),
+      const DeepCollectionEquality().hash(festID),
+      const DeepCollectionEquality().hash(fest));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_OrgCopyWith<_$_Org> get copyWith =>
       __$$_OrgCopyWithImpl<_$_Org>(this, _$identity);
 

@@ -47,8 +47,7 @@ mixin _$User {
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
-  @useResult
+      _$UserCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String email,
@@ -71,21 +70,18 @@ abstract class $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
+class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   _$UserCopyWithImpl(this._value, this._then);
 
+  final User _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(User) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? email = null,
-    Object? uid = null,
+    Object? id = freezed,
+    Object? email = freezed,
+    Object? uid = freezed,
     Object? ca = freezed,
     Object? festID = freezed,
     Object? fests = freezed,
@@ -103,79 +99,79 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? rollNumber = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      uid: null == uid
+      uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      ca: freezed == ca
+      ca: ca == freezed
           ? _value.ca
           : ca // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      festID: freezed == festID
+      festID: festID == freezed
           ? _value.festID
           : festID // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      fests: freezed == fests
+      fests: fests == freezed
           ? _value.fests
           : fests // ignore: cast_nullable_to_non_nullable
               as List<Org>?,
-      name: freezed == name
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      photo: freezed == photo
+      photo: photo == freezed
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as String?,
-      gender: freezed == gender
+      gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as GenderType?,
-      dob: freezed == dob
+      dob: dob == freezed
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      state: freezed == state
+      state: state == freezed
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as String?,
-      city: freezed == city
+      city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String?,
-      college: freezed == college
+      college: college == freezed
           ? _value.college
           : college // ignore: cast_nullable_to_non_nullable
               as String?,
-      stream: freezed == stream
+      stream: stream == freezed
           ? _value.stream
           : stream // ignore: cast_nullable_to_non_nullable
               as String?,
-      mobile: freezed == mobile
+      mobile: mobile == freezed
           ? _value.mobile
           : mobile // ignore: cast_nullable_to_non_nullable
               as String?,
-      selfID: freezed == selfID
+      selfID: selfID == freezed
           ? _value.selfID
           : selfID // ignore: cast_nullable_to_non_nullable
               as String?,
-      refferedBy: freezed == refferedBy
+      refferedBy: refferedBy == freezed
           ? _value.refferedBy
           : refferedBy // ignore: cast_nullable_to_non_nullable
               as String?,
-      rollNumber: freezed == rollNumber
+      rollNumber: rollNumber == freezed
           ? _value.rollNumber
           : rollNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-    ) as $Val);
+    ));
   }
 }
 
@@ -184,7 +180,6 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
       __$$_UserCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {String id,
       String email,
@@ -207,17 +202,19 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
+class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     implements _$$_UserCopyWith<$Res> {
   __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_User));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_User get _value => super._value as _$_User;
+
   @override
   $Res call({
-    Object? id = null,
-    Object? email = null,
-    Object? uid = null,
+    Object? id = freezed,
+    Object? email = freezed,
+    Object? uid = freezed,
     Object? ca = freezed,
     Object? festID = freezed,
     Object? fests = freezed,
@@ -235,75 +232,75 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? rollNumber = freezed,
   }) {
     return _then(_$_User(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      uid: null == uid
+      uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      ca: freezed == ca
+      ca: ca == freezed
           ? _value._ca
           : ca // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      festID: freezed == festID
+      festID: festID == freezed
           ? _value._festID
           : festID // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      fests: freezed == fests
+      fests: fests == freezed
           ? _value._fests
           : fests // ignore: cast_nullable_to_non_nullable
               as List<Org>?,
-      name: freezed == name
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      photo: freezed == photo
+      photo: photo == freezed
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as String?,
-      gender: freezed == gender
+      gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as GenderType?,
-      dob: freezed == dob
+      dob: dob == freezed
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      state: freezed == state
+      state: state == freezed
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as String?,
-      city: freezed == city
+      city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String?,
-      college: freezed == college
+      college: college == freezed
           ? _value.college
           : college // ignore: cast_nullable_to_non_nullable
               as String?,
-      stream: freezed == stream
+      stream: stream == freezed
           ? _value.stream
           : stream // ignore: cast_nullable_to_non_nullable
               as String?,
-      mobile: freezed == mobile
+      mobile: mobile == freezed
           ? _value.mobile
           : mobile // ignore: cast_nullable_to_non_nullable
               as String?,
-      selfID: freezed == selfID
+      selfID: selfID == freezed
           ? _value.selfID
           : selfID // ignore: cast_nullable_to_non_nullable
               as String?,
-      refferedBy: freezed == refferedBy
+      refferedBy: refferedBy == freezed
           ? _value.refferedBy
           : refferedBy // ignore: cast_nullable_to_non_nullable
               as String?,
-      rollNumber: freezed == rollNumber
+      rollNumber: rollNumber == freezed
           ? _value.rollNumber
           : rollNumber // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -407,54 +404,53 @@ class _$_User implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_User &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.uid, uid) || other.uid == uid) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other._ca, _ca) &&
             const DeepCollectionEquality().equals(other._festID, _festID) &&
             const DeepCollectionEquality().equals(other._fests, _fests) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.photo, photo) || other.photo == photo) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.dob, dob) || other.dob == dob) &&
-            (identical(other.state, state) || other.state == state) &&
-            (identical(other.city, city) || other.city == city) &&
-            (identical(other.college, college) || other.college == college) &&
-            (identical(other.stream, stream) || other.stream == stream) &&
-            (identical(other.mobile, mobile) || other.mobile == mobile) &&
-            (identical(other.selfID, selfID) || other.selfID == selfID) &&
-            (identical(other.refferedBy, refferedBy) ||
-                other.refferedBy == refferedBy) &&
-            (identical(other.rollNumber, rollNumber) ||
-                other.rollNumber == rollNumber));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.photo, photo) &&
+            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality().equals(other.dob, dob) &&
+            const DeepCollectionEquality().equals(other.state, state) &&
+            const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality().equals(other.college, college) &&
+            const DeepCollectionEquality().equals(other.stream, stream) &&
+            const DeepCollectionEquality().equals(other.mobile, mobile) &&
+            const DeepCollectionEquality().equals(other.selfID, selfID) &&
+            const DeepCollectionEquality()
+                .equals(other.refferedBy, refferedBy) &&
+            const DeepCollectionEquality()
+                .equals(other.rollNumber, rollNumber));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      email,
-      uid,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(_ca),
       const DeepCollectionEquality().hash(_festID),
       const DeepCollectionEquality().hash(_fests),
-      name,
-      photo,
-      gender,
-      dob,
-      state,
-      city,
-      college,
-      stream,
-      mobile,
-      selfID,
-      refferedBy,
-      rollNumber);
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(photo),
+      const DeepCollectionEquality().hash(gender),
+      const DeepCollectionEquality().hash(dob),
+      const DeepCollectionEquality().hash(state),
+      const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(college),
+      const DeepCollectionEquality().hash(stream),
+      const DeepCollectionEquality().hash(mobile),
+      const DeepCollectionEquality().hash(selfID),
+      const DeepCollectionEquality().hash(refferedBy),
+      const DeepCollectionEquality().hash(rollNumber));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_UserCopyWith<_$_User> get copyWith =>
       __$$_UserCopyWithImpl<_$_User>(this, _$identity);
 

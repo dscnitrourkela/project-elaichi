@@ -48,8 +48,7 @@ mixin _$Event {
 /// @nodoc
 abstract class $EventCopyWith<$Res> {
   factory $EventCopyWith(Event value, $Res Function(Event) then) =
-      _$EventCopyWithImpl<$Res, Event>;
-  @useResult
+      _$EventCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String name,
@@ -76,32 +75,29 @@ abstract class $EventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EventCopyWithImpl<$Res, $Val extends Event>
-    implements $EventCopyWith<$Res> {
+class _$EventCopyWithImpl<$Res> implements $EventCopyWith<$Res> {
   _$EventCopyWithImpl(this._value, this._then);
 
+  final Event _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(Event) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? description = null,
-    Object? poster = null,
-    Object? startDate = null,
-    Object? endDate = null,
-    Object? orgType = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? poster = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? orgType = freezed,
     Object? notes = freezed,
-    Object? weekly = null,
+    Object? weekly = freezed,
     Object? repeatDay = freezed,
-    Object? priority = null,
+    Object? priority = freezed,
     Object? type = freezed,
-    Object? status = null,
-    Object? locationID = null,
+    Object? status = freezed,
+    Object? locationID = freezed,
     Object? pocID = freezed,
     Object? orgID = freezed,
     Object? org = freezed,
@@ -109,106 +105,104 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
     Object? poc = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      poster: null == poster
+      poster: poster == freezed
           ? _value.poster
           : poster // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: null == startDate
+      startDate: startDate == freezed
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      endDate: null == endDate
+      endDate: endDate == freezed
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      orgType: null == orgType
+      orgType: orgType == freezed
           ? _value.orgType
           : orgType // ignore: cast_nullable_to_non_nullable
               as OrgType,
-      notes: freezed == notes
+      notes: notes == freezed
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      weekly: null == weekly
+      weekly: weekly == freezed
           ? _value.weekly
           : weekly // ignore: cast_nullable_to_non_nullable
               as bool,
-      repeatDay: freezed == repeatDay
+      repeatDay: repeatDay == freezed
           ? _value.repeatDay
           : repeatDay // ignore: cast_nullable_to_non_nullable
               as RepeatType?,
-      priority: null == priority
+      priority: priority == freezed
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as int,
-      type: freezed == type
+      type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: null == status
+      status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StatusType,
-      locationID: null == locationID
+      locationID: locationID == freezed
           ? _value.locationID
           : locationID // ignore: cast_nullable_to_non_nullable
               as String,
-      pocID: freezed == pocID
+      pocID: pocID == freezed
           ? _value.pocID
           : pocID // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      orgID: freezed == orgID
+      orgID: orgID == freezed
           ? _value.orgID
           : orgID // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      org: freezed == org
+      org: org == freezed
           ? _value.org
           : org // ignore: cast_nullable_to_non_nullable
               as List<Org>?,
-      location: freezed == location
+      location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location?,
-      poc: freezed == poc
+      poc: poc == freezed
           ? _value.poc
           : poc // ignore: cast_nullable_to_non_nullable
               as User?,
-    ) as $Val);
+    ));
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $LocationCopyWith<$Res>? get location {
     if (_value.location == null) {
       return null;
     }
 
     return $LocationCopyWith<$Res>(_value.location!, (value) {
-      return _then(_value.copyWith(location: value) as $Val);
+      return _then(_value.copyWith(location: value));
     });
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get poc {
     if (_value.poc == null) {
       return null;
     }
 
     return $UserCopyWith<$Res>(_value.poc!, (value) {
-      return _then(_value.copyWith(poc: value) as $Val);
+      return _then(_value.copyWith(poc: value));
     });
   }
 }
@@ -218,7 +212,6 @@ abstract class _$$_EventCopyWith<$Res> implements $EventCopyWith<$Res> {
   factory _$$_EventCopyWith(_$_Event value, $Res Function(_$_Event) then) =
       __$$_EventCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {String id,
       String name,
@@ -247,28 +240,30 @@ abstract class _$$_EventCopyWith<$Res> implements $EventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res, _$_Event>
+class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
     implements _$$_EventCopyWith<$Res> {
   __$$_EventCopyWithImpl(_$_Event _value, $Res Function(_$_Event) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Event));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Event get _value => super._value as _$_Event;
+
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? description = null,
-    Object? poster = null,
-    Object? startDate = null,
-    Object? endDate = null,
-    Object? orgType = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? poster = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? orgType = freezed,
     Object? notes = freezed,
-    Object? weekly = null,
+    Object? weekly = freezed,
     Object? repeatDay = freezed,
-    Object? priority = null,
+    Object? priority = freezed,
     Object? type = freezed,
-    Object? status = null,
-    Object? locationID = null,
+    Object? status = freezed,
+    Object? locationID = freezed,
     Object? pocID = freezed,
     Object? orgID = freezed,
     Object? org = freezed,
@@ -276,79 +271,79 @@ class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res, _$_Event>
     Object? poc = freezed,
   }) {
     return _then(_$_Event(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      poster: null == poster
+      poster: poster == freezed
           ? _value.poster
           : poster // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: null == startDate
+      startDate: startDate == freezed
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      endDate: null == endDate
+      endDate: endDate == freezed
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      orgType: null == orgType
+      orgType: orgType == freezed
           ? _value.orgType
           : orgType // ignore: cast_nullable_to_non_nullable
               as OrgType,
-      notes: freezed == notes
+      notes: notes == freezed
           ? _value._notes
           : notes // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      weekly: null == weekly
+      weekly: weekly == freezed
           ? _value.weekly
           : weekly // ignore: cast_nullable_to_non_nullable
               as bool,
-      repeatDay: freezed == repeatDay
+      repeatDay: repeatDay == freezed
           ? _value.repeatDay
           : repeatDay // ignore: cast_nullable_to_non_nullable
               as RepeatType?,
-      priority: null == priority
+      priority: priority == freezed
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as int,
-      type: freezed == type
+      type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: null == status
+      status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StatusType,
-      locationID: null == locationID
+      locationID: locationID == freezed
           ? _value.locationID
           : locationID // ignore: cast_nullable_to_non_nullable
               as String,
-      pocID: freezed == pocID
+      pocID: pocID == freezed
           ? _value._pocID
           : pocID // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      orgID: freezed == orgID
+      orgID: orgID == freezed
           ? _value._orgID
           : orgID // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      org: freezed == org
+      org: org == freezed
           ? _value._org
           : org // ignore: cast_nullable_to_non_nullable
               as List<Org>?,
-      location: freezed == location
+      location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location?,
-      poc: freezed == poc
+      poc: poc == freezed
           ? _value.poc
           : poc // ignore: cast_nullable_to_non_nullable
               as User?,
@@ -464,61 +459,56 @@ class _$_Event implements _Event {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Event &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.poster, poster) || other.poster == poster) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.orgType, orgType) || other.orgType == orgType) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.poster, poster) &&
+            const DeepCollectionEquality().equals(other.startDate, startDate) &&
+            const DeepCollectionEquality().equals(other.endDate, endDate) &&
+            const DeepCollectionEquality().equals(other.orgType, orgType) &&
             const DeepCollectionEquality().equals(other._notes, _notes) &&
-            (identical(other.weekly, weekly) || other.weekly == weekly) &&
-            (identical(other.repeatDay, repeatDay) ||
-                other.repeatDay == repeatDay) &&
-            (identical(other.priority, priority) ||
-                other.priority == priority) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.locationID, locationID) ||
-                other.locationID == locationID) &&
+            const DeepCollectionEquality().equals(other.weekly, weekly) &&
+            const DeepCollectionEquality().equals(other.repeatDay, repeatDay) &&
+            const DeepCollectionEquality().equals(other.priority, priority) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.locationID, locationID) &&
             const DeepCollectionEquality().equals(other._pocID, _pocID) &&
             const DeepCollectionEquality().equals(other._orgID, _orgID) &&
             const DeepCollectionEquality().equals(other._org, _org) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.poc, poc) || other.poc == poc));
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality().equals(other.poc, poc));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        id,
-        name,
-        description,
-        poster,
-        startDate,
-        endDate,
-        orgType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(poster),
+        const DeepCollectionEquality().hash(startDate),
+        const DeepCollectionEquality().hash(endDate),
+        const DeepCollectionEquality().hash(orgType),
         const DeepCollectionEquality().hash(_notes),
-        weekly,
-        repeatDay,
-        priority,
-        type,
-        status,
-        locationID,
+        const DeepCollectionEquality().hash(weekly),
+        const DeepCollectionEquality().hash(repeatDay),
+        const DeepCollectionEquality().hash(priority),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(locationID),
         const DeepCollectionEquality().hash(_pocID),
         const DeepCollectionEquality().hash(_orgID),
         const DeepCollectionEquality().hash(_org),
-        location,
-        poc
+        const DeepCollectionEquality().hash(location),
+        const DeepCollectionEquality().hash(poc)
       ]);
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_EventCopyWith<_$_Event> get copyWith =>
       __$$_EventCopyWithImpl<_$_Event>(this, _$identity);
 
