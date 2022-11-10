@@ -60,33 +60,35 @@ class _WebMailPageState extends State<WebMailPage> {
                 ),
                 loading: () => const Center(child: CircularProgressIndicator()),
                 authenticated: () => WebViewStack(controller: controller),
-                unauthenticated: () => Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Please click the below button to login to your account',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      const SizedBox(height: 10),
-                      BlueButton(
-                        text: 'Login',
-                        onTapped: () {
-                          showModalBottomSheet<dynamic>(
-                            isScrollControlled: true,
-                            context: context,
-                            builder: (context) =>
-                                const WebMailLoginBottomSheet(),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(16),
+                unauthenticated: () => Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Please click the below button to login to your account',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        const SizedBox(height: 10),
+                        BlueButton(
+                          text: 'Login',
+                          onTapped: () {
+                            showModalBottomSheet<dynamic>(
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (context) =>
+                                  const WebMailLoginBottomSheet(),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(16),
+                                ),
                               ),
-                            ),
-                          ).then((dynamic value) => _cubit.getZsAuthToken());
-                        },
-                      ),
-                    ],
+                            ).then((dynamic value) => _cubit.getZsAuthToken());
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );

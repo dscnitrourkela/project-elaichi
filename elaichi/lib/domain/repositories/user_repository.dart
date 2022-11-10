@@ -18,17 +18,13 @@ class UserRepository {
   })  : _apiService = apiService,
         _localStorageService = localStorageService,
         _firebaseAuth = firebase_auth.FirebaseAuth.instance,
-        _googleSignIn = GoogleSignIn.standard() {
-    setRollNumber();
-  }
+        _googleSignIn = GoogleSignIn.standard();
 
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
   final LocalStorageService _localStorageService;
   final APIService _apiService;
   final GraphQLService _graphQLService = GraphQLService();
-
-  String? rollNumber;
 
   String? zsToken;
 
@@ -158,7 +154,6 @@ class UserRepository {
       rollNumber: rollNumber,
       password: password,
     );
-    this.rollNumber = rollNumber;
   }
 
   Future<void> logInToWebMail({String? rollNumber, String? password}) async {
@@ -178,9 +173,7 @@ class UserRepository {
     }
   }
 
-  void setRollNumber() {
-    rollNumber = _localStorageService.rollNumber;
-  }
+  String? get rollNumber => _localStorageService.rollNumber;
 
   set firebaseToken(String token) => _localStorageService.firebaseToken = token;
 
@@ -188,7 +181,6 @@ class UserRepository {
 
   void deleteWebMailDetails() {
     zsToken = null;
-    rollNumber = null;
     _localStorageService.deleteWebmailDetails();
   }
 

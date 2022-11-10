@@ -61,7 +61,6 @@ class CalenderTabView extends StatelessWidget {
                     itemCount: events.length,
                     itemBuilder: (context, index) {
                       final event = events[index];
-
                       return CalenderItem(event: event);
                     },
                   ),
