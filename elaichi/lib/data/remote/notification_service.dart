@@ -26,8 +26,6 @@ class NotificationService {
     );
     await _createHighPriorityChannel();
 
-    print('token: ${await _instance.getToken()}');
-
     final initialMessage = await _instance.getInitialMessage();
 
     if (initialMessage != null) {
@@ -61,14 +59,9 @@ class NotificationService {
       final notification = message.notification;
       final android = message.notification?.android;
 
-      print('hereeee');
-      print(notification);
-      print(android);
-      print(message.data);
       // If `onMessage` is triggered with a notification, construct our own
       // local notification to show to users using the created channel.
       if (notification != null && android != null) {
-        print('reaching here');
         _flutterLocalNotificationsPlugin.show(
           notification.hashCode,
           notification.title,
