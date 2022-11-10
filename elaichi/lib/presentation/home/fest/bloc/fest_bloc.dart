@@ -75,7 +75,7 @@ class FestBloc extends Bloc<FestEvent, FestState> {
   late final UserRepository _userRepository;
 
   bool isRegistered() {
-    if (_userRepository.rollNumber != null) {
+    if (_userRepository.rollNumber != null || _userRepository.user != null) {
       return true;
     } else {
       return false;

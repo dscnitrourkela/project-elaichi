@@ -58,7 +58,10 @@ class EventDetailsPage extends StatelessWidget {
                             (element) => event.id == element.eventID,
                           )
                           .isNotEmpty)
-                      ? const Text('Registered')
+                      ? Text(
+                          'Registered',
+                          style: interTextTheme.bodyText1,
+                        )
                       : YellowFlatButton(
                           onTapped: () async {
                             await context
