@@ -11,9 +11,10 @@ class CustomBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 36,
-      width: 92,
+      width: 98,
       decoration: BoxDecoration(
         color: AppColors.translucentButton.withOpacity(0.4),
+        borderRadius: BorderRadius.circular(18),
       ),
       child: GestureDetector(
         onTap: () => Navigator.pop(context),
@@ -33,7 +34,8 @@ class CustomBackButton extends StatelessWidget {
                 fontSize: 15,
                 height: 1.33,
               ),
-            )
+            ),
+            const SizedBox(width: 5),
           ],
         ),
       ),

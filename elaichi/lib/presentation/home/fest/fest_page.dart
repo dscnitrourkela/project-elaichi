@@ -71,10 +71,19 @@ class _FestPageState extends State<FestPage> {
                             return HeaderWidget(
                               imageUrl:
                                   fest.coverImg ?? Strings.placeholderImage,
-                              leadingWidget: SvgPicture.asset(
-                                Strings.avenueLogo,
-                                height: 18,
-                                color: Colors.white,
+                              leadingWidget: Container(
+                                margin: EdgeInsets.only(top: 8),
+                                child: Row(
+                                  children: [
+                                    Image.asset("assets/images/avenue_logo.png", color: Colors.white, height: 14.5,),
+                                    SizedBox(width: 4,),
+                                    SvgPicture.asset(
+                                      Strings.avenueLogo,
+                                      height: 12,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
                               ),
                               trailingWidget: ClipRRect(
                                 borderRadius: BorderRadius.circular(
@@ -86,7 +95,7 @@ class _FestPageState extends State<FestPage> {
                                   placeholder: (context, url) =>
                                       const Icon(Icons.circle),
                                   height: 34,
-                                  width: 32,
+                                  width: 36,
                                 ),
                               ),
                               bottomSubTitleWidget: duration != null
