@@ -6,9 +6,11 @@ import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
+import 'package:elaichi/presentation/home/feed/widgets/announcements.dart';
 import 'package:elaichi/presentation/home/feed/widgets/webmail_card.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
 import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.dart';
+import 'package:elaichi/presentation/home/fest/explore/widgets/fest_event_card.dart';
 import 'package:elaichi/presentation/home/fest/widgets/featured_events.dart';
 import 'package:elaichi/presentation/home/fest/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
@@ -75,8 +77,14 @@ class _FestPageState extends State<FestPage> {
                                 margin: EdgeInsets.only(top: 8),
                                 child: Row(
                                   children: [
-                                    Image.asset("assets/images/avenue_logo.png", color: Colors.white, height: 14.5,),
-                                    SizedBox(width: 4,),
+                                    Image.asset(
+                                      "assets/images/avenue_logo.png",
+                                      color: Colors.white,
+                                      height: 14.5,
+                                    ),
+                                    SizedBox(
+                                      width: 4,
+                                    ),
                                     SvgPicture.asset(
                                       Strings.avenueLogo,
                                       height: 12,
@@ -133,11 +141,32 @@ class _FestPageState extends State<FestPage> {
                         child: Column(
                           children: [
                             if (!_bloc.isVerified()) const WebMailCard(),
-                            if (!_bloc.isVerified()) const SizedBox(height: 32),
+                            if (!_bloc.isVerified()) const SizedBox(height: 36),
                             // const FeaturedEvents(),
                           ],
                         ),
-                      )
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Featured Events",
+                                style: interTextTheme.displayMedium!.copyWith(
+                                    letterSpacing: -0.41, color: Colors.white, fontSize: 26,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 30),
+                            FeaturedEventCard(),
+                            SizedBox(height: 40),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 );

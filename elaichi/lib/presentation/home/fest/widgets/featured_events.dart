@@ -1,6 +1,7 @@
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
+import 'package:elaichi/presentation/core/utils/urlLauncher.dart';
 import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.dart';
 import 'package:flutter/material.dart';
 
@@ -39,10 +40,10 @@ class FeaturedEventCard extends StatelessWidget {
         shadowColor: Colors.grey,
         child: Column(
           children: [
-            Image.network(
-              Strings.placeholderImage,
+            Image.asset(
+              Strings.hackNITR,
               height: 250,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -64,7 +65,7 @@ class FeaturedEventCard extends StatelessWidget {
                   SizedBox(
                     height: 28,
                     child: Text(
-                      'INNOVISION 2K22',
+                      'HackNITR 4.0',
                       style: interTextTheme.bodyText1!.copyWith(
                         fontSize: 22,
                         height: 1.27,
@@ -78,7 +79,7 @@ class FeaturedEventCard extends StatelessWidget {
                   SizedBox(
                     height: 32,
                     child: Text(
-                      'Join us lorem ipusum dssdfesfwefesfsefesffefeffefefefefesvse',
+                      'Explore further into your innovation journey with HackNITR 4.0 and manifest your skills.',
                       style: interTextTheme.bodyText2!.copyWith(
                         fontWeight: FontWeight.w500,
                         color: AppColors.grey11,
@@ -100,7 +101,7 @@ class FeaturedEventCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const DurationDates(
-                          text: 'Jan 03 - Jan 07 2023',
+                          text: 'Jan 06 - Jan 08 2023',
                           color: AppColors.grey16,
                           fontSize: 14,
                         ),
@@ -108,7 +109,9 @@ class FeaturedEventCard extends StatelessWidget {
                           height: 50,
                           width: 104,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              launchURL("https://www.hacknitr.com/");
+                            },
                             style: TextButton.styleFrom(
                               backgroundColor: AppColors.lightBlue,
                               shape: RoundedRectangleBorder(
