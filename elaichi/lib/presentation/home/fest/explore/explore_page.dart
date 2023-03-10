@@ -106,7 +106,7 @@ class _ExplorePageState extends State<ExplorePage>
                         fit: BoxFit.fill,
                         placeholder: (context, url) => const Icon(Icons.circle),
                         height: 34,
-                        width: 32,
+                        width: 36,
                       ),
                     ),
                   ),
