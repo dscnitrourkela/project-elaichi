@@ -41,10 +41,17 @@ class _WebMailLoginBottomSheetState extends State<WebMailLoginBottomSheet> {
           state.maybeWhen(
             orElse: () {},
             error: (error) {
-              _toastUtil.showToast(
-                mode: ToastMode.Error,
-                title: error,
-              );
+              if(error.contains("Unique constraint failed on the constraint: `User_mobile_key`") && error.contains("Invalid `prisma.user.create()`")) {
+                _toastUtil.showToast(
+                  mode: ToastMode.Error,
+                  title: "Mobile number already registered, try another",
+                );
+              } else {
+                _toastUtil.showToast(
+                  mode: ToastMode.Error,
+                  title: error,
+                );
+              }
               Navigator.pop(context);
             },
             success: () {
