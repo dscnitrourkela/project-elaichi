@@ -120,7 +120,13 @@ class GraphQLService {
 
   Future<List<Org>> getOrgs() async {
     try {
-      final result = await query(queryString: Queries.getOrgs);
+      final result = await query(
+        queryString: Queries.getOrgs,
+        variables: {
+          'pagination': {'skip': 0, 'take': 1},
+          'orgType': 'FEST'
+        },
+      );
 
       final orgsList = (result.data!['org'] as List<dynamic>)
           .map((e) => Org.fromJson(e as Map<String, dynamic>))

@@ -21,6 +21,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       _userRepository.deleteWebMailDetails();
       emit(const ProfileState.webMailLoggedOut());
       emit(const ProfileState.initial());
+      getRollNumber();
     });
     on<_AppLogOut>((event, emit) async {
       emit(const ProfileState.loading());
