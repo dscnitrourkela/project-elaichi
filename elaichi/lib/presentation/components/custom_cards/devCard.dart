@@ -1,4 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/urlLauncher.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,8 +36,8 @@ class DevCard extends StatelessWidget {
                     alignment: AlignmentDirectional.center,
                     children: [
                       Container(
-                        height: width*0.19,
-                        width: width*0.19,
+                        height: width*0.15,
+                        width: width*0.15,
                         decoration: BoxDecoration(
                           color: Color(0xFF444444),
                           borderRadius: BorderRadius.circular(width*0.095),
@@ -43,13 +45,17 @@ class DevCard extends StatelessWidget {
                       ),
                       Container(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                        height: width*0.176,
-                        width: width*0.176,
+                        height: width*0.138,
+                        width: width*0.138,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(width*0.088),
                         ),
-                        child: Image.network(photo),
+                        child: CachedNetworkImage(
+                          imageUrl: photo,
+                          placeholder: (context, url) => const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Icon(Icons.person, color: AppColors.newEventBtn, size: width*0.086,),
+                        ),
                       ),
                     ],
                   ),
@@ -57,12 +63,12 @@ class DevCard extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         width: width*0.55,
                         child: AutoSizeText(
                           name,
                           style: GoogleFonts.inter(
-                            fontSize: width*0.05,
+                            fontSize: width*0.048,
                             fontWeight: FontWeight.w600,
                             color: Color(0xFF202020),
                           ),
@@ -70,12 +76,12 @@ class DevCard extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 2),
-                      Container(
+                      SizedBox(
                         width: width*0.55,
                         child: AutoSizeText(
                           role,
                           style: GoogleFonts.inter(
-                            fontSize: width*0.038,
+                            fontSize: width*0.036,
                             fontWeight: FontWeight.w500,
                             color: Color(0xFF555555),
                           ),
