@@ -195,7 +195,7 @@ class _RegistrationDetailsState extends State<RegistrationDetails> {
                   const SizedBox(height: 16),
                   Text(
                     'Register with a Mobile Number',
-                    style: interTextTheme.headline2!.copyWith(fontSize: SizeConfig.screenWidth! * 0.08),
+                    style: interTextTheme.headline2!.copyWith(fontSize: SizeConfig.screenWidth! * 0.058),
                   ),
                   const SizedBox(height: 24),
                   Form(
