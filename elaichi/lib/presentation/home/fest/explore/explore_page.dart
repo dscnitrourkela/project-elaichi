@@ -256,17 +256,22 @@ class _ExplorePageState extends State<ExplorePage>
                         categorisedEvents[categorisedEvents.keys.toList()[3]]!,
                   ),
                   const SizedBox(height: 80),
-                  Text(
-                    'Guest Lectures',
-                    style: interTextTheme.headline2,
-                  ),
-                  const SizedBox(height: 24),
-                  SpeakerEventList(
-                    events: categorisedEvents['GUEST-LECTURES '] ??
-                        categorisedEvents['WORKSHOPS'] ??
-                        [],
-                  ),
-                  const SizedBox(height: 80),
+                  if ((categorisedEvents['GUEST-LECTURES '] ??
+                          categorisedEvents['WORKSHOPS'] ??
+                          [])
+                      .isNotEmpty) ...[
+                    Text(
+                      'Guest Lectures',
+                      style: interTextTheme.headline2,
+                    ),
+                    const SizedBox(height: 24),
+                    SpeakerEventList(
+                      events: categorisedEvents['GUEST-LECTURES '] ??
+                          categorisedEvents['WORKSHOPS'] ??
+                          [],
+                    ),
+                    const SizedBox(height: 80),
+                  ],
                   Text(
                     'Our Schedule',
                     style: interTextTheme.headline2,

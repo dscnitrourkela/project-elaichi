@@ -123,7 +123,8 @@ class GraphQLService {
       final result = await query(
         queryString: Queries.getOrgs,
         variables: {
-          'pagination': {'skip': 0, 'take': 1},
+          //change this to 0, 1 to get latest org after PR merge in backend
+          'pagination': {'skip': 1, 'take': 1},
           'orgType': 'FEST'
         },
       );

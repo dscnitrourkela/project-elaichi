@@ -15,13 +15,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   })  : _userRepository = userRepository,
         _eventRepository = eventRepository,
         super(const _Initial()) {
-    getRollNumber();
     on<_WebMailLogOut>((event, emit) {
       emit(const ProfileState.loading());
       _userRepository.deleteWebMailDetails();
       emit(const ProfileState.webMailLoggedOut());
       emit(const ProfileState.initial());
-      getRollNumber();
     });
     on<_AppLogOut>((event, emit) async {
       emit(const ProfileState.loading());
@@ -32,11 +30,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   final UserRepository _userRepository;
   final EventRepository _eventRepository;
-  String? rollNumber;
-
-  void getRollNumber() {
-    rollNumber = _userRepository.rollNumber;
-  }
+  String? get rollNumber => _userRepository.rollNumber;
 
   bool get isZimraAuthenticated {
     if (_userRepository.rollNumber != null) {
