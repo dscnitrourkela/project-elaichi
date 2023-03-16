@@ -177,28 +177,30 @@ class _ExplorePageState extends State<ExplorePage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Pro Shows',
+                    '${categorisedEvents!.keys.toList()[0][0].toUpperCase()}${categorisedEvents.keys.toList()[0].substring(1).toLowerCase()}',
                     style: interTextTheme.headline2,
                   ),
                   const SizedBox(height: 24),
                   HighPriorityEventList(
-                    events: categorisedEvents!['PRO']!,
+                    events:
+                        categorisedEvents[categorisedEvents.keys.toList()[0]]!,
                   ),
                   const SizedBox(height: 80),
                   Text(
-                    'Technical Events',
+                    '${categorisedEvents.keys.toList()[1][0].toUpperCase()}${categorisedEvents.keys.toList()[1].substring(1).toLowerCase()}',
                     style: interTextTheme.headline2,
                   ),
                   const SizedBox(height: 24),
                   HighPriorityEventList(
-                    events: categorisedEvents['TECHNICAL']!,
+                    events:
+                        categorisedEvents[categorisedEvents.keys.toList()[1]]!,
                   ),
                   const SizedBox(height: 80),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Fun Events',
+                        '${categorisedEvents.keys.toList()[2][0].toUpperCase()}${categorisedEvents.keys.toList()[2].substring(1).toLowerCase()}',
                         style: interTextTheme.headline2,
                       ),
                       GestureDetector(
@@ -220,14 +222,15 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   LowPriorityEventsList(
-                    events: categorisedEvents['FUN']!,
+                    events:
+                        categorisedEvents[categorisedEvents.keys.toList()[2]]!,
                   ),
                   const SizedBox(height: 80),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Exhibitions',
+                        '${categorisedEvents.keys.toList()[3][0].toUpperCase()}${categorisedEvents.keys.toList()[3].substring(1).toLowerCase()}',
                         style: interTextTheme.headline2,
                       ),
                       GestureDetector(
@@ -249,18 +252,26 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   LowPriorityEventsList(
-                    events: categorisedEvents['EXHIBITIONS']!,
+                    events:
+                        categorisedEvents[categorisedEvents.keys.toList()[3]]!,
                   ),
                   const SizedBox(height: 80),
-                  Text(
-                    'Guest Lectures',
-                    style: interTextTheme.headline2,
-                  ),
-                  const SizedBox(height: 24),
-                  SpeakerEventList(
-                    events: categorisedEvents['GUEST-LECTURES ']!,
-                  ),
-                  const SizedBox(height: 80),
+                  if ((categorisedEvents['GUEST-LECTURES '] ??
+                          categorisedEvents['WORKSHOPS'] ??
+                          [])
+                      .isNotEmpty) ...[
+                    Text(
+                      'Guest Lectures',
+                      style: interTextTheme.headline2,
+                    ),
+                    const SizedBox(height: 24),
+                    SpeakerEventList(
+                      events: categorisedEvents['GUEST-LECTURES '] ??
+                          categorisedEvents['WORKSHOPS'] ??
+                          [],
+                    ),
+                    const SizedBox(height: 80),
+                  ],
                   Text(
                     'Our Schedule',
                     style: interTextTheme.headline2,
@@ -284,7 +295,7 @@ class _ExplorePageState extends State<ExplorePage>
 class SpeakerEventList extends StatelessWidget {
   const SpeakerEventList({
     Key? key,
-    required this.events,
+    this.events = const [],
   }) : super(key: key);
 
   final List<Event> events;

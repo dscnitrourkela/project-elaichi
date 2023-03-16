@@ -17,9 +17,9 @@ class Queries {
     }
 ''';
 
-  static const getOrgs = '''
-  query Org {
-    org {
+  static const getOrgs = r'''
+  query Org ($pagination: paginationInputType, $orgType: OrgType){
+    org(pagination: $pagination, orgType: $orgType){
       id
       name
       description
