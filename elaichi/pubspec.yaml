@@ -37,7 +37,7 @@ dependencies:
   graphql: ^5.1.1
   collection: ^1.16.0
   shimmer: ^2.0.0
-  url_launcher: ^6.1.5
+  url_launcher: ^6.1.10
   cached_network_image: ^3.2.1
   intl: ^0.17.0
   carousel_slider: ^4.1.1
