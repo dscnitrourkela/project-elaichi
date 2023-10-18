@@ -1,4 +1,5 @@
 import 'package:elaichi/data/remote/notification_service.dart';
+import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/home/fest/fest_page.dart';
 import 'package:elaichi/presentation/home/widgets/bottom_navbar_items.dart';
@@ -45,23 +46,26 @@ class _HomePageState extends State<HomePage> {
                 ProfilePage(),
               ],
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              onTap: (int value) async {
-                _cubit.checkIfVerified(pageIndex: value);
-              },
-              currentIndex: pageIndex,
-              selectedItemColor: Theme.of(context).primaryColor,
-              unselectedItemColor: Theme.of(context).hintColor,
-              selectedIconTheme: const IconThemeData(size: 32),
-              backgroundColor: Theme.of(context).canvasColor,
-              iconSize: 28,
-              type: BottomNavigationBarType.fixed,
-              elevation: 16,
-              items: navBarItems(
-                profileImage: _cubit.userImage,
-                isVerifiedUser: true,
+            bottomNavigationBar: SizedBox(
+              height: SizeConfig.safeBlockHorizontal! * 18,
+              child: BottomNavigationBar(
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                onTap: (int value) async {
+                  _cubit.checkIfVerified(pageIndex: value);
+                },
+                currentIndex: pageIndex,
+                selectedItemColor: Theme.of(context).primaryColor,
+                unselectedItemColor: Theme.of(context).hintColor,
+                selectedIconTheme: const IconThemeData(size: 32),
+                backgroundColor: Theme.of(context).canvasColor,
+                iconSize: 28,
+                type: BottomNavigationBarType.fixed,
+                elevation: 16,
+                items: navBarItems(
+                  profileImage: _cubit.userImage,
+                  isVerifiedUser: true,
+                ),
               ),
             ),
           ),
@@ -75,23 +79,26 @@ class _HomePageState extends State<HomePage> {
                 ProfilePage(),
               ],
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              onTap: (int value) {
-                _cubit.checkIfVerified(pageIndex: value);
-              },
-              currentIndex: pageIndex,
-              selectedItemColor: Theme.of(context).primaryColor,
-              unselectedItemColor: Theme.of(context).hintColor,
-              selectedIconTheme: const IconThemeData(size: 32),
-              backgroundColor: Theme.of(context).canvasColor,
-              iconSize: 28,
-              type: BottomNavigationBarType.fixed,
-              elevation: 16,
-              items: navBarItems(
-                profileImage: _cubit.userImage,
-                isVerifiedUser: false,
+            bottomNavigationBar: SizedBox(
+              height: SizeConfig.safeBlockHorizontal! * 18,
+              child: BottomNavigationBar(
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                onTap: (int value) {
+                  _cubit.checkIfVerified(pageIndex: value);
+                },
+                currentIndex: pageIndex,
+                selectedItemColor: Theme.of(context).primaryColor,
+                unselectedItemColor: Theme.of(context).hintColor,
+                selectedIconTheme: const IconThemeData(size: 32),
+                backgroundColor: Theme.of(context).canvasColor,
+                iconSize: 28,
+                type: BottomNavigationBarType.fixed,
+                elevation: 16,
+                items: navBarItems(
+                  profileImage: _cubit.userImage,
+                  isVerifiedUser: false,
+                ),
               ),
             ),
           ),

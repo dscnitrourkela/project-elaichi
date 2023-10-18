@@ -46,6 +46,7 @@ dependencies:
   marquee: ^2.2.3
   quiver: ^3.1.0
   auto_size_text: ^3.0.0
+  rive: ^0.9.1
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +61,7 @@ flutter:
   assets:
     - assets/images/    
     - assets/icons/
+    - assets/rive/
   fonts:
     - family: Avenue
       fonts:
