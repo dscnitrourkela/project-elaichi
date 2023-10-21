@@ -44,7 +44,9 @@ class UserRepository {
       final userCredentials =
           await _firebaseAuth.signInWithCredential(authCrendential);
 
-      await googleAuthenticated(await userCredentials.user!.getIdToken(true));
+      await googleAuthenticated(
+        (await userCredentials.user!.getIdToken(true))!,
+      );
     } on firebase_auth.FirebaseException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
     } catch (e) {
