@@ -364,6 +364,9 @@ class HighPriorityEventList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (events.isEmpty) {
+      return const SizedBox();
+    }
     return SizedBox(
       height: 466,
       child: ListView.builder(
