@@ -26,9 +26,9 @@ dependencies:
 
   # Firebase Plugins
   google_sign_in: ^5.4.1
-  firebase_auth: ^4.1.0
+  firebase_auth: ^4.11.1
   firebase_core: ^2.1.1
-  google_fonts: ^3.0.1
+  google_fonts: ^6.1.0
   flutter_svg: ^1.1.4
   fluttertoast: ^8.0.9
   shared_preferences: ^2.0.15
@@ -46,7 +46,7 @@ dependencies:
   marquee: ^2.2.3
   quiver: ^3.1.0
   auto_size_text: ^3.0.0
-  rive: ^0.9.1
+  rive: ^0.11.17
 
 dev_dependencies:
   flutter_test:
