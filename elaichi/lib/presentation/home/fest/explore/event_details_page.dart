@@ -125,7 +125,7 @@ class EventDetailsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  event.subHeading,
+                  event.name,
                   style: interTextTheme.subtitle2!.copyWith(
                     color: Colors.white,
                   ),
