@@ -142,12 +142,24 @@ class EventDetailsPage extends StatelessWidget {
                 if (description.isEmpty)
                   const Text('')
                 else
-                  Text(
-                    description[0]['desc'].toString(),
-                    style: interTextTheme.bodyText1!
-                        .copyWith(color: AppColors.grey6.withOpacity(0.8)),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: description.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            description[index]['desc'].toString(),
+                            style: interTextTheme.bodyText1!.copyWith(
+                                color: AppColors.grey6.withOpacity(0.8)),
+                          ),
+                          const SizedBox(height: 14),
+                        ],
+                      );
+                    },
                   ),
-                const SizedBox(height: 24),
                 Text(
                   'Prize: ${event.prizeMoney}',
                   style: interTextTheme.bodyText1!.copyWith(
