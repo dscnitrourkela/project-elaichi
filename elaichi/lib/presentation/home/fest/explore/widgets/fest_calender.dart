@@ -118,7 +118,7 @@ class CalenderItem extends StatelessWidget {
                 SizedBox(
                   width: 200,
                   child: ScrollingText(
-                    text: json.decode(event.name)['heading'].toString(),
+                    text: event.name,
                     style: interTextTheme.bodyText1!.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
@@ -137,8 +137,7 @@ class CalenderItem extends StatelessWidget {
                 //   width: 24,
                 // ),
                 const SizedBox(height: 4),
-                if (json.decode(event.name)['subHeading'].toString() != null &&
-                    json.decode(event.name)['subHeading'].toString() != '')
+                if (event.subHeading != '')
                   Row(
                     children: [
                       const Icon(
@@ -148,7 +147,7 @@ class CalenderItem extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        json.decode(event.name)['subHeading'].toString(),
+                        event.subHeading,
                         style: interTextTheme.overline!
                             .copyWith(fontSize: 12, color: AppColors.white1),
                       )

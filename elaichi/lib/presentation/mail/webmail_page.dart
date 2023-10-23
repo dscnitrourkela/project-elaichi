@@ -11,6 +11,8 @@ import 'package:elaichi/presentation/mail/webmail_login_bottom_sheet/webmai_logi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:elaichi/presentation/profile/profile_page.dart';
+import 'package:elaichi/presentation/core/router/app_page_route.dart';
 
 ///The Mail Page
 class WebMailPage extends StatefulWidget {
@@ -118,21 +120,31 @@ class _WebViewStackState extends State<WebViewStack> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        WebView(
-          onWebViewCreated: (controller) =>
-              widget.controller.complete(controller),
-          onProgress: (progress) => setState(() {
-            loadingPercentage = progress;
-          }),
-          onPageStarted: (url) => setState(() {
-            loadingPercentage = 0;
-          }),
-          onPageFinished: (url) => setState(() {
-            loadingPercentage = 100;
-          }),
-          initialUrl: Env.avenueWebMailBaseUrl +
-              context.read<WebmailCubit>().zsAuthToken!,
-          javascriptMode: JavascriptMode.unrestricted,
+        WillPopScope(
+          onWillPop: () async {
+            final controller = await widget.controller.future;
+            if (await controller.canGoBack()) {
+              await controller.goBack();
+              return false;
+            }
+            return true;
+          },
+          child: WebView(
+            onWebViewCreated: (controller) =>
+                widget.controller.complete(controller),
+            onProgress: (progress) => setState(() {
+              loadingPercentage = progress;
+            }),
+            onPageStarted: (url) => setState(() {
+              loadingPercentage = 0;
+            }),
+            onPageFinished: (url) => setState(() {
+              loadingPercentage = 100;
+            }),
+            initialUrl: Env.avenueWebMailBaseUrl +
+                context.read<WebmailCubit>().zsAuthToken!,
+            javascriptMode: JavascriptMode.unrestricted,
+          ),
         ),
         if (loadingPercentage < 100)
           LinearProgressIndicator(

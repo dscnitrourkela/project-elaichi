@@ -27,6 +27,7 @@ class EventDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final format = DateFormat('MMM');
+    final description = jsonDecode(event.description) as List<dynamic>;
 
     return SafeArea(
       child: Scaffold(
@@ -124,7 +125,7 @@ class EventDetailsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  jsonDecode(event.name)['heading'].toString(),
+                  event.name,
                   style: interTextTheme.subtitle2!.copyWith(
                     color: Colors.white,
                   ),
@@ -138,14 +139,29 @@ class EventDetailsPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
+                if (description.isEmpty)
+                  const Text('')
+                else
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: description.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            description[index]['desc'].toString(),
+                            style: interTextTheme.bodyText1!.copyWith(
+                                color: AppColors.grey6.withOpacity(0.8)),
+                          ),
+                          const SizedBox(height: 14),
+                        ],
+                      );
+                    },
+                  ),
                 Text(
-                  jsonDecode(event.description)[0]['desc'].toString(),
-                  style: interTextTheme.bodyText1!
-                      .copyWith(color: AppColors.grey6.withOpacity(0.8)),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'Prize: ${jsonDecode(event.name)['prizeAmount'].toString()}',
+                  'Prize: ${event.prizeMoney}',
                   style: interTextTheme.bodyText1!.copyWith(
                     fontSize: 14,
                     color: Colors.black,

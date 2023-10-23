@@ -23,6 +23,8 @@ mixin _$Event {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String get subHeading => throw _privateConstructorUsedError;
+  String get prizeMoney => throw _privateConstructorUsedError;
   String get poster => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   DateTime get endDate => throw _privateConstructorUsedError;
@@ -53,6 +55,8 @@ abstract class $EventCopyWith<$Res> {
       {String id,
       String name,
       String description,
+      String subHeading,
+      String prizeMoney,
       String poster,
       DateTime startDate,
       DateTime endDate,
@@ -87,6 +91,8 @@ class _$EventCopyWithImpl<$Res> implements $EventCopyWith<$Res> {
     Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
+    Object? subHeading = freezed,
+    Object? prizeMoney = freezed,
     Object? poster = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
@@ -116,6 +122,14 @@ class _$EventCopyWithImpl<$Res> implements $EventCopyWith<$Res> {
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      subHeading: subHeading == freezed
+          ? _value.subHeading
+          : subHeading // ignore: cast_nullable_to_non_nullable
+              as String,
+      prizeMoney: prizeMoney == freezed
+          ? _value.prizeMoney
+          : prizeMoney // ignore: cast_nullable_to_non_nullable
               as String,
       poster: poster == freezed
           ? _value.poster
@@ -216,6 +230,8 @@ abstract class _$$_EventCopyWith<$Res> implements $EventCopyWith<$Res> {
       {String id,
       String name,
       String description,
+      String subHeading,
+      String prizeMoney,
       String poster,
       DateTime startDate,
       DateTime endDate,
@@ -253,6 +269,8 @@ class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
+    Object? subHeading = freezed,
+    Object? prizeMoney = freezed,
     Object? poster = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
@@ -282,6 +300,14 @@ class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      subHeading: subHeading == freezed
+          ? _value.subHeading
+          : subHeading // ignore: cast_nullable_to_non_nullable
+              as String,
+      prizeMoney: prizeMoney == freezed
+          ? _value.prizeMoney
+          : prizeMoney // ignore: cast_nullable_to_non_nullable
               as String,
       poster: poster == freezed
           ? _value.poster
@@ -358,6 +384,8 @@ class _$_Event implements _Event {
       {required this.id,
       required this.name,
       required this.description,
+      required this.subHeading,
+      required this.prizeMoney,
       required this.poster,
       required this.startDate,
       required this.endDate,
@@ -388,6 +416,10 @@ class _$_Event implements _Event {
   final String name;
   @override
   final String description;
+  @override
+  final String subHeading;
+  @override
+  final String prizeMoney;
   @override
   final String poster;
   @override
@@ -451,7 +483,7 @@ class _$_Event implements _Event {
 
   @override
   String toString() {
-    return 'Event(id: $id, name: $name, description: $description, poster: $poster, startDate: $startDate, endDate: $endDate, orgType: $orgType, notes: $notes, weekly: $weekly, repeatDay: $repeatDay, priority: $priority, type: $type, status: $status, locationID: $locationID, pocID: $pocID, orgID: $orgID, org: $org, location: $location, poc: $poc)';
+    return 'Event(id: $id, name: $name, description: $description, subHeading: $subHeading, prizeMoney: $prizeMoney, poster: $poster, startDate: $startDate, endDate: $endDate, orgType: $orgType, notes: $notes, weekly: $weekly, repeatDay: $repeatDay, priority: $priority, type: $type, status: $status, locationID: $locationID, pocID: $pocID, orgID: $orgID, org: $org, location: $location, poc: $poc)';
   }
 
   @override
@@ -463,6 +495,10 @@ class _$_Event implements _Event {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.subHeading, subHeading) &&
+            const DeepCollectionEquality()
+                .equals(other.prizeMoney, prizeMoney) &&
             const DeepCollectionEquality().equals(other.poster, poster) &&
             const DeepCollectionEquality().equals(other.startDate, startDate) &&
             const DeepCollectionEquality().equals(other.endDate, endDate) &&
@@ -489,6 +525,8 @@ class _$_Event implements _Event {
         const DeepCollectionEquality().hash(id),
         const DeepCollectionEquality().hash(name),
         const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(subHeading),
+        const DeepCollectionEquality().hash(prizeMoney),
         const DeepCollectionEquality().hash(poster),
         const DeepCollectionEquality().hash(startDate),
         const DeepCollectionEquality().hash(endDate),
@@ -525,6 +563,8 @@ abstract class _Event implements Event {
       {required final String id,
       required final String name,
       required final String description,
+      required final String subHeading,
+      required final String prizeMoney,
       required final String poster,
       required final DateTime startDate,
       required final DateTime endDate,
@@ -550,6 +590,10 @@ abstract class _Event implements Event {
   String get name;
   @override
   String get description;
+  @override
+  String get subHeading;
+  @override
+  String get prizeMoney;
   @override
   String get poster;
   @override

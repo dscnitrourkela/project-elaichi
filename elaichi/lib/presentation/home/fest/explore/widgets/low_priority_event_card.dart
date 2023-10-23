@@ -57,10 +57,7 @@ class LowPriorityEventItem extends StatelessWidget {
                       height: 24,
                       width: fullWidth ? 235 : 200,
                       child: ScrollingText(
-                        text: jsonDecode(
-                          event.name,
-                        )['heading']
-                            .toString(),
+                        text: event.name,
                         style: interTextTheme.subtitle2!.copyWith(
                           color: Colors.white,
                           fontSize: 20,
@@ -80,14 +77,12 @@ class LowPriorityEventItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    if (jsonDecode(event.name)['prizeAmount'] != null &&
-                        jsonDecode(event.name)['prizeAmount'] != '')
+                    if (event.prizeMoney != '')
                       SizedBox(
                         width: 127,
                         height: 23,
                         child: ScrollingText(
-                          text:
-                              'Prize: ${jsonDecode(event.name)['prizeAmount'].toString()}',
+                          text: 'Prize: ${event.prizeMoney}',
                           style: interTextTheme.bodyText1!.copyWith(
                             fontSize: 14,
                             color: Colors.white,
