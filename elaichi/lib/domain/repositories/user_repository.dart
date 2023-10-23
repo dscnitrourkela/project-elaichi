@@ -52,9 +52,9 @@ class UserRepository {
     }
   }
 
-  Future<void> googleAuthenticated(String token) async {
+  Future<void> googleAuthenticated(String? token) async {
     try {
-      await initializeGraphQL(token);
+      await initializeGraphQL(token!);
       await getUser();
       await logInToWebMail();
     } catch (e) {
@@ -90,7 +90,7 @@ class UserRepository {
   }
 
   Future<void> getOrCreateUser(
-      {required String rollNumber, required String mobileNumber}) async {
+      {required String rollNumber, required String mobileNumber,}) async {
     try {
       if (user == null) {
         final fbUser = _firebaseAuth.currentUser;

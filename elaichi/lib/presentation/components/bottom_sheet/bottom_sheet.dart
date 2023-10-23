@@ -8,8 +8,8 @@ class CustomBottomSheet extends StatelessWidget {
     required this.body,
     required this.footer,
     this.description,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final Widget? icon;
   final String title;
   final String? description;
@@ -29,7 +29,7 @@ class CustomBottomSheet extends StatelessWidget {
           ),
         ),
         child: ListView(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           children: <Widget>[
             Padding(
@@ -51,7 +51,7 @@ class CustomBottomSheet extends StatelessWidget {
                           Text(
                             title,
                             style:
-                                Theme.of(context).textTheme.headline6!.copyWith(
+                                Theme.of(context).textTheme.titleLarge!.copyWith(
                                       fontWeight: FontWeight.w700,
                                       color: AppColors.grey2,
                                     ),
@@ -59,7 +59,7 @@ class CustomBottomSheet extends StatelessWidget {
                           if (description != null)
                             Text(
                               description!,
-                              style: Theme.of(context).textTheme.bodyText2,
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                         ],
                       ),

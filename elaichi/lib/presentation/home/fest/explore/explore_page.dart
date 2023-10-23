@@ -26,10 +26,10 @@ import 'package:quiver/iterables.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({
-    Key? key,
+    super.key,
     required this.fest,
     required this.events,
-  }) : super(key: key);
+  });
 
   final Org fest;
 
@@ -125,7 +125,7 @@ class _ExplorePageState extends State<ExplorePage>
                             height: 48,
                             child: Text(
                               widget.fest.name,
-                              style: interTextTheme.headline1,
+                              style: interTextTheme.displayLarge,
                             ),
                           ),
                           const SizedBox(height: 24),
@@ -133,7 +133,7 @@ class _ExplorePageState extends State<ExplorePage>
                             height: 154,
                             child: Text(
                               widget.fest.description,
-                              style: interTextTheme.bodyText1!.copyWith(
+                              style: interTextTheme.bodyLarge!.copyWith(
                                 color: AppColors.grey6.withOpacity(0.8),
                               ),
                               maxLines: 7,
@@ -164,7 +164,7 @@ class _ExplorePageState extends State<ExplorePage>
                 child: DurationDates(
                   iconSize: 18,
                   text: duration,
-                  style: interTextTheme.caption!.copyWith(
+                  style: interTextTheme.bodySmall!.copyWith(
                     height: 1.05,
                     fontSize: 20,
                   ),
@@ -178,7 +178,7 @@ class _ExplorePageState extends State<ExplorePage>
                 children: [
                   Text(
                     '${categorisedEvents!.keys.toList()[0][0].toUpperCase()}${categorisedEvents.keys.toList()[0].substring(1).toLowerCase()}',
-                    style: interTextTheme.headline2,
+                    style: interTextTheme.displayMedium,
                   ),
                   const SizedBox(height: 24),
                   HighPriorityEventList(
@@ -188,7 +188,7 @@ class _ExplorePageState extends State<ExplorePage>
                   const SizedBox(height: 80),
                   Text(
                     '${categorisedEvents.keys.toList()[1][0].toUpperCase()}${categorisedEvents.keys.toList()[1].substring(1).toLowerCase()}',
-                    style: interTextTheme.headline2,
+                    style: interTextTheme.displayMedium,
                   ),
                   const SizedBox(height: 24),
                   HighPriorityEventList(
@@ -201,7 +201,7 @@ class _ExplorePageState extends State<ExplorePage>
                     children: [
                       Text(
                         '${categorisedEvents.keys.toList()[2][0].toUpperCase()}${categorisedEvents.keys.toList()[2].substring(1).toLowerCase()}',
-                        style: interTextTheme.headline2,
+                        style: interTextTheme.displayMedium,
                       ),
                       GestureDetector(
                         onTap: () => Navigator.pushNamed(
@@ -211,13 +211,13 @@ class _ExplorePageState extends State<ExplorePage>
                         ),
                         child: Text(
                           'View More',
-                          style: interTextTheme.bodyText1!.copyWith(
+                          style: interTextTheme.bodyLarge!.copyWith(
                             fontSize: 14,
                             height: 1.21,
                             decoration: TextDecoration.underline,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -231,7 +231,7 @@ class _ExplorePageState extends State<ExplorePage>
                     children: [
                       Text(
                         '${categorisedEvents.keys.toList()[3][0].toUpperCase()}${categorisedEvents.keys.toList()[3].substring(1).toLowerCase()}',
-                        style: interTextTheme.headline2,
+                        style: interTextTheme.displayMedium,
                       ),
                       GestureDetector(
                         onTap: () => Navigator.pushNamed(
@@ -241,13 +241,13 @@ class _ExplorePageState extends State<ExplorePage>
                         ),
                         child: Text(
                           'View More',
-                          style: interTextTheme.bodyText1!.copyWith(
+                          style: interTextTheme.bodyLarge!.copyWith(
                             fontSize: 14,
                             height: 1.21,
                             decoration: TextDecoration.underline,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -262,7 +262,7 @@ class _ExplorePageState extends State<ExplorePage>
                       .isNotEmpty) ...[
                     Text(
                       'Guest Lectures',
-                      style: interTextTheme.headline2,
+                      style: interTextTheme.displayMedium,
                     ),
                     const SizedBox(height: 24),
                     SpeakerEventList(
@@ -274,7 +274,7 @@ class _ExplorePageState extends State<ExplorePage>
                   ],
                   Text(
                     'Our Schedule',
-                    style: interTextTheme.headline2,
+                    style: interTextTheme.displayMedium,
                   ),
                   const SizedBox(height: 24),
                   CalenderTabView(
@@ -294,9 +294,9 @@ class _ExplorePageState extends State<ExplorePage>
 
 class SpeakerEventList extends StatelessWidget {
   const SpeakerEventList({
-    Key? key,
+    super.key,
     this.events = const [],
-  }) : super(key: key);
+  });
 
   final List<Event> events;
 
@@ -318,9 +318,9 @@ class SpeakerEventList extends StatelessWidget {
 
 class LowPriorityEventsList extends StatelessWidget {
   const LowPriorityEventsList({
-    Key? key,
+    super.key,
     required this.events,
-  }) : super(key: key);
+  });
 
   final List<Event> events;
 
@@ -341,7 +341,7 @@ class LowPriorityEventsList extends StatelessWidget {
                   LowPriorityEventItem(
                     event: partedList[index1][index2],
                   ),
-                  const SizedBox(height: 16)
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
@@ -356,9 +356,9 @@ class LowPriorityEventsList extends StatelessWidget {
 
 class HighPriorityEventList extends StatelessWidget {
   const HighPriorityEventList({
-    Key? key,
+    super.key,
     required this.events,
-  }) : super(key: key);
+  });
 
   final List<Event> events;
 

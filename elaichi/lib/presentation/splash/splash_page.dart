@@ -12,8 +12,8 @@ import 'package:rive/rive.dart';
 class SplashPage extends StatefulWidget {
   /// Default constructor for [SplashPage]
   const SplashPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -66,7 +66,7 @@ class _SplashPageState extends State<SplashPage> {
                     ),
                     Text(
                       'AVENUE',
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             letterSpacing: 2,
                             fontSize: 20,
                             color: AppColors.avenueTitle.withOpacity(0.6),
@@ -79,9 +79,9 @@ class _SplashPageState extends State<SplashPage> {
                     SizedBox(
                       height: SizeConfig.screenHeight! * 0.046,
                     ),
-                    Container(
+                    SizedBox(
                       height: SizeConfig.screenHeight! * 0.127,
-                      child: RiveAnimation.asset(
+                      child: const RiveAnimation.asset(
                         'assets/rive/loading.riv',
                       ),
                     ),

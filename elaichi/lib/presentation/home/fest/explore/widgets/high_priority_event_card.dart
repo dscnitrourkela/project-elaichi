@@ -16,9 +16,9 @@ import 'package:intl/intl.dart';
 
 class HighPriorityEventCard extends StatelessWidget {
   HighPriorityEventCard({
-    Key? key,
+    super.key,
     required this.event,
-  }) : super(key: key);
+  });
 
   final Event event;
   final toastUtil = ToastUtil.getInstance();
@@ -68,7 +68,7 @@ class HighPriorityEventCard extends StatelessWidget {
                       width: 240,
                       child: ScrollingText(
                         text: jsonDecode(event.name)['heading'].toString(),
-                        style: interTextTheme.subtitle2!.copyWith(
+                        style: interTextTheme.titleSmall!.copyWith(
                           color: Colors.black,
                         ),
                         condition: 28,
@@ -79,7 +79,7 @@ class HighPriorityEventCard extends StatelessWidget {
                       height: 17,
                       child: Text(
                         '${event.startDate.day.toString().padLeft(2, '0')} ${format.format(event.startDate)} | ${event.startDate.hour.toString().padLeft(2, '0')}:${event.startDate.minute.toString().padLeft(2, '0')}',
-                        style: interTextTheme.bodyText1!.copyWith(
+                        style: interTextTheme.bodyLarge!.copyWith(
                           color: Colors.black.withOpacity(0.6),
                           fontSize: 14,
                           height: 1.19,
@@ -91,7 +91,7 @@ class HighPriorityEventCard extends StatelessWidget {
                       height: 95,
                       child: Text(
                         jsonDecode(event.description)[0]['desc'].toString(),
-                        style: interTextTheme.bodyText1!.copyWith(
+                        style: interTextTheme.bodyLarge!.copyWith(
                           height: 1.18,
                           fontSize: 16,
                           color: Colors.black.withOpacity(0.6),
@@ -120,8 +120,8 @@ class HighPriorityEventCard extends StatelessWidget {
                               height: 22,
                               child: ScrollingText(
                                 text:
-                                    'Prize: ${jsonDecode(event.name)['prizeAmount'].toString()}',
-                                style: interTextTheme.bodyText1!.copyWith(
+                                    'Prize: ${jsonDecode(event.name)['prizeAmount']}',
+                                style: interTextTheme.bodyLarge!.copyWith(
                                   fontSize: 14,
                                   color: Colors.black,
                                 ),
@@ -199,13 +199,13 @@ class HighPriorityEventCard extends StatelessWidget {
                                 },
                               );
                             },
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

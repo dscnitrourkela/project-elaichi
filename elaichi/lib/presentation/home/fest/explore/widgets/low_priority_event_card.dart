@@ -9,10 +9,10 @@ import 'package:intl/intl.dart';
 
 class LowPriorityEventItem extends StatelessWidget {
   const LowPriorityEventItem({
-    Key? key,
+    super.key,
     required this.event,
     this.fullWidth = false,
-  }) : super(key: key);
+  });
 
   final Event event;
   final bool fullWidth;
@@ -61,7 +61,7 @@ class LowPriorityEventItem extends StatelessWidget {
                           event.name,
                         )['heading']
                             .toString(),
-                        style: interTextTheme.subtitle2!.copyWith(
+                        style: interTextTheme.titleSmall!.copyWith(
                           color: Colors.white,
                           fontSize: 20,
                         ),
@@ -73,7 +73,7 @@ class LowPriorityEventItem extends StatelessWidget {
                       height: 17,
                       child: Text(
                         '${event.startDate.day.toString().padLeft(2, '0')} ${format.format(event.startDate)} | ${event.startDate.hour.toString().padLeft(2, '0')}:${event.startDate.minute.toString().padLeft(2, '0')}',
-                        style: interTextTheme.bodyText1!.copyWith(
+                        style: interTextTheme.bodyLarge!.copyWith(
                           color: Colors.white.withOpacity(0.6),
                           fontSize: 14,
                         ),
@@ -87,8 +87,8 @@ class LowPriorityEventItem extends StatelessWidget {
                         height: 23,
                         child: ScrollingText(
                           text:
-                              'Prize: ${jsonDecode(event.name)['prizeAmount'].toString()}',
-                          style: interTextTheme.bodyText1!.copyWith(
+                              'Prize: ${jsonDecode(event.name)['prizeAmount']}',
+                          style: interTextTheme.bodyLarge!.copyWith(
                             fontSize: 14,
                             color: Colors.white,
                           ),

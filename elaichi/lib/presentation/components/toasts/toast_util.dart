@@ -141,7 +141,7 @@ class ToastUtil {
           title,
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
-          style: _textTheme.bodyText2!.copyWith(
+          style: _textTheme.bodyMedium!.copyWith(
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -154,7 +154,7 @@ class ToastUtil {
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
           softWrap: false,
-          style: _textTheme.caption!.copyWith(
+          style: _textTheme.bodySmall!.copyWith(
             fontWeight: FontWeight.w500,
             color: AppColors.bodyText,
           ),

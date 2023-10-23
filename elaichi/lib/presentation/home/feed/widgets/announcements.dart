@@ -3,7 +3,7 @@ import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:flutter/material.dart';
 
 class Announcements extends StatelessWidget {
-  const Announcements({Key? key}) : super(key: key);
+  const Announcements({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class Announcements extends StatelessWidget {
         children: [
           Text(
             'Announcements',
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           Padding(
             padding: EdgeInsets.symmetric(
@@ -38,7 +38,7 @@ class Announcements extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

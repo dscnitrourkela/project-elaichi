@@ -3,11 +3,11 @@ import 'package:marquee/marquee.dart';
 
 class ScrollingText extends StatelessWidget {
   const ScrollingText({
-    Key? key,
+    super.key,
     required this.text,
     required this.style,
     required this.condition,
-  }) : super(key: key);
+  });
 
   final String text;
   final TextStyle style;
@@ -17,7 +17,7 @@ class ScrollingText extends StatelessWidget {
   Widget build(BuildContext context) {
     if (text.length > condition) {
       return SizedBox(
-          height: style.height, child: Marquee(text: text, style: style));
+          height: style.height, child: Marquee(text: text, style: style),);
     } else {
       return Text(text, style: style);
     }

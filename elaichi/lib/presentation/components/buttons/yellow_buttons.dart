@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 class YellowFlatButton extends StatelessWidget {
   const YellowFlatButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onTapped,
     this.width = 338,
-  }) : super(key: key);
+  });
 
   final String text;
 
@@ -28,7 +28,7 @@ class YellowFlatButton extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: interTextTheme.subtitle2!.copyWith(
+              style: interTextTheme.titleSmall!.copyWith(
                 fontSize: 15,
                 height: 1.33,
                 color: Colors.black,
@@ -43,11 +43,11 @@ class YellowFlatButton extends StatelessWidget {
 
 class YellowTextButton extends StatelessWidget {
   const YellowTextButton({
-    Key? key,
+    super.key,
     this.mainAxisAlignment = MainAxisAlignment.start,
     required this.onPressed,
     required this.text,
-  }) : super(key: key);
+  });
 
   final MainAxisAlignment mainAxisAlignment;
   final Function onPressed;
@@ -62,7 +62,7 @@ class YellowTextButton extends StatelessWidget {
         children: [
           Text(
             text,
-            style: interTextTheme.subtitle1!.copyWith(
+            style: interTextTheme.titleMedium!.copyWith(
               letterSpacing: -0.5,
               fontSize: 15,
               color: AppColors.yellowButton,
@@ -72,7 +72,7 @@ class YellowTextButton extends StatelessWidget {
           const Icon(
             Icons.arrow_forward,
             color: AppColors.yellowButton,
-          )
+          ),
         ],
       ),
     );

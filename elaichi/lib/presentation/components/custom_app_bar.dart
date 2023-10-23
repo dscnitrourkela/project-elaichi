@@ -2,16 +2,16 @@ import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 ///Custom App Bar maintained through out the application
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Constrcutor for CustomAppBar.
   const CustomAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.leftTap,
     this.rightTap,
     this.leftButton,
     this.rightButton,
-  }) : super(key: key);
+  });
 
   /// Title of the AppBar
   final String title;
@@ -36,7 +36,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         title,
         style: Theme.of(context)
             .textTheme
-            .headline6!
+            .titleLarge!
             .copyWith(fontWeight: FontWeight.w700),
       ),
       elevation: 1,

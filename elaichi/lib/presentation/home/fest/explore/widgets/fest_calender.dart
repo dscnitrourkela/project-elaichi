@@ -11,11 +11,10 @@ import 'package:flutter/material.dart';
 
 class CalenderTabView extends StatelessWidget {
   const CalenderTabView({
-    Key? key,
+    super.key,
     required TabController tabController,
     required this.calender,
-  })  : _tabController = tabController,
-        super(key: key);
+  })  : _tabController = tabController;
 
   final TabController _tabController;
   final Map<String, List<Event>> calender;
@@ -25,7 +24,7 @@ class CalenderTabView extends StatelessWidget {
     return Column(
       children: [
         TabBar(
-          unselectedLabelStyle: interTextTheme.bodyText1!.copyWith(
+          unselectedLabelStyle: interTextTheme.bodyLarge!.copyWith(
             fontWeight: FontWeight.w600,
             color: AppColors.grey11,
           ),
@@ -39,7 +38,7 @@ class CalenderTabView extends StatelessWidget {
             (index) => Tab(
               child: Text(
                 calender.keys.toList()[index],
-                style: interTextTheme.bodyText1!.copyWith(
+                style: interTextTheme.bodyLarge!.copyWith(
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
@@ -76,9 +75,9 @@ class CalenderTabView extends StatelessWidget {
 
 class CalenderItem extends StatelessWidget {
   const CalenderItem({
-    Key? key,
+    super.key,
     required this.event,
-  }) : super(key: key);
+  });
 
   final Event event;
 
@@ -105,7 +104,7 @@ class CalenderItem extends StatelessWidget {
               children: [
                 Text(
                   event.type!,
-                  style: interTextTheme.bodyText1!.copyWith(
+                  style: interTextTheme.bodyLarge!.copyWith(
                     color: event.poster != ''
                         ? AppColors.teal
                         : AppColors.yellowButton,
@@ -119,7 +118,7 @@ class CalenderItem extends StatelessWidget {
                   width: 200,
                   child: ScrollingText(
                     text: json.decode(event.name)['heading'].toString(),
-                    style: interTextTheme.bodyText1!.copyWith(
+                    style: interTextTheme.bodyLarge!.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),
@@ -137,8 +136,7 @@ class CalenderItem extends StatelessWidget {
                 //   width: 24,
                 // ),
                 const SizedBox(height: 4),
-                if (json.decode(event.name)['subHeading'].toString() != null &&
-                    json.decode(event.name)['subHeading'].toString() != '')
+                if (json.decode(event.name)['subHeading'].toString() != '')
                   Row(
                     children: [
                       const Icon(
@@ -149,19 +147,19 @@ class CalenderItem extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         json.decode(event.name)['subHeading'].toString(),
-                        style: interTextTheme.overline!
+                        style: interTextTheme.labelSmall!
                             .copyWith(fontSize: 12, color: AppColors.white1),
-                      )
+                      ),
                     ],
-                  )
+                  ),
               ],
             ),
             Text(
               '${event.startDate.hour}:${event.startDate.minute.toString().padLeft(2, '0')} - ${event.endDate.hour}:${event.endDate.minute.toString().padLeft(2, '0')}',
-              style: interTextTheme.overline!.copyWith(
+              style: interTextTheme.labelSmall!.copyWith(
                 color: AppColors.grey10,
               ),
-            )
+            ),
           ],
         ),
       ),

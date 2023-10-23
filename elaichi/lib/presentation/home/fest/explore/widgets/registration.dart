@@ -56,19 +56,19 @@ class _StudentConfirmationPageState extends State<StudentConfirmationPage> {
                 const SizedBox(height: 16),
                 Text(
                   'Fest Registration',
-                  style: interTextTheme.headline2,
+                  style: interTextTheme.displayMedium,
                 ),
                 const SizedBox(height: 22),
                 Text(
                   'Are you a student of NIT Rourkela?',
-                  style: interTextTheme.bodyText1!.copyWith(
+                  style: interTextTheme.bodyLarge!.copyWith(
                     fontSize: 16,
                     height: 1.21,
                   ),
                 ),
                 Text(
                   '(Pssst... NITR students don’t pay any registration fees)',
-                  style: interTextTheme.bodyText1!.copyWith(
+                  style: interTextTheme.bodyLarge!.copyWith(
                     fontSize: 14,
                     height: 1.42,
                     color: Colors.white.withOpacity(0.6),
@@ -90,7 +90,7 @@ class _StudentConfirmationPageState extends State<StudentConfirmationPage> {
                     const SizedBox(width: 4),
                     Text(
                       'Yes',
-                      style: interTextTheme.bodyText1!
+                      style: interTextTheme.bodyLarge!
                           .copyWith(fontSize: 16, height: 1.7),
                     ),
                   ],
@@ -111,7 +111,7 @@ class _StudentConfirmationPageState extends State<StudentConfirmationPage> {
                     const SizedBox(width: 4),
                     Text(
                       'No',
-                      style: interTextTheme.bodyText1!
+                      style: interTextTheme.bodyLarge!
                           .copyWith(fontSize: 16, height: 1.7),
                     ),
                   ],
@@ -194,13 +194,13 @@ class _RegistrationDetailsState extends State<RegistrationDetails> {
                   const SizedBox(height: 16),
                   Text(
                     'Fest Registration',
-                    style: interTextTheme.headline2,
+                    style: interTextTheme.displayMedium,
                   ),
                   const SizedBox(height: 24),
                   Form(
                     key: _formKey,
                     child: TextFormField(
-                      style: interTextTheme.bodyText1,
+                      style: interTextTheme.bodyLarge,
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16),
@@ -226,7 +226,7 @@ class _RegistrationDetailsState extends State<RegistrationDetails> {
                         ),
                         fillColor: AppColors.grey15,
                         hintText: 'Mobile Number',
-                        hintStyle: interTextTheme.bodyText2!
+                        hintStyle: interTextTheme.bodyMedium!
                             .copyWith(color: AppColors.grey15),
                       ),
                       controller: _controller,
@@ -240,9 +240,9 @@ class _RegistrationDetailsState extends State<RegistrationDetails> {
                         }
                       },
                     ),
-                  )
+                  ),
                 ],
-              )),
+              ),),
         ),
       ),
     );

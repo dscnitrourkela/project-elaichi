@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 
 class SpeakerWidget extends StatelessWidget {
   const SpeakerWidget({
-    Key? key,
+    super.key,
     required this.currentIndex,
     required this.index,
-  }) : super(key: key);
+  });
 
   final int currentIndex;
   final int index;
@@ -37,7 +37,7 @@ class SpeakerWidget extends StatelessWidget {
           children: [
             Text(
               'Name of Speaker',
-              style: Theme.of(context).textTheme.headline1!.copyWith(
+              style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     fontWeight: FontWeight.w700,
                     fontSize: 34,
                     color: Colors.white,
@@ -46,7 +46,7 @@ class SpeakerWidget extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'Designation of Person',
-              style: interTextTheme.bodyText1!.copyWith(color: Colors.white),
+              style: interTextTheme.bodyLarge!.copyWith(color: Colors.white),
             ),
             const SizedBox(height: 24),
             Container(
@@ -87,13 +87,13 @@ class SpeakerWidget extends StatelessWidget {
 
 class SpeakerInfo extends StatelessWidget {
   const SpeakerInfo({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.height = 34,
     this.width = 32,
     required this.name,
     this.fontSize = 17,
-  }) : super(key: key);
+  });
 
   final String imageUrl;
   final double height;
@@ -118,7 +118,7 @@ class SpeakerInfo extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           name,
-          style: interTextTheme.bodyText1!.copyWith(
+          style: interTextTheme.bodyLarge!.copyWith(
             color: AppColors.grey8,
             fontSize: fontSize,
             height: 1.34,
