@@ -256,7 +256,37 @@ class _ExplorePageState extends State<ExplorePage>
                         categorisedEvents[categorisedEvents.keys.toList()[3]]!,
                   ),
                   const SizedBox(height: 80),
-                  if ((categorisedEvents['GUEST-LECTURES '] ??
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Text(
+                  //       '${categorisedEvents.keys.toList()[8]}',
+                  //       style: interTextTheme.headline2,
+                  //     ),
+                  //     GestureDetector(
+                  //       onTap: () => Navigator.pushNamed(
+                  //         context,
+                  //         AppRouter.allEvents,
+                  //         arguments: {'events': widget.events},
+                  //       ),
+                  //       child: Text(
+                  //         'View More',
+                  //         style: interTextTheme.bodyText1!.copyWith(
+                  //           fontSize: 14,
+                  //           height: 1.21,
+                  //           decoration: TextDecoration.underline,
+                  //         ),
+                  //       ),
+                  //     )
+                  //   ],
+                  // ),
+                  // const SizedBox(height: 24),
+                  // LowPriorityEventsList(
+                  //   events:
+                  //   categorisedEvents[categorisedEvents.keys.toList()[8]]!,
+                  // ),
+                  // const SizedBox(height: 80),
+                  if ((categorisedEvents['GUEST LECTURE'] ??
                           categorisedEvents['WORKSHOPS'] ??
                           [])
                       .isNotEmpty) ...[
@@ -266,7 +296,7 @@ class _ExplorePageState extends State<ExplorePage>
                     ),
                     const SizedBox(height: 24),
                     SpeakerEventList(
-                      events: categorisedEvents['GUEST-LECTURES '] ??
+                      events: categorisedEvents['GUEST LECTURE'] ??
                           categorisedEvents['WORKSHOPS'] ??
                           [],
                     ),
