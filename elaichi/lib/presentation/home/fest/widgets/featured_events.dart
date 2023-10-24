@@ -6,7 +6,7 @@ import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.da
 import 'package:flutter/material.dart';
 
 class FeaturedEvents extends StatelessWidget {
-  const FeaturedEvents({Key? key}) : super(key: key);
+  const FeaturedEvents({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class FeaturedEvents extends StatelessWidget {
       children: [
         Text(
           Strings.featuredEvents,
-          style: interTextTheme.headline2!.copyWith(color: Colors.black),
+          style: interTextTheme.displayMedium!.copyWith(color: Colors.black),
         ),
         const SizedBox(height: 20),
         const FeaturedEventCard(),
@@ -27,8 +27,8 @@ class FeaturedEvents extends StatelessWidget {
 
 class FeaturedEventCard extends StatelessWidget {
   const FeaturedEventCard({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class FeaturedEventCard extends StatelessWidget {
                     height: 20,
                     child: Text(
                       'Featured Event',
-                      style: interTextTheme.subtitle1!.copyWith(
+                      style: interTextTheme.titleMedium!.copyWith(
                         letterSpacing: -0.41,
                         color: AppColors.grey16,
                       ),
@@ -66,7 +66,7 @@ class FeaturedEventCard extends StatelessWidget {
                     height: 28,
                     child: Text(
                       'HackNITR 4.0',
-                      style: interTextTheme.bodyText1!.copyWith(
+                      style: interTextTheme.bodyLarge!.copyWith(
                         fontSize: 22,
                         height: 1.27,
                         letterSpacing: 0.35,
@@ -80,7 +80,7 @@ class FeaturedEventCard extends StatelessWidget {
                     height: 32,
                     child: Text(
                       'Explore further into your innovation journey with HackNITR 4.0 and manifest your skills.',
-                      style: interTextTheme.bodyText2!.copyWith(
+                      style: interTextTheme.bodyMedium!.copyWith(
                         fontWeight: FontWeight.w500,
                         color: AppColors.grey11,
                         fontSize: 12,
@@ -110,7 +110,7 @@ class FeaturedEventCard extends StatelessWidget {
                           width: 104,
                           child: TextButton(
                             onPressed: () {
-                              launchURL("https://www.hacknitr.com/");
+                              launchURL('https://www.hacknitr.com/');
                             },
                             style: TextButton.styleFrom(
                               backgroundColor: AppColors.lightBlue,
@@ -120,7 +120,7 @@ class FeaturedEventCard extends StatelessWidget {
                             ),
                             child: Text(
                               'Register',
-                              style: interTextTheme.bodyText2!.copyWith(
+                              style: interTextTheme.bodyMedium!.copyWith(
                                 fontWeight: FontWeight.w500,
                                 height: 1.28,
                                 color: Colors.white,
@@ -128,10 +128,10 @@ class FeaturedEventCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

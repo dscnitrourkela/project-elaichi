@@ -10,8 +10,8 @@ class AppPageRoute<T> extends MaterialPageRoute<T> {
   /// must not be null.
   AppPageRoute({
     required WidgetBuilder builder,
-    RouteSettings? settings,
-    bool fullscreenDialog = false,
+    super.settings,
+    super.fullscreenDialog,
   }) : super(
           builder: (BuildContext context) {
             log('added ${settings?.name}');
@@ -20,8 +20,6 @@ class AppPageRoute<T> extends MaterialPageRoute<T> {
             return builder(context);
           },
           maintainState: true,
-          settings: settings,
-          fullscreenDialog: fullscreenDialog,
         ) {
     // ignore: prefer_asserts_with_message
     assert(opaque);

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Constrcutor for CustomAppBar.
   const CustomAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.leftTap,
     this.rightTap,
     this.leftButton,
     this.rightButton,
-  }) : super(key: key);
+  });
 
   /// Title of the AppBar
   final String title;
@@ -36,7 +36,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: Theme.of(context)
             .textTheme
-            .headline6!
+            .titleLarge!
             .copyWith(fontWeight: FontWeight.w700),
       ),
       elevation: 1,

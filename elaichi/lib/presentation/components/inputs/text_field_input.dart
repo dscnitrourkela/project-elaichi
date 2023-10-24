@@ -24,9 +24,9 @@ class TextFieldInput extends StatelessWidget {
     this.contentPadding,
     this.prefixTextFontWeight,
     this.onChanged,
-    Key? key,
+    super.key,
     this.obscureText = false,
-  }) : super(key: key);
+  });
 
   final String? title;
   final TextStyle? titleStyle;
@@ -60,7 +60,7 @@ class TextFieldInput extends StatelessWidget {
             Text(
               title!,
               style: titleStyle ??
-                  Theme.of(context).textTheme.button!.copyWith(
+                  Theme.of(context).textTheme.labelLarge!.copyWith(
                         color: Theme.of(context).hintColor,
                         letterSpacing: 0.1,
                       ),
@@ -80,7 +80,7 @@ class TextFieldInput extends StatelessWidget {
             maxLengthEnforcement:
                 (maxLength == null) ? null : MaxLengthEnforcement.enforced,
             maxLines: obscureText ? 1 : maxLines,
-            style: Theme.of(context).textTheme.bodyText1?.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.w600,
                   // color: enabled ? null : Theme.of(context).,
                 ),
@@ -114,7 +114,7 @@ class TextFieldInput extends StatelessWidget {
                       ),
                       child: Text(
                         prefixText!,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontWeight:
                                   prefixTextFontWeight ?? FontWeight.w700,
                               color: AppColors.bodyText,
@@ -132,7 +132,7 @@ class TextFieldInput extends StatelessWidget {
                       ),
                       child: Text(
                         suffixText!,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontWeight: FontWeight.normal,
                             ),
                       ),
@@ -141,7 +141,7 @@ class TextFieldInput extends StatelessWidget {
               errorText: errorText,
               hintText: hintText,
             ),
-          )
+          ),
         ],
       ),
     );

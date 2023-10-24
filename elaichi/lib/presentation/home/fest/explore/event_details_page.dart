@@ -17,9 +17,9 @@ import 'package:intl/intl.dart';
 
 class EventDetailsPage extends StatelessWidget {
   EventDetailsPage({
-    Key? key,
+    super.key,
     required this.event,
-  }) : super(key: key);
+  });
 
   final Event event;
 
@@ -61,7 +61,7 @@ class EventDetailsPage extends StatelessWidget {
                           .isNotEmpty)
                       ? Text(
                           'Registered',
-                          style: interTextTheme.bodyText1,
+                          style: interTextTheme.bodyLarge,
                         )
                       : YellowFlatButton(
                           onTapped: () async {
@@ -126,14 +126,14 @@ class EventDetailsPage extends StatelessWidget {
                 const SizedBox(height: 24),
                 Text(
                   event.name,
-                  style: interTextTheme.subtitle2!.copyWith(
+                  style: interTextTheme.titleSmall!.copyWith(
                     color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   '${event.startDate.day.toString().padLeft(2, '0')} ${format.format(event.startDate)} | ${event.startDate.hour.toString().padLeft(2, '0')}:${event.startDate.minute.toString().padLeft(2, '0')}',
-                  style: interTextTheme.bodyText1!.copyWith(
+                  style: interTextTheme.bodyLarge!.copyWith(
                     color: Colors.white.withOpacity(0.6),
                     fontSize: 14,
                   ),
@@ -152,8 +152,8 @@ class EventDetailsPage extends StatelessWidget {
                         children: [
                           Text(
                             description[index]['desc'].toString(),
-                            style: interTextTheme.bodyText1!.copyWith(
-                                color: AppColors.grey6.withOpacity(0.8)),
+                            style: interTextTheme.bodyLarge!.copyWith(
+                                color: AppColors.grey6.withOpacity(0.8),),
                           ),
                           const SizedBox(height: 14),
                         ],
@@ -162,7 +162,7 @@ class EventDetailsPage extends StatelessWidget {
                   ),
                 Text(
                   'Prize: ${event.prizeMoney}',
-                  style: interTextTheme.bodyText1!.copyWith(
+                  style: interTextTheme.bodyLarge!.copyWith(
                     fontSize: 14,
                     color: Colors.black,
                   ),

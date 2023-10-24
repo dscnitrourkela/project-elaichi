@@ -5,14 +5,13 @@ import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/components/custom_app_bar.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
-import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 ///The Browse Page
 class BrowsePage extends StatelessWidget {
   /// Default constructor
-  const BrowsePage({Key? key}) : super(key: key);
+  const BrowsePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +31,9 @@ class BrowsePage extends StatelessWidget {
 
 class EventCard extends StatelessWidget {
   const EventCard({
-    Key? key,
+    super.key,
     required this.event,
-  }) : super(key: key);
+  });
 
   final Event event;
   @override
@@ -70,7 +69,7 @@ class EventCard extends StatelessWidget {
               children: [
                 Text(
                   jsonDecode(event.name)['subHeading'].toString(),
-                  style: interTextTheme.bodyText2!.copyWith(
+                  style: interTextTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w700,
                     color: AppColors.grey3,
                     fontSize: 10,
@@ -80,7 +79,7 @@ class EventCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   jsonDecode(event.name)['heading'].toString(),
-                  style: interTextTheme.bodyText2!.copyWith(
+                  style: interTextTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w700,
                     color: AppColors.grey2,
                     fontSize: 18,
@@ -91,7 +90,7 @@ class EventCard extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   '${format.format(event.startDate)} • ',
-                  style: interTextTheme.caption!.copyWith(
+                  style: interTextTheme.bodySmall!.copyWith(
                     color: AppColors.grey2.withOpacity(0.6),
                     letterSpacing: 0.05,
                     fontWeight: FontWeight.w500,
@@ -106,7 +105,7 @@ class EventCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
-                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: AppColors.grey2,
                           letterSpacing: 0.05,
                           fontSize: 12,
@@ -115,7 +114,7 @@ class EventCard extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

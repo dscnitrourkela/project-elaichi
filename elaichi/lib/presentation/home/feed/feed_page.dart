@@ -13,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 ///The Feed Page
 class FeedPage extends StatelessWidget {
   /// Default constructor
-  const FeedPage({Key? key}) : super(key: key);
+  const FeedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class FeedPage extends StatelessWidget {
                 return Column(
                   children: [
                     state.maybeWhen(
-                      orElse: () => Container(),
+                      orElse: Container.new,
                       initial: (webMailState, data) {
                         if (webMailState == WebMailState.authenticated) {
                           return const CalenderList();
@@ -49,7 +49,7 @@ class FeedPage extends StatelessWidget {
                       },
                     ),
                     const ArticleList(),
-                    const Announcements()
+                    const Announcements(),
                   ],
                 );
               },

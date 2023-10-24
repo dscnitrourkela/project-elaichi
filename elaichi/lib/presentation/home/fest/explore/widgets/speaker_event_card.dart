@@ -16,9 +16,9 @@ import 'package:intl/intl.dart';
 
 class SpeakerEventCard extends StatelessWidget {
   SpeakerEventCard({
-    Key? key,
+    super.key,
     required this.event,
-  }) : super(key: key);
+  });
 
   final Event event;
 
@@ -69,7 +69,7 @@ class SpeakerEventCard extends StatelessWidget {
                 height: 29,
                 child: ScrollingText(
                   text: jsonDecode(event.name)['heading'].toString(),
-                  style: interTextTheme.subtitle2!.copyWith(
+                  style: interTextTheme.titleSmall!.copyWith(
                     color: Colors.black,
                   ),
                   condition: 28,
@@ -112,7 +112,7 @@ class SpeakerEventCard extends StatelessWidget {
                   iconSize: 18,
                   text: duration,
                   color: Colors.black.withOpacity(0.6),
-                  style: interTextTheme.caption!.copyWith(
+                  style: interTextTheme.bodySmall!.copyWith(
                     color: Colors.black.withOpacity(0.6),
                     fontSize: 14,
                     fontWeight: FontWeight.w300,
@@ -197,10 +197,10 @@ class SpeakerEventCard extends StatelessWidget {
                           },
                         );
                       },
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

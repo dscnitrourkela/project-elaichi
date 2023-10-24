@@ -10,9 +10,9 @@ import 'package:shimmer/shimmer.dart';
 class MMArticleCard extends StatelessWidget {
   /// Default Constructor
   const MMArticleCard({
-    Key? key,
+    super.key,
     required this.index,
-  }) : super(key: key);
+  });
 
   final int index;
 
@@ -81,13 +81,13 @@ class MMArticleCard extends StatelessWidget {
                             softWrap: true,
                             overflow: TextOverflow.ellipsis,
                             style:
-                                Theme.of(context).textTheme.headline6!.copyWith(
+                                Theme.of(context).textTheme.titleLarge!.copyWith(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),

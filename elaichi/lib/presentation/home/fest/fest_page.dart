@@ -1,16 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:elaichi/data/remote/notification_service.dart';
-import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/home/feed/widgets/announcements.dart';
 import 'package:elaichi/presentation/home/feed/widgets/webmail_card.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
 import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.dart';
-import 'package:elaichi/presentation/home/fest/explore/widgets/fest_event_card.dart';
 import 'package:elaichi/presentation/home/fest/widgets/featured_events.dart';
 import 'package:elaichi/presentation/home/fest/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FestPage extends StatefulWidget {
-  const FestPage({Key? key}) : super(key: key);
+  const FestPage({super.key});
 
   @override
   State<FestPage> createState() => _FestPageState();
@@ -74,15 +70,15 @@ class _FestPageState extends State<FestPage> {
                               imageUrl:
                                   fest.coverImg ?? Strings.placeholderImage,
                               leadingWidget: Container(
-                                margin: EdgeInsets.only(top: 8),
+                                margin: const EdgeInsets.only(top: 8),
                                 child: Row(
                                   children: [
                                     Image.asset(
-                                      "assets/images/avenue_logo.png",
+                                      'assets/images/avenue_logo.png',
                                       color: Colors.white,
                                       height: 14.5,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 4,
                                     ),
                                     SvgPicture.asset(
@@ -111,7 +107,7 @@ class _FestPageState extends State<FestPage> {
                                       text: duration,
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      style: interTextTheme.caption,
+                                      style: interTextTheme.bodySmall,
                                     )
                                   : null,
                               title: fest.name,
@@ -155,15 +151,15 @@ class _FestPageState extends State<FestPage> {
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Featured Events",
+                                'Featured Events',
                                 style: interTextTheme.displayMedium!.copyWith(
                                     letterSpacing: -0.41, color: Colors.white, fontSize: 26,
                                 ),
                               ),
                             ),
-                            SizedBox(height: 30),
-                            FeaturedEventCard(),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 30),
+                            const FeaturedEventCard(),
+                            const SizedBox(height: 40),
                           ],
                         ),
                       ),
