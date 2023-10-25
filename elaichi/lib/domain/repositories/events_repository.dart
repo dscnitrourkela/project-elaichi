@@ -102,7 +102,19 @@ class EventRepository {
     );
 
     final format = DateFormat('MMM');
+    // TODO : Make this dynamic
+    const startDate = 3;
+    const endDate = 5;
     for (final element in events) {
+      if (element.startDate.day < startDate) {
+        continue;
+      }
+      if (element.startDate.day > endDate) {
+        continue;
+      }
+      if (element.status == StatusType.EXPIRED) {
+        continue;
+      }
       if (map.keys.contains(
         '${element.startDate.day} ${format.format(element.startDate)}',
       )) {

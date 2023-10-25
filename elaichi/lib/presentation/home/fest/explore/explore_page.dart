@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, use_decorated_box
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:elaichi/data/constants/global_enums.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
@@ -182,7 +183,7 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   HighPriorityEventList(
-                    events:
+                    allEvents:
                         categorisedEvents[categorisedEvents.keys.toList()[0]]!,
                   ),
                   const SizedBox(height: 80),
@@ -192,7 +193,7 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   HighPriorityEventList(
-                    events:
+                    allEvents:
                         categorisedEvents[categorisedEvents.keys.toList()[1]]!,
                   ),
                   const SizedBox(height: 80),
@@ -222,7 +223,7 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   LowPriorityEventsList(
-                    events:
+                    allEvents:
                         categorisedEvents[categorisedEvents.keys.toList()[2]]!,
                   ),
                   const SizedBox(height: 80),
@@ -252,7 +253,7 @@ class _ExplorePageState extends State<ExplorePage>
                   ),
                   const SizedBox(height: 24),
                   LowPriorityEventsList(
-                    events:
+                    allEvents:
                         categorisedEvents[categorisedEvents.keys.toList()[3]]!,
                   ),
                   const SizedBox(height: 80),
@@ -349,13 +350,22 @@ class SpeakerEventList extends StatelessWidget {
 class LowPriorityEventsList extends StatelessWidget {
   const LowPriorityEventsList({
     Key? key,
-    required this.events,
+    required this.allEvents,
   }) : super(key: key);
 
-  final List<Event> events;
+  final List<Event> allEvents;
 
   @override
   Widget build(BuildContext context) {
+    if (allEvents.isEmpty) {
+      return const SizedBox();
+    }
+    List<Event> events = [];
+    for (final event in allEvents) {
+      if (event.status != StatusType.EXPIRED) {
+        events.add(event);
+      }
+    }
     final partedList = partition(events, 3).toList();
     return SizedBox(
       height: 330,
@@ -387,13 +397,22 @@ class LowPriorityEventsList extends StatelessWidget {
 class HighPriorityEventList extends StatelessWidget {
   const HighPriorityEventList({
     Key? key,
-    required this.events,
+    required this.allEvents,
   }) : super(key: key);
 
-  final List<Event> events;
+  final List<Event> allEvents;
 
   @override
   Widget build(BuildContext context) {
+    if (allEvents.isEmpty) {
+      return const SizedBox();
+    }
+    List<Event> events = [];
+    for (final event in allEvents) {
+      if (event.status != StatusType.EXPIRED) {
+        events.add(event);
+      }
+    }
     return SizedBox(
       height: 466,
       child: ListView.builder(

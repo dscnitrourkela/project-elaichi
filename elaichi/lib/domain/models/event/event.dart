@@ -14,6 +14,8 @@ class Event with _$Event {
   const factory Event({
     required String id,
     required String name,
+    required String subHeading,
+    required String prizeMoney,
     required String description,
     required String poster,
     required DateTime startDate,
