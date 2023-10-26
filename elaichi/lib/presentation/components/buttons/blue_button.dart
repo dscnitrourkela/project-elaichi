@@ -12,8 +12,8 @@ class BlueButton extends StatelessWidget {
     required this.onTapped,
     this.leadingIcon,
     this.trailingIcon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// Icon at the starting of button
   final Widget? leadingIcon;
@@ -51,7 +51,7 @@ class BlueButton extends StatelessWidget {
             ),
           Text(
             text,
-            style: Theme.of(context).textTheme.button!.copyWith(
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                   letterSpacing: 0.5,

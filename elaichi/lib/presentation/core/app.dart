@@ -6,19 +6,17 @@ import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/router/navigation_service.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
-import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
 import 'package:elaichi/presentation/home/fest/explore/cubit/registration_cubit.dart';
 import 'package:elaichi/presentation/splash/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// The main app.
 class ElaichiApp extends StatelessWidget {
   /// Constructor of [ElaichiApp].
-  const ElaichiApp({Key? key}) : super(key: key);
+  const ElaichiApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class ElaichiApp extends StatelessWidget {
         ),
         RepositoryProvider<EventRepository>(
           create: (context) => EventRepository(),
-        )
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -72,7 +70,7 @@ class ElaichiApp extends StatelessWidget {
               eventRepository: context.read<EventRepository>(),
               userRepository: context.read<UserRepository>(),
             ),
-          )
+          ),
         ],
         child: const ElaichiApp(),
       ),

@@ -6,7 +6,7 @@ import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.da
 import 'package:flutter/material.dart';
 
 class FeaturedEvents extends StatelessWidget {
-  const FeaturedEvents({Key? key}) : super(key: key);
+  const FeaturedEvents({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class FeaturedEvents extends StatelessWidget {
       children: [
         Text(
           Strings.featuredEvents,
-          style: interTextTheme.headline2!.copyWith(color: Colors.black),
+          style: interTextTheme.displayMedium!.copyWith(color: Colors.black),
         ),
         const SizedBox(height: 20),
         const FeaturedEventCard(),
@@ -27,8 +27,8 @@ class FeaturedEvents extends StatelessWidget {
 
 class FeaturedEventCard extends StatelessWidget {
   const FeaturedEventCard({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class FeaturedEventCard extends StatelessWidget {
       height: 448,
       child: PhysicalModel(
         elevation: 3,
-        color: Colors.white,
+        color: Colors.black,
         shadowColor: Colors.grey,
         child: Column(
           children: [
@@ -55,9 +55,9 @@ class FeaturedEventCard extends StatelessWidget {
                     height: 20,
                     child: Text(
                       'Featured Event',
-                      style: interTextTheme.subtitle1!.copyWith(
+                      style: interTextTheme.titleMedium!.copyWith(
                         letterSpacing: -0.41,
-                        color: AppColors.grey16,
+                        color: AppColors.white2,
                       ),
                     ),
                   ),
@@ -65,13 +65,13 @@ class FeaturedEventCard extends StatelessWidget {
                   SizedBox(
                     height: 28,
                     child: Text(
-                      'HackNITR 4.0',
-                      style: interTextTheme.bodyText1!.copyWith(
+                      'HackNITR 5.0',
+                      style: interTextTheme.bodyLarge!.copyWith(
                         fontSize: 22,
                         height: 1.27,
                         letterSpacing: 0.35,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.black1,
+                        color: AppColors.grey8,
                       ),
                     ),
                   ),
@@ -79,10 +79,10 @@ class FeaturedEventCard extends StatelessWidget {
                   SizedBox(
                     height: 32,
                     child: Text(
-                      'Explore further into your innovation journey with HackNITR 4.0 and manifest your skills.',
-                      style: interTextTheme.bodyText2!.copyWith(
+                      'Explore further into your innovation journey with HackNITR 5.0 and manifest your skills.',
+                      style: interTextTheme.bodyMedium!.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: AppColors.grey11,
+                        color: AppColors.grey,
                         fontSize: 12,
                         height: 1.33,
                       ),
@@ -92,6 +92,7 @@ class FeaturedEventCard extends StatelessWidget {
                   const Divider(
                     thickness: 1,
                     height: 1,
+                    color: AppColors.grey16,
                   ),
                   const SizedBox(height: 12),
                   SizedBox(
@@ -101,26 +102,26 @@ class FeaturedEventCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const DurationDates(
-                          text: 'Jan 06 - Jan 08 2023',
-                          color: AppColors.grey16,
+                          text: 'Coming Soon.',
+                          color: AppColors.grey,
                           fontSize: 14,
                         ),
                         SizedBox(
                           height: 50,
-                          width: 104,
+                          width: 110,
                           child: TextButton(
                             onPressed: () {
-                              launchURL("https://www.hacknitr.com/");
+                              launchURL('https://hacknitr.com');
                             },
                             style: TextButton.styleFrom(
                               backgroundColor: AppColors.lightBlue,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0),
+                                borderRadius: BorderRadius.circular(25),
                               ),
                             ),
                             child: Text(
-                              'Register',
-                              style: interTextTheme.bodyText2!.copyWith(
+                              'Visit Website',
+                              style: interTextTheme.bodyMedium!.copyWith(
                                 fontWeight: FontWeight.w500,
                                 height: 1.28,
                                 color: Colors.white,
@@ -128,10 +129,10 @@ class FeaturedEventCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

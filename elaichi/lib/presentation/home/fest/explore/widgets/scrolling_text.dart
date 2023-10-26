@@ -3,11 +3,11 @@ import 'package:marquee/marquee.dart';
 
 class ScrollingText extends StatelessWidget {
   const ScrollingText({
-    Key? key,
+    super.key,
     required this.text,
     required this.style,
     required this.condition,
-  }) : super(key: key);
+  });
 
   final String text;
   final TextStyle style;
@@ -23,7 +23,7 @@ class ScrollingText extends StatelessWidget {
             style: style,
             pauseAfterRound: const Duration(seconds: 1),
             blankSpace: 90,
-          ));
+          ),);
     } else {
       return Text(text, style: style);
     }

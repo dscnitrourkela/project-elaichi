@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class CustomCarousel extends StatefulWidget {
   const CustomCarousel({
-    Key? key,
+    super.key,
     required this.itemBuilder,
     required this.itemCount,
     required this.pageController,
     required this.width,
     required this.height,
-  }) : super(key: key);
+  });
 
   final Widget Function(BuildContext context, int selectedIndex) itemBuilder;
 

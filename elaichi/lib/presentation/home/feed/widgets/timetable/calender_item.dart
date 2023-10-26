@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 class CalenderItem extends StatelessWidget {
   /// DEfault Constructor
   const CalenderItem({
-    Key? key,
+    super.key,
     this.title,
     this.organiser,
     this.location,
     this.startTime,
     this.endTime,
     this.onTapped,
-  }) : super(key: key);
+  });
 
   ///Title of the event card
   final String? title;
@@ -70,7 +70,7 @@ class CalenderItem extends StatelessWidget {
                     ),
                     Text(
                       '${startTime!.hour.toString().padLeft(2, '0')}:${startTime!.minute.toString().padLeft(2, '0')}',
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             fontSize: SizeConfig.safeBlockHorizontal! * 4.5,
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.w700,
@@ -89,7 +89,7 @@ class CalenderItem extends StatelessWidget {
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontSize: SizeConfig.safeBlockHorizontal! * 4,
                       ),
                 ),
@@ -104,7 +104,7 @@ class CalenderItem extends StatelessWidget {
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   softWrap: true,
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontSize: SizeConfig.safeBlockHorizontal! * 4.5,
                         fontWeight: FontWeight.bold,
                       ),
@@ -120,12 +120,12 @@ class CalenderItem extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   softWrap: true,
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontSize: SizeConfig.safeBlockHorizontal! * 3.5,
                       ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

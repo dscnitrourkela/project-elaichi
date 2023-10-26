@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 ///Widget containing the list of MM articles
 class ArticleList extends StatelessWidget {
   /// Default Articles
-  const ArticleList({Key? key}) : super(key: key);
+  const ArticleList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ArticleList extends StatelessWidget {
       bloc: context.read<FeedBloc>(),
       builder: (context, state) {
         return state.maybeWhen(
-          orElse: () => Container(),
+          orElse: Container.new,
           initial: (webMailState, articles) => (articles.isNotEmpty)
               ? Padding(
                   padding: const EdgeInsets.symmetric(
@@ -36,7 +36,7 @@ class ArticleList extends StatelessWidget {
                             ),
                             Text(
                               Strings.kStoriesthisWeek,
-                              style: Theme.of(context).textTheme.headline6,
+                              style: Theme.of(context).textTheme.titleLarge,
                             ),
                           ],
                         ),

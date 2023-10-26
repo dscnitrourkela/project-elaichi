@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:elaichi/data/constants/app_env.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/components/buttons/blue_button.dart';
-import 'package:elaichi/presentation/components/buttons/custom_button.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/mail/cubit/webmail_cubit.dart';
@@ -11,13 +10,11 @@ import 'package:elaichi/presentation/mail/webmail_login_bottom_sheet/webmai_logi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:elaichi/presentation/profile/profile_page.dart';
-import 'package:elaichi/presentation/core/router/app_page_route.dart';
 
 ///The Mail Page
 class WebMailPage extends StatefulWidget {
   /// Default constructor
-  const WebMailPage({Key? key}) : super(key: key);
+  const WebMailPage({super.key});
 
   @override
   State<WebMailPage> createState() => _WebMailPageState();
@@ -104,9 +101,9 @@ class _WebMailPageState extends State<WebMailPage> {
 
 class WebViewStack extends StatefulWidget {
   const WebViewStack({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final Completer<WebViewController> controller;
 

@@ -92,7 +92,7 @@ class UserRepository {
   }
 
   Future<void> getOrCreateUser(
-      {required String rollNumber, required String mobileNumber}) async {
+      {required String rollNumber, required String mobileNumber,}) async {
     try {
       if (user == null) {
         final fbUser = _firebaseAuth.currentUser;

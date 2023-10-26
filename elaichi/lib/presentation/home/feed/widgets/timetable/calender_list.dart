@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 /// TimeTable List customised for all users
 class CalenderList extends StatelessWidget {
   ///Default Constructor
-  const CalenderList({Key? key}) : super(key: key);
+  const CalenderList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class CalenderList extends StatelessWidget {
               children: [
                 Text(
                   Strings.kToday,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 SizedBox(
                   width: SizeConfig.screenWidth! * 0.4,
@@ -37,7 +37,7 @@ class CalenderList extends StatelessWidget {
                         Strings.kViewCalendar,
                         style: Theme.of(context)
                             .textTheme
-                            .headline6!
+                            .titleLarge!
                             .copyWith(color: AppColors.lightBlue),
                       ),
                       const Icon(
