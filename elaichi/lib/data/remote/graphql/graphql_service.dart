@@ -124,7 +124,7 @@ class GraphQLService {
         queryString: Queries.getOrgs,
         variables: {
           //change this to 0, 1 to get latest org after PR merge in backend
-          'pagination': {'skip': 1, 'take': 1},
+          'pagination': {'skip': 0, 'take': 1},
           'orgType': 'FEST'
         },
       );

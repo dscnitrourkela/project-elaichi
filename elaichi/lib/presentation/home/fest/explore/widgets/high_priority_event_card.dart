@@ -26,6 +26,7 @@ class HighPriorityEventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final format = DateFormat('MMM');
+    final description = jsonDecode(event.description) as List<dynamic>;
     return GestureDetector(
       onTap: () => Navigator.pushNamed(
         context,
@@ -67,11 +68,11 @@ class HighPriorityEventCard extends StatelessWidget {
                       height: 29,
                       width: 240,
                       child: ScrollingText(
-                        text: jsonDecode(event.name)['heading'].toString(),
-                        style: interTextTheme.subtitle2!.copyWith(
+                        text: event.name,
+                        style: interTextTheme.titleSmall!.copyWith(
                           color: Colors.black,
                         ),
-                        condition: 28,
+                        condition: 20,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -89,16 +90,18 @@ class HighPriorityEventCard extends StatelessWidget {
                     const SizedBox(height: 16),
                     SizedBox(
                       height: 95,
-                      child: Text(
-                        jsonDecode(event.description)[0]['desc'].toString(),
-                        style: interTextTheme.bodyText1!.copyWith(
-                          height: 1.18,
-                          fontSize: 16,
-                          color: Colors.black.withOpacity(0.6),
-                        ),
-                        maxLines: 5,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                      child: description.isEmpty
+                          ? const Text('')
+                          : Text(
+                              description[0]['desc'].toString(),
+                              style: interTextTheme.bodyText1!.copyWith(
+                                height: 1.18,
+                                fontSize: 16,
+                                color: Colors.black.withOpacity(0.6),
+                              ),
+                              maxLines: 5,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                     ),
                     const SizedBox(height: 16),
                     Divider(
@@ -113,14 +116,12 @@ class HighPriorityEventCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          if (jsonDecode(event.name)['prizeAmount'] != null &&
-                              jsonDecode(event.name)['prizeAmount'] != '')
+                          if (event.prizeMoney != '')
                             SizedBox(
                               width: 116,
                               height: 22,
                               child: ScrollingText(
-                                text:
-                                    'Prize: ${jsonDecode(event.name)['prizeAmount'].toString()}',
+                                text: 'Prize: ${event.prizeMoney}',
                                 style: interTextTheme.bodyText1!.copyWith(
                                   fontSize: 14,
                                   color: Colors.black,

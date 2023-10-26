@@ -59,6 +59,8 @@ class Queries {
       event(orgID: $orgId, id: $eventId) {
         id
         name
+        subHeading
+        prizeMoney
         description
         poster
         startDate
