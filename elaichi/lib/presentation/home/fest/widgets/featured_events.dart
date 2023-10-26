@@ -102,7 +102,7 @@ class FeaturedEventCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const DurationDates(
-                          text: 'Jan 06 - Jan 08 2024',
+                          text: 'Coming Soon.',
                           color: AppColors.grey,
                           fontSize: 14,
                         ),
