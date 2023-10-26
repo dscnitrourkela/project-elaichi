@@ -364,25 +364,27 @@ class PreferencesBottomSheet extends StatelessWidget {
                               ),
                             ),
                           ),
-                          if (bloc.isZimraAuthenticated)
-                            TextButton(
-                              onPressed: () {
-                                bloc.add(const ProfileEvent.webMailLogOut());
-                              },
-                              child: Container(
-                                width: width * 0.87,
-                                child: Text(
-                                  "Deregister Webmail",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        color: AppColors.warningRed,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
-                            ),
+                          /// As every google account is being linked with a particular roll number
+                          /// and auth error if uses a different roll number in same google account so removed deregister
+                          // if (bloc.isZimraAuthenticated)
+                          //   TextButton(
+                          //     onPressed: () {
+                          //       bloc.add(const ProfileEvent.webMailLogOut());
+                          //     },
+                          //     child: Container(
+                          //       width: width * 0.87,
+                          //       child: Text(
+                          //         "Deregister Webmail",
+                          //         style: Theme.of(context)
+                          //             .textTheme
+                          //             .bodyText1!
+                          //             .copyWith(
+                          //               color: AppColors.warningRed,
+                          //               fontWeight: FontWeight.w600,
+                          //             ),
+                          //       ),
+                          //     ),
+                          //   ),
                         ],
                       ),
                     ),

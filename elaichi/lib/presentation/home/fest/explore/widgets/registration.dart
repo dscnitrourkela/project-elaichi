@@ -5,6 +5,7 @@ import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
+import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
 import 'package:elaichi/presentation/mail/webmail_login_bottom_sheet/webmai_login_bottomsheet.dart';
 import 'package:flutter/material.dart';
@@ -193,8 +194,8 @@ class _RegistrationDetailsState extends State<RegistrationDetails> {
                   const CustomBackButton(),
                   const SizedBox(height: 16),
                   Text(
-                    'Fest Registration',
-                    style: interTextTheme.headline2,
+                    'Register with a Mobile Number',
+                    style: interTextTheme.headline2!.copyWith(fontSize: SizeConfig.screenWidth! * 0.058),
                   ),
                   const SizedBox(height: 24),
                   Form(

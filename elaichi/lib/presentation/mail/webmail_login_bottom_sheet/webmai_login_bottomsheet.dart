@@ -23,13 +23,24 @@ class _WebMailLoginBottomSheetState extends State<WebMailLoginBottomSheet> {
   late final TextEditingController _password;
   bool obscureText = true;
   final _toastUtil = ToastUtil.getInstance();
+  late final String currentRollNumber;
 
   @override
   void initState() {
     _cubit = WebMailLoginCubit(userRepository: context.read<UserRepository>());
+    currentRollNumber = context.read<UserRepository>().rollNumber ?? '';
     _rollNumber = TextEditingController();
     _password = TextEditingController();
+    _rollNumber.text = currentRollNumber;
     super.initState();
+  }
+
+  String? get _errorText {
+    final text = _rollNumber.value.text;
+    if (text != currentRollNumber) {
+      return 'Different roll number';
+    }
+    return null;
   }
 
   @override
@@ -41,10 +52,17 @@ class _WebMailLoginBottomSheetState extends State<WebMailLoginBottomSheet> {
           state.maybeWhen(
             orElse: () {},
             error: (error) {
-              _toastUtil.showToast(
-                mode: ToastMode.Error,
-                title: error,
-              );
+              if(error.contains("Unique constraint failed on the constraint: `User_mobile_key`") && error.contains("Invalid `prisma.user.create()`")) {
+                _toastUtil.showToast(
+                  mode: ToastMode.Error,
+                  title: "Mobile number already registered, try another",
+                );
+              } else {
+                _toastUtil.showToast(
+                  mode: ToastMode.Error,
+                  title: error,
+                );
+              }
               Navigator.pop(context);
             },
             success: () {
@@ -72,6 +90,8 @@ class _WebMailLoginBottomSheetState extends State<WebMailLoginBottomSheet> {
                       hintText: 'Roll Number',
                       controller: _rollNumber,
                       maxLength: 9,
+                      errorText: _errorText,
+                      // onChanged: (_) => setState(() {}),
                     ),
                     const SizedBox(
                       height: 15,
@@ -106,11 +126,21 @@ class _WebMailLoginBottomSheetState extends State<WebMailLoginBottomSheet> {
                   text: 'Login',
                   onTapped: () async {
                     FocusScope.of(context).unfocus();
-                    await _cubit.logInToWebMail(
-                      rollNumber: _rollNumber.text,
-                      password: _password.text,
-                      mobileNumber: widget.mobileNumber,
-                    );
+                    if(currentRollNumber.isNotEmpty){
+                      if(_errorText == null){
+                        await _cubit.logInToWebMail(
+                          rollNumber: _rollNumber.text,
+                          password: _password.text,
+                          mobileNumber: widget.mobileNumber,
+                        );
+                      }
+                    } else {
+                      await _cubit.logInToWebMail(
+                        rollNumber: _rollNumber.text,
+                        password: _password.text,
+                        mobileNumber: widget.mobileNumber,
+                      );
+                    }
                   },
                 ),
               ),
