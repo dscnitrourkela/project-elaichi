@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 class DurationDates extends StatelessWidget {
   const DurationDates({
-    Key? key,
+    super.key,
     required this.text,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.fontSize,
     this.style,
     this.color = Colors.white,
     this.iconSize = 28,
-  }) : super(key: key);
+  });
 
   final String text;
   final MainAxisAlignment mainAxisAlignment;
@@ -33,7 +33,7 @@ class DurationDates extends StatelessWidget {
         Text(
           text,
           style: style ??
-              interTextTheme.caption!.copyWith(
+              interTextTheme.bodySmall!.copyWith(
                 color: color,
                 fontSize: fontSize,
               ),

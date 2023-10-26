@@ -14,8 +14,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SignInPage extends StatefulWidget {
   /// Constructor for [SignInPage]
   const SignInPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SignInPage> createState() => _SignInPageState();
@@ -49,7 +49,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 Text(
                   'AVENUE',
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         letterSpacing: 2,
                         fontSize: 20,
                         color: AppColors.avenueTitle.withOpacity(0.6),

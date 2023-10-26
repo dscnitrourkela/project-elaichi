@@ -1,4 +1,3 @@
-import 'package:elaichi/data/remote/notification_service.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/home/cubit/home_cubit.dart';
 import 'package:elaichi/presentation/home/fest/fest_page.dart';
@@ -12,8 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomePage extends StatefulWidget {
   ///Default Constructor for [HomePage]
   const HomePage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();

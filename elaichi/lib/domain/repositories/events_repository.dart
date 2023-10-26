@@ -122,7 +122,7 @@ class EventRepository {
             .add(element);
       } else {
         map['${element.startDate.day} ${format.format(element.startDate)}'] = [
-          element
+          element,
         ];
       }
     }

@@ -11,10 +11,10 @@ import 'package:flutter/material.dart';
 
 class FestEventCard extends StatelessWidget {
   const FestEventCard({
-    Key? key,
+    super.key,
     required this.currentIndex,
     required this.index,
-  }) : super(key: key);
+  });
 
   final int currentIndex;
   final int index;
@@ -62,7 +62,7 @@ class FestEventCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               r'1st Prize: $800  |  2nd Prize: $50',
-              style: interTextTheme.bodyText1!.copyWith(
+              style: interTextTheme.bodyLarge!.copyWith(
                 fontWeight: FontWeight.w600,
                 color: AppColors.captionRed,
               ),
@@ -70,7 +70,7 @@ class FestEventCard extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               'Pellentesque eu tortor pulvinar nulla massa morbi ut volutpat, non. Vitae ullamcorper fermentum, sem convallis. Lorem ipsum.',
-              style: interTextTheme.bodyText1!.copyWith(
+              style: interTextTheme.bodyLarge!.copyWith(
                 fontWeight: FontWeight.w200,
                 color: AppColors.grey6.withOpacity(0.6),
               ),
@@ -85,7 +85,7 @@ class FestEventCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               onPressed: () {},
               text: 'Register for Event',
-            )
+            ),
           ],
         ),
         if (currentIndex != index)
@@ -100,7 +100,7 @@ class FestEventCard extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
       ],
     );
   }

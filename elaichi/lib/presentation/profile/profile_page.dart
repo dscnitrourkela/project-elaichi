@@ -15,7 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 ///The Profile Page
 class ProfilePage extends StatefulWidget {
   /// Default constructor
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -157,11 +157,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
 class EventListCard extends StatelessWidget {
   const EventListCard({
-    Key? key,
+    super.key,
     required this.name,
     required this.startTime,
     required this.description,
-  }) : super(key: key);
+  });
 
   final String name;
   final DateTime startTime;
@@ -185,24 +185,24 @@ class EventListCard extends StatelessWidget {
                 name,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyText1!
+                    .bodyLarge!
                     .copyWith(fontWeight: FontWeight.w600),
               ),
               const Spacer(),
               Text(
                 '${startTime.hour}:${startTime.minute} PM',
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
                       color: AppColors.grey3,
                     ),
-              )
+              ),
             ],
           ),
           const SizedBox(height: 5),
           Text(
             description,
-            style: Theme.of(context).textTheme.subtitle1!.copyWith(
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: AppColors.grey3,
                   fontSize: 12,
                 ),
@@ -215,10 +215,10 @@ class EventListCard extends StatelessWidget {
 
 class DateDisplay extends StatelessWidget {
   const DateDisplay({
-    Key? key,
+    super.key,
     required this.dayName,
     required this.dayNumber,
-  }) : super(key: key);
+  });
 
   final String dayName;
   final String dayNumber;
@@ -231,18 +231,18 @@ class DateDisplay extends StatelessWidget {
         children: [
           Text(
             dayName,
-            style: Theme.of(context).textTheme.caption!.copyWith(
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
           ),
           Text(
             dayNumber,
-            style: Theme.of(context).textTheme.caption!.copyWith(
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   fontWeight: FontWeight.w700,
                   fontSize: 20,
                 ),
-          )
+          ),
         ],
       ),
     );
@@ -251,8 +251,8 @@ class DateDisplay extends StatelessWidget {
 
 class PreferencesBottomSheet extends StatelessWidget {
   PreferencesBottomSheet({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final _toastUtil = ToastUtil.getInstance();
 
@@ -262,7 +262,7 @@ class PreferencesBottomSheet extends StatelessWidget {
       userRepository: context.read<UserRepository>(),
       eventRepository: context.read<EventRepository>(),
     );
-    double width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => bloc,
       child: SizedBox(
@@ -311,13 +311,13 @@ class PreferencesBottomSheet extends StatelessWidget {
                                 AppRouter.privacyPolicy,
                               );
                             },
-                            child: Container(
+                            child: SizedBox(
                               width: width * 0.87,
                               child: Text(
-                                "Privacy Policy",
+                                'Privacy Policy',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       color: AppColors.grey13,
                                       fontWeight: FontWeight.w600,
@@ -332,13 +332,13 @@ class PreferencesBottomSheet extends StatelessWidget {
                                 AppRouter.devInfo,
                               );
                             },
-                            child: Container(
+                            child: SizedBox(
                               width: width * 0.87,
                               child: Text(
-                                "Developer Information",
+                                'Developer Information',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       color: AppColors.grey13,
                                       fontWeight: FontWeight.w600,
@@ -350,13 +350,13 @@ class PreferencesBottomSheet extends StatelessWidget {
                             onPressed: () {
                               bloc.add(const ProfileEvent.appLogOut());
                             },
-                            child: Container(
+                            child: SizedBox(
                               width: width * 0.87,
                               child: Text(
                                 'Sign Out of Avenue',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       color: AppColors.warningRed,
                                       fontWeight: FontWeight.w600,
@@ -369,13 +369,13 @@ class PreferencesBottomSheet extends StatelessWidget {
                               onPressed: () {
                                 bloc.add(const ProfileEvent.webMailLogOut());
                               },
-                              child: Container(
+                              child: SizedBox(
                                 width: width * 0.87,
                                 child: Text(
-                                  "Deregister Webmail",
+                                  'Deregister Webmail',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         color: AppColors.warningRed,
                                         fontWeight: FontWeight.w600,
@@ -400,13 +400,13 @@ class PreferencesBottomSheet extends StatelessWidget {
 
 class ProfileDetailsCard extends StatelessWidget {
   const ProfileDetailsCard({
-    Key? key,
+    super.key,
     required this.title,
     this.subTitle,
     required this.imageSrc,
     required this.icon,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   final String title;
   final String? subTitle;
@@ -439,14 +439,14 @@ class ProfileDetailsCard extends StatelessWidget {
                 title,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyText1!
+                    .bodyLarge!
                     .copyWith(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 4),
               if (subTitle != null)
                 Text(
                   subTitle!,
-                  style: Theme.of(context).textTheme.button!.copyWith(
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
                         color: AppColors.titleText,
                         letterSpacing: 0.1,
                       ),

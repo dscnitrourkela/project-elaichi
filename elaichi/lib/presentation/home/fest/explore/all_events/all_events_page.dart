@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AllEventsPage extends StatefulWidget {
-  const AllEventsPage({Key? key, required this.events}) : super(key: key);
+  const AllEventsPage({super.key, required this.events});
 
   final Map<String, Map<String, List<Event>>> events;
 
@@ -91,7 +91,7 @@ class _AllEventsPageState extends State<AllEventsPage> {
                                 height: 29,
                                 child: Text(
                                   'All Events',
-                                  style: interTextTheme.headline2,
+                                  style: interTextTheme.displayMedium,
                                 ),
                               ),
                               const SizedBox(height: 16),
@@ -122,11 +122,11 @@ class _AllEventsPageState extends State<AllEventsPage> {
                                   fullWidth: true,
                                   event: list[index],
                                 ),
-                                const SizedBox(height: 16)
+                                const SizedBox(height: 16),
                               ],
                             ),
                           ),
-                        )
+                        ),
                       ],
                     );
                   },
@@ -145,9 +145,9 @@ class _AllEventsPageState extends State<AllEventsPage> {
 
 class Filters extends StatelessWidget {
   const Filters({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
 
@@ -185,10 +185,10 @@ class Filters extends StatelessWidget {
 
 class CustomChip extends StatelessWidget {
   const CustomChip({
-    Key? key,
+    super.key,
     required this.name,
     required this.enabled,
-  }) : super(key: key);
+  });
 
   final String name;
   final bool enabled;
@@ -203,7 +203,7 @@ class CustomChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       child: Text(
         name,
-        style: interTextTheme.bodyText2!
+        style: interTextTheme.bodyMedium!
             .copyWith(color: enabled ? Colors.black : Colors.white),
       ),
     );
@@ -212,9 +212,9 @@ class CustomChip extends StatelessWidget {
 
 class SearchBox extends StatelessWidget {
   const SearchBox({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
 
@@ -226,7 +226,7 @@ class SearchBox extends StatelessWidget {
       color: AppColors.grey14,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextField(
-        style: interTextTheme.bodyText2!.copyWith(color: Colors.white),
+        style: interTextTheme.bodyMedium!.copyWith(color: Colors.white),
         decoration: InputDecoration(
           border: InputBorder.none,
           fillColor: AppColors.grey15,
@@ -237,7 +237,7 @@ class SearchBox extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(vertical: 16),
           hintText: 'Search for any event',
           hintStyle:
-              interTextTheme.bodyText2!.copyWith(color: AppColors.grey15),
+              interTextTheme.bodyMedium!.copyWith(color: AppColors.grey15),
         ),
         controller: controller,
       ),

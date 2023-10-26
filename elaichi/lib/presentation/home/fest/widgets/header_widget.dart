@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({
-    Key? key,
+    super.key,
     required this.leadingWidget,
     required this.trailingWidget,
     required this.imageUrl,
@@ -14,7 +14,7 @@ class HeaderWidget extends StatelessWidget {
     this.bottomSubTitleWidget,
     this.buttonTitle,
     this.onTapped,
-  }) : super(key: key);
+  });
 
   final Widget leadingWidget;
   final Widget trailingWidget;
@@ -43,7 +43,7 @@ class HeaderWidget extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: SizedBox(
                 height: 48,
-                child: Text(title!, style: interTextTheme.headline1),
+                child: Text(title!, style: interTextTheme.displayLarge),
               ),
             ),
           ),
@@ -65,7 +65,7 @@ class HeaderWidget extends StatelessWidget {
                 onTapped: (onTapped != null) ? onTapped! : () {},
               ),
             ),
-          )
+          ),
       ],
     );
   }

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DevCard extends StatelessWidget {
+  const DevCard({super.key, required this.width, required this.name, required this.link, required this.role, required this.photo});
   final double width;
   final String name;
   final String link;
   final String photo;
   final String role;
-  const DevCard({Key? key, required this.width, required this.name, required this.link, required this.role, required this.photo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class DevCard extends StatelessWidget {
           },
           child: Container(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               child: Row(
                 children: [
                   Stack(
@@ -37,7 +37,7 @@ class DevCard extends StatelessWidget {
                         height: width*0.19,
                         width: width*0.19,
                         decoration: BoxDecoration(
-                          color: Color(0xFF444444),
+                          color: const Color(0xFF444444),
                           borderRadius: BorderRadius.circular(width*0.095),
                         ),
                       ),
@@ -57,27 +57,27 @@ class DevCard extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         width: width*0.55,
                         child: AutoSizeText(
                           name,
                           style: GoogleFonts.inter(
                             fontSize: width*0.05,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF202020),
+                            color: const Color(0xFF202020),
                           ),
                           maxLines: 1,
                         ),
                       ),
-                      SizedBox(height: 2),
-                      Container(
+                      const SizedBox(height: 2),
+                      SizedBox(
                         width: width*0.55,
                         child: AutoSizeText(
                           role,
                           style: GoogleFonts.inter(
                             fontSize: width*0.038,
                             fontWeight: FontWeight.w500,
-                            color: Color(0xFF555555),
+                            color: const Color(0xFF555555),
                           ),
                           maxLines: 1,
                         ),

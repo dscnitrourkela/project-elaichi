@@ -11,8 +11,8 @@ class TransparentButton extends StatelessWidget {
     required this.text,
     required this.onTapped,
     this.icon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// Icon at the starting of button
   final Widget? icon;
@@ -52,7 +52,7 @@ class TransparentButton extends StatelessWidget {
           Text(
             text,
             style: textStyle ??
-                Theme.of(context).textTheme.button!.copyWith(
+                Theme.of(context).textTheme.labelLarge!.copyWith(
                       fontSize: 16,
                       letterSpacing: 0.5,
                     ),

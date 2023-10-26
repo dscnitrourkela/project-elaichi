@@ -60,7 +60,7 @@ class _WebMailLoginBottomSheetState extends State<WebMailLoginBottomSheet> {
         builder: (context, state) {
           return state.maybeWhen(
             loading: () => const Center(child: CircularProgressIndicator()),
-            orElse: () => Container(),
+            orElse: Container.new,
             initial: () => CustomBottomSheet(
               title: 'Webmail Login',
               body: Padding(

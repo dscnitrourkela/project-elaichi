@@ -10,8 +10,8 @@ class CustomButton extends StatelessWidget {
     required this.text,
     required this.onTapped,
     this.icon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// Icon at the starting of button
   final Widget? icon;
@@ -48,7 +48,7 @@ class CustomButton extends StatelessWidget {
           Text(
             text,
             style: textStyle ??
-                Theme.of(context).textTheme.button!.copyWith(
+                Theme.of(context).textTheme.labelLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       letterSpacing: 0.5,

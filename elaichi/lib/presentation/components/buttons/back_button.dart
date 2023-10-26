@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CustomBackButton extends StatelessWidget {
             const SizedBox(width: 5),
             Text(
               'Back',
-              style: interTextTheme.subtitle2!.copyWith(
+              style: interTextTheme.titleSmall!.copyWith(
                 color: Colors.white,
                 fontSize: 15,
                 height: 1.33,
