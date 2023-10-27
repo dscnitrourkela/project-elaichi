@@ -68,6 +68,7 @@ class AppRouter {
           settings: settings,
           builder: (context) => AllEventsPage(
             events: map['events'] as Map<String, Map<String, List<Event>>>,
+            controllIndex: map['index'] as int,
           ),
         );
 
@@ -81,7 +82,7 @@ class AppRouter {
         return AppPageRoute(
           settings: settings,
           builder: (context) => const RegistrationDetails(),
-         );
+        );
       case privacyPolicy:
         return AppPageRoute<void>(
           settings: settings,

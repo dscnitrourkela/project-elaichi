@@ -11,9 +11,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AllEventsPage extends StatefulWidget {
-  const AllEventsPage({super.key, required this.events});
+  const AllEventsPage({
+    super.key,
+    required this.events,
+    required this.controllIndex,
+  });
 
   final Map<String, Map<String, List<Event>>> events;
+  final int controllIndex;
 
   @override
   State<AllEventsPage> createState() => _AllEventsPageState();
@@ -46,6 +51,7 @@ class _AllEventsPageState extends State<AllEventsPage> {
       setState(() {});
     });
     _cubit = AllEventsCubit();
+    _cubit.selectChip(widget.controllIndex);
     super.initState();
   }
 
