@@ -27,7 +27,7 @@ abstract class Strings {
       'https://images.hindustantimes.com/img/2022/06/29/1600x900/NIT_Rourkela_main_entrance_(1)_1656490094321_1656490107321.jpg';
   static const String kNitrImage = 'assets/images/nitr.png';
   static const String kShaderImage = 'assets/images/shader.png';
-  static const String hackNITR = 'assets/images/hack_nitr.png';
+  static const String hackNITR = 'assets/images/hn_title.png';
   static const String kStoriesthisWeek = '  Stories this week';
   static const String kToday = 'Today';
   static const String kViewCalendar = 'View Calendar';

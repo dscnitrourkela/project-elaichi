@@ -29,7 +29,6 @@ class SpeakerEventCard extends StatelessWidget {
     final format1 = DateFormat('MMM');
     final duration =
         '${format1.format(event.startDate)} ${event.startDate.day.toString().padLeft(2, '0')} - ${format1.format(event.endDate)} ${event.endDate.day.toString().padLeft(2, '0')} ${event.endDate.year}';
-    print("Event name : ${event.name}");
     return GestureDetector(
       onTap: () => Navigator.pushNamed(
         context,

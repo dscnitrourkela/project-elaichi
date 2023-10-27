@@ -42,8 +42,8 @@ class FeaturedEventCard extends StatelessWidget {
           children: [
             Image.asset(
               Strings.hackNITR,
-              height: 250,
-              fit: BoxFit.cover,
+              height: 100,
+              fit: BoxFit.fill,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -51,30 +51,6 @@ class FeaturedEventCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 12),
-                  SizedBox(
-                    height: 20,
-                    child: Text(
-                      'Featured Event',
-                      style: interTextTheme.titleMedium!.copyWith(
-                        letterSpacing: -0.41,
-                        color: AppColors.white2,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  SizedBox(
-                    height: 28,
-                    child: Text(
-                      'HackNITR 5.0',
-                      style: interTextTheme.bodyLarge!.copyWith(
-                        fontSize: 22,
-                        height: 1.27,
-                        letterSpacing: 0.35,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.grey8,
-                      ),
-                    ),
-                  ),
                   const SizedBox(height: 8),
                   SizedBox(
                     height: 32,
@@ -111,7 +87,7 @@ class FeaturedEventCard extends StatelessWidget {
                           width: 110,
                           child: TextButton(
                             onPressed: () {
-                              launchURL('https://hacknitr.com');
+                              launchURL('https://hacknitr.com/');
                             },
                             style: TextButton.styleFrom(
                               backgroundColor: AppColors.lightBlue,
