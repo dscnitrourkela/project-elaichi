@@ -448,7 +448,7 @@ class LowPriorityEventsList extends StatelessWidget {
     }
     final events = <Event>[];
     for (final event in allEvents) {
-      if (event.status != StatusType.EXPIRED) {
+      if (event.status == StatusType.ACTIVE) {
         events.add(event);
       }
     }
@@ -496,7 +496,7 @@ class HighPriorityEventList extends StatelessWidget {
     }
     final events = <Event>[];
     for (final event in allEvents) {
-      if (event.status != StatusType.EXPIRED) {
+      if (event.status == StatusType.ACTIVE) {
         events.add(event);
       }
     }

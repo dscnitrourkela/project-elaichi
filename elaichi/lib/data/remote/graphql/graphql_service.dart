@@ -115,7 +115,7 @@ class GraphQLService {
 
       final finalEvents = <Event>[];
       for (final event in events) {
-        if (event.status != StatusType.EXPIRED) {
+        if (event.status == StatusType.ACTIVE) {
           finalEvents.add(event);
         }
       }
