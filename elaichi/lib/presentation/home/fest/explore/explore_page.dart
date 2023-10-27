@@ -359,36 +359,38 @@ class _ExplorePageState extends State<ExplorePage>
                         categorisedEvents[categorisedEvents.keys.toList()[5]]!,
                   ),
                   const SizedBox(height: 80),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        eventTypeMapping[categorisedEvents.keys.toList()[6]]!,
-                        style: interTextTheme.displayMedium,
-                      ),
-                      GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                          context,
-                          AppRouter.allEvents,
-                          arguments: {'events': widget.events, 'index': 7},
+                  if (categorisedEvents['OTHER']!.isNotEmpty) ...[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          eventTypeMapping[categorisedEvents.keys.toList()[6]]!,
+                          style: interTextTheme.displayMedium,
                         ),
-                        child: Text(
-                          'View More',
-                          style: interTextTheme.bodyLarge!.copyWith(
-                            fontSize: 14,
-                            height: 1.21,
-                            decoration: TextDecoration.underline,
+                        GestureDetector(
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            AppRouter.allEvents,
+                            arguments: {'events': widget.events, 'index': 7},
+                          ),
+                          child: Text(
+                            'View More',
+                            style: interTextTheme.bodyLarge!.copyWith(
+                              fontSize: 14,
+                              height: 1.21,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  LowPriorityEventsList(
-                    allEvents:
-                        categorisedEvents[categorisedEvents.keys.toList()[6]]!,
-                  ),
-                  const SizedBox(height: 80),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    LowPriorityEventsList(
+                      allEvents: categorisedEvents[
+                          categorisedEvents.keys.toList()[6]]!,
+                    ),
+                    const SizedBox(height: 80),
+                  ],
                   Text(
                     'Our Schedule',
                     style: interTextTheme.displayMedium,
