@@ -17,13 +17,14 @@ class ScrollingText extends StatelessWidget {
   Widget build(BuildContext context) {
     if (text.length > condition) {
       return SizedBox(
-          height: style.height,
-          child: Marquee(
-            text: text,
-            style: style,
-            pauseAfterRound: const Duration(seconds: 1),
-            blankSpace: 90,
-          ),);
+        height: style.height,
+        child: Marquee(
+          text: text,
+          style: style,
+          pauseAfterRound: const Duration(seconds: 1),
+          blankSpace: 90,
+        ),
+      );
     } else {
       return Text(text, style: style);
     }
