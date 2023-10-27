@@ -68,7 +68,7 @@ class SpeakerEventCard extends StatelessWidget {
               SizedBox(
                 height: 29,
                 child: ScrollingText(
-                  text: jsonDecode(event.name)['heading'].toString(),
+                  text: event.name,
                   style: interTextTheme.titleSmall!.copyWith(
                     color: Colors.black,
                   ),
