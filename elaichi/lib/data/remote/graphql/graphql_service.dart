@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:elaichi/data/constants/app_env.dart';
+import 'package:elaichi/data/constants/global_enums.dart';
 import 'package:elaichi/data/remote/graphql/mutations.dart';
 import 'package:elaichi/data/remote/graphql/queries.dart';
 import 'package:elaichi/domain/models/event/event.dart';
@@ -112,7 +113,14 @@ class GraphQLService {
           .map((e) => Event.fromJson(e as Map<String, dynamic>))
           .toList();
 
-      return events;
+      final finalEvents = <Event>[];
+      for (final event in events) {
+        if (event.status != StatusType.EXPIRED) {
+          finalEvents.add(event);
+        }
+      }
+
+      return finalEvents;
     } catch (e) {
       rethrow;
     }
