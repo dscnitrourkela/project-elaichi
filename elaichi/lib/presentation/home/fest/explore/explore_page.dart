@@ -10,6 +10,7 @@ import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
+import 'package:elaichi/presentation/core/utils/event_type_map.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
 import 'package:elaichi/presentation/home/fest/bloc/fest_bloc.dart';
@@ -177,38 +178,18 @@ class _ExplorePageState extends State<ExplorePage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '${categorisedEvents!.keys.toList()[0][0].toUpperCase()}${categorisedEvents.keys.toList()[0].substring(1).toLowerCase()}',
-                    style: interTextTheme.displayMedium,
-                  ),
-                  const SizedBox(height: 24),
-                  HighPriorityEventList(
-                    allEvents:
-                        categorisedEvents[categorisedEvents.keys.toList()[0]]!,
-                  ),
-                  const SizedBox(height: 80),
-                  Text(
-                    '${categorisedEvents.keys.toList()[1][0].toUpperCase()}${categorisedEvents.keys.toList()[1].substring(1).toLowerCase()}',
-                    style: interTextTheme.displayMedium,
-                  ),
-                  const SizedBox(height: 24),
-                  HighPriorityEventList(
-                    allEvents:
-                        categorisedEvents[categorisedEvents.keys.toList()[1]]!,
-                  ),
-                  const SizedBox(height: 80),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${categorisedEvents.keys.toList()[2][0].toUpperCase()}${categorisedEvents.keys.toList()[2].substring(1).toLowerCase()}',
+                        eventTypeMapping[categorisedEvents!.keys.toList()[0]]!,
                         style: interTextTheme.displayMedium,
                       ),
                       GestureDetector(
                         onTap: () => Navigator.pushNamed(
                           context,
                           AppRouter.allEvents,
-                          arguments: {'events': widget.events},
+                          arguments: {'events': widget.events, 'index': 2},
                         ),
                         child: Text(
                           'View More',
@@ -222,23 +203,84 @@ class _ExplorePageState extends State<ExplorePage>
                     ],
                   ),
                   const SizedBox(height: 24),
-                  LowPriorityEventsList(
+                  HighPriorityEventList(
                     allEvents:
-                        categorisedEvents[categorisedEvents.keys.toList()[2]]!,
+                        categorisedEvents[categorisedEvents.keys.toList()[0]]!,
                   ),
                   const SizedBox(height: 80),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${categorisedEvents.keys.toList()[3][0].toUpperCase()}${categorisedEvents.keys.toList()[3].substring(1).toLowerCase()}',
+                        eventTypeMapping[categorisedEvents.keys.toList()[1]]!,
                         style: interTextTheme.displayMedium,
                       ),
                       GestureDetector(
                         onTap: () => Navigator.pushNamed(
                           context,
                           AppRouter.allEvents,
-                          arguments: {'events': widget.events},
+                          arguments: {'events': widget.events, 'index': 1},
+                        ),
+                        child: Text(
+                          'View More',
+                          style: interTextTheme.bodyLarge!.copyWith(
+                            fontSize: 14,
+                            height: 1.21,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  HighPriorityEventList(
+                    allEvents:
+                        categorisedEvents[categorisedEvents.keys.toList()[1]]!,
+                  ),
+                  const SizedBox(height: 80),
+                  if (categorisedEvents['GUEST-LECTURES']!.isNotEmpty) ...[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          eventTypeMapping[categorisedEvents.keys.toList()[2]]!,
+                          style: interTextTheme.displayMedium,
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            AppRouter.allEvents,
+                            arguments: {'events': widget.events, 'index': 3},
+                          ),
+                          child: Text(
+                            'View More',
+                            style: interTextTheme.bodyLarge!.copyWith(
+                              fontSize: 14,
+                              height: 1.21,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    SpeakerEventList(
+                      events: categorisedEvents['GUEST-LECTURES'] ?? [],
+                    ),
+                    const SizedBox(height: 80),
+                  ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        eventTypeMapping[categorisedEvents.keys.toList()[3]]!,
+                        style: interTextTheme.displayMedium,
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          AppRouter.allEvents,
+                          arguments: {'events': widget.events, 'index': 4},
                         ),
                         child: Text(
                           'View More',
@@ -257,22 +299,96 @@ class _ExplorePageState extends State<ExplorePage>
                         categorisedEvents[categorisedEvents.keys.toList()[3]]!,
                   ),
                   const SizedBox(height: 80),
-                  if ((categorisedEvents['GUEST-LECTURES '] ??
-                          categorisedEvents['WORKSHOPS'] ??
-                          [])
-                      .isNotEmpty) ...[
-                    Text(
-                      'Guest Lectures',
-                      style: interTextTheme.displayMedium,
-                    ),
-                    const SizedBox(height: 24),
-                    SpeakerEventList(
-                      events: categorisedEvents['GUEST-LECTURES '] ??
-                          categorisedEvents['WORKSHOPS'] ??
-                          [],
-                    ),
-                    const SizedBox(height: 80),
-                  ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        eventTypeMapping[categorisedEvents.keys.toList()[4]]!,
+                        style: interTextTheme.displayMedium,
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          AppRouter.allEvents,
+                          arguments: {'events': widget.events, 'index': 5},
+                        ),
+                        child: Text(
+                          'View More',
+                          style: interTextTheme.bodyLarge!.copyWith(
+                            fontSize: 14,
+                            height: 1.21,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  LowPriorityEventsList(
+                    allEvents:
+                        categorisedEvents[categorisedEvents.keys.toList()[4]]!,
+                  ),
+                  const SizedBox(height: 80),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        eventTypeMapping[categorisedEvents.keys.toList()[5]]!,
+                        style: interTextTheme.displayMedium,
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          AppRouter.allEvents,
+                          arguments: {'events': widget.events, 'index': 6},
+                        ),
+                        child: Text(
+                          'View More',
+                          style: interTextTheme.bodyLarge!.copyWith(
+                            fontSize: 14,
+                            height: 1.21,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  LowPriorityEventsList(
+                    allEvents:
+                        categorisedEvents[categorisedEvents.keys.toList()[5]]!,
+                  ),
+                  const SizedBox(height: 80),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        eventTypeMapping[categorisedEvents.keys.toList()[6]]!,
+                        style: interTextTheme.displayMedium,
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          AppRouter.allEvents,
+                          arguments: {'events': widget.events, 'index': 7},
+                        ),
+                        child: Text(
+                          'View More',
+                          style: interTextTheme.bodyLarge!.copyWith(
+                            fontSize: 14,
+                            height: 1.21,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  LowPriorityEventsList(
+                    allEvents:
+                        categorisedEvents[categorisedEvents.keys.toList()[6]]!,
+                  ),
+                  const SizedBox(height: 80),
                   Text(
                     'Our Schedule',
                     style: interTextTheme.displayMedium,
@@ -337,8 +453,9 @@ class LowPriorityEventsList extends StatelessWidget {
       }
     }
     final partedList = partition(events, 3).toList();
+    final colLength = events.length > 3 ? 3 : events.length;
     return SizedBox(
-      height: 330,
+      height: 110 * colLength.toDouble(),
       child: ListView.separated(
         clipBehavior: Clip.none,
         scrollDirection: Axis.horizontal,

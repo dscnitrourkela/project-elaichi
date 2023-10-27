@@ -82,7 +82,14 @@ class EventRepository {
   }
 
   Map<String, List<Event>> getCategorisedEvents(List<Event> events) {
-    final map = <String, List<Event>>{};
+    final map = <String, List<Event>>{
+      'TECHNICAL': [],
+      'PRO': [],
+      'GUEST-LECTURES': [],
+      'EXHIBITIONS': [],
+      'FUN': [],
+      'WORKSHOP': [],
+    };
 
     for (final element in events) {
       if (map.keys.contains(element.type)) {
