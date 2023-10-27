@@ -17,9 +17,9 @@ class Queries {
     }
 ''';
 
-  static const getOrgs = r'''
-  query Org ($pagination: paginationInputType, $orgType: OrgType){
-    org(pagination: $pagination, orgType: $orgType){
+  static const getOrgs = '''
+  query Org {
+    org {
       id
       name
       description
@@ -42,14 +42,17 @@ class Queries {
   static const getUser = r'''
     query User($uid: ID) {
       user(uid: $uid) {
-        id
-        email
-        uid
-        name
-        photo
-        rollNumber
-        college
-        mobile
+        data {
+          id
+          email
+          uid
+          name
+          photo
+          rollNumber
+          college
+          mobile
+          festID
+        }
       }
     }
 ''';
