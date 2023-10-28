@@ -151,7 +151,7 @@ class GraphQLService {
       final result =
           await query(queryString: Queries.getUser, variables: {'uid': uid});
 
-      final userList = (result.data!['user'] as List<dynamic>)
+      final userList = (result.data!["user"]["data"] as List<dynamic>)
           .map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList();
 
