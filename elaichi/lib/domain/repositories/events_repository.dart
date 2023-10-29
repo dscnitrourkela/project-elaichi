@@ -43,7 +43,7 @@ class EventRepository {
     }
   }
 
-  Future<Either<CustomException, EventRegistration>> createEventRegistration({
+  Future<Either<CustomException, EventRegistration?>> createEventRegistration({
     required String eventID,
     required String userID,
   }) async {

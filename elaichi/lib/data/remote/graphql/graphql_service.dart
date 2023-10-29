@@ -9,6 +9,7 @@ import 'package:elaichi/domain/models/event_registration/event_registration.dart
 import 'package:elaichi/domain/models/mm_article/mm_article.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/domain/models/user/user.dart';
+import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:graphql/client.dart';
 
@@ -194,7 +195,7 @@ class GraphQLService {
     }
   }
 
-  Future<EventRegistration> createEventRegistration({
+  Future<EventRegistration?> createEventRegistration({
     required String eventID,
     required String userID,
   }) async {
@@ -212,7 +213,12 @@ class GraphQLService {
       );
       return eventRegistration;
     } catch (e) {
-      rethrow;
+      final toastUtil = ToastUtil.getInstance();
+      toastUtil.showToast(
+        mode: ToastMode.Info,
+        title: 'You have already registerd',
+      );
+      return null;
     }
   }
 

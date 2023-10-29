@@ -13,7 +13,6 @@ import 'package:elaichi/presentation/home/fest/explore/widgets/scrolling_text.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class HighPriorityEventCard extends StatelessWidget {
   HighPriorityEventCard({
@@ -161,31 +160,25 @@ class HighPriorityEventCard extends StatelessWidget {
                                       ? const Text('Registered')
                                       : YellowFlatButton(
                                           onTapped: () async {
-                                            // TODO: Change this to registration button
-                                            // await context
-                                            //     .read<RegistrationCubit>()
-                                            //     .createEventRegistration(
-                                            //       event: event,
-                                            //     );
-                                            await launchUrlString(
-                                                "https://inno.nitrkl.in/events/");
+                                            await context
+                                                .read<RegistrationCubit>()
+                                                .createEventRegistration(
+                                                  event: event,
+                                                );
                                           },
-                                          text: 'Visit Website',
+                                          text: 'Register',
                                           width: 105,
                                         );
                                 },
                                 orElse: () => YellowFlatButton(
                                   onTapped: () async {
-                                    // TODO: Change this to registration button
-                                    // await context
-                                    //     .read<RegistrationCubit>()
-                                    //     .createEventRegistration(
-                                    //       event: event,
-                                    //     );
-                                    await launchUrlString(
-                                        "https://inno.nitrkl.in/events/");
+                                    await context
+                                        .read<RegistrationCubit>()
+                                        .createEventRegistration(
+                                          event: event,
+                                        );
                                   },
-                                  text: 'Visit Website',
+                                  text: 'Register',
                                   width: 105,
                                 ),
                                 loading: (eventID) {
@@ -195,16 +188,13 @@ class HighPriorityEventCard extends StatelessWidget {
                                         )
                                       : YellowFlatButton(
                                           onTapped: () async {
-                                            // TODO: Change this to registration button
-                                            // await context
-                                            //     .read<RegistrationCubit>()
-                                            //     .createEventRegistration(
-                                            //       event: event,
-                                            //     );
-                                            await launchUrlString(
-                                                "https://inno.nitrkl.in/events/");
+                                            await context
+                                                .read<RegistrationCubit>()
+                                                .createEventRegistration(
+                                                  event: event,
+                                                );
                                           },
-                                          text: 'Visit Website',
+                                          text: 'Register',
                                           width: 105,
                                         );
                                 },
