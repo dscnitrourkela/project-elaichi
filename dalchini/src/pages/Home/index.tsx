@@ -9,7 +9,7 @@ import {
   PageTitle,
   NavTabs,
   MailCard,
-  FloatingActionButton,
+  // FloatingActionButton,
   Loading,
   Error,
   Flexbox,
@@ -99,8 +99,8 @@ const Home: React.FC = () => {
           )
         )}
       </div>
-
-      <FloatingActionButton onClick={() => {}} />
+      {/* TODO:- Add it back when the logic to compose is written down */}
+      {/* <FloatingActionButton onClick={() => {}} /> */}
     </div>
   );
 };
