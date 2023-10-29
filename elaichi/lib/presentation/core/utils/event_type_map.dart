@@ -6,4 +6,5 @@ Map<String, String> get eventTypeMapping => {
       'EXHIBITIONS': 'Exhibitions',
       'FUN': 'Fun Events',
       'WORKSHOP': 'Workshops',
+      'OTHER': 'Others',
     };

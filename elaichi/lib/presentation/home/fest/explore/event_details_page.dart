@@ -153,7 +153,8 @@ class EventDetailsPage extends StatelessWidget {
                           Text(
                             description[index]['desc'].toString(),
                             style: interTextTheme.bodyLarge!.copyWith(
-                                color: AppColors.grey6.withOpacity(0.8),),
+                              color: AppColors.grey6.withOpacity(0.8),
+                            ),
                           ),
                           const SizedBox(height: 14),
                         ],

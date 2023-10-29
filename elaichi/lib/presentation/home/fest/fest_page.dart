@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/utils/sizeconfig.dart';
@@ -51,7 +52,7 @@ class _FestPageState extends State<FestPage> {
                       SizedBox(
                         height: 544,
                         child: CarouselSlider.builder(
-                          itemCount: fests.length,
+                          itemCount: 1,
                           options: CarouselOptions(
                             height: 544,
                             autoPlay: true,
@@ -134,12 +135,21 @@ class _FestPageState extends State<FestPage> {
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
                         ),
-                        child: Column(
-                          children: [
-                            if (!_bloc.isVerified()) const WebMailCard(),
-                            if (!_bloc.isVerified()) const SizedBox(height: 36),
-                            // const FeaturedEvents(),
-                          ],
+                        child: FutureBuilder(
+                          future: _bloc.isVerified(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (!(snapshot.data as bool?)!) {
+                                return const Column(
+                                  children: [
+                                    WebMailCard(),
+                                    SizedBox(height: 36),
+                                  ],
+                                );
+                              }
+                            }
+                            return const SizedBox();
+                          },
                         ),
                       ),
                       Padding(
@@ -153,7 +163,9 @@ class _FestPageState extends State<FestPage> {
                               child: Text(
                                 'Featured Events',
                                 style: interTextTheme.displayMedium!.copyWith(
-                                    letterSpacing: -0.41, color: Colors.white, fontSize: 26,
+                                  letterSpacing: -0.41,
+                                  color: Colors.white,
+                                  fontSize: 26,
                                 ),
                               ),
                             ),
