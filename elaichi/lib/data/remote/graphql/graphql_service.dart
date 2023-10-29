@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:elaichi/data/constants/app_env.dart';
+import 'package:elaichi/data/constants/global_enums.dart';
 import 'package:elaichi/data/remote/graphql/mutations.dart';
 import 'package:elaichi/data/remote/graphql/queries.dart';
 import 'package:elaichi/domain/models/event/event.dart';
@@ -8,6 +9,7 @@ import 'package:elaichi/domain/models/event_registration/event_registration.dart
 import 'package:elaichi/domain/models/mm_article/mm_article.dart';
 import 'package:elaichi/domain/models/org/org.dart';
 import 'package:elaichi/domain/models/user/user.dart';
+import 'package:elaichi/presentation/components/toasts/toast_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:graphql/client.dart';
 
@@ -112,7 +114,14 @@ class GraphQLService {
           .map((e) => Event.fromJson(e as Map<String, dynamic>))
           .toList();
 
-      return events;
+      final finalEvents = <Event>[];
+      for (final event in events) {
+        if (event.status == StatusType.ACTIVE) {
+          finalEvents.add(event);
+        }
+      }
+
+      return finalEvents;
     } catch (e) {
       rethrow;
     }
@@ -143,7 +152,7 @@ class GraphQLService {
       final result =
           await query(queryString: Queries.getUser, variables: {'uid': uid});
 
-      final userList = (result.data!['user'] as List<dynamic>)
+      final userList = (result.data!["user"]["data"] as List<dynamic>)
           .map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList();
 
@@ -186,7 +195,7 @@ class GraphQLService {
     }
   }
 
-  Future<EventRegistration> createEventRegistration({
+  Future<EventRegistration?> createEventRegistration({
     required String eventID,
     required String userID,
   }) async {
@@ -204,7 +213,12 @@ class GraphQLService {
       );
       return eventRegistration;
     } catch (e) {
-      rethrow;
+      final toastUtil = ToastUtil.getInstance();
+      toastUtil.showToast(
+        mode: ToastMode.Info,
+        title: 'You have already registerd',
+      );
+      return null;
     }
   }
 

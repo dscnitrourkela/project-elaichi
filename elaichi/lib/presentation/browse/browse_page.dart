@@ -68,7 +68,7 @@ class EventCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  jsonDecode(event.name)['subHeading'].toString(),
+                  event.subHeading,
                   style: interTextTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w700,
                     color: AppColors.grey3,
@@ -78,7 +78,7 @@ class EventCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  jsonDecode(event.name)['heading'].toString(),
+                  event.name,
                   style: interTextTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w700,
                     color: AppColors.grey2,

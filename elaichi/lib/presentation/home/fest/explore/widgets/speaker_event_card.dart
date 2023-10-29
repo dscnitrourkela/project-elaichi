@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
@@ -68,11 +66,11 @@ class SpeakerEventCard extends StatelessWidget {
               SizedBox(
                 height: 29,
                 child: ScrollingText(
-                  text: jsonDecode(event.name)['heading'].toString(),
+                  text: event.name,
                   style: interTextTheme.titleSmall!.copyWith(
                     color: Colors.black,
                   ),
-                  condition: 28,
+                  condition: 10,
                 ),
               ),
               const SizedBox(height: 4),

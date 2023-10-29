@@ -31,6 +31,11 @@ class RegistrationCubit extends Cubit<RegistrationState> {
       eventRegistration.fold(
         (exception) => emit(RegistrationState.error(error: exception.message!)),
         (eventRegistration) async {
+          eventRegistration ??= EventRegistration(
+            id: 'abc',
+            eventID: event.id,
+            userID: user.id,
+          );
           eventRegistrations.add(eventRegistration);
           emit(const RegistrationState.success());
           emit(

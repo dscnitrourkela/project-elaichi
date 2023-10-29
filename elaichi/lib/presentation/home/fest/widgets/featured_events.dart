@@ -1,9 +1,9 @@
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/core/utils/urlLauncher.dart';
 import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class FeaturedEvents extends StatelessWidget {
   const FeaturedEvents({super.key});
@@ -19,7 +19,6 @@ class FeaturedEvents extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         const FeaturedEventCard(),
-        const SizedBox(height: 20),
       ],
     );
   }
@@ -33,7 +32,7 @@ class FeaturedEventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 448,
+      height: 280,
       child: PhysicalModel(
         elevation: 3,
         color: Colors.black,
@@ -42,8 +41,8 @@ class FeaturedEventCard extends StatelessWidget {
           children: [
             Image.asset(
               Strings.hackNITR,
-              height: 250,
-              fit: BoxFit.cover,
+              height: 100,
+              fit: BoxFit.fill,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -51,30 +50,6 @@ class FeaturedEventCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 12),
-                  SizedBox(
-                    height: 20,
-                    child: Text(
-                      'Featured Event',
-                      style: interTextTheme.titleMedium!.copyWith(
-                        letterSpacing: -0.41,
-                        color: AppColors.white2,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  SizedBox(
-                    height: 28,
-                    child: Text(
-                      'HackNITR 5.0',
-                      style: interTextTheme.bodyLarge!.copyWith(
-                        fontSize: 22,
-                        height: 1.27,
-                        letterSpacing: 0.35,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.grey8,
-                      ),
-                    ),
-                  ),
                   const SizedBox(height: 8),
                   SizedBox(
                     height: 32,
@@ -111,7 +86,7 @@ class FeaturedEventCard extends StatelessWidget {
                           width: 110,
                           child: TextButton(
                             onPressed: () {
-                              launchURL('https://hacknitr.com');
+                              launchUrlString('https://hacknitr.com/');
                             },
                             style: TextButton.styleFrom(
                               backgroundColor: AppColors.lightBlue,

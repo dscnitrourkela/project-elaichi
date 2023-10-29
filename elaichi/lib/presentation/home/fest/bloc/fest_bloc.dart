@@ -23,7 +23,7 @@ class FestBloc extends Bloc<FestEvent, FestState> {
       (event, emit) async {
         await event.when(
           started: () async {
-            final status = isVerified();
+            final status = await isVerified();
 
             final fests = await _eventRepository.getFests();
 
@@ -44,8 +44,8 @@ class FestBloc extends Bloc<FestEvent, FestState> {
               },
             );
           },
-          webMailLogIn: () {
-            final status = isVerified();
+          webMailLogIn: () async {
+            final status = await isVerified();
             emit(
               (state as _Initial).copyWith(
                 webMailState: status
@@ -82,7 +82,9 @@ class FestBloc extends Bloc<FestEvent, FestState> {
     }
   }
 
-  bool isVerified() {
+  Future<bool> isVerified() async {
+    final user = await _userRepository.getUser();
+    if (user == null) return false;
     if (_userRepository.rollNumber != null) {
       return true;
     } else {
