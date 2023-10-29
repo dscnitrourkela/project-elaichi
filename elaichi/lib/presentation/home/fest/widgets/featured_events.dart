@@ -1,9 +1,9 @@
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/core/utils/strings.dart';
-import 'package:elaichi/presentation/core/utils/urlLauncher.dart';
 import 'package:elaichi/presentation/home/fest/explore/widgets/duration_dates.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class FeaturedEvents extends StatelessWidget {
   const FeaturedEvents({super.key});
@@ -19,7 +19,6 @@ class FeaturedEvents extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         const FeaturedEventCard(),
-        const SizedBox(height: 20),
       ],
     );
   }
@@ -33,7 +32,7 @@ class FeaturedEventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 448,
+      height: 280,
       child: PhysicalModel(
         elevation: 3,
         color: Colors.black,
@@ -87,7 +86,7 @@ class FeaturedEventCard extends StatelessWidget {
                           width: 110,
                           child: TextButton(
                             onPressed: () {
-                              launchURL('https://hacknitr.com/');
+                              launchUrlString('https://hacknitr.com/');
                             },
                             style: TextButton.styleFrom(
                               backgroundColor: AppColors.lightBlue,

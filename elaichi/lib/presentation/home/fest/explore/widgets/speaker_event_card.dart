@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/components/buttons/yellow_buttons.dart';
 import 'package:elaichi/presentation/components/toasts/toast_util.dart';
@@ -13,6 +11,7 @@ import 'package:elaichi/presentation/home/fest/explore/widgets/scrolling_text.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SpeakerEventCard extends StatelessWidget {
   SpeakerEventCard({
@@ -157,25 +156,31 @@ class SpeakerEventCard extends StatelessWidget {
                                 ? const Text('Registered')
                                 : YellowFlatButton(
                                     onTapped: () async {
-                                      await context
-                                          .read<RegistrationCubit>()
-                                          .createEventRegistration(
-                                            event: event,
-                                          );
+                                      // TODO: Change this to registration button
+                                      // await context
+                                      //     .read<RegistrationCubit>()
+                                      //     .createEventRegistration(
+                                      //       event: event,
+                                      //     );
+                                      await launchUrlString(
+                                          "https://inno.nitrkl.in/events/");
                                     },
-                                    text: 'Register',
+                                    text: 'Visit Website',
                                     width: 105,
                                   );
                           },
                           orElse: () => YellowFlatButton(
                             onTapped: () async {
-                              await context
-                                  .read<RegistrationCubit>()
-                                  .createEventRegistration(
-                                    event: event,
-                                  );
+                              // TODO: Change this to registration button
+                              // await context
+                              //     .read<RegistrationCubit>()
+                              //     .createEventRegistration(
+                              //       event: event,
+                              //     );
+                              await launchUrlString(
+                                  "https://inno.nitrkl.in/events/");
                             },
-                            text: 'Register',
+                            text: 'Visit Website',
                             width: 105,
                           ),
                           loading: (eventID) {
@@ -185,13 +190,16 @@ class SpeakerEventCard extends StatelessWidget {
                                   )
                                 : YellowFlatButton(
                                     onTapped: () async {
-                                      await context
-                                          .read<RegistrationCubit>()
-                                          .createEventRegistration(
-                                            event: event,
-                                          );
+                                      // TODO: Change this to registration button
+                                      // await context
+                                      //     .read<RegistrationCubit>()
+                                      //     .createEventRegistration(
+                                      //       event: event,
+                                      //     );
+                                      await launchUrlString(
+                                          "https://inno.nitrkl.in/events/");
                                     },
-                                    text: 'Register',
+                                    text: 'Visit Website',
                                     width: 105,
                                   );
                           },

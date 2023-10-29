@@ -14,6 +14,7 @@ import 'package:elaichi/presentation/home/fest/explore/widgets/registration.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class EventDetailsPage extends StatelessWidget {
   EventDetailsPage({
@@ -65,24 +66,31 @@ class EventDetailsPage extends StatelessWidget {
                         )
                       : YellowFlatButton(
                           onTapped: () async {
-                            await context
-                                .read<RegistrationCubit>()
-                                .createEventRegistration(
-                                  event: event,
-                                );
+                            // TODO: Change this to registration button
+                            // await context
+                            //     .read<RegistrationCubit>()
+                            //     .createEventRegistration(
+                            //       event: event,
+                            //     );
+
+                            await launchUrlString(
+                                "https://inno.nitrkl.in/events/");
                           },
-                          text: 'Register',
+                          text: 'Visit Website',
                         );
                 },
                 orElse: () => YellowFlatButton(
                   onTapped: () async {
-                    await context
-                        .read<RegistrationCubit>()
-                        .createEventRegistration(
-                          event: event,
-                        );
+                    // TODO: Change this to registration button
+                    // await context
+                    //     .read<RegistrationCubit>()
+                    //     .createEventRegistration(
+                    //       event: event,
+                    //     );
+
+                    await launchUrlString("https://inno.nitrkl.in/events/");
                   },
-                  text: 'Register',
+                  text: 'Visit Website',
                 ),
                 loading: (eventID) {
                   return eventID == event.id
@@ -91,13 +99,16 @@ class EventDetailsPage extends StatelessWidget {
                         )
                       : YellowFlatButton(
                           onTapped: () async {
-                            await context
-                                .read<RegistrationCubit>()
-                                .createEventRegistration(
-                                  event: event,
-                                );
+                            // TODO: Change this to registration button
+                            // await context
+                            //     .read<RegistrationCubit>()
+                            //     .createEventRegistration(
+                            //       event: event,
+                            //     );
+                            await launchUrlString(
+                                "https://inno.nitrkl.in/events/");
                           },
-                          text: 'Register',
+                          text: 'Visit Website',
                         );
                 },
               );
@@ -153,7 +164,8 @@ class EventDetailsPage extends StatelessWidget {
                           Text(
                             description[index]['desc'].toString(),
                             style: interTextTheme.bodyLarge!.copyWith(
-                                color: AppColors.grey6.withOpacity(0.8),),
+                              color: AppColors.grey6.withOpacity(0.8),
+                            ),
                           ),
                           const SizedBox(height: 14),
                         ],

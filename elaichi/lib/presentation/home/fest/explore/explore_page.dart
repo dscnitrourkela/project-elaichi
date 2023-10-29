@@ -1,8 +1,10 @@
 // ignore_for_file: avoid_unnecessary_containers, use_decorated_box
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elaichi/data/constants/global_enums.dart';
+import 'package:elaichi/data/remote/graphql/graphql_service.dart';
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/domain/models/org/org.dart';
+import 'package:elaichi/domain/models/user/user.dart';
 import 'package:elaichi/domain/repositories/events_repository.dart';
 import 'package:elaichi/domain/repositories/user_repository.dart';
 import 'package:elaichi/presentation/components/buttons/back_button.dart';
@@ -25,6 +27,7 @@ import 'package:elaichi/presentation/home/fest/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiver/iterables.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({
@@ -79,8 +82,10 @@ class _ExplorePageState extends State<ExplorePage>
           ? RegisterBottomBar(
               child: YellowFlatButton(
                 text: 'Register Now!',
-                onTapped: () =>
-                    Navigator.pushNamed(context, AppRouter.registration),
+                onTapped: () => launchUrlString(
+                  "https://inno.nitrkl.in/",
+                  mode: LaunchMode.externalApplication,
+                ),
               ),
             )
           : null,
