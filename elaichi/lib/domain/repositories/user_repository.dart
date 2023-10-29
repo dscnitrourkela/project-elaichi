@@ -76,7 +76,7 @@ class UserRepository {
     }
   }
 
-  Future<void> getUser() async {
+  Future<User?> getUser() async {
     try {
       final user =
           await _graphQLService.getUser(_firebaseAuth.currentUser!.uid);
@@ -86,13 +86,17 @@ class UserRepository {
       if (user.rollNumber != null) {
         _localStorageService.rollNumber = user.rollNumber;
       }
+      return user;
     } catch (e) {
       debugPrint(e.toString());
     }
+    return null;
   }
 
-  Future<void> getOrCreateUser(
-      {required String rollNumber, required String mobileNumber,}) async {
+  Future<void> getOrCreateUser({
+    required String rollNumber,
+    required String mobileNumber,
+  }) async {
     try {
       if (user == null) {
         final fbUser = _firebaseAuth.currentUser;
