@@ -11,6 +11,7 @@ import 'package:elaichi/presentation/home/fest/explore/widgets/scrolling_text.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SpeakerEventCard extends StatelessWidget {
   SpeakerEventCard({
@@ -127,18 +128,14 @@ class SpeakerEventCard extends StatelessWidget {
                   children: [
                     const SizedBox(width: 2),
                     BlocConsumer<RegistrationCubit, RegistrationState>(
+                      bloc: context.read<RegistrationCubit>(),
                       listener: (context, state) {
                         state.whenOrNull(
                           error: (error) {
-                            if (error == 'User Not Registered') {
-                              Navigator.pushNamed(
-                                context,
-                                AppRouter.registration,
-                              );
-                            } else {
-                              toastUtil.showToast(
-                                mode: ToastMode.Error,
-                                title: error,
+                            if (error == 'User Not Registered Speaker') {
+                              launchUrlString(
+                                'https://inno.nitrkl.in/',
+                                mode: LaunchMode.externalApplication,
                               );
                             }
                           },
@@ -159,6 +156,7 @@ class SpeakerEventCard extends StatelessWidget {
                                           .read<RegistrationCubit>()
                                           .createEventRegistration(
                                             event: event,
+                                            page: 'Speaker',
                                           );
                                     },
                                     text: 'Register',
@@ -171,6 +169,7 @@ class SpeakerEventCard extends StatelessWidget {
                                   .read<RegistrationCubit>()
                                   .createEventRegistration(
                                     event: event,
+                                    page: 'Speaker',
                                   );
                             },
                             text: 'Register',
@@ -187,6 +186,7 @@ class SpeakerEventCard extends StatelessWidget {
                                           .read<RegistrationCubit>()
                                           .createEventRegistration(
                                             event: event,
+                                            page: 'Speaker',
                                           );
                                     },
                                     text: 'Register',

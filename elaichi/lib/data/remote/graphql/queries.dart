@@ -76,6 +76,12 @@ class Queries {
         type
         status
         locationID
+        location {
+          name
+          description
+          lat
+          long
+        }
         pocID
         orgID
       }
