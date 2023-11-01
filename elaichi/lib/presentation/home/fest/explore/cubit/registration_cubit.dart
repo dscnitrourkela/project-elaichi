@@ -18,7 +18,10 @@ class RegistrationCubit extends Cubit<RegistrationState> {
 
   List<EventRegistration> eventRegistrations = [];
 
-  Future<void> createEventRegistration({required Event event}) async {
+  Future<void> createEventRegistration({
+    required Event event,
+    required String page,
+  }) async {
     emit(RegistrationState.loading(eventID: event.id));
 
     final user = _userRepository.user;
@@ -29,7 +32,8 @@ class RegistrationCubit extends Cubit<RegistrationState> {
         userID: user.id,
       );
       eventRegistration.fold(
-        (exception) => emit(RegistrationState.error(error: exception.message!)),
+        (exception) =>
+            emit(RegistrationState.error(error: '${exception.message!} $page')),
         (eventRegistration) async {
           eventRegistration ??= EventRegistration(
             id: 'abc',
@@ -46,7 +50,7 @@ class RegistrationCubit extends Cubit<RegistrationState> {
         },
       );
     } else {
-      emit(const RegistrationState.error(error: 'User Not Registered'));
+      emit(RegistrationState.error(error: 'User Not Registered $page'));
     }
   }
 

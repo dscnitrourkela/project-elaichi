@@ -33,14 +33,15 @@ class EventDetailsPage extends StatelessWidget {
       child: Scaffold(
         bottomNavigationBar: RegisterBottomBar(
           child: BlocConsumer<RegistrationCubit, RegistrationState>(
+            bloc: context.read<RegistrationCubit>(),
             listener: (context, state) {
               state.whenOrNull(
                 success: () {},
                 error: (error) {
-                  if (error == 'User Not Registered') {
-                    Navigator.pushNamed(
-                      context,
-                      AppRouter.registration,
+                  if (error == 'User Not Registered Event_Details') {
+                    toastUtil.showToast(
+                      mode: ToastMode.Error,
+                      title: 'Please Register for Fest First',
                     );
                   } else {
                     toastUtil.showToast(
@@ -69,6 +70,7 @@ class EventDetailsPage extends StatelessWidget {
                                 .read<RegistrationCubit>()
                                 .createEventRegistration(
                                   event: event,
+                                  page: 'Event_Details',
                                 );
                           },
                           text: 'Register',
@@ -80,6 +82,7 @@ class EventDetailsPage extends StatelessWidget {
                         .read<RegistrationCubit>()
                         .createEventRegistration(
                           event: event,
+                          page: 'Event_Details',
                         );
                   },
                   text: 'Register',
@@ -95,6 +98,7 @@ class EventDetailsPage extends StatelessWidget {
                                 .read<RegistrationCubit>()
                                 .createEventRegistration(
                                   event: event,
+                                  page: 'Event_Details',
                                 );
                           },
                           text: 'Register',
