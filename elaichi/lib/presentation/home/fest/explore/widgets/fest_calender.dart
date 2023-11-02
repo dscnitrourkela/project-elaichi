@@ -1,19 +1,19 @@
 // ignore_for_file: avoid_dynamic_calls
 
-
 import 'package:elaichi/domain/models/event/event.dart';
 import 'package:elaichi/presentation/core/router/app_router.dart';
 import 'package:elaichi/presentation/core/theme/base_theme.dart';
 import 'package:elaichi/presentation/core/theme/colors.dart';
 import 'package:elaichi/presentation/home/fest/explore/widgets/scrolling_text.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CalenderTabView extends StatelessWidget {
   const CalenderTabView({
     super.key,
     required TabController tabController,
     required this.calender,
-  })  : _tabController = tabController;
+  }) : _tabController = tabController;
 
   final TabController _tabController;
   final Map<String, List<Event>> calender;
@@ -91,7 +91,7 @@ class CalenderItem extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(bottom: 24),
         constraints: const BoxConstraints(minHeight: 67, maxHeight: 109),
-        width: 326,
+        // width: MediaQuery.of(context).size.width,
         color: AppColors.grey13,
         padding: const EdgeInsets.all(12),
         child: Row(
@@ -113,16 +113,27 @@ class CalenderItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                SizedBox(
-                  width: 200,
-                  child: ScrollingText(
-                    text: event.name,
-                    style: interTextTheme.bodyLarge!.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 200,
+                      child: ScrollingText(
+                        text: event.name,
+                        style: interTextTheme.bodyLarge!.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        condition: 50,
+                      ),
                     ),
-                    condition: 50,
-                  ),
+                    Text(
+                      '${event.startDate.hour}:${event.startDate.minute.toString().padLeft(2, '0')} - ${event.endDate.hour}:${event.endDate.minute.toString().padLeft(2, '0')}',
+                      style: interTextTheme.labelSmall!.copyWith(
+                        color: AppColors.grey10,
+                      ),
+                    ),
+                  ],
                 ),
                 // if (event.poster != '') const SizedBox(height: 4),
                 // if (event.poster != '' && speakerName != null)
@@ -137,27 +148,65 @@ class CalenderItem extends StatelessWidget {
                 const SizedBox(height: 4),
                 if (event.subHeading != '')
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Icon(
-                        Icons.group_work_outlined,
-                        size: 8,
-                        color: AppColors.white1,
+                      SizedBox(
+                        width: 200,
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.group_work_outlined,
+                              size: 8,
+                              color: AppColors.white1,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              event.subHeading,
+                              style: interTextTheme.labelSmall!.copyWith(
+                                fontSize: 12,
+                                color: AppColors.white1,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      const SizedBox(width: 4),
-                      Text(
-                        event.subHeading,
-                        style: interTextTheme.labelSmall!
-                            .copyWith(fontSize: 12, color: AppColors.white1),
-                      ),
+                      GestureDetector(
+                        onTap: () {
+                          final url =
+                              'https://www.google.com/maps/search/?api=1&query=${event.location!.lat},${event.location!.long}';
+                          launchUrlString(
+                            url,
+                            mode: LaunchMode.externalNonBrowserApplication,
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: Colors.white.withOpacity(0.6),
+                              size: 14,
+                            ),
+                            const SizedBox(width: 2),
+                            SizedBox(
+                              width: 80,
+                              child: Text(
+                                event.location!.name,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white.withOpacity(0.6),
+                                ),
+                                // prevent overflow
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
               ],
-            ),
-            Text(
-              '${event.startDate.hour}:${event.startDate.minute.toString().padLeft(2, '0')} - ${event.endDate.hour}:${event.endDate.minute.toString().padLeft(2, '0')}',
-              style: interTextTheme.labelSmall!.copyWith(
-                color: AppColors.grey10,
-              ),
             ),
           ],
         ),

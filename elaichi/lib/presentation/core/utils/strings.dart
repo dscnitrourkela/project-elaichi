@@ -20,7 +20,7 @@ abstract class Strings {
   static const String festLogo = 'assets/icons/fest_icon.svg';
 
   static const String zimbraCardText =
-      'Verify your NITR webmail to access \ntime table, mess menu and much more';
+      'Verify your NITR webmail to access \nZimbra Mail';
   static const String kMmCardTitle =
       'A Noble Breakthrough: NIT Rourkela produces alcohol-based sanitizers';
   static const String kMmCardImageUri =

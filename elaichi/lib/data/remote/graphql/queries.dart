@@ -77,6 +77,7 @@ class Queries {
         status
         locationID
         location {
+          id
           name
           description
           lat

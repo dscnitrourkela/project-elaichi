@@ -14,6 +14,7 @@ import 'package:elaichi/presentation/home/fest/explore/widgets/registration.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class EventDetailsPage extends StatelessWidget {
   EventDetailsPage({
@@ -135,12 +136,47 @@ class EventDetailsPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  '${event.startDate.day.toString().padLeft(2, '0')} ${format.format(event.startDate)} | ${event.startDate.hour.toString().padLeft(2, '0')}:${event.startDate.minute.toString().padLeft(2, '0')}',
-                  style: interTextTheme.bodyLarge!.copyWith(
-                    color: Colors.white.withOpacity(0.6),
-                    fontSize: 14,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '${event.startDate.day.toString().padLeft(2, '0')} ${format.format(event.startDate)} | ${event.startDate.hour.toString().padLeft(2, '0')}:${event.startDate.minute.toString().padLeft(2, '0')}',
+                      style: interTextTheme.bodyLarge!.copyWith(
+                        color: Colors.white.withOpacity(0.6),
+                        fontSize: 14,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        final url =
+                            'https://www.google.com/maps/search/?api=1&query=${event.location!.lat},${event.location!.long}';
+                        launchUrlString(
+                          url,
+                          mode: LaunchMode.externalNonBrowserApplication,
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.white.withOpacity(0.6),
+                            size: 14,
+                          ),
+                          const SizedBox(width: 2),
+                          Text(
+                            event.location!.name,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white.withOpacity(0.6),
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 24),
                 if (description.isEmpty)

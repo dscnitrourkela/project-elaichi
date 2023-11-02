@@ -87,7 +87,20 @@ class WebMailCard extends StatelessWidget {
                       },
                     );
                   } else {
-                    Navigator.pushNamed(context, AppRouter.registrationForm);
+                    showModalBottomSheet<void>(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) => const WebMailLoginBottomSheet(),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16),
+                        ),
+                      ),
+                    ).then(
+                      (value) => context
+                          .read<FestBloc>()
+                          .add(const FestEvent.webMailLogIn()),
+                    );
                   }
                 },
                 child: Text(
